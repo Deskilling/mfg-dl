@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
+	"github.com/charmbracelet/log"
 )
 
 type Stream struct {
@@ -16,12 +17,16 @@ type Stream struct {
 
 func Streams(html string) ([]Stream, error) {
 	if html == "" {
-		return nil, fmt.Errorf("not html parsed")
+		err := fmt.Errorf("not html parsed")
+		log.Error(err)
+		return nil, err
 	}
 
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(html))
 	if err != nil {
-		return nil, fmt.Errorf("could not create goquery document: %w", err)
+		err = fmt.Errorf("could not create goquery document: %w", err)
+		log.Error(err)
+		return nil, err
 	}
 
 	var streams []Stream

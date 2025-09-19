@@ -20,7 +20,7 @@ func Redirect(link string) (string, error) {
 		log.Error(err)
 		return "", err
 	}
-	req.Header.Set("User-Agent", "Deskilling/aniworld-dl")
+	req.Header.Set("User-Agent", "Deskilling/mfg-dl")
 
 	resp, err := client.Do(req)
 	if err != nil && resp == nil {
