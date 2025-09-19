@@ -1,5 +1,15 @@
 package parserHoster
 
+import (
+	"encoding/json"
+	"fmt"
+	"mfg-dl/util"
+	"strings"
+
+	"github.com/PuerkitoBio/goquery"
+	"github.com/charmbracelet/log"
+)
+
 type VoeStream struct {
 	Key                     string   `json:"key"`
 	Sharing                 bool     `json:"sharing"`
@@ -28,4 +38,66 @@ type VoeStream struct {
 	SiteName                string   `json:"site_name"`
 }
 
-// TODO Implement Voe parser
+func Voe(html string) (*VoeStream, error) {
+	if html == "" {
+		err := fmt.Errorf("not html parsed")
+		log.Error(err)
+		return nil, err
+	}
+
+	doc, err := goquery.NewDocumentFromReader(strings.NewReader(html))
+	if err != nil {
+		err = fmt.Errorf("could not create goquery document: %w", err)
+		log.Error(err)
+		return nil, err
+	}
+
+	jsonElem := doc.Find("script[type='application/json']").First()
+	if jsonElem.Length() == 0 {
+		err = fmt.Errorf("no JSON found")
+		return nil, err
+	}
+
+	string := strings.TrimPrefix(strings.TrimSuffix(strings.TrimSpace(jsonElem.Text()), `"]`), `["`)
+	string = util.Rot13(string)
+	string = VoeRemovePatterns(string)
+
+	string, err = util.Base64Decode(string)
+	if err != nil {
+		err = fmt.Errorf("failed to decode base64: %s", err)
+		log.Error(err)
+		return nil, err
+	}
+
+	string = util.ShiftChars(string, 3)
+	string = util.ReverseString(string)
+
+	decoded, err := util.Base64Decode(string)
+	if err != nil {
+		err = fmt.Errorf("failed to decode base64: %s", err)
+		log.Error(err)
+		return nil, err
+	}
+
+	replacer := strings.NewReplacer(`\/`, `/`)
+	decoded = replacer.Replace(decoded)
+
+	var data VoeStream
+	err = json.Unmarshal([]byte(decoded), &data)
+	if err != nil {
+		err = fmt.Errorf("failed to umasharl json: %w", err)
+		log.Error(err)
+		return nil, err
+	}
+
+	return &data, nil
+}
+
+func VoeRemovePatterns(str string) string {
+	patterns := []string{"@$", "^^", "~@", "%?", "*~", "!!", "#&"}
+	result := str
+	for _, pat := range patterns {
+		result = strings.ReplaceAll(result, pat, "")
+	}
+	return result
+}

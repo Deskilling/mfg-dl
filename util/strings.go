@@ -19,3 +19,12 @@ func RemoveAfterSymbol(input string, symbol string) string {
 	}
 	return input
 }
+
+func ShiftChars(str string, shift int) string {
+	var b strings.Builder
+	b.Grow(len(str))
+	for _, char := range str {
+		b.WriteRune(char - rune(shift))
+	}
+	return b.String()
+}
