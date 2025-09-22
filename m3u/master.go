@@ -1,4 +1,4 @@
-package parser
+package m3u
 
 // based on https://github.com/jamesnetherton/m3u/
 

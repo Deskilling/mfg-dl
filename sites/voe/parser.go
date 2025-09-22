@@ -1,4 +1,4 @@
-package parserHoster
+package voe
 
 import (
 	"encoding/json"
@@ -41,7 +41,7 @@ type VoeStream struct {
 	Directory string
 }
 
-func Voe(html string) (*VoeStream, error) {
+func Parse(html string) (*VoeStream, error) {
 	if html == "" {
 		err := fmt.Errorf("not html parsed")
 		log.Error(err)

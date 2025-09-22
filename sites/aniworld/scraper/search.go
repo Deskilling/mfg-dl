@@ -1,7 +1,7 @@
 package aniworld
 
 import (
-	parser "mfg-dl/parser/aniworld"
+	aniworldParser "mfg-dl/sites/aniworld/parser"
 
 	"fmt"
 	"mfg-dl/request"
@@ -10,7 +10,7 @@ import (
 	"github.com/charmbracelet/log"
 )
 
-func Search(term string) ([]parser.SearchResult, error) {
+func Search(term string) ([]aniworldParser.SearchResult, error) {
 	encodedTerm := util.EncodeURIComponent(term)
 
 	searchResults, err := request.Get(request.AniworldEndpoints["search"] + encodedTerm)
@@ -20,7 +20,7 @@ func Search(term string) ([]parser.SearchResult, error) {
 		return nil, err
 	}
 
-	parsedResults, err := parser.Search(searchResults)
+	parsedResults, err := aniworldParser.Search(searchResults)
 	if err != nil {
 		err = fmt.Errorf("failed parsing search results for %s: %w", term, err)
 		log.Error(err)

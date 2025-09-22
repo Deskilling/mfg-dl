@@ -1,7 +1,7 @@
 package aniworld
 
 import (
-	parser "mfg-dl/parser/aniworld"
+	aniworldParser "mfg-dl/sites/aniworld/parser"
 
 	"fmt"
 	"mfg-dl/request"
@@ -9,7 +9,7 @@ import (
 	"github.com/charmbracelet/log"
 )
 
-func Streams(anime, season, episode string) ([]parser.Stream, error) {
+func Streams(anime, season, episode string) ([]aniworldParser.Stream, error) {
 	pageURL := request.AniworldEndpoints["episodes"] + anime + "/staffel-" + season + "/episode-" + episode
 	log.Debug(pageURL)
 	streams, err := request.Get(pageURL)
@@ -19,7 +19,7 @@ func Streams(anime, season, episode string) ([]parser.Stream, error) {
 		return nil, err
 	}
 
-	parsedStreams, err := parser.Streams(streams)
+	parsedStreams, err := aniworldParser.Streams(streams)
 	if err != nil {
 		err = fmt.Errorf("failed parsing Streams for %s %s %s: %w", anime, season, episode, err)
 		log.Error(err)

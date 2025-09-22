@@ -1,7 +1,7 @@
 package aniworld
 
 import (
-	parser "mfg-dl/parser/aniworld"
+	aniworldParser "mfg-dl/sites/aniworld/parser"
 
 	"fmt"
 	"mfg-dl/request"
@@ -9,7 +9,7 @@ import (
 	"github.com/charmbracelet/log"
 )
 
-func Seasons(anime string) ([]parser.Season, error) {
+func Seasons(anime string) ([]aniworldParser.Season, error) {
 	seasons, err := request.Get(request.AniworldEndpoints["episodes"] + anime)
 	if err != nil {
 		err = fmt.Errorf("failed to GET Seasons for %s with error %w", anime, err)
@@ -17,7 +17,7 @@ func Seasons(anime string) ([]parser.Season, error) {
 		return nil, err
 	}
 
-	parsedSeasons, err := parser.Seasons(seasons)
+	parsedSeasons, err := aniworldParser.Seasons(seasons)
 	if err != nil {
 		err = fmt.Errorf("failed parsing seasons for %s: %w", anime, err)
 		log.Error(err)

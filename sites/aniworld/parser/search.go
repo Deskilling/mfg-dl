@@ -1,4 +1,4 @@
-package parserAniworld
+package aniworldParser
 
 import (
 	"encoding/json"

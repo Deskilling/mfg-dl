@@ -1,4 +1,4 @@
-package parserAniworld
+package aniworldParser
 
 func Download(anime, season, episode, prefHost string) {
 	// TODO Implement Download
