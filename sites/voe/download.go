@@ -9,7 +9,7 @@ import (
 	"github.com/charmbracelet/log"
 )
 
-func Download(voeUrl string) error {
+func Download(voeUrl, output string) error {
 	voeHtml, err := request.Get(voeUrl)
 	if err != nil {
 		log.Error(err)
@@ -40,8 +40,9 @@ func Download(voeUrl string) error {
 		return err
 	}
 
-	for _, i := range index.Segments {
-		log.Debug(i.URI)
+	if m3u.DownloadSegments(index, baseUrl, "./temp/"+parsed.Directory+"/") {
+		log.Debug("yes")
+		m3u.ConvertTSFilesToVideo("./temp/"+parsed.Directory, output)
 	}
 
 	return nil
