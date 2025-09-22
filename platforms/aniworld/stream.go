@@ -10,7 +10,8 @@ import (
 )
 
 func Streams(anime, season, episode string) ([]parser.Stream, error) {
-	pageURL := request.AniworldEndpoints["episodes"] + anime + "/staffel- " + season + "/episode-" + episode
+	pageURL := request.AniworldEndpoints["episodes"] + anime + "/staffel-" + season + "/episode-" + episode
+	log.Debug(pageURL)
 	streams, err := request.Get(pageURL)
 	if err != nil {
 		err = fmt.Errorf("failed to GET Stream for %s %s %s: %w", anime, season, episode, err)

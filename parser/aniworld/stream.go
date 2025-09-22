@@ -36,7 +36,7 @@ func Streams(html string) ([]Stream, error) {
 
 		href, exists := link.Attr("href")
 		if !exists {
-			return // Skip this item if no link exists
+			return
 		}
 
 		hosterName := strings.TrimSpace(link.Find("h4").Text())

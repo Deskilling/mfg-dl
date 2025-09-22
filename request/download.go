@@ -11,7 +11,7 @@ import (
 	"github.com/charmbracelet/log"
 )
 
-func DownloadFile(url string, filePath string) error {
+func DownloadFile(url, filePath string) error {
 	err := filesystem.EnsureDir(filePath)
 	if err != nil {
 		err = fmt.Errorf("failed ensuring dir: %w", err)

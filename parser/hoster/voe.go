@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"mfg-dl/util"
+	"regexp"
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
@@ -36,6 +37,8 @@ type VoeStream struct {
 	DirectAccessURL         string   `json:"direct_access_url"`
 	SDKVersion              string   `json:"sdk_version"`
 	SiteName                string   `json:"site_name"`
+	// Only used for the temp dir
+	Directory string
 }
 
 func Voe(html string) (*VoeStream, error) {
@@ -100,4 +103,19 @@ func VoeRemovePatterns(str string) string {
 		result = strings.ReplaceAll(result, pat, "")
 	}
 	return result
+}
+
+// some people hate regex, but for this goquery is a bit overkill (and slower prob)
+func VoeUrlHtml(htmlContent string) (string, error) {
+	re := regexp.MustCompile(`window.location.href\s*=\s*['"](https://[^'"]+)['"]`)
+
+	matches := re.FindStringSubmatch(htmlContent)
+
+	if len(matches) <= 0 {
+		err := fmt.Errorf("no URL found in the provided HTML content")
+		log.Error(err)
+		return "", err
+	}
+
+	return matches[1], nil
 }
