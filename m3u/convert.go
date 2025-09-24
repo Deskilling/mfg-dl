@@ -44,13 +44,12 @@ func ConvertTSFilesToVideo(directory, output string) (bool, error) {
 		return numI < numJ
 	})
 
-	listFile, err := os.Create("segments_" + output + ".txt")
+	listFile, err := os.Create(directory + "/segments.txt")
 	if err != nil {
 		err = fmt.Errorf("failed to create temporary list file: %w", err)
 		log.Error(err)
 		return false, err
 	}
-	defer os.Remove(listFile.Name())
 	defer listFile.Close()
 
 	for _, file := range tsFiles {

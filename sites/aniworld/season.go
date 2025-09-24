@@ -1,9 +1,9 @@
 package aniworld
 
 import (
+	"fmt"
 	"strings"
 
-	"fmt"
 	"mfg-dl/request"
 
 	"github.com/PuerkitoBio/goquery"
@@ -17,7 +17,7 @@ type Season struct {
 }
 
 func GetSeasons(anime string) ([]Season, error) {
-	seasons, err := request.Get(request.AniworldEndpoints["episodes"] + anime)
+	seasons, err := request.Get(AniEndpoints["episodes"] + anime)
 	if err != nil {
 		err = fmt.Errorf("failed to GET Seasons for %s with error %w", anime, err)
 		log.Error(err)

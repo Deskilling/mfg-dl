@@ -2,9 +2,9 @@ package aniworld
 
 import (
 	"encoding/json"
+	"fmt"
 	"html"
 
-	"fmt"
 	"mfg-dl/request"
 	"mfg-dl/util"
 
@@ -22,7 +22,7 @@ type SearchResult struct {
 func GetSearch(term string) ([]SearchResult, error) {
 	encodedTerm := util.EncodeURIComponent(term)
 
-	searchResults, err := request.Get(request.AniworldEndpoints["search"] + encodedTerm)
+	searchResults, err := request.Get(AniEndpoints["search"] + encodedTerm)
 	if err != nil {
 		err = fmt.Errorf("failed to GET Search for %s: %w", term, err)
 		log.Error(err)

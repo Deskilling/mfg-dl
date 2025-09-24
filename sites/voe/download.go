@@ -1,6 +1,7 @@
 package voe
 
 import (
+	"mfg-dl/filesystem"
 	"mfg-dl/m3u"
 	"mfg-dl/request"
 	"mfg-dl/util"
@@ -9,7 +10,29 @@ import (
 	"github.com/charmbracelet/log"
 )
 
-func Download(voeUrl, output string) error {
+func BaseDownload(voeUrl, output string) error {
+	baseHtml, err := request.Get(voeUrl)
+	if err != nil {
+		log.Error(err)
+		return err
+	}
+
+	baseUrl, err := VoeUrlHtml(baseHtml)
+	if err != nil {
+		log.Error(err)
+		return err
+	}
+
+	err = PlayerDownload(baseUrl, output)
+	if err != nil {
+		log.Error(err)
+		return err
+	}
+
+	return nil
+}
+
+func PlayerDownload(voeUrl, output string) error {
 	voeHtml, err := request.Get(voeUrl)
 	if err != nil {
 		log.Error(err)
@@ -41,8 +64,7 @@ func Download(voeUrl, output string) error {
 	}
 
 	if m3u.DownloadSegments(index, baseUrl, "./temp/"+parsed.Directory+"/") {
-		log.Debug("yes")
-		m3u.ConvertTSFilesToVideo("./temp/"+parsed.Directory, output)
+		m3u.ConvertTSFilesToVideo(filesystem.GetExecDir()+"/temp/"+parsed.Directory, output)
 	}
 
 	return nil

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"mfg-dl/filesystem"
 	"mfg-dl/util"
+	"os"
 )
 
 func init() {
@@ -21,5 +22,6 @@ func init() {
 }
 
 func main() {
-	fmt.Println("Currently not Implemented !!!")
+	defer os.RemoveAll("./temp")
+	fmt.Println("WILL BE IMPLEMENTED SOON !!! :3")
 }

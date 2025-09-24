@@ -1,9 +1,9 @@
 package aniworld
 
 import (
+	"fmt"
 	"strings"
 
-	"fmt"
 	"mfg-dl/request"
 
 	"github.com/PuerkitoBio/goquery"
@@ -18,7 +18,7 @@ type Stream struct {
 }
 
 func GetStreams(anime, season, episode string) ([]Stream, error) {
-	pageURL := request.AniworldEndpoints["episodes"] + anime + "/staffel-" + season + "/episode-" + episode
+	pageURL := AniEndpoints["episodes"] + anime + "/staffel-" + season + "/episode-" + episode
 	log.Debug(pageURL)
 	streams, err := request.Get(pageURL)
 	if err != nil {

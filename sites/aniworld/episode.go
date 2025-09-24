@@ -16,7 +16,7 @@ type Episode struct {
 }
 
 func GetEpisodes(anime, season string) ([]Episode, error) {
-	episodes, err := request.Get(request.AniworldEndpoints["episodes"] + anime + "/staffel-" + season)
+	episodes, err := request.Get(AniEndpoints["episodes"] + anime + "/staffel-" + season)
 	if err != nil {
 		err = fmt.Errorf("failed to GET Episodes for %s: %w", anime, err)
 		log.Error(err)
