@@ -1,8 +1,10 @@
-package aniworldParser
+package aniworld
 
 import (
-	"fmt"
 	"strings"
+
+	"fmt"
+	"mfg-dl/request"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/charmbracelet/log"
@@ -15,7 +17,33 @@ type Stream struct {
 	Language string
 }
 
-func Streams(html string) ([]Stream, error) {
+func GetStreams(anime, season, episode string) ([]Stream, error) {
+	pageURL := request.AniworldEndpoints["episodes"] + anime + "/staffel-" + season + "/episode-" + episode
+	log.Debug(pageURL)
+	streams, err := request.Get(pageURL)
+	if err != nil {
+		err = fmt.Errorf("failed to GET Stream for %s %s %s: %w", anime, season, episode, err)
+		log.Error(err)
+		return nil, err
+	}
+
+	parsedStreams, err := parseStreams(streams)
+	if err != nil {
+		err = fmt.Errorf("failed parsing Streams for %s %s %s: %w", anime, season, episode, err)
+		log.Error(err)
+		return nil, err
+	}
+	log.Debugf("parsed %d streams for %s %s %s", len(parsedStreams), anime, season, episode)
+	if len(parsedStreams) == 0 {
+		err = fmt.Errorf("%s not found", anime)
+		log.Error(err)
+		return nil, err
+	}
+
+	return parsedStreams, nil
+}
+
+func parseStreams(html string) ([]Stream, error) {
 	if html == "" {
 		err := fmt.Errorf("not html parsed")
 		log.Error(err)

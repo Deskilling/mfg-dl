@@ -1,8 +1,10 @@
-package aniworldParser
+package aniworld
 
 import (
-	"fmt"
 	"strings"
+
+	"fmt"
+	"mfg-dl/request"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/charmbracelet/log"
@@ -14,7 +16,30 @@ type Season struct {
 	SeasonNumber string
 }
 
-func Seasons(html string) ([]Season, error) {
+func GetSeasons(anime string) ([]Season, error) {
+	seasons, err := request.Get(request.AniworldEndpoints["episodes"] + anime)
+	if err != nil {
+		err = fmt.Errorf("failed to GET Seasons for %s with error %w", anime, err)
+		log.Error(err)
+		return nil, err
+	}
+
+	parsedSeasons, err := parseSeasons(seasons)
+	if err != nil {
+		err = fmt.Errorf("failed parsing seasons for %s: %w", anime, err)
+		log.Error(err)
+		return nil, err
+	}
+	if len(parsedSeasons) == 0 {
+		err = fmt.Errorf("%s not found", anime)
+		log.Error(err)
+		return nil, err
+	}
+
+	return parsedSeasons, nil
+}
+
+func parseSeasons(html string) ([]Season, error) {
 	if html == "" {
 		err := fmt.Errorf("not html parsed")
 		log.Error(err)

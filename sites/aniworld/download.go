@@ -1,4 +1,4 @@
-package aniworldParser
+package aniworld
 
 func Download(anime, season, episode, prefHost string) {
 	// TODO Implement Download
@@ -11,4 +11,5 @@ func Download(anime, season, episode, prefHost string) {
 		parse desired resolution index.m3u8
 		base url + segment
 	*/
+
 }
