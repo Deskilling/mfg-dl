@@ -81,41 +81,43 @@ func Aniworld() {
 		return
 	}
 	var languages []string
+	var language string
 
 	for _, v := range streams {
 		if !util.Contains(languages, v.Language) {
 			languages = append(languages, v.Language)
-    if len(languages) == 0 {
-        log.Error("no streams available for the selected episode")
-        return
-    }
+			if len(languages) == 0 {
+				log.Error("no streams available for the selected episode")
+				return
+			}
 
-    var language string
-    if len(languages) >= 2 {
-        for i, v := range languages {
-            log.Debug(v)
-            fmt.Printf("[%v] %s\n", i+1, aniworld.AniLanguages[v])
-        }
+			var userLanguage int
+			if len(languages) >= 2 {
+				for i, v := range languages {
+					log.Debug(v)
+					fmt.Printf("[%v] %s\n", i+1, aniworld.AniLanguages[v])
+				}
 
-        input = GetUserInput("Enter: ")
-        userLanguage, err := strconv.Atoi(input)
-        if err != nil {
-            log.Error(err)
-            return
-        }
-        if userLanguage < 1 || userLanguage > len(languages) {
-            log.Error("invalid language selection")
-            return
-        }
-        language = languages[userLanguage-1]
-    } else {
-        language = languages[0]
-    }
-		language = languages[userLanguage-1]
-	} else {
-		language = languages[0]
+				input = GetUserInput("Enter: ")
+				userLanguage, err := strconv.Atoi(input)
+				if err != nil {
+					log.Error(err)
+					return
+				}
+				if userLanguage < 1 || userLanguage > len(languages) {
+					log.Error("invalid language selection")
+					return
+				}
+				language = languages[userLanguage-1]
+			} else {
+				language = languages[0]
+			}
+			language = languages[userLanguage-1]
+		} else {
+			language = languages[0]
+		}
+
+		aniworld.Download(anime, season, episode, language, "VOE")
+
 	}
-
-	aniworld.Download(anime, season, episode, language, "VOE")
-
 }
