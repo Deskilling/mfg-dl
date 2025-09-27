@@ -3,9 +3,10 @@ package voe
 import (
 	"encoding/json"
 	"fmt"
-	"mfg-dl/util"
 	"regexp"
 	"strings"
+
+	"mfg-dl/util"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/charmbracelet/log"

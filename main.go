@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"mfg-dl/filesystem"
+	"mfg-dl/tui"
 	"mfg-dl/util"
 	"os"
 )
@@ -23,5 +23,5 @@ func init() {
 
 func main() {
 	defer os.RemoveAll("./temp")
-	fmt.Println("WILL BE IMPLEMENTED SOON !!! :3")
+	tui.Start()
 }

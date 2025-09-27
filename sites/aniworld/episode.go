@@ -2,8 +2,9 @@ package aniworld
 
 import (
 	"fmt"
-	"mfg-dl/request"
 	"strings"
+
+	"mfg-dl/request"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/charmbracelet/log"

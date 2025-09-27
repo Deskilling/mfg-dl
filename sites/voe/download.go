@@ -1,11 +1,12 @@
 package voe
 
 import (
+	"regexp"
+
 	"mfg-dl/filesystem"
 	"mfg-dl/m3u"
 	"mfg-dl/request"
 	"mfg-dl/util"
-	"regexp"
 
 	"github.com/charmbracelet/log"
 )

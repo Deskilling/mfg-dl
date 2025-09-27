@@ -11,7 +11,7 @@ import (
 )
 
 func Download(anime, season, episode, language, prefHost string) error {
-	output := fmt.Sprintf("./downloads/%s/season-%s/%s-episode-%s.mp4", anime, season, AniLanguages[language], episode)
+	output := fmt.Sprintf("./downloads/%s/season-%s/%s-%s-episode-%s.mp4", anime, season, anime, AniLanguages[language], episode)
 
 	streams, err := GetStreams(anime, season, episode)
 	if err != nil {
