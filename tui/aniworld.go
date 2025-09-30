@@ -45,12 +45,12 @@ func Aniworld() {
 		return
 	}
 
-	// checks every time but who cares
 	if len(seasons) == 0 {
 		log.Error("no seasons found")
 		return
 	}
 
+	// checks every time but who cares
 	for i, v := range seasons {
 		if seasons[0].Label == "Alle Filme" {
 			fmt.Printf("[%v] %s\n", i, v.Label)

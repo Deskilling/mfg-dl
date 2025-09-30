@@ -19,7 +19,7 @@ type Stream struct {
 
 func GetStreams(anime, season, episode string) ([]Stream, error) {
 	pageURL := AniEndpoints["episodes"] + anime + "/staffel-" + season + "/episode-" + episode
-	log.Debug(pageURL)
+	log.Debug("leggo schmeggo", "pageURL", pageURL)
 	streams, err := request.Get(pageURL)
 	if err != nil {
 		err = fmt.Errorf("failed to GET Stream for %s %s %s: %w", anime, season, episode, err)

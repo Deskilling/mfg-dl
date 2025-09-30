@@ -37,6 +37,14 @@ func DownloadSegments(index *Index, baseURL, directory string) bool {
 
 	wg.Wait()
 
+	// TOOD If missmatch happens check why
+	if len(failedDirectories) != len(failedDownloads) {
+		log.Fatal("Missmatch")
+		log.Debug(failedDirectories)
+		log.Debug(failedDownloads)
+		return false
+	}
+
 	// TOOD Improve this (works for now)
 	for i, v := range failedDownloads {
 		log.Debug("retrying", "v", v)
