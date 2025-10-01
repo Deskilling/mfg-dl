@@ -12,6 +12,7 @@ var maxConcurrency = 64
 
 func DownloadSegments(index *Index, baseURL, directory string) bool {
 	var wg sync.WaitGroup
+	var mu sync.Mutex
 	semaphore := make(chan struct{}, maxConcurrency)
 
 	var failedDownloads []string
@@ -28,8 +29,10 @@ func DownloadSegments(index *Index, baseURL, directory string) bool {
 			s := strconv.Itoa(i)
 			err := request.DownloadFile(baseURL+v.URI, directory+s+".ts")
 			if err != nil {
+				mu.Lock()
 				failedDownloads = append(failedDownloads, baseURL+v.URI)
 				failedDirectories = append(failedDirectories, directory+s+".ts")
+				mu.Unlock()
 				log.Error(err)
 			}
 		}(i, v)
@@ -37,13 +40,16 @@ func DownloadSegments(index *Index, baseURL, directory string) bool {
 
 	wg.Wait()
 
+	mu.Lock()
 	// TOOD If missmatch happens check why
 	if len(failedDirectories) != len(failedDownloads) {
-		log.Fatal("Missmatch")
 		log.Debug(failedDirectories)
 		log.Debug(failedDownloads)
+		log.Fatal("Missmatch")
+
 		return false
 	}
+	mu.Unlock()
 
 	// TOOD Improve this (works for now)
 	for i, v := range failedDownloads {

@@ -16,6 +16,7 @@ var maxConcurrency = 4
 
 func DownloadSeason(anime, language, prefHost string, season []string) {
 	var wg sync.WaitGroup
+	var mu sync.Mutex
 	semaphore := make(chan struct{}, maxConcurrency)
 
 	var failedSeason []string
@@ -24,8 +25,10 @@ func DownloadSeason(anime, language, prefHost string, season []string) {
 	for i, v := range season {
 		episodes, err := GetEpisodes(anime, v)
 		if err != nil {
+			mu.Lock()
 			failedSeason = append(failedSeason, strconv.Itoa(i))
 			failedEpisode = append(failedEpisode, "0")
+			mu.Unlock()
 			continue
 		}
 
@@ -33,28 +36,34 @@ func DownloadSeason(anime, language, prefHost string, season []string) {
 			semaphore <- struct{}{}
 			wg.Add(1)
 
-			go func(j int, k Episode) {
+			go func(i int, j int, k Episode) {
 				defer wg.Done()
 				defer func() { <-semaphore }()
 
-				ep := strconv.Itoa(j)
+				ep := strconv.Itoa(j + 1)
 				err := Download(anime, v, ep, language, prefHost)
 				if err != nil {
+					mu.Lock()
 					failedSeason = append(failedSeason, season[i])
-					failedEpisode = append(failedEpisode, strconv.Itoa(j))
-
+					failedEpisode = append(failedEpisode, ep)
+					mu.Unlock()
 				}
-			}(j, k)
+			}(i, j, k)
 		}
 	}
 
 	wg.Wait()
 
-	if len(failedSeason) >= 1 && len(failedEpisode) >= 1 {
+	mu.Lock()
+	if len(failedSeason) > 0 && len(failedEpisode) > 0 {
 		for i := range failedSeason {
-			Download(anime, failedSeason[i], failedEpisode[i], language, prefHost)
+			err := Download(anime, failedSeason[i], failedEpisode[i], language, prefHost)
+			if err != nil {
+				log.Error("Failed downloading", anime, "Season:", failedSeason[i], "Episode:", failedEpisode[i])
+			}
 		}
 	}
+	mu.Unlock()
 }
 
 func Download(anime, season, episode, language, prefHost string) error {
