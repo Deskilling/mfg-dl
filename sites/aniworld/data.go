@@ -16,6 +16,6 @@ type Languages map[string]string
 
 var AniLanguages = Languages{
 	"1": "gerdub",
-	"2": "engdub",
+	"2": "engsub",
 	"3": "gersub",
 }
