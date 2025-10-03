@@ -11,12 +11,17 @@ import (
 var maxConcurrency = 64
 
 func DownloadSegments(index *Index, baseURL, directory string) bool {
-	var wg sync.WaitGroup
-	var mu sync.Mutex
-	semaphore := make(chan struct{}, maxConcurrency)
+	var (
+		failedDownloads []string
+		failedFiles     []string
+	)
 
-	var failedDownloads []string
-	var failedDirectories []string
+	var (
+		wg sync.WaitGroup
+		mu sync.Mutex
+	)
+
+	semaphore := make(chan struct{}, maxConcurrency)
 	for i, v := range index.Segments {
 		semaphore <- struct{}{}
 		wg.Add(1)
@@ -31,7 +36,7 @@ func DownloadSegments(index *Index, baseURL, directory string) bool {
 			if err != nil {
 				mu.Lock()
 				failedDownloads = append(failedDownloads, baseURL+v.URI)
-				failedDirectories = append(failedDirectories, directory+s+".ts")
+				failedFiles = append(failedFiles, directory+s+".ts")
 				mu.Unlock()
 				log.Error(err)
 			}
@@ -41,20 +46,36 @@ func DownloadSegments(index *Index, baseURL, directory string) bool {
 	wg.Wait()
 
 	mu.Lock()
-	// TOOD If missmatch happens check why
-	if len(failedDirectories) != len(failedDownloads) {
-		log.Debug(failedDirectories)
+	defer mu.Unlock()
+	if len(failedDownloads) != len(failedFiles) {
+		log.Debug(failedFiles)
 		log.Debug(failedDownloads)
-		log.Fatal("Missmatch")
-
-		return false
+		log.Fatal("Mismatch")
 	}
-	mu.Unlock()
 
-	// TOOD Improve this (works for now)
+	var done []int
 	for i, v := range failedDownloads {
-		log.Debug("retrying", "v", v)
-		request.DownloadFile(v, failedDirectories[i])
+		log.Debug("Retrying", "file", v)
+		err := request.DownloadFile(v, failedFiles[i])
+		if err == nil {
+			done = append(done, i)
+		}
+	}
+
+	for i := len(done) - 1; i >= 0; i-- {
+		idxToRemove := done[i]
+		failedDownloads = append(failedDownloads[:idxToRemove], failedDownloads[idxToRemove+1:]...)
+		failedFiles = append(failedFiles[:idxToRemove], failedFiles[idxToRemove+1:]...)
+	}
+
+	if len(failedDownloads) != 0 && len(failedFiles) != 0 {
+		for i, v := range failedDownloads {
+			log.Debug("Retrying", "file", v)
+			err := request.DownloadFile(v, failedFiles[i])
+			if err != nil {
+				return false
+			}
+		}
 	}
 
 	return true

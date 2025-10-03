@@ -67,6 +67,16 @@ func DownloadSeason(anime, language, prefHost string, season []string) {
 }
 
 func Download(anime, season, episode, language, prefHost string) error {
+	/*
+		Aniworld support 2 different versions
+		its /filme/film-x
+		or /staffel-0/episode-x
+	*/
+
+	if season == "0" {
+		season = "filme"
+	}
+
 	output := fmt.Sprintf("./downloads/%s/season-%s/%s-%s-episode-%s.mp4", anime, season, anime, AniLanguages[language], episode)
 
 	streams, err := GetStreams(anime, season, episode)

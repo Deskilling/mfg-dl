@@ -27,3 +27,6 @@ go.work.sum
 # Other directories
 builds/
 reversing/
+
+# Thanks apple for these great Files !!! <3
+*.DS_Store

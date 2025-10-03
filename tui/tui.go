@@ -23,15 +23,19 @@ func GetUserInput(prompt string) string {
 func Start() {
 	sites := globals.Sites()
 
-	for i := range sites {
-		fmt.Printf("[%v] %s\n", i+1, sites[i])
-	}
+	var userSite int = 1
+	if len(sites) >= 2 {
+		for i := range sites {
+			fmt.Printf("[%v] %s\n", i+1, sites[i])
+		}
 
-	input := GetUserInput("Enter: ")
-	userSite, err := strconv.Atoi(input)
-	if err != nil {
-		log.Error(err)
-		return
+		input := GetUserInput("Enter: ")
+		var err error
+		userSite, err = strconv.Atoi(input)
+		if err != nil {
+			log.Error(err)
+			return
+		}
 	}
 
 	if userSite < 1 || userSite > len(sites) {

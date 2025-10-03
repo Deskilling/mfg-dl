@@ -67,6 +67,7 @@ func ConvertTSFilesToVideo(directory, output string) (bool, error) {
 		"-i", listFile.Name(),
 		"-c", "copy",
 		"-nostats",
+		"-loglevel", "error",
 		"-y",
 		output,
 	)
