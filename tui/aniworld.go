@@ -3,6 +3,7 @@ package tui
 import (
 	"fmt"
 	"strconv"
+	"strings"
 
 	"mfg-dl/sites/aniworld"
 	"mfg-dl/util"
@@ -35,11 +36,6 @@ func Aniworld() {
 	anime := results[userAnime-1].Link
 
 	seasons, err := aniworld.GetSeasons(anime)
-	userAnime, _ = strconv.Atoi(input)
-
-	anime = results[userAnime-1].Link
-
-	seasons, err = aniworld.GetSeasons(anime)
 	if err != nil {
 		log.Error(err)
 		return
@@ -50,74 +46,92 @@ func Aniworld() {
 		return
 	}
 
-	// checks every time but who cares
+	var filme bool = false
+	fmt.Println("Available Seasons:")
 	for i, v := range seasons {
 		if seasons[0].Label == "Alle Filme" {
+			filme = true
 			fmt.Printf("[%v] %s\n", i, v.Label)
 		} else {
 			fmt.Printf("[%v] %s\n", i+1, v.Label)
 		}
 	}
 
-	input = GetUserInput("Enter: ")
-	season := input
+	input = GetUserInput("Enter seasons (e.g., 1 2 3 or all): ")
+	var selectedSeasons []string
 
-	episodes, err := aniworld.GetEpisodes(anime, input)
-	if err != nil {
-		log.Error(err)
-		return
-	}
-
-	for i, v := range episodes {
-		fmt.Printf("[%v] %s\n", i+1, v.Title)
-	}
-
-	input = GetUserInput("Enter: ")
-	episode := input
-
-	streams, err := aniworld.GetStreams(anime, season, episode)
-	if err != nil {
-		log.Error(err)
-		return
-	}
-	var languages []string
-	var language string
-
-	for _, v := range streams {
-		if !util.Contains(languages, v.Language) {
-			languages = append(languages, v.Language)
-			if len(languages) == 0 {
-				log.Error("no streams available for the selected episode")
+	if strings.ToLower(strings.TrimSpace(input)) == "all" {
+		for i := range seasons {
+			selectedSeasons = append(selectedSeasons, strconv.Itoa(i))
+		}
+	} else {
+		parts := strings.Fields(input)
+		for _, part := range parts {
+			num, err := strconv.Atoi(part)
+			if err != nil {
+				log.Errorf("invalid input: %s is not a number", part)
 				return
 			}
 
-			var userLanguage int
-			if len(languages) >= 2 {
-				for i, v := range languages {
-					log.Debug(v)
-					fmt.Printf("[%v] %s\n", i+1, aniworld.AniLanguages[v])
-				}
-
-				input = GetUserInput("Enter: ")
-				userLanguage, err := strconv.Atoi(input)
-				if err != nil {
-					log.Error(err)
+			var seasonIndex int
+			if filme {
+				if num < 0 || num >= len(seasons) {
+					log.Errorf("invalid selection: %d", num)
 					return
 				}
-				if userLanguage < 1 || userLanguage > len(languages) {
-					log.Error("invalid language selection")
-					return
-				}
-				language = languages[userLanguage-1]
+				seasonIndex = num
 			} else {
-				language = languages[0]
+				if num < 1 || num > len(seasons) {
+					log.Errorf("invalid selection: %d", num)
+					return
+				}
+				seasonIndex = num - 1
 			}
-			language = languages[userLanguage-1]
-		} else {
-			language = languages[0]
+			selectedSeasons = append(selectedSeasons, strconv.Itoa(seasonIndex))
+		}
+	}
+
+	if len(selectedSeasons) == 0 {
+		log.Error("no seasons selected")
+		return
+	}
+
+	firstSelectedSeason := selectedSeasons[0]
+	streams, err := aniworld.GetStreams(anime, firstSelectedSeason, "1")
+	if err != nil {
+		log.Warn("Could not pre-determine languages, you may encounter issues.", "err", err)
+	}
+
+	var languages []string
+	var language string
+	for _, v := range streams {
+		if !util.Contains(languages, v.Language) {
+			languages = append(languages, v.Language)
+		}
+	}
+
+	if len(languages) >= 2 {
+		for i, v := range languages {
+			fmt.Printf("[%v] %s\n", i+1, aniworld.AniLanguages[v])
 		}
 
-		aniworld.Download(anime, season, episode, language, "VOE")
-
+		input = GetUserInput("Select Language: ")
+		userLanguage, err := strconv.Atoi(input)
+		if err != nil {
+			log.Error(err)
+			return
+		}
+		if userLanguage < 1 || userLanguage > len(languages) {
+			log.Error("invalid language selection")
+			return
+		}
+		language = languages[userLanguage-1]
+	} else if len(languages) == 1 {
+		language = languages[0]
+	} else {
+		log.Fatal("No Languages found")
 	}
+
+	log.Infof("Starting download for %d season(s)", len(selectedSeasons))
+	aniworld.DownloadSeason(anime, language, "VOE", selectedSeasons)
 }
