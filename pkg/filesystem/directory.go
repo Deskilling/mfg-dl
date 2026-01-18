@@ -1,0 +1,68 @@
+package filesystem
+
+import (
+	"fmt"
+	"os"
+	"path/filepath"
+)
+
+func ReadDirectory(path string, extension string) (files []os.DirEntry, err error) {
+	if !ExistPath(path) {
+		return nil, nil
+	}
+
+	if IsDirEmpty(path) {
+		return nil, fmt.Errorf("directory is empty")
+	}
+
+	allFiles, err := os.ReadDir(path)
+	if err != nil {
+		return nil, err
+	}
+
+	for _, file := range allFiles {
+		if filepath.Ext(file.Name()) == extension {
+			files = append(files, file)
+		}
+	}
+
+	return files, nil
+
+}
+
+func CopyDirectory(source string, target string) (err error) {
+	err = CreatePath(target)
+	if err != nil {
+		return err
+	}
+
+	files, err := ReadDirectory(source, "")
+	if err != nil {
+		return err
+	}
+
+	for _, f := range files {
+		sourcePath := filepath.Join(source, f.Name())
+		targetPath := filepath.Join(target, f.Name())
+
+		if f.IsDir() {
+			err = CopyDirectory(sourcePath, targetPath)
+			if err != nil {
+				return err
+			}
+
+		} else {
+			content, err := os.ReadFile(sourcePath)
+			if err != nil {
+				return err
+			}
+
+			err = os.WriteFile(targetPath, content, os.ModeAppend)
+			if err != nil {
+				return err
+			}
+		}
+	}
+
+	return nil
+}
