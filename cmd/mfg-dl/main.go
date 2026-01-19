@@ -1,9 +1,17 @@
 package main
 
 import (
-	"fmt"
+	"mfg-dl/internal/core"
+
+	"github.com/charmbracelet/log"
 )
 
+func load() (err error) {
+	core.InitLogger(log.DebugLevel)
+
+	return nil
+}
+
 func main() {
-	fmt.Println("Lorees")
+	load()
 }
