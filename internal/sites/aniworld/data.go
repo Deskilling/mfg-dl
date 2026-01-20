@@ -1,8 +1,10 @@
 package aniworld
 
-type Endpoints map[string]string
+import "mfg-dl/internal/sites"
 
 var BaseURL = "https://aniworld.to"
+
+type Endpoints map[string]string
 
 var AniEndpoints = Endpoints{
 	"default":  BaseURL,
@@ -10,6 +12,18 @@ var AniEndpoints = Endpoints{
 	"episodes": BaseURL + "/anime/stream/",
 }
 
+var Aniworld = sites.Site{
+	Name:    "Aniworld",
+	Baseurl: BaseURL,
+
+	Search:   GetSearch,
+	Seasons:  GetSeasons,
+	Episodes: GetEpisodes,
+	Streams:  GetStreams,
+	Download: Download,
+}
+
+// Should probably be scraped from the site
 var Hoster []string = []string{"VOE"}
 
 type Languages map[string]string

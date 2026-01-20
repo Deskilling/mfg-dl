@@ -8,6 +8,8 @@ import (
 
 func load() (err error) {
 	core.InitLogger(log.InfoLevel)
+	core.InitConfig()
+
 	return nil
 }
 

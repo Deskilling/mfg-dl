@@ -9,7 +9,6 @@ import (
 	"github.com/charmbracelet/log"
 )
 
-// TODO remove remove static stuff
 var cloudflaredomain string = "https://one.one.one.one/dns-query?name="
 
 type Question struct {
