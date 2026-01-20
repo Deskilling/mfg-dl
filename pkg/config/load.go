@@ -1,26 +1,26 @@
 package config
 
 import (
+	"bytes"
 	"fmt"
 	"os"
 
 	"github.com/pelletier/go-toml/v2"
 )
 
-func Load(path string) (cfg any, err error) {
-	if path == "" {
-		return nil, fmt.Errorf("empty")
+func Load(path string, cfg any) error {
+	if path == "" || cfg == nil {
+		return fmt.Errorf("invalid arguments")
 	}
 
-	content, err := os.ReadFile(path)
+	data, err := os.ReadFile(path)
 	if err != nil {
-		return nil, err
+		return err
 	}
 
-	err = toml.Unmarshal(content, &cfg)
-	if err != nil {
-		return nil, err
+	if len(bytes.TrimSpace(data)) == 0 {
+		return fmt.Errorf("data is empty, using default")
 	}
 
-	return cfg, nil
+	return toml.Unmarshal(data, cfg)
 }

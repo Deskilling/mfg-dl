@@ -2,23 +2,57 @@ package core
 
 import (
 	"mfg-dl/pkg/config"
+
+	"github.com/charmbracelet/log"
 )
 
-type Config struct {
+const configLocation string = "./config.toml"
+
+type Tui struct {
+	Basic bool
 }
 
-var defaultConfig Config = Config{}
+type Location struct {
+	Download string
+	Temp     string
+}
 
-func InitConfig() (cfg any, err error) {
-	cfg, err = config.Load("./config.toml")
+type Config struct {
+	Tui      Tui
+	Location Location
+}
+
+var defaultConfig = Config{
+	Tui: Tui{
+		Basic: false,
+	},
+
+	Location: Location{
+		Download: "./downloads",
+		Temp:     "./temp",
+	},
+}
+
+var cfg Config
+
+func InitConfig() error {
+	err := config.Load(configLocation, &cfg)
 	if err != nil {
-		err = config.Default("./config.toml", defaultConfig)
+		log.Error("Failed loading config", "err", err)
+		cfg = defaultConfig
+
+		err = config.Save(configLocation, cfg)
 		if err != nil {
-			return nil, err
+			log.Error("failed saving config", "err", err)
+			return err
 		}
 
-		return nil, err
+		log.Info("created config at", "configLocation", configLocation)
 	}
+	log.Debug("loaded config")
+	return nil
+}
 
-	return cfg, nil
+func GetConfig() *Config {
+	return &cfg
 }

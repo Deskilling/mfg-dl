@@ -7,7 +7,7 @@ import (
 )
 
 func load() (err error) {
-	core.InitLogger(log.InfoLevel)
+	core.InitLogger(log.DebugLevel)
 	core.InitConfig()
 
 	return nil
