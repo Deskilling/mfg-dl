@@ -25,7 +25,7 @@ go.work.sum
 .env
 
 # build dir
-builds/
+/builds
 
 # mac finder files
 .DS_Store
