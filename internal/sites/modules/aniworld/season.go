@@ -5,13 +5,13 @@ import (
 	"strings"
 
 	"mfg-dl/internal/request"
-	"mfg-dl/internal/sites"
+	"mfg-dl/internal/sites/model"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/charmbracelet/log"
 )
 
-func GetSeasons(result sites.SearchResult) ([]sites.Season, error) {
+func GetSeasons(result model.SearchResult) ([]model.Season, error) {
 	seasons, err := request.Get(AniEndpoints["episodes"] + result.Href)
 	if err != nil {
 		log.Error(err)
@@ -37,7 +37,7 @@ func GetSeasons(result sites.SearchResult) ([]sites.Season, error) {
 	return parsedSeasons, nil
 }
 
-func ParseSeasons(html string) (seasons []sites.Season, err error) {
+func ParseSeasons(html string) (seasons []model.Season, err error) {
 	if html == "" {
 		err := fmt.Errorf("not html parsed")
 		log.Error(err)
@@ -62,8 +62,9 @@ func ParseSeasons(html string) (seasons []sites.Season, err error) {
 			}
 
 			seasonNumber := strings.TrimSpace(strings.TrimPrefix(label, "Staffel "))
+			log.Debug("found href", "href", href)
 
-			seasons = append(seasons, sites.Season{
+			seasons = append(seasons, model.Season{
 				Href:      href,
 				Label:     label,
 				SeasonNum: seasonNumber,

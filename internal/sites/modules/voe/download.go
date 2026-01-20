@@ -6,6 +6,7 @@ import (
 	"regexp"
 	"strings"
 
+	"mfg-dl/internal/core"
 	"mfg-dl/internal/m3u"
 	"mfg-dl/internal/request"
 	"mfg-dl/internal/util"
@@ -79,7 +80,7 @@ func PlayerDownload(voeUrl, output string) error {
 		return err
 	}
 
-	dir := fmt.Sprintf("%s%s%s/", *filesystem.GetExecDir(), util.GetSettings().Location.Tempdir, parsed.Directory)
+	dir := fmt.Sprintf("%s%s%s/", *filesystem.GetExecDir(), core.GetConfig().Location.Temp, parsed.Directory)
 	err = m3u.DownloadSegments(index, baseUrl, dir)
 	if err != nil {
 		return fmt.Errorf("failed to download all segments for %s", dir)

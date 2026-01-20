@@ -3,14 +3,14 @@ package aniworld
 import (
 	"fmt"
 	"mfg-dl/internal/request"
-	"mfg-dl/internal/sites"
+	"mfg-dl/internal/sites/model"
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/charmbracelet/log"
 )
 
-func GetStreams(episode sites.Episode) ([]sites.Stream, error) {
+func GetStreams(episode model.Episode) ([]model.Stream, error) {
 	pageURL := BaseURL + episode.Href
 	log.Debug("leggo schmeggo", "pageURL", pageURL)
 	streams, err := request.Get(pageURL)
@@ -42,7 +42,7 @@ func GetStreams(episode sites.Episode) ([]sites.Stream, error) {
 	return parsedStreams, nil
 }
 
-func ParseStreams(html string) (streams []sites.Stream, err error) {
+func ParseStreams(html string) (streams []model.Stream, err error) {
 	if html == "" {
 		err := fmt.Errorf("not html parsed")
 		log.Error(err)
@@ -76,10 +76,10 @@ func ParseStreams(html string) (streams []sites.Stream, err error) {
 			lang = strings.TrimSpace(langKey)
 		}
 
-		streams = append(streams, sites.Stream{
+		streams = append(streams, model.Stream{
 			Href:     href,
 			Hoster:   hosterName,
-			Language: lang,
+			Language: AniLanguages[lang],
 		})
 	})
 

@@ -2,6 +2,7 @@ package main
 
 import (
 	"mfg-dl/internal/core"
+	"mfg-dl/internal/tui"
 
 	"github.com/charmbracelet/log"
 )
@@ -15,4 +16,10 @@ func load() (err error) {
 
 func main() {
 	load()
+
+	if core.GetConfig().Tui.Basic {
+		tui.SimpleTui()
+	} else {
+		log.Fatal("Not Implemented")
+	}
 }
