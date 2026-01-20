@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"sync"
 
-	"mfg-dl/pkg/request"
+	"mfg-dl/internal/request"
 )
 
 // TODO test for best value

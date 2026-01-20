@@ -19,8 +19,6 @@ type Index struct {
 	Segments       []Segment
 }
 
-// TODO Segments should probbably be a pointer
-
 type Segment struct {
 	Duration float64
 	URI      string

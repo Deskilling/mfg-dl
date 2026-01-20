@@ -6,10 +6,10 @@ import (
 	"regexp"
 	"strings"
 
+	"mfg-dl/internal/m3u"
+	"mfg-dl/internal/request"
 	"mfg-dl/internal/util"
 	"mfg-dl/pkg/filesystem"
-	"mfg-dl/pkg/m3u"
-	"mfg-dl/pkg/request"
 
 	"github.com/charmbracelet/log"
 )
