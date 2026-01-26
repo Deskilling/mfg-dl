@@ -6,13 +6,13 @@ import (
 	"html"
 
 	"mfg-dl/internal/request"
-	"mfg-dl/internal/sites"
+	"mfg-dl/internal/sites/model"
 	"mfg-dl/internal/util"
 
 	"github.com/charmbracelet/log"
 )
 
-func GetSearch(term string) ([]sites.SearchResult, error) {
+func GetSearch(term string) ([]model.SearchResult, error) {
 	encodedTerm := util.EncodeURIComponent(term)
 
 	searchResults, err := request.Get(AniEndpoints["search"] + encodedTerm)
@@ -38,7 +38,7 @@ func GetSearch(term string) ([]sites.SearchResult, error) {
 	return parsedResults, nil
 }
 
-func ParseSearch(data string) (search []sites.SearchResult, err error) {
+func ParseSearch(data string) (search []model.SearchResult, err error) {
 	err = json.Unmarshal([]byte(data), &search)
 	if err != nil {
 		err = fmt.Errorf("failed to unmarshal search results: %w", err)

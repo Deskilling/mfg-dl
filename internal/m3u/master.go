@@ -11,18 +11,18 @@ import (
 )
 
 type VariantStream struct {
-	Resolution      string
-	Bandwidth       int
-	AverageBandwith int
-	Codecs          string
-	Name            string
-	FrameRate       float64
-	HdcpLevel       string
-	Video           string
-	Audio           string
-	Subtitle        string
-	ClosedCaptions  string
-	URI             string
+	Resolution       string
+	Bandwidth        int
+	AverageBandwidth int
+	Codecs           string
+	Name             string
+	FrameRate        float64
+	HdcpLevel        string
+	Video            string
+	Audio            string
+	Subtitle         string
+	ClosedCaptions   string
+	URI              string
 }
 
 // TODO Improve error handle stuff and read how m3u actually works cheffe €€€€ :(
@@ -72,7 +72,7 @@ func Parse(f io.ReadCloser) ([]VariantStream, error) {
 						err = fmt.Errorf("unable to parse average bandwidth: %w", err)
 						return nil, err
 					}
-					stream.AverageBandwith = averageBandwidthInt
+					stream.AverageBandwidth = averageBandwidthInt
 				}
 				if strings.HasPrefix(param, "CODECS") {
 					codecs := strings.Split(streamInfo[i], "=")[1]

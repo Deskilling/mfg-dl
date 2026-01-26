@@ -5,14 +5,14 @@ import (
 	"strings"
 
 	"mfg-dl/internal/request"
-	"mfg-dl/internal/sites"
+	"mfg-dl/internal/sites/model"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/charmbracelet/log"
 )
 
-func GetEpisodes(season sites.Season) ([]sites.Episode, error) {
-	url := AniEndpoints["episodes"] + season.Href
+func GetEpisodes(season model.Season) ([]model.Episode, error) {
+	url := BaseURL + season.Href
 
 	episodes, err := request.Get(url)
 	if err != nil {
@@ -42,7 +42,7 @@ func GetEpisodes(season sites.Season) ([]sites.Episode, error) {
 	return parsedEpisodes, nil
 }
 
-func ParseEpisodes(html string) (episodes []sites.Episode, err error) {
+func ParseEpisodes(html string) (episodes []model.Episode, err error) {
 	if html == "" {
 		err := fmt.Errorf("not html parsed")
 		log.Error(err)
@@ -75,7 +75,7 @@ func ParseEpisodes(html string) (episodes []sites.Episode, err error) {
 		title := strings.TrimSpace(episodeLink.Find("strong").Text())
 		//extra := strings.TrimSpace(episodeLink.Find("span").Text())
 
-		episodes = append(episodes, sites.Episode{
+		episodes = append(episodes, model.Episode{
 			Href:       href,
 			Title:      title,
 			EpisodeNum: episodeNum,
