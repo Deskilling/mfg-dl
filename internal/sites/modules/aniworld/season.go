@@ -3,6 +3,7 @@ package aniworld
 import (
 	"fmt"
 	"strings"
+	"time"
 
 	"mfg-dl/internal/request"
 	"mfg-dl/internal/sites/model"
@@ -18,11 +19,13 @@ func GetSeasons(result model.SearchResult) ([]model.Season, error) {
 		return nil, err
 	}
 
+	start := time.Now()
 	parsedSeasons, err := ParseSeasons(seasons)
 	if err != nil {
 		log.Error(err)
 		return nil, err
 	}
+	log.Debugf("time took for season parsing: %v", time.Since(start))
 
 	if len(parsedSeasons) == 0 {
 		err = fmt.Errorf("%s not found", result.Href)

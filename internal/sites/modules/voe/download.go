@@ -3,36 +3,33 @@ package voe
 import (
 	"fmt"
 	"io"
-	"regexp"
-	"strings"
-
 	"mfg-dl/internal/core"
 	"mfg-dl/internal/m3u"
 	"mfg-dl/internal/request"
 	"mfg-dl/internal/util"
-	"mfg-dl/pkg/filesystem"
+	"regexp"
+	"strings"
 
 	"github.com/charmbracelet/log"
 )
 
 func BaseDownload(voeUrl, output string) error {
+	log.Error(voeUrl)
 	baseHtml, err := request.Get(voeUrl)
 	if err != nil {
 		log.Error(err)
 		return err
 	}
+	log.Debug("got html for", "voeUrl", voeUrl)
 
 	baseUrl, err := VoeUrlHtml(baseHtml)
 	if err != nil {
 		log.Error(err)
 		return err
 	}
+	log.Debug("got baseurl from html", "baseUrl", baseUrl)
 
-	err = PlayerDownload(baseUrl, output)
-	if err != nil {
-		log.Error(err)
-		return err
-	}
+	PlayerDownload(baseUrl, output)
 
 	return nil
 }
@@ -80,7 +77,8 @@ func PlayerDownload(voeUrl, output string) error {
 		return err
 	}
 
-	dir := fmt.Sprintf("%s%s%s/", *filesystem.GetExecDir(), core.GetConfig().Location.Temp, parsed.Directory)
+	dir := fmt.Sprintf("%s/%s/", core.GetConfig().Location.Temp, parsed.Directory)
+	log.Info(dir)
 	err = m3u.DownloadSegments(index, baseUrl, dir)
 	if err != nil {
 		return fmt.Errorf("failed to download all segments for %s", dir)

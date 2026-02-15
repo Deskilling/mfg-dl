@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"html"
+	"time"
 
 	"mfg-dl/internal/request"
 	"mfg-dl/internal/sites/model"
@@ -22,12 +23,14 @@ func GetSearch(term string) ([]model.SearchResult, error) {
 		return nil, err
 	}
 
+	start := time.Now()
 	parsedResults, err := ParseSearch(searchResults)
 	if err != nil {
 		err = fmt.Errorf("failed parsing search results for %s: %w", term, err)
 		log.Error(err)
 		return nil, err
 	}
+	log.Debugf("time took for search parsing: %v", time.Since(start))
 
 	if len(parsedResults) == 0 {
 		err = fmt.Errorf("%s not found", term)

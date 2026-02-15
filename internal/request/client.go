@@ -1,39 +1,49 @@
 package request
 
 import (
+	"fmt"
 	"io"
 	"net/http"
-	"sync"
 	"time"
+
+	"github.com/charmbracelet/log"
 )
 
-var (
-	clients = make(map[string]*http.Client)
-	mu      sync.Mutex
-)
+var client = &http.Client{
+	Timeout: 10 * time.Second,
+	Transport: &http.Transport{
+		MaxIdleConns:          500,
+		MaxIdleConnsPerHost:   100,
+		IdleConnTimeout:       90 * time.Second,
+		TLSHandshakeTimeout:   10 * time.Second,
+		ExpectContinueTimeout: 1 * time.Second,
+	},
+}
 
-func Get(url string, proxyAddr string) (content string, err error) {
-	client := &http.Client{
-		Timeout: 15 * time.Second,
-	}
+func Get(endpoint string) (string, error) {
+	start := time.Now()
 
-	if !(proxyAddr == "") {
-		client, err = getSock5Client(proxyAddr)
-		if err != nil {
-			return "", err
-		}
-	}
-
-	resp, err := client.Get(url)
+	resp, err := client.Get(endpoint)
 	if err != nil {
+		err = fmt.Errorf("request failed: %w", err)
+		log.Error(err)
 		return "", err
 	}
 	defer resp.Body.Close()
 
-	body, err := io.ReadAll(resp.Body)
-	if err != nil {
+	if resp.StatusCode != http.StatusOK {
+		err = fmt.Errorf("request failed with status code: %d", resp.StatusCode)
+		log.Error(err)
 		return "", err
 	}
 
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		err = fmt.Errorf("reading body failed: %w", err)
+		log.Error(err)
+		return "", err
+	}
+
+	log.Debugf("request to %s took: %v", endpoint, time.Since(start))
 	return string(body), nil
 }
