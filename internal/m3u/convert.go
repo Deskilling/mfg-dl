@@ -47,7 +47,7 @@ func ConvertTSFilesToVideo(directory, output string) (err error) {
 	defer listFile.Close()
 
 	for _, file := range tsFiles {
-		_, err := fmt.Fprintf(listFile, "file '%s'\n", filepath.Join(directory, file.Name()))
+		_, err := fmt.Fprintf(listFile, "file '%s'\n", file.Name())
 		if err != nil {
 			return err
 		}

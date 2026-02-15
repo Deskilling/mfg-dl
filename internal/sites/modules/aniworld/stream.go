@@ -5,6 +5,7 @@ import (
 	"mfg-dl/internal/request"
 	"mfg-dl/internal/sites/model"
 	"strings"
+	"time"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/charmbracelet/log"
@@ -20,13 +21,16 @@ func GetStreams(episode model.Episode) ([]model.Stream, error) {
 		return nil, err
 	}
 
+	start := time.Now()
 	parsedStreams, err := ParseStreams(streams)
 	if err != nil {
 		err = fmt.Errorf("failed parsing Streams for %s: %w", episode.Href, err)
 		log.Error(err)
 		return nil, err
 	}
+	log.Debugf("time took for stream parsing: %v", time.Since(start))
 	log.Debugf("parsed %d streams for %s", len(parsedStreams), episode.Href)
+
 	if len(parsedStreams) == 0 {
 		err = fmt.Errorf("%s not found", episode.Href)
 		log.Error(err)

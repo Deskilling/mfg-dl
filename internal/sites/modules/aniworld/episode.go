@@ -3,6 +3,7 @@ package aniworld
 import (
 	"fmt"
 	"strings"
+	"time"
 
 	"mfg-dl/internal/request"
 	"mfg-dl/internal/sites/model"
@@ -21,12 +22,14 @@ func GetEpisodes(season model.Season) ([]model.Episode, error) {
 		return nil, err
 	}
 
+	start := time.Now()
 	parsedEpisodes, err := ParseEpisodes(episodes)
 	if err != nil {
 		err = fmt.Errorf("failed parsing episodes %w", err)
 		log.Error(err)
 		return nil, err
 	}
+	log.Debugf("time took for episode parsing: %v", time.Since(start))
 
 	if len(parsedEpisodes) == 0 {
 		log.Error(err)
