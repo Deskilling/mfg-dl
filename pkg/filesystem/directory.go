@@ -21,11 +21,10 @@ func ReadDirectory(path string, extension string) (files []os.DirEntry, err erro
 	}
 
 	for _, file := range allFiles {
-		if filepath.Ext(file.Name()) == extension {
+		if extension == "" || filepath.Ext(file.Name()) == extension {
 			files = append(files, file)
 		}
 	}
-
 	return files, nil
 
 }

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"mfg-dl/internal/anime4k"
 	"mfg-dl/internal/core"
 	"mfg-dl/internal/tui"
 	"mfg-dl/pkg/filesystem"
@@ -12,6 +13,7 @@ func init() {
 	core.InitConfig()
 	core.InitLogger(log.Level(core.GetConfig().Extra.LogLevel))
 	filesystem.RemoveDirectory(core.GetConfig().Location.Temp)
+	anime4k.DownloadLatestRelease()
 }
 
 func main() {
@@ -20,4 +22,6 @@ func main() {
 	} else {
 		log.Fatal("Not Implemented")
 	}
+
+	filesystem.RemoveDirectory(core.GetConfig().Location.Temp)
 }
