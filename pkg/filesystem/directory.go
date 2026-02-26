@@ -66,3 +66,37 @@ func CopyDirectory(source string, target string) (err error) {
 
 	return nil
 }
+
+func RemoveDirectory(path string) (err error) {
+	if !ExistPath(path) {
+		return nil
+	}
+
+	files, err := os.ReadDir(path)
+	if err != nil {
+		return err
+	}
+
+	for _, f := range files {
+		currentPath := filepath.Join(path, f.Name())
+
+		if f.IsDir() {
+			err = RemoveDirectory(currentPath)
+			if err != nil {
+				return err
+			}
+		} else {
+			err = os.Remove(currentPath)
+			if err != nil {
+				return err
+			}
+		}
+	}
+
+	err = os.Remove(path)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}

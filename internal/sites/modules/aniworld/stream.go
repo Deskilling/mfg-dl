@@ -2,10 +2,11 @@ package aniworld
 
 import (
 	"fmt"
-	"mfg-dl/internal/request"
-	"mfg-dl/internal/sites/model"
 	"strings"
 	"time"
+
+	"mfg-dl/internal/request"
+	"mfg-dl/internal/sites/model"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/charmbracelet/log"

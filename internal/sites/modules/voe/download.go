@@ -3,17 +3,24 @@ package voe
 import (
 	"fmt"
 	"io"
+	"regexp"
+	"strings"
+
 	"mfg-dl/internal/core"
 	"mfg-dl/internal/m3u"
 	"mfg-dl/internal/request"
 	"mfg-dl/internal/util"
-	"regexp"
-	"strings"
+	"mfg-dl/pkg/filesystem"
 
 	"github.com/charmbracelet/log"
 )
 
-func BaseDownload(voeUrl, output string) error {
+func BaseDownload(voeUrl, output string) (err error) {
+	if filesystem.ExistPath(output) {
+		log.Info("Already downloaded", "output", output)
+		return nil
+	}
+
 	log.Error(voeUrl)
 	baseHtml, err := request.Get(voeUrl)
 	if err != nil {
@@ -34,7 +41,12 @@ func BaseDownload(voeUrl, output string) error {
 	return nil
 }
 
-func PlayerDownload(voeUrl, output string) error {
+func PlayerDownload(voeUrl, output string) (err error) {
+	if filesystem.ExistPath(output) {
+		log.Info("Already downloaded", "output", output)
+		return nil
+	}
+
 	voeHtml, err := request.Get(voeUrl)
 	if err != nil {
 		log.Error(err)
