@@ -68,9 +68,9 @@ func ParseSeasons(html string) (seasons []model.Season, err error) {
 			log.Debug("found href", "href", href)
 
 			seasons = append(seasons, model.Season{
-				Href:      href,
-				Label:     label,
-				SeasonNum: seasonNumber,
+				Href:        href,
+				SeasonLabel: label,
+				SeasonNum:   seasonNumber,
 			})
 		}
 	})
