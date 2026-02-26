@@ -15,7 +15,7 @@ type Tui struct {
 type Location struct {
 	Download string
 	Temp     string
-	Shader   string
+	Shader   string `toml:"shader" comment:"This will only be used if you enable shaders"`
 }
 
 type Extra struct {
@@ -24,8 +24,9 @@ type Extra struct {
 	LogLevel       int `toml:"loglevel" comment:"Debug: -4, Info: 0, Warn: 4, Error: 8, Fatal: 12"`
 }
 
-type Upscale struct {
+type Shader struct {
 	Enable       bool
+	Autoupdate   bool
 	Shader       string
 	CRF          int
 	Preset       string
@@ -39,6 +40,7 @@ type Config struct {
 	Tui      Tui
 	Location Location
 	Extra    Extra
+	Shader   Shader
 }
 
 var defaultConfig = Config{
@@ -49,12 +51,18 @@ var defaultConfig = Config{
 	Location: Location{
 		Download: "./downloads",
 		Temp:     "./temp",
+		Shader:   "./shader",
 	},
 
 	Extra: Extra{
 		FilePattern:    "{location}/{name}/{name}-Season{season}-Episode{episode}-{language}.mp4",
 		MaxConcurrency: 16,
 		LogLevel:       0,
+	},
+
+	Shader: Shader{
+		Enable:     false,
+		Autoupdate: false,
 	},
 }
 

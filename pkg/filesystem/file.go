@@ -5,6 +5,10 @@ import (
 )
 
 func ReadFile(filepath string) (content string, err error) {
+	if !ExistPath(filepath) {
+		return "", nil
+	}
+
 	byte, err := os.ReadFile(filepath)
 	if err != nil {
 		return "", err
