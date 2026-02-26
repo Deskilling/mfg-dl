@@ -9,11 +9,17 @@ import (
 	"github.com/charmbracelet/log"
 )
 
-var client = &http.Client{
-	Timeout: 10 * time.Second,
+var userAgent string = "deskilling/mfg-dl"
+
+var Client = &http.Client{
+	Timeout: 0,
 	Transport: &http.Transport{
-		MaxIdleConns:          500,
-		MaxIdleConnsPerHost:   100,
+		Proxy: http.ProxyFromEnvironment,
+
+		ForceAttemptHTTP2:     true,
+		MaxIdleConns:          512,
+		MaxIdleConnsPerHost:   256,
+		MaxConnsPerHost:       0,
 		IdleConnTimeout:       90 * time.Second,
 		TLSHandshakeTimeout:   10 * time.Second,
 		ExpectContinueTimeout: 1 * time.Second,
@@ -23,24 +29,24 @@ var client = &http.Client{
 func Get(endpoint string) (string, error) {
 	start := time.Now()
 
-	resp, err := client.Get(endpoint)
+	req, err := http.NewRequest(http.MethodGet, endpoint, nil)
 	if err != nil {
-		err = fmt.Errorf("request failed: %w", err)
-		log.Error(err)
+		return "", err
+	}
+	req.Header.Set("User-Agent", userAgent)
+
+	resp, err := Client.Do(req)
+	if err != nil {
 		return "", err
 	}
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		err = fmt.Errorf("request failed with status code: %d", resp.StatusCode)
-		log.Error(err)
-		return "", err
+		return "", fmt.Errorf("status %d", resp.StatusCode)
 	}
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		err = fmt.Errorf("reading body failed: %w", err)
-		log.Error(err)
 		return "", err
 	}
 

@@ -70,7 +70,8 @@ func ClearPath(path, extension string) (err error) {
 			continue
 		}
 
-		if err := os.Remove(fullPath); err != nil {
+		err = os.Remove(fullPath)
+		if err != nil {
 			return err
 		}
 	}

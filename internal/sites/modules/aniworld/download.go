@@ -1,19 +1,25 @@
 package aniworld
 
 import (
-	"fmt"
-	"mfg-dl/internal/core"
+	"time"
+
 	"mfg-dl/internal/request"
 	"mfg-dl/internal/sites/model"
 	"mfg-dl/internal/sites/modules/voe"
+	"mfg-dl/internal/util"
+
+	"github.com/charmbracelet/log"
 )
 
 func Download(stream model.Stream) (err error) {
 	url := BaseURL + stream.Href
 	location, _ := request.Redirect(url)
 
-	output := fmt.Sprintf("%s/%s/%s-Season%s-Episode%s.mp4", core.GetConfig().Location.Download, stream.Name, stream.Name, stream.SeasonNum, stream.EpisodeNum)
+	output := util.BuildOutputPath(stream)
+
+	start := time.Now()
 	voe.BaseDownload(location, output)
+	log.Errorf("Took %s to download to %s", time.Since(start), location)
 
 	return nil
 }
