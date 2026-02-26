@@ -57,11 +57,11 @@ Search:
 		log.Error("failed getting seasons", "input", search[userSelected], "err", err)
 	}
 	for i, v := range seasons {
-		if seasons[0].Label == "Alle Filme" {
-			fmt.Printf("[%v] %s\n", i, v.Label)
+		if seasons[0].SeasonLabel == "Alle Filme" {
+			fmt.Printf("[%v] %s\n", i, v.SeasonLabel)
 		} else {
 			u := i + 1
-			fmt.Printf("[%v] %s\n", u, v.Label)
+			fmt.Printf("[%v] %s\n", u, v.SeasonLabel)
 		}
 	}
 
@@ -73,7 +73,7 @@ Search:
 		return
 	}
 
-	if seasons[0].Label != "Alle Filme" {
+	if seasons[0].SeasonLabel != "Alle Filme" {
 		userSeason--
 	}
 
@@ -83,7 +83,7 @@ Search:
 	}
 	for i, v := range episode {
 		u := i + 1
-		fmt.Printf("[%v] %s\n", u, v.Title)
+		fmt.Printf("[%v] %s\n", u, v.EpisodeTitle)
 	}
 
 	var userEpisode int
