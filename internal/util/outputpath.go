@@ -16,6 +16,8 @@ func BuildOutputPath(stream model.Stream) string {
 		"{location}", cfg.Location.Download,
 		"{name}", stream.Name,
 		"{season}", stream.SeasonNum,
+		"{title}", stream.EpisodeTitle,
+		"{title2}", stream.EpisodeAlternativeTitle,
 		"{episode}", stream.EpisodeNum,
 		"{language}", stream.Language,
 		"{hoster},", stream.Hoster,

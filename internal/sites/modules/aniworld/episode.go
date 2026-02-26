@@ -52,11 +52,6 @@ func ParseEpisodes(html string) (episodes []model.Episode, err error) {
 		return nil, err
 	}
 
-	/*
-		filesystem.WriteFile("./unparsed_episode.html", []byte(html))
-		log.Fatal("quit")
-	*/
-
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(html))
 	if err != nil {
 		err = fmt.Errorf("could not create goquery document: %w", err)
@@ -76,13 +71,13 @@ func ParseEpisodes(html string) (episodes []model.Episode, err error) {
 		}
 
 		title := strings.TrimSpace(episodeLink.Find("strong").Text())
-		//extra := strings.TrimSpace(episodeLink.Find("span").Text())
+		alternativeTitle := strings.TrimSpace(episodeLink.Find("span").Text())
 
 		episodes = append(episodes, model.Episode{
-			Href:       href,
-			Title:      title,
-			EpisodeNum: episodeNum,
-			//EngTitle: extra,
+			Href:                    href,
+			EpisodeTitle:            title,
+			EpisodeAlternativeTitle: alternativeTitle,
+			EpisodeNum:              episodeNum,
 		})
 	})
 

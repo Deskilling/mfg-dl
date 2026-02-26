@@ -41,6 +41,8 @@ func GetStreams(episode model.Episode) ([]model.Stream, error) {
 	for i := range parsedStreams {
 		parsedStreams[i].Name = episode.Name
 		parsedStreams[i].SeasonNum = episode.SeasonNum
+		parsedStreams[i].EpisodeTitle = episode.EpisodeTitle
+		parsedStreams[i].EpisodeAlternativeTitle = episode.EpisodeAlternativeTitle
 		parsedStreams[i].EpisodeNum = episode.EpisodeNum
 	}
 

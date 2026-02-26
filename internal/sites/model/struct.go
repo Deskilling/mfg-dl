@@ -20,25 +20,28 @@ type SearchResult struct {
 }
 
 type Season struct {
-	Name      string
-	SeasonNum string
-	Href      string
-	Label     string
+	Name        string
+	Href        string
+	SeasonNum   string
+	SeasonLabel string
 }
 
 type Episode struct {
-	Name       string
-	EpisodeNum string
-	SeasonNum  string
-	Href       string
-	Title      string
+	Name                    string
+	Href                    string
+	SeasonNum               string
+	EpisodeTitle            string
+	EpisodeAlternativeTitle string
+	EpisodeNum              string
 }
 
 type Stream struct {
-	Name       string
-	EpisodeNum string
-	SeasonNum  string
-	Href       string
-	Hoster     string
-	Language   string
+	Name                    string
+	Href                    string
+	SeasonNum               string
+	EpisodeTitle            string
+	EpisodeAlternativeTitle string
+	EpisodeNum              string
+	Hoster                  string
+	Language                string
 }
