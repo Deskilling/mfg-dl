@@ -16,11 +16,12 @@ var Aniworld = model.Site{
 	Name:    "Aniworld",
 	Baseurl: BaseURL,
 
-	Search:   GetSearch,
-	Seasons:  GetSeasons,
-	Episodes: GetEpisodes,
-	Streams:  GetStreams,
-	Download: Download,
+	Search:           GetSearch,
+	Seasons:          GetSeasons,
+	Episodes:         GetEpisodes,
+	Streams:          GetStreams,
+	Download:         Download,
+	DownloadMultiple: nil,
 }
 
 var Hoster []string = []string{"VOE"}

@@ -67,6 +67,10 @@ func ParseSeasons(html string) (seasons []model.Season, err error) {
 			seasonNumber := strings.TrimSpace(strings.TrimPrefix(label, "Staffel "))
 			log.Debug("found href", "href", href)
 
+			if len(seasonNumber) == 1 {
+				seasonNumber = "0" + seasonNumber
+			}
+
 			seasons = append(seasons, model.Season{
 				Href:        href,
 				SeasonLabel: label,

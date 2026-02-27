@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"mfg-dl/internal/core"
+	"mfg-dl/internal/ffmpeg"
 	"mfg-dl/internal/m3u"
 	"mfg-dl/internal/request"
 	"mfg-dl/internal/util"
@@ -62,44 +63,49 @@ func PlayerDownload(voeUrl, output string) (err error) {
 	// make sure its chill
 	parsed.Directory = util.RemoveAfterSymbol(parsed.FileCode, "/")
 
-	masterTxt, err := request.Get(parsed.Source)
-	if err != nil {
-		log.Error(err)
-		return err
-	}
+	if core.GetConfig().Extra.FfmpegDownload {
+		ffmpeg.DownloadHLS(parsed.Source, output)
+	} else {
 
-	master, err := m3u.Parse(io.NopCloser(strings.NewReader(masterTxt)))
-	if err != nil {
-		log.Error(err)
-		return err
-	}
+		masterTxt, err := request.Get(parsed.Source)
+		if err != nil {
+			log.Error(err)
+			return err
+		}
 
-	baseUrl := GetBaseUrl(parsed.Source)
-	log.Debug("baseurl", "baseUrl", baseUrl+master[0].URI)
+		master, err := m3u.Parse(io.NopCloser(strings.NewReader(masterTxt)))
+		if err != nil {
+			log.Error(err)
+			return err
+		}
 
-	indexTxt, err := request.Get(baseUrl + master[0].URI)
-	if err != nil {
-		log.Error(err)
-		return err
-	}
+		baseUrl := GetBaseUrl(parsed.Source)
+		log.Debug("baseurl", "baseUrl", baseUrl+master[0].URI)
 
-	index, err := m3u.ParseIndex(io.NopCloser(strings.NewReader(indexTxt)))
-	if err != nil {
-		log.Error(err)
-		return err
-	}
+		indexTxt, err := request.Get(baseUrl + master[0].URI)
+		if err != nil {
+			log.Error(err)
+			return err
+		}
 
-	dir := fmt.Sprintf("%s/%s/", core.GetConfig().Location.Temp, parsed.Directory)
-	log.Info(dir)
-	err = m3u.DownloadSegments(index, baseUrl, dir)
-	if err != nil {
-		return fmt.Errorf("failed to download all segments for %s", dir)
-	}
+		index, err := m3u.ParseIndex(io.NopCloser(strings.NewReader(indexTxt)))
+		if err != nil {
+			log.Error(err)
+			return err
+		}
 
-	err = m3u.ConvertTSFilesToVideo(dir, output)
-	if err != nil {
-		// TODO THIS ALSO MEANS IT FAILED IMPLEMENTATION BEFORE WAS KINDA ASS
-		return err
+		dir := fmt.Sprintf("%s/%s/", core.GetConfig().Location.Temp, parsed.Directory)
+		log.Info(dir)
+		err = m3u.DownloadSegments(index, baseUrl, dir)
+		if err != nil {
+			return fmt.Errorf("failed to download all segments for %s", dir)
+		}
+
+		err = m3u.ConvertTSFilesToVideo(dir, output)
+		if err != nil {
+			// TODO THIS ALSO MEANS IT FAILED IMPLEMENTATION BEFORE WAS KINDA ASS
+			return err
+		}
 	}
 
 	return nil

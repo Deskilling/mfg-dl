@@ -19,7 +19,8 @@ type Location struct {
 }
 
 type Extra struct {
-	FilePattern    string
+	FfmpegDownload bool
+	FilePattern    string `toml:"filepattern" comment:"man unc custom pattern with like stuff"`
 	MaxConcurrency int
 	LogLevel       int `toml:"loglevel" comment:"Debug: -4, Info: 0, Warn: 4, Error: 8, Fatal: 12"`
 }
@@ -55,6 +56,7 @@ var defaultConfig = Config{
 	},
 
 	Extra: Extra{
+		FfmpegDownload: true,
 		FilePattern:    "{location}/{name}/{name}-Season{season}-Episode{episode}-{language}.mp4",
 		MaxConcurrency: 16,
 		LogLevel:       0,

@@ -67,7 +67,11 @@ func ParseEpisodes(html string) (episodes []model.Episode, err error) {
 		}
 		episodeNum, exists := s.Find("meta[itemprop='episodeNumber']").Attr("content")
 		if !exists {
-			episodeNum = "0"
+			episodeNum = "00"
+		} else {
+			if len(episodeNum) == 1 {
+				episodeNum = "0" + episodeNum
+			}
 		}
 
 		title := strings.TrimSpace(episodeLink.Find("strong").Text())
