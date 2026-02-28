@@ -32,12 +32,6 @@ func GetSearch(term string) ([]model.SearchResult, error) {
 	}
 	log.Debugf("time took for search parsing: %v", time.Since(start))
 
-	if len(parsedResults) == 0 {
-		err = fmt.Errorf("%s not found", term)
-		log.Error(err)
-		return nil, err
-	}
-
 	return parsedResults, nil
 }
 

@@ -21,7 +21,7 @@ var Aniworld = model.Site{
 	Episodes:         GetEpisodes,
 	Streams:          GetStreams,
 	Download:         Download,
-	DownloadMultiple: nil,
+	DownloadMultiple: DownloadMultiple,
 }
 
 var Hoster []string = []string{"VOE"}

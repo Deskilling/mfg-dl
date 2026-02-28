@@ -12,8 +12,6 @@ import (
 )
 
 func DownloadSegments(index Index, baseURL, directory string) error {
-	start := time.Now()
-
 	type job struct {
 		url  string
 		file string
@@ -63,6 +61,5 @@ func DownloadSegments(index Index, baseURL, directory string) error {
 		}
 	}
 
-	log.Debug("Total download time: ", time.Since(start))
 	return nil
 }

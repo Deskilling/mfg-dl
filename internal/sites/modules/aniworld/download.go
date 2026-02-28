@@ -19,7 +19,18 @@ func Download(stream model.Stream) (err error) {
 
 	start := time.Now()
 	voe.BaseDownload(location, output)
-	log.Errorf("Took %s to download to %s", time.Since(start), location)
+	log.Infof("Time took for Download %s", time.Since(start))
+	return nil
+}
 
+func DownloadMultiple(streams []model.Stream) (err error) {
+	saft := time.Now()
+
+	for _, v := range streams {
+		// TODO check for smth
+		Download(v)
+	}
+
+	log.Infof("Time took for all Downloads %s", time.Since(saft))
 	return nil
 }
