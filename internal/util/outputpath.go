@@ -10,7 +10,7 @@ import (
 func BuildOutputPath(stream model.Stream) string {
 	cfg := core.GetConfig()
 
-	pattern := cfg.Extra.FilePattern
+	pattern := cfg.Location.FilePattern
 
 	replacer := strings.NewReplacer(
 		"{location}", cfg.Location.Download,

@@ -13,35 +13,42 @@ type Tui struct {
 }
 
 type Location struct {
-	Download string
-	Temp     string
-	Shader   string `toml:"shader" comment:"This will only be used if you enable shaders"`
+	FilePattern string `toml:"filepattern" comment:"customizes the output filename for video files\n\nAvailable placeholders:\n{location} download directory\n{name} show name\n{season} season number\n{title} episode title\n{title2} alternative title (if available)\n{episode} episode number\n{language} language\n{hoster} stream hoster"`
+	Download    string `toml:"download" comment:"base download directory"`
+	Temp        string `toml:"temp" comment:"directory for temporary files"`
+	Shader      string `toml:"shader" comment:"directory for shaders, only used if shaders are enabled"`
 }
 
 type Extra struct {
-	FfmpegDownload bool
-	FilePattern    string `toml:"filepattern" comment:"man unc custom pattern with like stuff"`
-	MaxConcurrency int
-	LogLevel       int `toml:"loglevel" comment:"Debug: -4, Info: 0, Warn: 4, Error: 8, Fatal: 12"`
+	MaxVideoConcurrency int  `toml:"maxvideoconcurrency" comment:"maximum number of concurrent video downloads"`
+	FfmpegDownload      bool `toml:"ffmpegdownload" comment:"use ffmpeg for HLS streams, usually slower but more stable, only enable if you run into issues"`
+	LogLevel            int  `toml:"loglevel" comment:"log level: Debug (-4), Info (0), Warn (4), Error (8), Fatal (12)"`
+}
+
+type Downloads struct {
+	MaxSegmentConcurrency int `toml:"maxsegmentconcurrency" comment:"maximum number of concurrent segment downloads"`
+	MaxRetires            int `toml:"maxsegmentretires" comment:"max retries for each segment"`
+	RetryDelay            int `toml:"retrydelay" comments:"retry delay of the segments in sec"`
 }
 
 type Shader struct {
-	Enable       bool
-	Autoupdate   bool
-	Shader       string
-	CRF          int
-	Preset       string
-	AudioCopy    bool
-	Width        string
-	Height       string
-	ExtraOptions string
+	Enable       bool   `toml:"enable" comment:"enable shader processing after download"`
+	Autoupdate   bool   `toml:"autoupdate" comment:"automatically update the shader before use"`
+	Shader       string `toml:"shader" comment:"name or path of the shader to use"`
+	CRF          int    `toml:"crf" comment:"ffmpeg CRF value (lower = better quality, bigger file size)"`
+	Preset       string `toml:"preset" comment:"ffmpeg preset (ultrafast, fast, medium, slow, etc.)"`
+	AudioCopy    bool   `toml:"audiocopy" comment:"copy audio stream without re-encoding"`
+	Width        string `toml:"width" comment:"output width (keep empty to preserve original)"`
+	Height       string `toml:"height" comment:"output height (keep empty to preserve original)"`
+	ExtraOptions string `toml:"extraoptions" comment:"additional raw ffmpeg options (advanced use only)"`
 }
 
 type Config struct {
-	Tui      Tui
-	Location Location
-	Extra    Extra
-	Shader   Shader
+	Tui       Tui
+	Location  Location
+	Downloads Downloads
+	Extra     Extra
+	Shader    Shader
 }
 
 var defaultConfig = Config{
@@ -50,16 +57,22 @@ var defaultConfig = Config{
 	},
 
 	Location: Location{
-		Download: "./downloads",
-		Temp:     "./temp",
-		Shader:   "./shader",
+		FilePattern: "{location}/{name}/{name}-Season{season}-Episode{episode}-{language}.mp4",
+		Download:    "./downloads",
+		Temp:        "./temp",
+		Shader:      "./shader",
+	},
+
+	Downloads: Downloads{
+		MaxSegmentConcurrency: 16,
+		MaxRetires:            3,
+		RetryDelay:            3,
 	},
 
 	Extra: Extra{
-		FfmpegDownload: true,
-		FilePattern:    "{location}/{name}/{name}-Season{season}-Episode{episode}-{language}.mp4",
-		MaxConcurrency: 16,
-		LogLevel:       0,
+		MaxVideoConcurrency: 4,
+		FfmpegDownload:      false,
+		LogLevel:            0,
 	},
 
 	Shader: Shader{
