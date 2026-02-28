@@ -64,47 +64,48 @@ func PlayerDownload(voeUrl, output string) (err error) {
 
 	if core.GetConfig().Extra.FfmpegDownload {
 		ffmpeg.DownloadHLS(parsed.Source, output)
-	} else {
+		return nil
+	}
 
-		masterTxt, err := request.Get(parsed.Source)
-		if err != nil {
-			log.Error(err)
-			return err
-		}
+	masterTxt, err := request.Get(parsed.Source)
+	if err != nil {
+		log.Error(err)
+		return err
+	}
 
-		master, err := m3u.Parse(io.NopCloser(strings.NewReader(masterTxt)))
-		if err != nil {
-			log.Error(err)
-			return err
-		}
+	master, err := m3u.Parse(io.NopCloser(strings.NewReader(masterTxt)))
+	if err != nil {
+		log.Error(err)
+		return err
+	}
 
-		baseUrl := GetBaseUrl(parsed.Source)
-		log.Debug("baseurl", "baseUrl", baseUrl+master[0].URI)
+	baseUrl := GetBaseUrl(parsed.Source)
+	log.Debug("baseurl", "baseUrl", baseUrl+master[0].URI)
 
-		indexTxt, err := request.Get(baseUrl + master[0].URI)
-		if err != nil {
-			log.Error(err)
-			return err
-		}
+	indexTxt, err := request.Get(baseUrl + master[0].URI)
+	if err != nil {
+		log.Error(err)
+		return err
+	}
 
-		index, err := m3u.ParseIndex(io.NopCloser(strings.NewReader(indexTxt)))
-		if err != nil {
-			log.Error(err)
-			return err
-		}
+	index, err := m3u.ParseIndex(io.NopCloser(strings.NewReader(indexTxt)))
+	if err != nil {
+		log.Error(err)
+		return err
+	}
 
-		dir := fmt.Sprintf("%s/%s/", core.GetConfig().Location.Temp, parsed.Directory)
-		log.Info(dir)
-		err = m3u.DownloadSegments(index, baseUrl, dir)
-		if err != nil {
-			return fmt.Errorf("failed to download all segments for %s", dir)
-		}
+	dir := fmt.Sprintf("%s/%s/", core.GetConfig().Location.Temp, parsed.Directory)
+	log.Info(dir)
+	err = m3u.DownloadSegments(index, baseUrl, dir)
+	if err != nil {
+		return fmt.Errorf("failed to download all segments for %s", dir)
+	}
 
-		err = m3u.ConvertTSFilesToVideo(dir, output)
-		if err != nil {
-			// TODO THIS ALSO MEANS IT FAILED IMPLEMENTATION BEFORE WAS KINDA ASS
-			return err
-		}
+	err = m3u.ConvertTSFilesToVideo(dir, output)
+	if err != nil {
+		// TODO THIS ALSO MEANS IT FAILED IMPLEMENTATION BEFORE WAS KINDA ASS
+		return err
+
 	}
 
 	return nil

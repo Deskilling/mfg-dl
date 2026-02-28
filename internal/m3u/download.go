@@ -18,7 +18,7 @@ func DownloadSegments(index Index, baseURL, directory string) error {
 	}
 
 	var wg sync.WaitGroup
-	semaphore := make(chan struct{}, core.GetConfig().Extra.MaxConcurrency)
+	semaphore := make(chan struct{}, core.GetConfig().Downloads.MaxSegmentConcurrency)
 
 	var retryMu sync.Mutex
 	var retryQueue []job
@@ -48,9 +48,9 @@ func DownloadSegments(index Index, baseURL, directory string) error {
 
 	wg.Wait()
 
-	retryDelay := 2 * time.Second
+	retryDelay := time.Duration(core.GetConfig().Downloads.RetryDelay) * time.Second
 	for _, j := range retryQueue {
-		for attempt := 0; attempt < 3; attempt++ {
+		for attempt := 0; attempt < core.GetConfig().Downloads.MaxRetires; attempt++ {
 			err := request.DownloadFile(j.url, j.file)
 			if err == nil {
 				log.Debug("Retry success: ", j.url)
