@@ -2,9 +2,10 @@ package main
 
 import (
 	"fmt"
+
 	"mfg-dl/internal/anime4k"
 	"mfg-dl/internal/core"
-	"mfg-dl/internal/tui"
+	"mfg-dl/internal/tui/simple"
 	"mfg-dl/pkg/filesystem"
 
 	"github.com/charmbracelet/log"
@@ -19,7 +20,7 @@ func init() {
 
 func main() {
 	if core.GetConfig().Tui.Basic {
-		tui.SimpleTui()
+		simple.SimpleTui()
 	} else {
 		log.Fatal("Not Implemented")
 	}
