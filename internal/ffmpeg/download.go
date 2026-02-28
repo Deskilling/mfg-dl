@@ -3,10 +3,11 @@ package ffmpeg
 import (
 	"bufio"
 	"fmt"
-	"mfg-dl/pkg/filesystem"
 	"os/exec"
 	"strconv"
 	"strings"
+
+	"mfg-dl/pkg/filesystem"
 
 	"github.com/charmbracelet/log"
 )
