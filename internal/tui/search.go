@@ -1,4 +1,0 @@
-package tui
-
-func Search() {
-}

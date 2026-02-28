@@ -46,7 +46,6 @@ func DownloadHLS(url, output string) (err error) {
 	args := []string{
 		"-y",
 		"-user_agent", "Mozilla/5.0",
-		"-rw_timeout", "15000000",
 		"-reconnect", "1",
 		"-reconnect_streamed", "1",
 		"-reconnect_delay_max", "5",

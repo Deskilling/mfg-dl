@@ -2,6 +2,7 @@ package util
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
 )
 
@@ -52,4 +53,17 @@ func ParseAnimePath(path string) (name string, season int, episode int, err erro
 	}
 
 	return name, season, episode, nil
+}
+
+func ParseMultipleInts(input string) []int {
+	parts := strings.Split(input, ",")
+	var result []int
+	for _, p := range parts {
+		p = strings.TrimSpace(p)
+		v, err := strconv.Atoi(p)
+		if err == nil && v > 0 {
+			result = append(result, v)
+		}
+	}
+	return result
 }

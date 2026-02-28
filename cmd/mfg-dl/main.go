@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"mfg-dl/internal/anime4k"
 	"mfg-dl/internal/core"
 	"mfg-dl/internal/tui"
@@ -24,4 +25,7 @@ func main() {
 	}
 
 	filesystem.RemoveDirectory(core.GetConfig().Location.Temp)
+
+	log.Info("Execution finished press ENTER to quit")
+	fmt.Scanln()
 }

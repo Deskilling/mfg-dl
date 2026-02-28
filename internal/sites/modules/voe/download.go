@@ -22,7 +22,6 @@ func BaseDownload(voeUrl, output string) (err error) {
 		return nil
 	}
 
-	log.Error(voeUrl)
 	baseHtml, err := request.Get(voeUrl)
 	if err != nil {
 		log.Error(err)
