@@ -13,6 +13,14 @@ import (
 	"github.com/charmbracelet/log"
 )
 
+type SearchResult struct {
+	Name           string `json:"name"`
+	Href           string `json:"link"`
+	Description    string `json:"description"`
+	Cover          string `json:"cover"`
+	ProductionYear string `json:"productionYear"`
+}
+
 func GetSearch(term string) ([]model.SearchResult, error) {
 	encodedTerm := util.EncodeURIComponent(term)
 
@@ -36,16 +44,25 @@ func GetSearch(term string) ([]model.SearchResult, error) {
 }
 
 func ParseSearch(data string) (search []model.SearchResult, err error) {
-	err = json.Unmarshal([]byte(data), &search)
+	var searchResults []SearchResult
+
+	err = json.Unmarshal([]byte(data), &searchResults)
 	if err != nil {
 		err = fmt.Errorf("failed to unmarshal search results: %w", err)
 		log.Error(err)
 		return nil, err
 	}
 
-	for i := range search {
-		search[i].Name = html.UnescapeString(search[i].Name)
-		search[i].Description = html.UnescapeString(search[i].Description)
+	for _, v := range searchResults {
+		result := model.SearchResult{
+			Name:           html.UnescapeString(v.Name),
+			Href:           v.Href,
+			Description:    html.UnescapeString(v.Description),
+			Cover:          v.Cover,
+			ProductionYear: v.ProductionYear,
+		}
+
+		search = append(search, result)
 	}
 
 	return search, nil

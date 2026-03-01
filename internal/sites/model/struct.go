@@ -13,11 +13,11 @@ type Site struct {
 }
 
 type SearchResult struct {
-	Name           string `json:"name"`
-	Href           string `json:"link"`
-	Description    string `json:"description"`
-	Cover          string `json:"cover"`
-	ProductionYear string `json:"productionYear"`
+	Name           string
+	Href           string
+	Description    string
+	Cover          string
+	ProductionYear string
 }
 
 type Season struct {

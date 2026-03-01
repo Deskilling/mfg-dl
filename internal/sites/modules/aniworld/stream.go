@@ -12,10 +12,21 @@ import (
 	"github.com/charmbracelet/log"
 )
 
-func GetStreams(episode model.Episode) ([]model.Stream, error) {
+type Stream struct {
+	Name                    string
+	Href                    string
+	SeasonNum               string
+	EpisodeTitle            string
+	EpisodeAlternativeTitle string
+	EpisodeNum              string
+	Hoster                  string
+	Language                string
+}
+
+func GetStreams(episode model.Episode) (streams []model.Stream, err error) {
 	pageURL := BaseURL + episode.Href
 	log.Debug("leggo schmeggo", "pageURL", pageURL)
-	streams, err := request.Get(pageURL)
+	unparsedStreams, err := request.Get(pageURL)
 	if err != nil {
 		err = fmt.Errorf("failed to GET Stream for %s: %w", episode.Href, err)
 		log.Error(err)
@@ -23,7 +34,7 @@ func GetStreams(episode model.Episode) ([]model.Stream, error) {
 	}
 
 	start := time.Now()
-	parsedStreams, err := ParseStreams(streams)
+	parsedStreams, err := ParseStreams(unparsedStreams)
 	if err != nil {
 		err = fmt.Errorf("failed parsing Streams for %s: %w", episode.Href, err)
 		log.Error(err)
@@ -38,18 +49,25 @@ func GetStreams(episode model.Episode) ([]model.Stream, error) {
 		return nil, err
 	}
 
-	for i := range parsedStreams {
-		parsedStreams[i].Name = episode.Name
-		parsedStreams[i].SeasonNum = episode.SeasonNum
-		parsedStreams[i].EpisodeTitle = episode.EpisodeTitle
-		parsedStreams[i].EpisodeAlternativeTitle = episode.EpisodeAlternativeTitle
-		parsedStreams[i].EpisodeNum = episode.EpisodeNum
+	for _, v := range parsedStreams {
+		stream := model.Stream{
+			Name:                    v.Name,
+			Href:                    v.Href,
+			SeasonNum:               v.SeasonNum,
+			EpisodeTitle:            v.EpisodeTitle,
+			EpisodeAlternativeTitle: v.EpisodeAlternativeTitle,
+			EpisodeNum:              v.EpisodeNum,
+			Hoster:                  v.Hoster,
+			Language:                v.Language,
+		}
+
+		streams = append(streams, stream)
 	}
 
-	return parsedStreams, nil
+	return streams, nil
 }
 
-func ParseStreams(html string) (streams []model.Stream, err error) {
+func ParseStreams(html string) (streams []Stream, err error) {
 	if html == "" {
 		err := fmt.Errorf("not html parsed")
 		log.Error(err)
@@ -83,7 +101,7 @@ func ParseStreams(html string) (streams []model.Stream, err error) {
 			lang = strings.TrimSpace(langKey)
 		}
 
-		streams = append(streams, model.Stream{
+		streams = append(streams, Stream{
 			Href:     href,
 			Hoster:   hosterName,
 			Language: AniLanguages[lang],

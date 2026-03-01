@@ -57,7 +57,7 @@ var defaultConfig = Config{
 	},
 
 	Location: Location{
-		FilePattern: "{location}/{name}/{name}-Season{season}-Episode{episode}-{language}.mp4",
+		FilePattern: "{location}/{name}/Season{season}/Episode-{episode}-{language}.mp4",
 		Download:    "./downloads",
 		Temp:        "./temp",
 		Shader:      "./shader",

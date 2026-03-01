@@ -12,15 +12,22 @@ import (
 	"github.com/charmbracelet/log"
 )
 
-func GetSeasons(result model.SearchResult) ([]model.Season, error) {
-	seasons, err := request.Get(AniEndpoints["episodes"] + result.Href)
+type Season struct {
+	Name        string
+	Href        string
+	SeasonNum   string
+	SeasonLabel string
+}
+
+func GetSeasons(result model.SearchResult) (seasons []model.Season, err error) {
+	unparsedSeasons, err := request.Get(AniEndpoints["episodes"] + result.Href)
 	if err != nil {
 		log.Error(err)
 		return nil, err
 	}
 
 	start := time.Now()
-	parsedSeasons, err := ParseSeasons(seasons)
+	parsedSeasons, err := ParseSeasons(unparsedSeasons)
 	if err != nil {
 		log.Error(err)
 		return nil, err
@@ -37,10 +44,21 @@ func GetSeasons(result model.SearchResult) ([]model.Season, error) {
 		parsedSeasons[i].Name = result.Name
 	}
 
-	return parsedSeasons, nil
+	for _, v := range parsedSeasons {
+		season := model.Season{
+			Name:        v.Name,
+			Href:        v.Href,
+			SeasonNum:   v.SeasonLabel,
+			SeasonLabel: v.SeasonLabel,
+		}
+
+		seasons = append(seasons, season)
+	}
+
+	return seasons, nil
 }
 
-func ParseSeasons(html string) (seasons []model.Season, err error) {
+func ParseSeasons(html string) (seasons []Season, err error) {
 	if html == "" {
 		err := fmt.Errorf("not html parsed")
 		log.Error(err)
@@ -71,7 +89,7 @@ func ParseSeasons(html string) (seasons []model.Season, err error) {
 				seasonNumber = "0" + seasonNumber
 			}
 
-			seasons = append(seasons, model.Season{
+			seasons = append(seasons, Season{
 				Href:        href,
 				SeasonLabel: label,
 				SeasonNum:   seasonNumber,
