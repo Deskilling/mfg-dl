@@ -12,10 +12,19 @@ import (
 	"github.com/charmbracelet/log"
 )
 
-func GetEpisodes(season model.Season) ([]model.Episode, error) {
+type Episode struct {
+	Name                    string
+	Href                    string
+	SeasonNum               string
+	EpisodeTitle            string
+	EpisodeAlternativeTitle string
+	EpisodeNum              string
+}
+
+func GetEpisodes(season model.Season) (episodes []model.Episode, err error) {
 	url := BaseURL + season.Href
 
-	episodes, err := request.Get(url)
+	unparsedEpisodes, err := request.Get(url)
 	if err != nil {
 		err = fmt.Errorf("failed to GET Episodes: %w", err)
 		log.Error(err)
@@ -23,7 +32,7 @@ func GetEpisodes(season model.Season) ([]model.Episode, error) {
 	}
 
 	start := time.Now()
-	parsedEpisodes, err := ParseEpisodes(episodes)
+	parsedEpisodes, err := ParseEpisodes(unparsedEpisodes)
 	if err != nil {
 		err = fmt.Errorf("failed parsing episodes %w", err)
 		log.Error(err)
@@ -36,16 +45,23 @@ func GetEpisodes(season model.Season) ([]model.Episode, error) {
 		return nil, err
 	}
 
-	for i := range parsedEpisodes {
-		parsedEpisodes[i].Name = season.Name
-		parsedEpisodes[i].SeasonNum = season.SeasonNum
+	for _, v := range parsedEpisodes {
+		episode := model.Episode{
+			Name:                    v.Name,
+			Href:                    v.Href,
+			SeasonNum:               v.SeasonNum,
+			EpisodeTitle:            v.EpisodeTitle,
+			EpisodeAlternativeTitle: v.EpisodeAlternativeTitle,
+			EpisodeNum:              v.EpisodeNum,
+		}
 
+		episodes = append(episodes, episode)
 	}
 
-	return parsedEpisodes, nil
+	return episodes, nil
 }
 
-func ParseEpisodes(html string) (episodes []model.Episode, err error) {
+func ParseEpisodes(html string) (episodes []Episode, err error) {
 	if html == "" {
 		err := fmt.Errorf("not html parsed")
 		log.Error(err)
@@ -77,7 +93,7 @@ func ParseEpisodes(html string) (episodes []model.Episode, err error) {
 		title := strings.TrimSpace(episodeLink.Find("strong").Text())
 		alternativeTitle := strings.TrimSpace(episodeLink.Find("span").Text())
 
-		episodes = append(episodes, model.Episode{
+		episodes = append(episodes, Episode{
 			Href:                    href,
 			EpisodeTitle:            title,
 			EpisodeAlternativeTitle: alternativeTitle,
