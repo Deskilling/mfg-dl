@@ -45,6 +45,11 @@ func GetEpisodes(season model.Season) (episodes []model.Episode, err error) {
 		return nil, err
 	}
 
+	for i := range parsedEpisodes {
+		parsedEpisodes[i].Name = season.Name
+		parsedEpisodes[i].SeasonNum = season.SeasonNum
+	}
+
 	for _, v := range parsedEpisodes {
 		episode := model.Episode{
 			Name:                    v.Name,
