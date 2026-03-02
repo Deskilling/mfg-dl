@@ -219,7 +219,7 @@ func Episodes(season model.Season) []model.Stream {
 		}
 
 		for _, w := range stream {
-			if w.Language == lang && w.Hoster == "VOE" {
+			if w.Language == lang {
 				unc = append(unc, w)
 				break
 			}

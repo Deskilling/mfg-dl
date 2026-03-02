@@ -8,7 +8,6 @@ type Site struct {
 	Seasons          func(result SearchResult) ([]Season, error)
 	Episodes         func(season Season) ([]Episode, error)
 	Streams          func(episode Episode) ([]Stream, error)
-	Download         func(stream Stream) error
 	DownloadMultiple func(streams []Stream) error
 }
 

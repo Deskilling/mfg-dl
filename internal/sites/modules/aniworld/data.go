@@ -20,7 +20,6 @@ var Aniworld = model.Site{
 	Seasons:          GetSeasons,
 	Episodes:         GetEpisodes,
 	Streams:          GetStreams,
-	Download:         Download,
 	DownloadMultiple: DownloadMultiple,
 }
 
