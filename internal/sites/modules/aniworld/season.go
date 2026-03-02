@@ -48,7 +48,7 @@ func GetSeasons(result model.SearchResult) (seasons []model.Season, err error) {
 		season := model.Season{
 			Name:        v.Name,
 			Href:        v.Href,
-			SeasonNum:   v.SeasonLabel,
+			SeasonNum:   v.SeasonNum,
 			SeasonLabel: v.SeasonLabel,
 		}
 
