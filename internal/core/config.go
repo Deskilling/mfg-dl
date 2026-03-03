@@ -31,24 +31,11 @@ type Downloads struct {
 	RetryDelay            int `toml:"retrydelay" comments:"retry delay of the segments in sec"`
 }
 
-type Shader struct {
-	Enable       bool   `toml:"enable" comment:"enable shader processing after download"`
-	Autoupdate   bool   `toml:"autoupdate" comment:"automatically update the shader before use"`
-	Shader       string `toml:"shader" comment:"name or path of the shader to use"`
-	CRF          int    `toml:"crf" comment:"ffmpeg CRF value (lower = better quality, bigger file size)"`
-	Preset       string `toml:"preset" comment:"ffmpeg preset (ultrafast, fast, medium, slow, etc.)"`
-	AudioCopy    bool   `toml:"audiocopy" comment:"copy audio stream without re-encoding"`
-	Width        string `toml:"width" comment:"output width (keep empty to preserve original)"`
-	Height       string `toml:"height" comment:"output height (keep empty to preserve original)"`
-	ExtraOptions string `toml:"extraoptions" comment:"additional raw ffmpeg options (advanced use only)"`
-}
-
 type Config struct {
 	Tui       Tui
 	Location  Location
 	Downloads Downloads
 	Extra     Extra
-	Shader    Shader
 }
 
 var defaultConfig = Config{
@@ -73,11 +60,6 @@ var defaultConfig = Config{
 		MaxVideoConcurrency: 4,
 		FfmpegDownload:      false,
 		LogLevel:            0,
-	},
-
-	Shader: Shader{
-		Enable:     false,
-		Autoupdate: false,
 	},
 }
 
