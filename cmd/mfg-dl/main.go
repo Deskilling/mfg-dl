@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"os"
 
-	"mfg-dl/internal/anime4k"
 	"mfg-dl/internal/core"
 	"mfg-dl/internal/ffmpeg"
 	"mfg-dl/internal/tui/simple"
@@ -30,7 +29,6 @@ func init() {
 	core.InitLogger(log.Level(core.GetConfig().Extra.LogLevel))
 
 	filesystem.RemoveDirectory(core.GetConfig().Location.Temp)
-	anime4k.DownloadLatestRelease()
 
 	err = ffmpeg.CheckInstalled()
 	if err != nil {
