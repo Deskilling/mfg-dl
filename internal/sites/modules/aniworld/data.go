@@ -12,7 +12,7 @@ var AniEndpoints = Endpoints{
 	"episodes": BaseURL + "/anime/stream/",
 }
 
-var Aniworld = model.Site{
+var Site = model.Site{
 	Name:    "Aniworld",
 	Baseurl: BaseURL,
 

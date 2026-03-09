@@ -8,8 +8,8 @@ import (
 
 	"mfg-dl/internal/util"
 
+	"charm.land/log/v2"
 	"github.com/PuerkitoBio/goquery"
-	"github.com/charmbracelet/log"
 )
 
 type VoeStream struct {

@@ -9,7 +9,7 @@ import (
 
 	"mfg-dl/pkg/filesystem"
 
-	"github.com/charmbracelet/log"
+	"charm.land/log/v2"
 )
 
 func GetTotalMicro(url string) (totalMicro int, err error) {

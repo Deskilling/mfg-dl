@@ -10,7 +10,7 @@ import (
 	"mfg-dl/internal/sites/model"
 	"mfg-dl/internal/util"
 
-	"github.com/charmbracelet/log"
+	"charm.land/log/v2"
 )
 
 type SearchResult struct {
