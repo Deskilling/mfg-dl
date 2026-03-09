@@ -9,7 +9,7 @@ import (
 	"mfg-dl/internal/sites/modules/voe"
 	"mfg-dl/internal/util"
 
-	"github.com/charmbracelet/log"
+	"charm.land/log/v2"
 )
 
 func Download(stream model.Stream) (err error) {

@@ -1,13 +1,15 @@
 package core
 
 import (
-	"github.com/charmbracelet/lipgloss"
-	"github.com/charmbracelet/log"
+	"charm.land/lipgloss/v2"
+	"charm.land/log/v2"
+	"github.com/charmbracelet/colorprofile"
 )
 
 func InitLogger(level log.Level) {
 	log.SetLevel(level)
 	log.SetPrefix("mfg-dl")
+	log.SetColorProfile(colorprofile.TrueColor)
 
 	style := log.DefaultStyles()
 

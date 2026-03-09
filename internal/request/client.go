@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/charmbracelet/log"
+	"charm.land/log/v2"
 )
 
 var userAgent string = "deskilling/mfg-dl"
@@ -51,5 +51,8 @@ func Get(endpoint string) (string, error) {
 	}
 
 	log.Debugf("request to %s took: %v", endpoint, time.Since(start))
+
+	// filesystem.WriteFile(core.GetConfig().Location.Temp+"/requests/"+endpoint, body)
+
 	return string(body), nil
 }

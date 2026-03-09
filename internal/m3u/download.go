@@ -8,7 +8,7 @@ import (
 	"mfg-dl/internal/core"
 	"mfg-dl/internal/request"
 
-	"github.com/charmbracelet/log"
+	"charm.land/log/v2"
 )
 
 func DownloadSegments(index Index, baseURL, directory string) error {

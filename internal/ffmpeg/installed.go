@@ -3,7 +3,7 @@ package ffmpeg
 import (
 	"os/exec"
 
-	"github.com/charmbracelet/log"
+	"charm.land/log/v2"
 )
 
 func CheckInstalled() (err error) {

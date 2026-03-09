@@ -3,7 +3,7 @@ package core
 import (
 	"mfg-dl/pkg/config"
 
-	"github.com/charmbracelet/log"
+	"charm.land/log/v2"
 )
 
 const configLocation string = "./config.toml"
@@ -16,7 +16,6 @@ type Location struct {
 	FilePattern string `toml:"filepattern" comment:"customizes the output filename for video files\n\nAvailable placeholders:\n{location} download directory\n{name} show name\n{season} season number\n{title} episode title\n{title2} alternative title (if available)\n{episode} episode number\n{language} language\n{hoster} stream hoster"`
 	Download    string `toml:"download" comment:"base download directory"`
 	Temp        string `toml:"temp" comment:"directory for temporary files"`
-	Shader      string `toml:"shader" comment:"directory for shaders, only used if shaders are enabled"`
 }
 
 type Extra struct {
@@ -47,7 +46,6 @@ var defaultConfig = Config{
 		FilePattern: "{location}/{name}/Season{season}/Episode-{episode}-{language}.mp4",
 		Download:    "./downloads",
 		Temp:        "./temp",
-		Shader:      "./shader",
 	},
 
 	Downloads: Downloads{

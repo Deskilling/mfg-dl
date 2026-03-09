@@ -8,8 +8,8 @@ import (
 	"mfg-dl/internal/request"
 	"mfg-dl/internal/sites/model"
 
+	"charm.land/log/v2"
 	"github.com/PuerkitoBio/goquery"
-	"github.com/charmbracelet/log"
 )
 
 type Season struct {

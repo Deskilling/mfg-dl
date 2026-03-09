@@ -9,7 +9,7 @@ import (
 	"mfg-dl/internal/tui/simple"
 	"mfg-dl/pkg/filesystem"
 
-	"github.com/charmbracelet/log"
+	"charm.land/log/v2"
 )
 
 func init() {
