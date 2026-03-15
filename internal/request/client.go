@@ -26,33 +26,33 @@ var Client = &http.Client{
 	},
 }
 
-func Get(endpoint string) (string, error) {
+func Get(endpoint string) ([]byte, error) {
 	start := time.Now()
 
 	req, err := http.NewRequest(http.MethodGet, endpoint, nil)
 	if err != nil {
-		return "", err
+		return []byte{}, err
 	}
 	req.Header.Set("User-Agent", userAgent)
 
 	resp, err := Client.Do(req)
 	if err != nil {
-		return "", err
+		return []byte{}, err
 	}
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		return "", fmt.Errorf("status %d", resp.StatusCode)
+		return []byte{}, fmt.Errorf("status %d", resp.StatusCode)
 	}
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		return "", err
+		return []byte{}, err
 	}
 
 	log.Debugf("request to %s took: %v", endpoint, time.Since(start))
 
 	// filesystem.WriteFile(core.GetConfig().Location.Temp+"/requests/"+endpoint, body)
 
-	return string(body), nil
+	return body, nil
 }

@@ -43,10 +43,10 @@ func GetSearch(term string) ([]model.SearchResult, error) {
 	return parsedResults, nil
 }
 
-func ParseSearch(data string) (search []model.SearchResult, err error) {
+func ParseSearch(data []byte) (search []model.SearchResult, err error) {
 	var searchResults []SearchResult
 
-	err = json.Unmarshal([]byte(data), &searchResults)
+	err = json.Unmarshal(data, &searchResults)
 	if err != nil {
 		err = fmt.Errorf("failed to unmarshal search results: %w", err)
 		log.Error(err)

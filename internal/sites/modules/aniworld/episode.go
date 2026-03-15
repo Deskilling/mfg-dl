@@ -32,7 +32,7 @@ func GetEpisodes(season model.Season) (episodes []model.Episode, err error) {
 	}
 
 	start := time.Now()
-	parsedEpisodes, err := ParseEpisodes(unparsedEpisodes)
+	parsedEpisodes, err := ParseEpisodes(string(unparsedEpisodes))
 	if err != nil {
 		err = fmt.Errorf("failed parsing episodes %w", err)
 		log.Error(err)
