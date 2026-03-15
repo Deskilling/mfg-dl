@@ -34,7 +34,7 @@ func GetStreams(episode model.Episode) (streams []model.Stream, err error) {
 	}
 
 	start := time.Now()
-	parsedStreams, err := ParseStreams(unparsedStreams)
+	parsedStreams, err := ParseStreams(string(unparsedStreams))
 	if err != nil {
 		err = fmt.Errorf("failed parsing Streams for %s: %w", episode.Href, err)
 		log.Error(err)

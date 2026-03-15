@@ -27,7 +27,7 @@ func GetSeasons(result model.SearchResult) (seasons []model.Season, err error) {
 	}
 
 	start := time.Now()
-	parsedSeasons, err := ParseSeasons(unparsedSeasons)
+	parsedSeasons, err := ParseSeasons(string(unparsedSeasons))
 	if err != nil {
 		log.Error(err)
 		return nil, err

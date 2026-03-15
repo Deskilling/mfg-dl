@@ -29,7 +29,7 @@ func BaseDownload(voeUrl, output string) (err error) {
 	}
 	log.Debug("got html for", "voeUrl", voeUrl)
 
-	baseUrl, err := VoeUrlHtml(baseHtml)
+	baseUrl, err := VoeUrlHtml(string(baseHtml))
 	if err != nil {
 		log.Error(err)
 		return err
@@ -53,7 +53,7 @@ func PlayerDownload(voeUrl, output string) (err error) {
 		return err
 	}
 
-	parsed, err := Parse(voeHtml)
+	parsed, err := Parse(string(voeHtml))
 	if err != nil {
 		log.Error(err)
 		return err
@@ -73,7 +73,7 @@ func PlayerDownload(voeUrl, output string) (err error) {
 		return err
 	}
 
-	master, err := m3u.Parse(io.NopCloser(strings.NewReader(masterTxt)))
+	master, err := m3u.Parse(io.NopCloser(strings.NewReader(string(masterTxt))))
 	if err != nil {
 		log.Error(err)
 		return err
@@ -88,7 +88,7 @@ func PlayerDownload(voeUrl, output string) (err error) {
 		return err
 	}
 
-	index, err := m3u.ParseIndex(io.NopCloser(strings.NewReader(indexTxt)))
+	index, err := m3u.ParseIndex(io.NopCloser(strings.NewReader(string(indexTxt))))
 	if err != nil {
 		log.Error(err)
 		return err
