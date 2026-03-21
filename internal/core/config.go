@@ -16,6 +16,7 @@ type Location struct {
 	FilePattern string `toml:"filepattern" comment:"customizes the output filename for video files\n\nAvailable placeholders:\n{location} download directory\n{name} show name\n{season} season number\n{title} episode title\n{title2} alternative title (if available)\n{episode} episode number\n{language} language\n{hoster} stream hoster"`
 	Download    string `toml:"download" comment:"base download directory"`
 	Temp        string `toml:"temp" comment:"directory for temporary files"`
+	Cache       string `toml:"cache" comment:"cache for like search results"`
 }
 
 type Extra struct {
@@ -30,11 +31,16 @@ type Downloads struct {
 	RetryDelay            int `toml:"retrydelay" comments:"retry delay of the segments in sec"`
 }
 
+type Debug struct {
+	DumpHtml bool `toml:"dumphtml" comments:"saves all visited webpages into temp/requests"`
+}
+
 type Config struct {
 	Tui       Tui
 	Location  Location
 	Downloads Downloads
 	Extra     Extra
+	Debug     Debug
 }
 
 var defaultConfig = Config{
@@ -58,6 +64,10 @@ var defaultConfig = Config{
 		MaxVideoConcurrency: 4,
 		FfmpegDownload:      false,
 		LogLevel:            0,
+	},
+
+	Debug: Debug{
+		DumpHtml: false,
 	},
 }
 

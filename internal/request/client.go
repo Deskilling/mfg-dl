@@ -6,6 +6,9 @@ import (
 	"net/http"
 	"time"
 
+	"mfg-dl/internal/core"
+	"mfg-dl/pkg/filesystem"
+
 	"charm.land/log/v2"
 )
 
@@ -52,7 +55,9 @@ func Get(endpoint string) ([]byte, error) {
 
 	log.Debugf("request to %s took: %v", endpoint, time.Since(start))
 
-	// filesystem.WriteFile(core.GetConfig().Location.Temp+"/requests/"+endpoint, body)
+	if core.GetConfig().Debug.DumpHtml {
+		filesystem.WriteFile(core.GetConfig().Location.Temp+"/requests/"+endpoint, body)
+	}
 
 	return body, nil
 }
