@@ -1,14 +1,13 @@
-package m3u
+package ffmpeg
 
 import (
 	"fmt"
+	"mfg-dl/pkg/filesystem"
 	"os"
 	"os/exec"
 	"path/filepath"
 	"sort"
 	"strconv"
-
-	"mfg-dl/pkg/filesystem"
 )
 
 func ConvertTSFilesToVideo(directory, output string) (err error) {
