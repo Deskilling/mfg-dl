@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"os"
 	"time"
 
 	"mfg-dl/internal/core"
@@ -30,6 +31,20 @@ var Client = &http.Client{
 }
 
 func Get(endpoint string) ([]byte, error) {
+	if core.GetConfig().Debug.DumpHtml {
+		cachePath := core.GetConfig().Location.Cache + "/requests/" + endpoint
+		if filesystem.ExistPath(cachePath) {
+			info, err := os.Stat(cachePath)
+			if err == nil && time.Since(info.ModTime()) < 24*time.Hour {
+				data, err := filesystem.ReadFile(cachePath)
+				if err == nil {
+					log.Debugf("cache hit for %s", endpoint)
+					return []byte(data), nil
+				}
+			}
+		}
+	}
+
 	start := time.Now()
 
 	req, err := http.NewRequest(http.MethodGet, endpoint, nil)
@@ -56,7 +71,7 @@ func Get(endpoint string) ([]byte, error) {
 	log.Debugf("request to %s took: %v", endpoint, time.Since(start))
 
 	if core.GetConfig().Debug.DumpHtml {
-		filesystem.WriteFile(core.GetConfig().Location.Temp+"/requests/"+endpoint, body)
+		filesystem.WriteFile(core.GetConfig().Location.Cache+"/requests/"+endpoint, body)
 	}
 
 	return body, nil

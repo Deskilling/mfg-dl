@@ -52,6 +52,7 @@ var defaultConfig = Config{
 		FilePattern: "{location}/{name}/Season{season}/Episode-{episode}-{language}.mp4",
 		Download:    "./downloads",
 		Temp:        "./temp",
+		Cache:       "./cache",
 	},
 
 	Downloads: Downloads{
