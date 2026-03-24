@@ -1,23 +1,23 @@
 package filesystem
 
 import (
-	"fmt"
+	"io/fs"
 	"os"
 	"path/filepath"
 )
 
 func ReadDirectory(path string, extension string) (files []os.DirEntry, err error) {
 	if !ExistPath(path) {
-		return nil, nil
+		return []os.DirEntry{}, nil
 	}
 
 	if IsDirEmpty(path) {
-		return nil, fmt.Errorf("directory is empty")
+		return []os.DirEntry{}, nil
 	}
 
 	allFiles, err := os.ReadDir(path)
 	if err != nil {
-		return nil, err
+		return []os.DirEntry{}, err
 	}
 
 	for _, file := range allFiles {
@@ -26,7 +26,30 @@ func ReadDirectory(path string, extension string) (files []os.DirEntry, err erro
 		}
 	}
 	return files, nil
+}
 
+func ReadDirectoryRecursive(path string, extension string) (files []os.DirEntry, err error) {
+	if !ExistPath(path) {
+		return []os.DirEntry{}, nil
+	}
+	if IsDirEmpty(path) {
+		return []os.DirEntry{}, nil
+	}
+
+	err = filepath.WalkDir(path, func(entry string, d fs.DirEntry, err error) error {
+		if err != nil {
+			return err
+		}
+		if d.IsDir() {
+			return nil
+		}
+		if extension == "" || filepath.Ext(d.Name()) == extension {
+			files = append(files, d)
+		}
+		return nil
+	})
+
+	return files, err
 }
 
 func CopyDirectory(source string, target string) (err error) {
