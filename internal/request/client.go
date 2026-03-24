@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"os"
 	"time"
 
 	"mfg-dl/internal/core"
+	"mfg-dl/internal/util"
 	"mfg-dl/pkg/filesystem"
 
 	"charm.land/log/v2"
@@ -30,17 +30,23 @@ var Client = &http.Client{
 	},
 }
 
+func cachePath(endpoint string) string {
+	base := core.GetConfig().Location.Cache + "/requests/"
+	if core.GetConfig().Debug.Sha256Cache {
+		return base + util.Hash256String(endpoint)
+	}
+	return base + endpoint
+}
+
 func Get(endpoint string) ([]byte, error) {
-	if core.GetConfig().Debug.DumpHtml {
-		cachePath := core.GetConfig().Location.Cache + "/requests/" + endpoint
-		if filesystem.ExistPath(cachePath) {
-			info, err := os.Stat(cachePath)
-			if err == nil && time.Since(info.ModTime()) < 24*time.Hour {
-				data, err := filesystem.ReadFile(cachePath)
-				if err == nil {
-					log.Debugf("cache hit for %s", endpoint)
-					return []byte(data), nil
-				}
+	if core.GetConfig().Cache.EnableCache {
+		path := cachePath(endpoint)
+
+		if filesystem.ExistPath(path) {
+			data, err := filesystem.ReadFile(path)
+			if err == nil {
+				log.Debugf("cache hit for %s", endpoint)
+				return []byte(data), nil
 			}
 		}
 	}
@@ -70,8 +76,10 @@ func Get(endpoint string) ([]byte, error) {
 
 	log.Debugf("request to %s took: %v", endpoint, time.Since(start))
 
-	if core.GetConfig().Debug.DumpHtml {
-		filesystem.WriteFile(core.GetConfig().Location.Cache+"/requests/"+endpoint, body)
+	if core.GetConfig().Cache.EnableCache {
+		path := cachePath(endpoint)
+
+		filesystem.WriteFile(path, body)
 	}
 
 	return body, nil

@@ -28,11 +28,17 @@ type Extra struct {
 type Downloads struct {
 	MaxSegmentConcurrency int `toml:"maxsegmentconcurrency" comment:"maximum number of concurrent segment downloads"`
 	MaxRetires            int `toml:"maxsegmentretires" comment:"max retries for each segment"`
-	RetryDelay            int `toml:"retrydelay" comments:"retry delay of the segments in sec"`
+	RetryDelay            int `toml:"retrydelay" comment:"retry delay of the segments in sec"`
+}
+
+type Cache struct {
+	EnableCache  bool `toml:"cacheEnabled" comment:"Caches all requested webpages for x hours"`
+	Minutes      int  `toml:"cacheMinutes" comment:"How long to keep each cached page"`
+	CleanMinutes int  `toml:"cacheClean" comment:"How often in Minutes to check the cache"`
 }
 
 type Debug struct {
-	DumpHtml bool `toml:"dumphtml" comments:"saves all visited webpages into temp/requests"`
+	Sha256Cache bool `toml:"sha256cache" comment:"Hash cache filenames with sha256"`
 }
 
 type Config struct {
@@ -40,6 +46,7 @@ type Config struct {
 	Location  Location
 	Downloads Downloads
 	Extra     Extra
+	Cache     Cache
 	Debug     Debug
 }
 
@@ -67,8 +74,14 @@ var defaultConfig = Config{
 		LogLevel:            0,
 	},
 
+	Cache: Cache{
+		EnableCache:  true,
+		Minutes:      60,
+		CleanMinutes: 30,
+	},
+
 	Debug: Debug{
-		DumpHtml: false,
+		Sha256Cache: true,
 	},
 }
 
