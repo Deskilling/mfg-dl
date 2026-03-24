@@ -101,7 +101,7 @@ func PlayerDownload(voeUrl, output string) (err error) {
 		return fmt.Errorf("failed to download all segments for %s", dir)
 	}
 
-	err = m3u.ConvertTSFilesToVideo(dir, output)
+	err = ffmpeg.ConvertTSFilesToVideo(dir, output)
 	if err != nil {
 		// TODO THIS ALSO MEANS IT FAILED IMPLEMENTATION BEFORE WAS KINDA ASS
 		return err
