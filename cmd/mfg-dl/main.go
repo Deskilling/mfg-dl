@@ -39,6 +39,8 @@ func init() {
 }
 
 func main() {
+	core.CleanUp()
+
 	if core.GetConfig().Tui.Basic {
 		simple.SimpleTui()
 	} else {
