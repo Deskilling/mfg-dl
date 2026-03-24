@@ -1,6 +1,7 @@
 package util
 
 import (
+	"crypto/sha256"
 	"fmt"
 	"strconv"
 	"strings"
@@ -66,4 +67,9 @@ func ParseMultipleInts(input string) []int {
 		}
 	}
 	return result
+}
+
+func Hash256String(string string) string {
+	h := sha256.Sum256([]byte(string))
+	return fmt.Sprintf("%x", h[:])
 }
