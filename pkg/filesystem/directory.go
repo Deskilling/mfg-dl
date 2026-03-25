@@ -17,7 +17,7 @@ func ReadDirectory(path string, extension string) (files []os.DirEntry, err erro
 
 	allFiles, err := os.ReadDir(path)
 	if err != nil {
-		return []os.DirEntry{}, err
+		return nil, err
 	}
 
 	for _, file := range allFiles {
@@ -28,14 +28,13 @@ func ReadDirectory(path string, extension string) (files []os.DirEntry, err erro
 	return files, nil
 }
 
-func ReadDirectoryRecursive(path string, extension string) (files []os.DirEntry, err error) {
+func ReadDirectoryRecursive(path string, extension string) (files []string, err error) {
 	if !ExistPath(path) {
-		return []os.DirEntry{}, nil
+		return []string{}, nil
 	}
 	if IsDirEmpty(path) {
-		return []os.DirEntry{}, nil
+		return []string{}, nil
 	}
-
 	err = filepath.WalkDir(path, func(entry string, d fs.DirEntry, err error) error {
 		if err != nil {
 			return err
@@ -44,7 +43,7 @@ func ReadDirectoryRecursive(path string, extension string) (files []os.DirEntry,
 			return nil
 		}
 		if extension == "" || filepath.Ext(d.Name()) == extension {
-			files = append(files, d)
+			files = append(files, entry)
 		}
 		return nil
 	})
