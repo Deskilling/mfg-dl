@@ -38,7 +38,7 @@ func cachePath(endpoint string) string {
 	return base + endpoint
 }
 
-func Get(endpoint string) ([]byte, error) {
+func Get(endpoint string, headers ...map[string]string) ([]byte, error) {
 	if core.GetConfig().Cache.EnableCache {
 		path := cachePath(endpoint)
 
@@ -58,6 +58,12 @@ func Get(endpoint string) ([]byte, error) {
 		return []byte{}, err
 	}
 	req.Header.Set("User-Agent", userAgent)
+
+	for _, h := range headers {
+		for k, v := range h {
+			req.Header.Set(k, v)
+		}
+	}
 
 	resp, err := Client.Do(req)
 	if err != nil {
