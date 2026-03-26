@@ -112,13 +112,15 @@ func Calculate(s1, s2 string) float64 {
 }
 
 func Match(selected *model.SearchResult, services [][]model.SearchResult) {
-	selected.Score = make(map[string]float64)
+	selected.Score.Score = make(map[string]float64)
+	selected.Score.Query = make(map[string]string)
 	for _, service := range services {
 		for _, u := range service {
 			score := Calculate(selected.Name, u.Name)
 			log.Debug("Matched", "TMDB", selected.Name, "SERVICE", u.Name, "Score", score)
-			if score > selected.Score[u.Service] {
-				selected.Score[u.Service] = score
+			if score > selected.Score.Score[u.Service] {
+				selected.Score.Query[u.Service] = u.Name
+				selected.Score.Score[u.Service] = score
 			}
 		}
 	}

@@ -6,6 +6,7 @@ import (
 
 	"mfg-dl/internal/core"
 	"mfg-dl/internal/ffmpeg"
+	"mfg-dl/internal/tui/newsimple"
 	"mfg-dl/internal/tui/simple"
 	"mfg-dl/pkg/filesystem"
 
@@ -43,7 +44,7 @@ func main() {
 	if core.GetConfig().Tui.Basic {
 		simple.SimpleTui()
 	} else {
-		// newsimple.Tui()
+		newsimple.Tui()
 	}
 
 	log.Info("Execution finished press ENTER to quit")

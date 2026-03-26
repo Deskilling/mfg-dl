@@ -11,6 +11,11 @@ type Site struct {
 	DownloadMultiple func(streams []Stream) error
 }
 
+type Score struct {
+	Score map[string]float64
+	Query map[string]string
+}
+
 type SearchResult struct {
 	Service        string
 	Name           string
@@ -18,7 +23,7 @@ type SearchResult struct {
 	Description    string
 	Cover          string
 	ProductionYear string
-	Score          map[string]float64
+	Score          Score
 }
 
 type Season struct {
