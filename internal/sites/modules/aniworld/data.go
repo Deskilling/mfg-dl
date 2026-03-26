@@ -2,7 +2,8 @@ package aniworld
 
 import "mfg-dl/internal/sites/model"
 
-var BaseURL = "https://aniworld.to"
+const Name = "Aniworld"
+const BaseURL = "https://aniworld.to"
 
 type Endpoints map[string]string
 
@@ -13,7 +14,7 @@ var AniEndpoints = Endpoints{
 }
 
 var Site = model.Site{
-	Name:    "Aniworld",
+	Service: Name,
 	Baseurl: BaseURL,
 
 	Search:           GetSearch,

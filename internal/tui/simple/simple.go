@@ -55,13 +55,13 @@ func SimpleTui() {
 
 func SelectModule() *model.Site {
 	if len(sites.Sites) == 1 {
-		log.Infof("Selected %s", sites.Sites[0].Name)
+		log.Infof("Selected %s", sites.Sites[0].Service)
 		return &sites.Sites[0]
 	}
 
 	for i := range sites.Sites {
 		u := i + 1
-		fmt.Printf("[%v] %s\n", u, sites.Sites[i].Name)
+		fmt.Printf("[%v] %s\n", u, sites.Sites[i].Service)
 	}
 
 	for {
@@ -93,14 +93,14 @@ func Search() model.SearchResult {
 		}
 
 		if len(results) == 1 {
-			log.Infof("Selected %s %s", results[0].Name, results[0].ProductionYear)
+			log.Infof("Selected %s", results[0].Name)
 			return results[0]
 		}
 
 		for {
 			for i := range results {
 				u := i + 1
-				fmt.Printf("[%v] %s %s\n", u, results[i].Name, results[i].ProductionYear)
+				fmt.Printf("[%v] %s\n", u, results[i].Name)
 			}
 
 			v := readInt(reader, "Enter: ")

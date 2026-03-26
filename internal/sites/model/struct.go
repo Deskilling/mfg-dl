@@ -1,7 +1,7 @@
 package model
 
 type Site struct {
-	Name    string
+	Service string
 	Baseurl string
 
 	Search           func(term string) ([]SearchResult, error)
@@ -12,11 +12,13 @@ type Site struct {
 }
 
 type SearchResult struct {
+	Service        string
 	Name           string
 	Href           string
 	Description    string
 	Cover          string
 	ProductionYear string
+	Score          map[string]float64
 }
 
 type Season struct {
