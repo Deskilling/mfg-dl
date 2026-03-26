@@ -5,6 +5,9 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+
+	"golang.org/x/text/transform"
+	"golang.org/x/text/unicode/norm"
 )
 
 func ReverseString(s string) string {
@@ -72,4 +75,37 @@ func ParseMultipleInts(input string) []int {
 func Hash256String(string string) string {
 	h := sha256.Sum256([]byte(string))
 	return fmt.Sprintf("%x", h[:])
+}
+
+func NormalizeString(s string) string {
+	t := transform.Chain(norm.NFKD)
+	result, _, _ := transform.String(t, s)
+
+	replacements := map[rune]rune{
+		'×': 'x',
+		'÷': '/',
+		'−': '-',
+		'–': '-',
+		'—': '-',
+	}
+
+	var b strings.Builder
+	for _, r := range result {
+		if rep, ok := replacements[r]; ok {
+			b.WriteRune(rep)
+		} else {
+			b.WriteRune(r)
+		}
+	}
+
+	return strings.TrimSpace(b.String())
+}
+
+func ShortSearchTerm(s string) string {
+	s = NormalizeString(s)
+	words := strings.Fields(s)
+	if len(words) > 2 {
+		return strings.Join(words[:2], " ")
+	}
+	return s
 }
