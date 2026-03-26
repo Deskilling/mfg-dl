@@ -36,19 +36,18 @@ func init() {
 		os.Exit(0)
 	}
 
+	core.CreateCleanupTask()
 }
 
 func main() {
-	core.CleanUp()
-
 	if core.GetConfig().Tui.Basic {
 		simple.SimpleTui()
 	} else {
-		log.Fatal("Not Implemented")
+		// newsimple.Tui()
 	}
-
-	filesystem.RemoveDirectory(core.GetConfig().Location.Temp)
 
 	log.Info("Execution finished press ENTER to quit")
 	fmt.Scanln()
+
+	filesystem.RemoveDirectory(core.GetConfig().Location.Temp)
 }
