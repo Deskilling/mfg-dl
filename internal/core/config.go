@@ -32,7 +32,7 @@ type Downloads struct {
 }
 
 type Cache struct {
-	EnableCache  bool `toml:"cacheEnabled" comment:"Caches all requested webpages for x hours"`
+	EnableCache  bool `toml:"cacheEnabled" comment:"Caches all requested webpages for x time"`
 	Minutes      int  `toml:"cacheMinutes" comment:"How long to keep each cached page"`
 	CleanMinutes int  `toml:"cacheClean" comment:"How often in Minutes to check the cache"`
 }

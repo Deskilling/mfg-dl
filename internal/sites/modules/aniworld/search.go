@@ -55,6 +55,7 @@ func ParseSearch(data []byte) (search []model.SearchResult, err error) {
 
 	for _, v := range searchResults {
 		result := model.SearchResult{
+			Service:        Name,
 			Name:           html.UnescapeString(v.Name),
 			Href:           v.Href,
 			Description:    html.UnescapeString(v.Description),

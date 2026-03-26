@@ -72,7 +72,7 @@ func Get(endpoint string, headers ...map[string]string) ([]byte, error) {
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		return []byte{}, fmt.Errorf("status %d", resp.StatusCode)
+		return []byte{}, fmt.Errorf("status %d", resp.StatusCode, "url", endpoint)
 	}
 
 	body, err := io.ReadAll(resp.Body)
