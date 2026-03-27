@@ -4,17 +4,17 @@ import (
 	"os"
 )
 
-func ReadFile(filepath string) (content string, err error) {
+func ReadFile(filepath string) (content []byte, err error) {
 	if !ExistPath(filepath) {
-		return "", nil
+		return nil, nil
 	}
 
 	byte, err := os.ReadFile(filepath)
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 
-	return string(byte), err
+	return byte, err
 }
 
 func WriteFile(path string, byte []byte) (err error) {
