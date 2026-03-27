@@ -72,7 +72,7 @@ func Search(query string) ([]model.SearchResult, error) {
 			continue
 		}
 
-		if v.VoteCount < 15 && v.Popularity < 1.0 {
+		if v.VoteCount < 2 && v.Popularity < 1.0 {
 			continue
 		}
 
