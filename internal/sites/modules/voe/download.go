@@ -62,7 +62,7 @@ func PlayerDownload(voeUrl, output string) (err error) {
 	// make sure its chill
 	parsed.Directory = util.RemoveAfterSymbol(parsed.FileCode, "/")
 
-	if core.GetConfig().Extra.FfmpegDownload {
+	if core.GetConfig().Downloads.FfmpegDownload {
 		ffmpeg.DownloadHLS(parsed.Source, output)
 		return nil
 	}
@@ -94,7 +94,7 @@ func PlayerDownload(voeUrl, output string) (err error) {
 		return err
 	}
 
-	dir := fmt.Sprintf("%s/%s/", core.GetConfig().Location.Temp, parsed.Directory)
+	dir := fmt.Sprintf("%s/segments/%s/", core.GetConfig().Location.Temp, parsed.Directory)
 	log.Info(dir)
 	err = m3u.DownloadSegments(index, baseUrl, dir)
 	if err != nil {

@@ -27,9 +27,9 @@ func init() {
 		os.Exit(-1)
 	}
 
-	core.InitLogger(log.Level(core.GetConfig().Extra.LogLevel))
+	core.InitLogger(log.Level(core.GetConfig().Debug.LogLevel))
 
-	filesystem.RemoveDirectory(core.GetConfig().Location.Temp)
+	filesystem.RemoveDirectory(core.GetConfig().Location.Temp + "/segments")
 
 	err = ffmpeg.CheckInstalled()
 	if err != nil {
@@ -50,5 +50,5 @@ func main() {
 	log.Info("Execution finished press ENTER to quit")
 	fmt.Scanln()
 
-	filesystem.RemoveDirectory(core.GetConfig().Location.Temp)
+	filesystem.RemoveDirectory(core.GetConfig().Location.Temp + "/segments")
 }

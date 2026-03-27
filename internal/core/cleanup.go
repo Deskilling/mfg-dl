@@ -9,7 +9,7 @@ import (
 )
 
 func CleanUp() {
-	files, err := filesystem.ReadDirectoryRecursive(GetConfig().Location.Cache, "")
+	files, err := filesystem.ReadDirectoryRecursive(GetConfig().Location.Temp+"/cache", "")
 	if err != nil {
 		log.Errorf("failed to read cache directory: %v", err)
 		return
