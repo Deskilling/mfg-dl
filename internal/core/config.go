@@ -9,7 +9,7 @@ import (
 const configLocation string = "./config.toml"
 
 type Tui struct {
-	Basic bool
+	Tmdb bool `toml:"tmdb" comment:"uses tmdb as a search, recommendend in most cases"`
 }
 
 type Location struct {
@@ -52,7 +52,7 @@ type Config struct {
 
 var defaultConfig = Config{
 	Tui: Tui{
-		Basic: false,
+		Tmdb: true,
 	},
 
 	Location: Location{

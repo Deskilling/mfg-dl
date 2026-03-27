@@ -6,8 +6,8 @@ import (
 
 	"mfg-dl/internal/core"
 	"mfg-dl/internal/ffmpeg"
-	"mfg-dl/internal/tui/newsimple"
-	"mfg-dl/internal/tui/simple"
+	"mfg-dl/internal/tui/service"
+	"mfg-dl/internal/tui/tmdb"
 	"mfg-dl/pkg/filesystem"
 
 	"charm.land/log/v2"
@@ -41,10 +41,10 @@ func init() {
 }
 
 func main() {
-	if core.GetConfig().Tui.Basic {
-		simple.SimpleTui()
+	if core.GetConfig().Tui.Tmdb {
+		tmdb.Tui()
 	} else {
-		newsimple.Tui()
+		service.Tui()
 	}
 
 	log.Info("Execution finished press ENTER to quit")
