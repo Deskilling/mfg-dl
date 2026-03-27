@@ -88,7 +88,7 @@ func selectFromList(results []model.SearchResult) model.SearchResult {
 
 func Score(result model.SearchResult) (service string, index int) {
 	if len(sites.Sites) == 1 {
-		log.Infof("Selectd %s becaiuse its the only score", service)
+		log.Infof("Selectd %s becaiuse its the only score", sites.Sites[index].Service)
 		return sites.Sites[0].Service, 0
 	}
 
