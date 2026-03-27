@@ -10,11 +10,10 @@ import (
 	"charm.land/log/v2"
 )
 
-var site *model.Site
-
 func Tui() {
+	var site *model.Site
 	site = SelectModule()
-	result := Search()
+	result := Search(site)
 	season := components.Seasons(site, result)
 	streams := components.Episodes(site, season)
 
@@ -50,7 +49,7 @@ func SelectModule() *model.Site {
 	}
 }
 
-func Search() model.SearchResult {
+func Search(site *model.Site) model.SearchResult {
 	for {
 		search := components.ReadString(components.Reader, "Search: ")
 

@@ -1,9 +1,7 @@
 package tmdb
 
 import (
-	"bufio"
 	"fmt"
-	"os"
 
 	"mfg-dl/internal/search"
 	"mfg-dl/internal/sites"
@@ -14,13 +12,11 @@ import (
 	"charm.land/log/v2"
 )
 
-var reader *bufio.Reader = bufio.NewReader(os.Stdin)
-var site *model.Site
-
 func Tui() {
 	tmdbResult := Search()
 	service, index := Score(tmdbResult)
 
+	var site *model.Site
 	site = &sites.Sites[index]
 	result, _ := sites.Sites[index].Search(tmdbResult.Score.Query[service])
 	season := components.Seasons(site, result[0])
@@ -36,7 +32,7 @@ func Tui() {
 
 func Search() (result model.SearchResult) {
 	for {
-		input := components.ReadString(reader, "Search: ")
+		input := components.ReadString(components.Reader, "Search: ")
 
 		tmdbResults, err := search.Search(input)
 		if err != nil {
@@ -80,7 +76,7 @@ func selectFromList(results []model.SearchResult) model.SearchResult {
 		for i, v := range results {
 			fmt.Printf("[%v] %s %s\n", i+1, v.Name, v.ProductionYear)
 		}
-		input := components.ReadInt(reader, "Enter: ")
+		input := components.ReadInt(components.Reader, "Enter: ")
 		input--
 		if input < 0 || input >= len(results) {
 			log.Error("Invalid Input, try again")
@@ -100,7 +96,7 @@ func Score(result model.SearchResult) (service string, index int) {
 		for i, v := range sites.Sites {
 			fmt.Printf("[%v] %s %.2f%%\n", i+1, v.Service, result.Score.Score[v.Service]*100)
 		}
-		input := components.ReadInt(reader, "Enter: ")
+		input := components.ReadInt(components.Reader, "Enter: ")
 		input--
 
 		if input < 0 || input >= len(sites.Sites) {
