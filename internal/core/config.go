@@ -2,11 +2,13 @@ package core
 
 import (
 	"mfg-dl/pkg/config"
+	"mfg-dl/pkg/filesystem"
 
 	"charm.land/log/v2"
 )
 
 const configLocation string = "./config.toml"
+const configVersion string = "0.1"
 
 type Tui struct {
 	Tmdb bool `toml:"tmdb" comment:"uses tmdb as a search, recommendend in most cases"`
@@ -44,6 +46,8 @@ type Config struct {
 	Downloads Downloads
 	Cache     Cache
 	Debug     Debug
+
+	Version string
 }
 
 var defaultConfig = Config{
@@ -75,6 +79,8 @@ var defaultConfig = Config{
 		LogLevel:    0,
 		Sha256Cache: true,
 	},
+
+	Version: configVersion,
 }
 
 var cfg Config
@@ -82,7 +88,6 @@ var cfg Config
 func InitConfig() error {
 	err := config.Load(configLocation, &cfg)
 	if err != nil {
-		log.Error("Failed loading config", "err", err)
 		cfg = defaultConfig
 
 		err = config.Save(configLocation, cfg)
@@ -91,8 +96,41 @@ func InitConfig() error {
 			return err
 		}
 
+		cfg = defaultConfig
+		err = config.Save(configLocation, cfg)
+		if err != nil {
+			log.Error("failed saving config", "err", err)
+			return err
+		}
+
 		log.Info("created config at", "configLocation", configLocation)
 	}
+
+	if GetConfig().Version != configVersion {
+		content, err := filesystem.ReadFile(configLocation)
+		if err != nil {
+			log.Error(err)
+			return err
+		}
+
+		err = filesystem.WriteFile(configLocation+".old", content)
+		if err != nil {
+			log.Error(err)
+			return err
+		}
+
+		log.Info("Renamed old config", "location", configLocation+".old")
+
+		cfg = defaultConfig
+		err = config.Save(configLocation, cfg)
+		if err != nil {
+			log.Error("failed saving config", "err", err)
+			return err
+		}
+
+		log.Info("created config at", "configLocation", configLocation)
+	}
+
 	log.Debug("loaded config")
 	return nil
 }
