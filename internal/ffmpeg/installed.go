@@ -4,6 +4,8 @@ import (
 	"os/exec"
 	"runtime"
 
+	"mfg-dl/internal/tui/components"
+
 	"charm.land/log/v2"
 )
 
@@ -13,13 +15,17 @@ func CheckInstalled() (err error) {
 
 	if err != nil {
 		if runtime.GOOS == "windows" {
-			log.Info("Downloading ffmpeg with winget")
+			log.Info("FFmpeg is not installed\nDo you want to install it using winget")
+			input := components.ReadString(components.Reader, "y/n: ")
 
-			cmd = exec.Command("winget", "install", "Gyan.FFmpeg")
-			err = cmd.Run()
+			if input == "y" {
 
-			if err != nil {
-				log.Error("Winget is not installed or error happend :(")
+				cmd = exec.Command("winget", "install", "Gyan.FFmpeg")
+				err = cmd.Run()
+
+				if err != nil {
+					log.Error("Winget is not installed or error happend :(")
+				}
 			}
 		} else {
 			log.Info("ffmpeg is not installed")
