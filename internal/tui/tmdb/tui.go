@@ -2,11 +2,13 @@ package tmdb
 
 import (
 	"fmt"
+	"os"
 
 	"mfg-dl/internal/search"
 	"mfg-dl/internal/sites"
 	"mfg-dl/internal/sites/model"
 	"mfg-dl/internal/tui/components"
+	"mfg-dl/internal/tui/service"
 	"mfg-dl/internal/util"
 
 	"charm.land/log/v2"
@@ -56,10 +58,17 @@ func Search() (result model.SearchResult) {
 			if len(results) == 0 {
 				results, err = site.Search(util.ShortSearchTerm(util.NormalizeString(selected.Name)))
 				if len(results) == 0 {
-					continue
+					log.Info("Still no result found try to search via module search?")
+					log.Infof("You are currently using the service: %s", site.Service)
+					input = components.ReadString(components.Reader, "y/n: ")
+					if input == "y" {
+						service.Tui()
+					}
+					os.Exit(0)
 				}
+			} else {
+				allServiceResults = append(allServiceResults, results)
 			}
-			allServiceResults = append(allServiceResults, results)
 		}
 
 		search.Match(&selected, allServiceResults)
