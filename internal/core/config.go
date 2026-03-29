@@ -90,48 +90,34 @@ func InitConfig() error {
 	if err != nil {
 		cfg = defaultConfig
 
+		log.Info("Creating new config", "path", configLocation)
 		err = config.Save(configLocation, cfg)
 		if err != nil {
-			log.Error("failed saving config", "err", err)
+			log.Error("Failed to save Config", "err", err)
 			return err
 		}
-
-		cfg = defaultConfig
-		err = config.Save(configLocation, cfg)
-		if err != nil {
-			log.Error("failed saving config", "err", err)
-			return err
-		}
-
-		log.Info("created config at", "configLocation", configLocation)
 	}
 
 	if GetConfig().Version != configVersion {
 		content, err := filesystem.ReadFile(configLocation)
 		if err != nil {
-			log.Error(err)
 			return err
 		}
 
 		err = filesystem.WriteFile(configLocation+".old", content)
 		if err != nil {
-			log.Error(err)
 			return err
 		}
 
-		log.Info("Renamed old config", "location", configLocation+".old")
-
-		cfg = defaultConfig
-		err = config.Save(configLocation, cfg)
+		err = filesystem.DeleteFile(configLocation)
 		if err != nil {
-			log.Error("failed saving config", "err", err)
 			return err
 		}
 
-		log.Info("created config at", "configLocation", configLocation)
+		log.Warnf("Renamed old config: %s -> %s", configLocation, configLocation+".old")
+		return InitConfig()
 	}
 
-	log.Debug("loaded config")
 	return nil
 }
 
