@@ -2,53 +2,59 @@ package main
 
 import (
 	"fmt"
-	"os"
 
 	"mfg-dl/internal/core"
 	"mfg-dl/internal/ffmpeg"
 	"mfg-dl/internal/tui/service"
 	"mfg-dl/internal/tui/tmdb"
+	"mfg-dl/internal/util"
 	"mfg-dl/pkg/filesystem"
 
 	"charm.land/log/v2"
 )
 
 func init() {
+	core.InitLogger(0)
+
 	var err error
-	err = filesystem.ChangeExecDir()
+	err = filesystem.ChangeExecPath()
 	if err != nil {
-		fmt.Printf("Failed to execute Programm in the same path")
-		os.Exit(-1)
+		log.Fatal("Failed to execute Programm in the same path", "err", err)
 	}
 
 	err = core.InitConfig()
 	if err != nil {
-		fmt.Printf("Failed to init config")
-		os.Exit(-1)
+		log.Fatal("Failed to init config", "err", err)
+	} else {
+		log.Info("Loaded config")
 	}
 
-	core.InitLogger(log.Level(core.GetConfig().Debug.LogLevel))
+	log.SetLevel(log.Level(core.GetConfig().Debug.LogLevel))
 
-	filesystem.RemoveDirectory(core.GetConfig().Location.Temp + "/segments")
+	err = filesystem.RemoveDirectory(core.GetConfig().Location.Temp + "/segments")
+	if err != nil {
+		log.Error("Failed deleting directory", "dir", core.GetConfig().Location.Temp+"/segments", "err", err)
+	} else {
+		log.Info("Cleaned temp segments")
+	}
 
 	err = ffmpeg.CheckInstalled()
 	if err != nil {
-		log.Error("ffmpeg is required to use this programm\nA tutorial for installation can befound here: https://gist.github.com/Deskilling/4994b58618a9ef896bf02481215e3291")
-		os.Exit(0)
+		fmt.Printf("\n")
+		log.Fatal("FFmpeg is required to use this application", "err", err)
 	}
 
 	core.CreateCleanupTask()
 }
 
 func main() {
+	util.ClearTerminal()
 	if core.GetConfig().Tui.Tmdb {
 		tmdb.Tui()
 	} else {
 		service.Tui()
 	}
 
-	log.Info("Execution finished press ENTER to quit")
 	fmt.Scanln()
-
 	filesystem.RemoveDirectory(core.GetConfig().Location.Temp + "/segments")
 }

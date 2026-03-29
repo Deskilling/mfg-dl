@@ -6,8 +6,6 @@ import (
 	"mfg-dl/internal/sites"
 	"mfg-dl/internal/sites/model"
 	"mfg-dl/internal/tui/components"
-
-	"charm.land/log/v2"
 )
 
 func Tui() {
@@ -18,7 +16,6 @@ func Tui() {
 	streams := components.Episodes(site, season)
 
 	if len(streams) == 0 {
-		log.Error("no streams selected")
 		return
 	}
 
@@ -27,7 +24,6 @@ func Tui() {
 
 func SelectModule() *model.Site {
 	if len(sites.Sites) == 1 {
-		log.Infof("Selected %s", sites.Sites[0].Service)
 		return &sites.Sites[0]
 	}
 
@@ -41,7 +37,6 @@ func SelectModule() *model.Site {
 		v--
 
 		if v < 0 || v >= len(sites.Sites) {
-			log.Error("Invalid Input, try again")
 			continue
 		}
 
@@ -55,17 +50,14 @@ func Search(site *model.Site) model.SearchResult {
 
 		results, err := site.Search(search)
 		if err != nil {
-			log.Error("search failed", "err", err)
 			continue
 		}
 
 		if len(results) == 0 {
-			log.Error("Not Found, try again")
 			continue
 		}
 
 		if len(results) == 1 {
-			log.Infof("Selected %s", results[0].Name)
 			return results[0]
 		}
 
@@ -79,7 +71,6 @@ func Search(site *model.Site) model.SearchResult {
 			v--
 
 			if v < 0 || v >= len(results) {
-				log.Error("Invalid Input, try again")
 				continue
 			}
 

@@ -7,8 +7,6 @@ import (
 
 	"mfg-dl/internal/core"
 	"mfg-dl/internal/request"
-
-	"charm.land/log/v2"
 )
 
 func DownloadSegments(index Index, baseURL, directory string) error {
@@ -37,11 +35,10 @@ func DownloadSegments(index Index, baseURL, directory string) error {
 			err := request.DownloadFile(url, file)
 			if err != nil {
 				retryMu.Lock()
-				log.Error("Failed", "url", url, "file", file)
 				retryQueue = append(retryQueue, job{url, file})
 				retryMu.Unlock()
 			} else {
-				log.Debug("Downloaded", "file", file)
+				// TOOD
 			}
 		}(i, seg)
 	}
@@ -53,10 +50,8 @@ func DownloadSegments(index Index, baseURL, directory string) error {
 		for attempt := 0; attempt < core.GetConfig().Downloads.MaxRetires; attempt++ {
 			err := request.DownloadFile(j.url, j.file)
 			if err == nil {
-				log.Debug("Retry success: ", j.url)
 				break
 			}
-			log.Warnf("Retry %d failed for %s", attempt+1, j.url)
 			time.Sleep(retryDelay)
 		}
 	}

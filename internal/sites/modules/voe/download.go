@@ -12,29 +12,22 @@ import (
 	"mfg-dl/internal/request"
 	"mfg-dl/internal/util"
 	"mfg-dl/pkg/filesystem"
-
-	"charm.land/log/v2"
 )
 
 func BaseDownload(voeUrl, output string) (err error) {
 	if filesystem.ExistPath(output) {
-		log.Info("Already downloaded", "output", output)
 		return nil
 	}
 
 	baseHtml, err := request.Get(voeUrl)
 	if err != nil {
-		log.Error(err)
 		return err
 	}
-	log.Debug("got html for", "voeUrl", voeUrl)
 
 	baseUrl, err := VoeUrlHtml(string(baseHtml))
 	if err != nil {
-		log.Error(err)
 		return err
 	}
-	log.Debug("got baseurl from html", "baseUrl", baseUrl)
 
 	PlayerDownload(baseUrl, output)
 
@@ -43,19 +36,16 @@ func BaseDownload(voeUrl, output string) (err error) {
 
 func PlayerDownload(voeUrl, output string) (err error) {
 	if filesystem.ExistPath(output) {
-		log.Info("Already downloaded", "output", output)
 		return nil
 	}
 
 	voeHtml, err := request.Get(voeUrl)
 	if err != nil {
-		log.Error(err)
 		return err
 	}
 
 	parsed, err := Parse(string(voeHtml))
 	if err != nil {
-		log.Error(err)
 		return err
 	}
 
@@ -69,33 +59,27 @@ func PlayerDownload(voeUrl, output string) (err error) {
 
 	masterTxt, err := request.Get(parsed.Source)
 	if err != nil {
-		log.Error(err)
 		return err
 	}
 
 	master, err := m3u.Parse(io.NopCloser(strings.NewReader(string(masterTxt))))
 	if err != nil {
-		log.Error(err)
 		return err
 	}
 
 	baseUrl := GetBaseUrl(parsed.Source)
-	log.Debug("baseurl", "baseUrl", baseUrl+master[0].URI)
 
 	indexTxt, err := request.Get(baseUrl + master[0].URI)
 	if err != nil {
-		log.Error(err)
 		return err
 	}
 
 	index, err := m3u.ParseIndex(io.NopCloser(strings.NewReader(string(indexTxt))))
 	if err != nil {
-		log.Error(err)
 		return err
 	}
 
 	dir := fmt.Sprintf("%s/segments/%s/", core.GetConfig().Location.Temp, parsed.Directory)
-	log.Info(dir)
 	err = m3u.DownloadSegments(index, baseUrl, dir)
 	if err != nil {
 		return fmt.Errorf("failed to download all segments for %s", dir)

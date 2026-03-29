@@ -2,14 +2,11 @@ package aniworld
 
 import (
 	"slices"
-	"time"
 
 	"mfg-dl/internal/request"
 	"mfg-dl/internal/sites/model"
 	"mfg-dl/internal/sites/modules/voe"
 	"mfg-dl/internal/util"
-
-	"charm.land/log/v2"
 )
 
 func Download(stream model.Stream) (err error) {
@@ -22,25 +19,19 @@ func Download(stream model.Stream) (err error) {
 
 	output := util.BuildOutputPath(stream)
 
-	start := time.Now()
-
 	switch stream.Hoster {
 	case "VOE":
 		voe.BaseDownload(location, output)
 	default:
 	}
 
-	log.Infof("Time took for Download %s", time.Since(start))
 	return nil
 }
 
 func DownloadMultiple(streams []model.Stream) (err error) {
-	saft := time.Now()
-
 	for _, v := range streams {
 		Download(v)
 	}
 
-	log.Infof("Time took for all Downloads %s", time.Since(saft))
 	return nil
 }
