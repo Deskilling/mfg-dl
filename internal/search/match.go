@@ -7,8 +7,6 @@ import (
 	"unicode/utf8"
 
 	"mfg-dl/internal/sites/model"
-
-	"charm.land/log/v2"
 )
 
 // https://github.com/jhvst/go-jaro-winkler-distance/blob/master/algo.go
@@ -117,7 +115,6 @@ func Match(selected *model.SearchResult, services [][]model.SearchResult) {
 	for _, service := range services {
 		for _, u := range service {
 			score := Calculate(selected.Name, u.Name)
-			log.Debug("Matched", "TMDB", selected.Name, "SERVICE", u.Name, "Score", score)
 			if score > selected.Score.Score[u.Service] {
 				selected.Score.Query[u.Service] = u.Name
 				selected.Score.Score[u.Service] = score

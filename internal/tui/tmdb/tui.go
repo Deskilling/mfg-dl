@@ -10,8 +10,6 @@ import (
 	"mfg-dl/internal/tui/components"
 	"mfg-dl/internal/tui/service"
 	"mfg-dl/internal/util"
-
-	"charm.land/log/v2"
 )
 
 func Tui() {
@@ -25,7 +23,6 @@ func Tui() {
 
 	streams := components.Episodes(site, season)
 	if len(streams) == 0 {
-		log.Error("no streams selected")
 		return
 	}
 
@@ -38,11 +35,9 @@ func Search() (result model.SearchResult) {
 
 		tmdbResults, err := search.Search(input)
 		if err != nil {
-			log.Error("search failed", "err", err)
 			continue
 		}
 		if len(tmdbResults) == 0 {
-			log.Error("Not Found, try again")
 			continue
 		}
 
@@ -52,14 +47,11 @@ func Search() (result model.SearchResult) {
 		for _, site := range sites.Sites {
 			results, err := site.Search(util.NormalizeString(selected.Name))
 			if err != nil {
-				log.Error(err)
 				continue
 			}
 			if len(results) == 0 {
 				results, err = site.Search(util.ShortSearchTerm(util.NormalizeString(selected.Name)))
 				if len(results) == 0 {
-					log.Info("Still no result found try to search via module search?")
-					log.Infof("You are currently using the service: %s", site.Service)
 					input = components.ReadString(components.Reader, "y/n: ")
 					if input == "y" {
 						service.Tui()
@@ -78,7 +70,6 @@ func Search() (result model.SearchResult) {
 
 func selectFromList(results []model.SearchResult) model.SearchResult {
 	if len(results) == 1 {
-		log.Infof("Selected %s", results[0].Name)
 		return results[0]
 	}
 	for {
@@ -88,7 +79,6 @@ func selectFromList(results []model.SearchResult) model.SearchResult {
 		input := components.ReadInt(components.Reader, "Enter: ")
 		input--
 		if input < 0 || input >= len(results) {
-			log.Error("Invalid Input, try again")
 			continue
 		}
 		return results[input]
@@ -97,7 +87,6 @@ func selectFromList(results []model.SearchResult) model.SearchResult {
 
 func Score(result model.SearchResult) (service string, index int) {
 	if len(sites.Sites) == 1 {
-		log.Infof("Selectd %s because its the only score", sites.Sites[index].Service)
 		return sites.Sites[0].Service, 0
 	}
 
@@ -109,7 +98,6 @@ func Score(result model.SearchResult) (service string, index int) {
 		input--
 
 		if input < 0 || input >= len(sites.Sites) {
-			log.Error("Invalid Input, try again")
 			continue
 		}
 

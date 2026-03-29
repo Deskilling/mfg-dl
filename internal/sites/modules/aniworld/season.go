@@ -3,12 +3,10 @@ package aniworld
 import (
 	"fmt"
 	"strings"
-	"time"
 
 	"mfg-dl/internal/request"
 	"mfg-dl/internal/sites/model"
 
-	"charm.land/log/v2"
 	"github.com/PuerkitoBio/goquery"
 )
 
@@ -22,21 +20,16 @@ type Season struct {
 func GetSeasons(result model.SearchResult) (seasons []model.Season, err error) {
 	unparsedSeasons, err := request.Get(AniEndpoints["episodes"] + result.Href)
 	if err != nil {
-		log.Error(err)
 		return nil, err
 	}
 
-	start := time.Now()
 	parsedSeasons, err := ParseSeasons(string(unparsedSeasons))
 	if err != nil {
-		log.Error(err)
 		return nil, err
 	}
-	log.Debugf("time took for season parsing: %v", time.Since(start))
 
 	if len(parsedSeasons) == 0 {
 		err = fmt.Errorf("%s not found", result.Href)
-		log.Error(err)
 		return nil, err
 	}
 
@@ -61,14 +54,12 @@ func GetSeasons(result model.SearchResult) (seasons []model.Season, err error) {
 func ParseSeasons(html string) (seasons []Season, err error) {
 	if html == "" {
 		err := fmt.Errorf("not html parsed")
-		log.Error(err)
 		return nil, err
 	}
 
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(html))
 	if err != nil {
 		err = fmt.Errorf("could not create goquery document: %w", err)
-		log.Error(err)
 		return nil, err
 	}
 
@@ -83,7 +74,6 @@ func ParseSeasons(html string) (seasons []Season, err error) {
 			}
 
 			seasonNumber := strings.TrimSpace(strings.TrimPrefix(label, "Staffel "))
-			log.Debug("found href", "href", href)
 
 			if len(seasonNumber) == 1 {
 				seasonNumber = "0" + seasonNumber

@@ -3,8 +3,6 @@ package components
 import (
 	"fmt"
 	"mfg-dl/internal/sites/model"
-
-	"charm.land/log/v2"
 )
 
 func Language(site *model.Site, episode model.Episode) (lang string, err error) {
@@ -36,7 +34,6 @@ func Language(site *model.Site, episode model.Episode) (lang string, err error) 
 		u--
 
 		if u < 0 || u >= len(languages) {
-			log.Error("Invalid Input, try again")
 			continue
 		}
 

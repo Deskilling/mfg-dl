@@ -3,12 +3,10 @@ package aniworld
 import (
 	"fmt"
 	"strings"
-	"time"
 
 	"mfg-dl/internal/request"
 	"mfg-dl/internal/sites/model"
 
-	"charm.land/log/v2"
 	"github.com/PuerkitoBio/goquery"
 )
 
@@ -27,21 +25,16 @@ func GetEpisodes(season model.Season) (episodes []model.Episode, err error) {
 	unparsedEpisodes, err := request.Get(url)
 	if err != nil {
 		err = fmt.Errorf("failed to GET Episodes: %w", err)
-		log.Error(err)
 		return nil, err
 	}
 
-	start := time.Now()
 	parsedEpisodes, err := ParseEpisodes(string(unparsedEpisodes))
 	if err != nil {
 		err = fmt.Errorf("failed parsing episodes %w", err)
-		log.Error(err)
 		return nil, err
 	}
-	log.Debugf("time took for episode parsing: %v", time.Since(start))
 
 	if len(parsedEpisodes) == 0 {
-		log.Error(err)
 		return nil, err
 	}
 
@@ -69,14 +62,12 @@ func GetEpisodes(season model.Season) (episodes []model.Episode, err error) {
 func ParseEpisodes(html string) (episodes []Episode, err error) {
 	if html == "" {
 		err := fmt.Errorf("not html parsed")
-		log.Error(err)
 		return nil, err
 	}
 
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(html))
 	if err != nil {
 		err = fmt.Errorf("could not create goquery document: %w", err)
-		log.Error(err)
 		return nil, err
 	}
 

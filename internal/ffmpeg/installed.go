@@ -1,12 +1,11 @@
 package ffmpeg
 
 import (
+	"errors"
 	"os/exec"
 	"runtime"
 
 	"mfg-dl/internal/tui/components"
-
-	"charm.land/log/v2"
 )
 
 func CheckInstalled() (err error) {
@@ -15,22 +14,20 @@ func CheckInstalled() (err error) {
 
 	if err != nil {
 		if runtime.GOOS == "windows" {
-			log.Info("FFmpeg is not installed\nDo you want to install it using winget")
 			input := components.ReadString(components.Reader, "y/n: ")
 
 			if input == "y" {
-
 				cmd = exec.Command("winget", "install", "Gyan.FFmpeg")
 				err = cmd.Run()
 
 				if err != nil {
-					log.Error("Winget is not installed or error happend :(")
+					return errors.New("Failed to install using Winget")
 				}
 			}
 		} else {
-			log.Info("ffmpeg is not installed")
+			return errors.New("FFmpeg is not installed")
 		}
 	}
 
-	return err
+	return nil
 }

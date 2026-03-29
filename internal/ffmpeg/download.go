@@ -8,8 +8,6 @@ import (
 	"strings"
 
 	"mfg-dl/pkg/filesystem"
-
-	"charm.land/log/v2"
 )
 
 func GetTotalMicro(url string) (totalMicro int, err error) {
@@ -41,8 +39,7 @@ func GetTotalMicro(url string) (totalMicro int, err error) {
 func DownloadHLS(url, output string) (err error) {
 	filesystem.CreatePath(output)
 
-	totalMicro, _ := GetTotalMicro(url)
-	log.Debug("Got toalms", "totalm", totalMicro)
+	// totalMicro, _ := GetTotalMicro(url)
 
 	args := []string{
 		"-y",
@@ -77,7 +74,7 @@ func DownloadHLS(url, output string) (err error) {
 
 			_, ok := strings.CutPrefix(line, "out_time_us=")
 			if ok {
-				log.Infof("Unc %s/%v", line, totalMicro)
+				// TODO
 			}
 		}
 	}()

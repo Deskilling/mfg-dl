@@ -5,14 +5,11 @@ import (
 	"mfg-dl/internal/sites/model"
 	"mfg-dl/internal/util"
 	"strings"
-
-	"charm.land/log/v2"
 )
 
 func Episodes(site *model.Site, season model.Season) []model.Stream {
 	episodes, err := site.Episodes(season)
 	if err != nil {
-		log.Error("failed loading episodes", "err", err)
 		return nil
 	}
 
@@ -25,7 +22,6 @@ func Episodes(site *model.Site, season model.Season) []model.Stream {
 	var u []int
 
 	if len(episodes) == 1 {
-		log.Infof("Selected %s", episodes[0].EpisodeTitle)
 		u = append(u, 0)
 	} else {
 		for {
@@ -55,14 +51,11 @@ func Episodes(site *model.Site, season model.Season) []model.Stream {
 				u = valid
 				break
 			}
-
-			log.Error("invalid selection, please try again")
 		}
 	}
 
 	lang, err := Language(site, episodes[u[0]])
 	if err != nil {
-		log.Error("language selection failed", "err", err)
 		return nil
 	}
 
@@ -70,7 +63,6 @@ func Episodes(site *model.Site, season model.Season) []model.Stream {
 	for _, v := range u {
 		stream, err := site.Streams(episodes[v])
 		if err != nil {
-			log.Error("failed loading streams", "err", err)
 			continue
 		}
 

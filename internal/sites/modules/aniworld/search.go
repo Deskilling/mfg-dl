@@ -4,13 +4,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"html"
-	"time"
 
 	"mfg-dl/internal/request"
 	"mfg-dl/internal/sites/model"
 	"mfg-dl/internal/util"
-
-	"charm.land/log/v2"
 )
 
 type SearchResult struct {
@@ -27,18 +24,14 @@ func GetSearch(term string) ([]model.SearchResult, error) {
 	searchResults, err := request.Get(AniEndpoints["search"] + encodedTerm)
 	if err != nil {
 		err = fmt.Errorf("failed to GET Search for %s: %w", term, err)
-		log.Error(err)
 		return nil, err
 	}
 
-	start := time.Now()
 	parsedResults, err := ParseSearch(searchResults)
 	if err != nil {
 		err = fmt.Errorf("failed parsing search results for %s: %w", term, err)
-		log.Error(err)
 		return nil, err
 	}
-	log.Debugf("time took for search parsing: %v", time.Since(start))
 
 	return parsedResults, nil
 }
@@ -49,7 +42,6 @@ func ParseSearch(data []byte) (search []model.SearchResult, err error) {
 	err = json.Unmarshal(data, &searchResults)
 	if err != nil {
 		err = fmt.Errorf("failed to unmarshal search results: %w", err)
-		log.Error(err)
 		return nil, err
 	}
 

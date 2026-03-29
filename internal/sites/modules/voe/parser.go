@@ -8,7 +8,6 @@ import (
 
 	"mfg-dl/internal/util"
 
-	"charm.land/log/v2"
 	"github.com/PuerkitoBio/goquery"
 )
 
@@ -45,14 +44,12 @@ type VoeStream struct {
 func Parse(html string) (*VoeStream, error) {
 	if html == "" {
 		err := fmt.Errorf("not html parsed")
-		log.Error(err)
 		return nil, err
 	}
 
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(html))
 	if err != nil {
 		err = fmt.Errorf("could not create goquery document: %w", err)
-		log.Error(err)
 		return nil, err
 	}
 
@@ -69,7 +66,6 @@ func Parse(html string) (*VoeStream, error) {
 	string, err = util.Base64Decode(string)
 	if err != nil {
 		err = fmt.Errorf("failed to decode base64: %s", err)
-		log.Error(err)
 		return nil, err
 	}
 
@@ -79,7 +75,6 @@ func Parse(html string) (*VoeStream, error) {
 	decoded, err := util.Base64Decode(string)
 	if err != nil {
 		err = fmt.Errorf("failed to decode base64: %s", err)
-		log.Error(err)
 		return nil, err
 	}
 
@@ -90,7 +85,6 @@ func Parse(html string) (*VoeStream, error) {
 	err = json.Unmarshal([]byte(decoded), &data)
 	if err != nil {
 		err = fmt.Errorf("failed to umasharl json: %w", err)
-		log.Error(err)
 		return nil, err
 	}
 
@@ -113,7 +107,6 @@ func VoeUrlHtml(htmlContent string) (string, error) {
 
 	if len(matches) <= 0 {
 		err := fmt.Errorf("no URL found in the provided HTML content")
-		log.Error(err)
 		return "", err
 	}
 

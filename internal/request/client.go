@@ -9,8 +9,6 @@ import (
 	"mfg-dl/internal/core"
 	"mfg-dl/internal/util"
 	"mfg-dl/pkg/filesystem"
-
-	"charm.land/log/v2"
 )
 
 var userAgent string = "deskilling/mfg-dl"
@@ -45,13 +43,10 @@ func Get(endpoint string, headers ...map[string]string) ([]byte, error) {
 		if filesystem.ExistPath(path) {
 			data, err := filesystem.ReadFile(path)
 			if err == nil {
-				log.Debugf("cache hit for %s", endpoint)
 				return []byte(data), nil
 			}
 		}
 	}
-
-	start := time.Now()
 
 	req, err := http.NewRequest(http.MethodGet, endpoint, nil)
 	if err != nil {
@@ -79,8 +74,6 @@ func Get(endpoint string, headers ...map[string]string) ([]byte, error) {
 	if err != nil {
 		return []byte{}, err
 	}
-
-	log.Debugf("request to %s took: %v", endpoint, time.Since(start))
 
 	if core.GetConfig().Cache.EnableCache {
 		path := cachePath(endpoint)
