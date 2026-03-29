@@ -82,11 +82,12 @@ func NormalizeString(s string) string {
 	result, _, _ := transform.String(t, s)
 
 	replacements := map[rune]rune{
-		'×': 'x',
-		'÷': '/',
-		'−': '-',
-		'–': '-',
-		'—': '-',
+		'×':  'x',
+		'÷':  '/',
+		'−':  '-',
+		'–':  '-',
+		'—':  '-',
+		'\'': '\u2019',
 	}
 
 	var b strings.Builder
