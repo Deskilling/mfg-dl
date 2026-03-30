@@ -8,6 +8,8 @@ import (
 	"mfg-dl/internal/request"
 	"mfg-dl/internal/sites/model"
 	"mfg-dl/internal/util"
+
+	"charm.land/log/v2"
 )
 
 type SearchResult struct {
@@ -23,14 +25,14 @@ func GetSearch(term string) ([]model.SearchResult, error) {
 
 	searchResults, err := request.Get(AniEndpoints["search"] + encodedTerm)
 	if err != nil {
-		err = fmt.Errorf("failed to GET Search for %s: %w", term, err)
-		return nil, err
+		log.Error("failed to get search", "service", Name, "term", term)
+		return nil, fmt.Errorf("failed to GET Search for %s: %w", term, err)
 	}
 
 	parsedResults, err := ParseSearch(searchResults)
 	if err != nil {
-		err = fmt.Errorf("failed parsing search results for %s: %w", term, err)
-		return nil, err
+		log.Error("failed to parse search", "service", Name, "term", term)
+		return nil, fmt.Errorf("failed parsing search results for %s: %w", term, err)
 	}
 
 	return parsedResults, nil

@@ -3,6 +3,9 @@ package components
 import (
 	"fmt"
 	"mfg-dl/internal/sites/model"
+	"mfg-dl/internal/util"
+
+	"charm.land/log/v2"
 )
 
 func Seasons(site *model.Site, result model.SearchResult) model.Season {
@@ -32,6 +35,8 @@ func Seasons(site *model.Site, result model.SearchResult) model.Season {
 		}
 
 		if v < 0 || v >= len(seasons) {
+			util.ClearTerminal()
+			log.Error("Invalid selection")
 			continue
 		}
 

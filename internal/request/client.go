@@ -9,6 +9,8 @@ import (
 	"mfg-dl/internal/core"
 	"mfg-dl/internal/util"
 	"mfg-dl/pkg/filesystem"
+
+	"charm.land/log/v2"
 )
 
 var userAgent string = "deskilling/mfg-dl"
@@ -37,10 +39,13 @@ func cachePath(endpoint string) string {
 }
 
 func Get(endpoint string, headers ...map[string]string) ([]byte, error) {
+	log.Debug("Sending Request", "url", endpoint)
+
 	if core.GetConfig().Cache.EnableCache {
 		path := cachePath(endpoint)
 
 		if filesystem.ExistPath(path) {
+			log.Debug("Using cached request", "file", path)
 			data, err := filesystem.ReadFile(path)
 			if err == nil {
 				return []byte(data), nil
@@ -50,6 +55,7 @@ func Get(endpoint string, headers ...map[string]string) ([]byte, error) {
 
 	req, err := http.NewRequest(http.MethodGet, endpoint, nil)
 	if err != nil {
+		log.Error("Building request failed", "url", endpoint, "err", err)
 		return []byte{}, err
 	}
 	req.Header.Set("User-Agent", userAgent)
@@ -62,11 +68,13 @@ func Get(endpoint string, headers ...map[string]string) ([]byte, error) {
 
 	resp, err := Client.Do(req)
 	if err != nil {
+		log.Error("Request failed", "url", endpoint, "err", err)
 		return []byte{}, err
 	}
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
+		log.Error("StatusCode is not Ok", "StatusCode", resp.StatusCode, "url", endpoint)
 		return []byte{}, fmt.Errorf("status %d", resp.StatusCode, "url", endpoint)
 	}
 
@@ -77,7 +85,7 @@ func Get(endpoint string, headers ...map[string]string) ([]byte, error) {
 
 	if core.GetConfig().Cache.EnableCache {
 		path := cachePath(endpoint)
-
+		log.Debug("Writing to cache", "location", path)
 		filesystem.WriteFile(path, body)
 	}
 

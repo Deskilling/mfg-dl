@@ -3,6 +3,9 @@ package components
 import (
 	"fmt"
 	"mfg-dl/internal/sites/model"
+	"mfg-dl/internal/util"
+
+	"charm.land/log/v2"
 )
 
 func Language(site *model.Site, episode model.Episode) (lang string, err error) {
@@ -22,18 +25,21 @@ func Language(site *model.Site, episode model.Episode) (lang string, err error) 
 	}
 
 	if len(languages) == 0 {
+		log.Error("no language found", "site", site.Service, "href", episode.Href)
 		return "", fmt.Errorf("no languages available")
 	}
 
-	for i := range languages {
-		fmt.Printf("[%v] %s\n", i+1, languages[i])
-	}
-
 	for {
+		for i := range languages {
+			fmt.Printf("[%v] %s\n", i+1, languages[i])
+		}
+
 		u := ReadInt(Reader, "Select: ")
 		u--
 
 		if u < 0 || u >= len(languages) {
+			util.ClearTerminal()
+			log.Error("Invalid selection")
 			continue
 		}
 

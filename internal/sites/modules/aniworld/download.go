@@ -7,6 +7,8 @@ import (
 	"mfg-dl/internal/sites/model"
 	"mfg-dl/internal/sites/modules/voe"
 	"mfg-dl/internal/util"
+
+	"charm.land/log/v2"
 )
 
 func Download(stream model.Stream) (err error) {
@@ -30,7 +32,10 @@ func Download(stream model.Stream) (err error) {
 
 func DownloadMultiple(streams []model.Stream) (err error) {
 	for _, v := range streams {
-		Download(v)
+		err = Download(v)
+		if err != nil {
+			log.Error("failed to download", "stream", streams)
+		}
 	}
 
 	return nil

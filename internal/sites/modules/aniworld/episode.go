@@ -7,6 +7,7 @@ import (
 	"mfg-dl/internal/request"
 	"mfg-dl/internal/sites/model"
 
+	"charm.land/log/v2"
 	"github.com/PuerkitoBio/goquery"
 )
 
@@ -24,14 +25,14 @@ func GetEpisodes(season model.Season) (episodes []model.Episode, err error) {
 
 	unparsedEpisodes, err := request.Get(url)
 	if err != nil {
-		err = fmt.Errorf("failed to GET Episodes: %w", err)
-		return nil, err
+		log.Error("Failed to get episodes", "service", Name, "href", season.Href)
+		return nil, fmt.Errorf("failed to GET Episodes: %w", err)
 	}
 
 	parsedEpisodes, err := ParseEpisodes(string(unparsedEpisodes))
 	if err != nil {
-		err = fmt.Errorf("failed parsing episodes %w", err)
-		return nil, err
+		log.Error("Failed to parse episodes", "service", Name, "href", season.Href)
+		return nil, fmt.Errorf("failed parsing episodes %w", err)
 	}
 
 	if len(parsedEpisodes) == 0 {
