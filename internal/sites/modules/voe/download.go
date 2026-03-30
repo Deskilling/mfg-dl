@@ -12,6 +12,8 @@ import (
 	"mfg-dl/internal/request"
 	"mfg-dl/internal/util"
 	"mfg-dl/pkg/filesystem"
+
+	"charm.land/log/v2"
 )
 
 func BaseDownload(voeUrl, output string) (err error) {
@@ -21,6 +23,7 @@ func BaseDownload(voeUrl, output string) (err error) {
 
 	baseHtml, err := request.Get(voeUrl)
 	if err != nil {
+		log.Error("Failed to get voe", "url", voeUrl)
 		return err
 	}
 

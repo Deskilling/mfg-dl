@@ -7,6 +7,7 @@ import (
 	"mfg-dl/internal/request"
 	"mfg-dl/internal/sites/model"
 
+	"charm.land/log/v2"
 	"github.com/PuerkitoBio/goquery"
 )
 
@@ -25,8 +26,8 @@ func GetStreams(episode model.Episode) (streams []model.Stream, err error) {
 	pageURL := BaseURL + episode.Href
 	unparsedStreams, err := request.Get(pageURL)
 	if err != nil {
-		err = fmt.Errorf("failed to GET Stream for %s: %w", episode.Href, err)
-		return nil, err
+		log.Error("Failed to get streams", "service", Name, "href", episode.Href)
+		return nil, fmt.Errorf("failed to GET Stream for %s: %w", episode.Href, err)
 	}
 
 	parsedStreams, err := ParseStreams(string(unparsedStreams))

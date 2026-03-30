@@ -2,14 +2,18 @@ package components
 
 import (
 	"fmt"
+	"strings"
+
 	"mfg-dl/internal/sites/model"
 	"mfg-dl/internal/util"
-	"strings"
+
+	"charm.land/log/v2"
 )
 
 func Episodes(site *model.Site, season model.Season) []model.Stream {
 	episodes, err := site.Episodes(season)
 	if err != nil {
+		log.Error("Failed getting episodes", "service", site.Service, "href", season.Href)
 		return nil
 	}
 
@@ -20,7 +24,6 @@ func Episodes(site *model.Site, season model.Season) []model.Stream {
 	}
 
 	var u []int
-
 	if len(episodes) == 1 {
 		u = append(u, 0)
 	} else {
@@ -56,10 +59,11 @@ func Episodes(site *model.Site, season model.Season) []model.Stream {
 
 	lang, err := Language(site, episodes[u[0]])
 	if err != nil {
+		log.Error("Failed getting languages", "service", site.Service, episodes[0].Href)
 		return nil
 	}
 
-	var unc []model.Stream
+	var streams []model.Stream
 	for _, v := range u {
 		stream, err := site.Streams(episodes[v])
 		if err != nil {
@@ -68,11 +72,11 @@ func Episodes(site *model.Site, season model.Season) []model.Stream {
 
 		for _, w := range stream {
 			if w.Language == lang {
-				unc = append(unc, w)
+				streams = append(streams, w)
 				break
 			}
 		}
 	}
 
-	return unc
+	return streams
 }

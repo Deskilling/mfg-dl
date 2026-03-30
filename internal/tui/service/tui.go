@@ -6,6 +6,9 @@ import (
 	"mfg-dl/internal/sites"
 	"mfg-dl/internal/sites/model"
 	"mfg-dl/internal/tui/components"
+	"mfg-dl/internal/util"
+
+	"charm.land/log/v2"
 )
 
 func Tui() {
@@ -50,6 +53,7 @@ func Search(site *model.Site) model.SearchResult {
 
 		results, err := site.Search(search)
 		if err != nil {
+			log.Error("Failed to search", "service", site.Service, "term", search)
 			continue
 		}
 
@@ -71,6 +75,8 @@ func Search(site *model.Site) model.SearchResult {
 			v--
 
 			if v < 0 || v >= len(results) {
+				util.ClearTerminal()
+				log.Error("Invalid selection")
 				continue
 			}
 
