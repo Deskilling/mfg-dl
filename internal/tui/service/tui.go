@@ -11,23 +11,39 @@ import (
 	"charm.land/log/v2"
 )
 
-func Tui() {
+func Tui() (err error) {
 	var site *model.Site
-	site = SelectModule()
-	result := Search(site)
-	season := components.Seasons(site, result)
-	streams := components.Episodes(site, season)
+	site, err = SelectModule()
+	if err != nil {
+
+	}
+	result, err := Search(site)
+	if err != nil {
+
+	}
+	season, err := components.Seasons(site, result)
+	if err != nil {
+	}
+
+	streams, err := components.Episodes(site, season)
+	if err != nil {
+	}
 
 	if len(streams) == 0 {
 		return
 	}
 
-	site.DownloadMultiple(streams)
+	err = site.DownloadMultiple(streams)
+	if err != nil {
+
+	}
+
+	return nil
 }
 
-func SelectModule() *model.Site {
+func SelectModule() (site *model.Site, err error) {
 	if len(sites.Sites) == 1 {
-		return &sites.Sites[0]
+		return &sites.Sites[0], nil
 	}
 
 	for i := range sites.Sites {
@@ -36,20 +52,26 @@ func SelectModule() *model.Site {
 	}
 
 	for {
-		v := components.ReadInt(components.Reader, "Enter: ")
+		v, err := components.ReadInt(components.Reader, "Enter: ")
+		if err != nil {
+			return &model.Site{}, fmt.Errorf("failed userinput: %w", err)
+		}
 		v--
 
 		if v < 0 || v >= len(sites.Sites) {
 			continue
 		}
 
-		return &sites.Sites[v]
+		return &sites.Sites[v], nil
 	}
 }
 
-func Search(site *model.Site) model.SearchResult {
+func Search(site *model.Site) (result model.SearchResult, err error) {
 	for {
-		search := components.ReadString(components.Reader, "Search: ")
+		search, err := components.ReadString(components.Reader, "Search: ")
+		if err != nil {
+			return model.SearchResult{}, fmt.Errorf("failed userinput: %w", err)
+		}
 
 		results, err := site.Search(search)
 		if err != nil {
@@ -62,7 +84,7 @@ func Search(site *model.Site) model.SearchResult {
 		}
 
 		if len(results) == 1 {
-			return results[0]
+			return results[0], nil
 		}
 
 		for {
@@ -71,7 +93,10 @@ func Search(site *model.Site) model.SearchResult {
 				fmt.Printf("[%v] %s\n", u, results[i].Name)
 			}
 
-			v := components.ReadInt(components.Reader, "Enter: ")
+			v, err := components.ReadInt(components.Reader, "Enter: ")
+			if err != nil {
+				return model.SearchResult{}, fmt.Errorf("failed userinput: %w", err)
+			}
 			v--
 
 			if v < 0 || v >= len(results) {
@@ -80,7 +105,7 @@ func Search(site *model.Site) model.SearchResult {
 				continue
 			}
 
-			return results[v]
+			return results[v], nil
 		}
 	}
 }

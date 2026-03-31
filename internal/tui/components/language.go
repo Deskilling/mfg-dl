@@ -34,7 +34,10 @@ func Language(site *model.Site, episode model.Episode) (lang string, err error) 
 			fmt.Printf("[%v] %s\n", i+1, languages[i])
 		}
 
-		u := ReadInt(Reader, "Select: ")
+		u, err := ReadInt(Reader, "Select: ")
+		if err != nil {
+			return "", fmt.Errorf("failed userinput: %s", err)
+		}
 		u--
 
 		if u < 0 || u >= len(languages) {

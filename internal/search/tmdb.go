@@ -9,7 +9,11 @@ import (
 	"mfg-dl/internal/request"
 	"mfg-dl/internal/sites/model"
 	"mfg-dl/internal/util"
+
+	"charm.land/log/v2"
 )
+
+// var tmdbAPIKey = "TMDB_API_KEY"
 
 type SearchResult struct {
 	Title  string
@@ -18,12 +22,6 @@ type SearchResult struct {
 	Type   string
 	Id     int
 	Year   string
-}
-
-// var tmdbAPIKey = "TMDB_API_KEY"
-
-type tmdbResponse struct {
-	Results []tmdbResult `json:"results"`
 }
 
 type tmdbResult struct {
@@ -40,7 +38,11 @@ type tmdbResult struct {
 	MediaType    string  `json:"media_type"`
 }
 
-func Search(query string) ([]model.SearchResult, error) {
+type tmdbResponse struct {
+	Results []tmdbResult `json:"results"`
+}
+
+func Search(query string) (results []model.SearchResult, err error) {
 	endpoint := fmt.Sprintf("https://www.themoviedb.org/search/multi?language=en&query=%s", url.QueryEscape(query))
 
 	// https://www.themoviedb.org/search/multi?query=
@@ -58,7 +60,8 @@ func Search(query string) ([]model.SearchResult, error) {
 	}
 
 	var result tmdbResponse
-	if err := json.Unmarshal(body, &result); err != nil {
+	err = json.Unmarshal(body, &result)
+	if err != nil {
 		return nil, err
 	}
 
@@ -66,18 +69,18 @@ func Search(query string) ([]model.SearchResult, error) {
 		return result.Results[i].Popularity > result.Results[j].Popularity
 	})
 
-	var results []model.SearchResult
 	for _, v := range result.Results {
 		if v.MediaType == "person" {
 			continue
 		}
 
-		if v.VoteCount < 2 && v.Popularity < 1.0 {
-			continue
-		}
-
 		if v.Title == "" {
 			v.Title = v.Name
+		}
+
+		if v.VoteCount < 2 && v.Popularity < 1.0 {
+			log.Debug("Excluded", "title", v.Title, "voteCount", v.VoteCount, "popularity", v.Popularity)
+			continue
 		}
 
 		if v.ReleaseDate == "" {

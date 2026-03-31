@@ -2,6 +2,7 @@ package ffmpeg
 
 import (
 	"errors"
+	"fmt"
 	"os/exec"
 	"runtime"
 
@@ -14,7 +15,10 @@ func CheckInstalled() (err error) {
 
 	if err != nil {
 		if runtime.GOOS == "windows" {
-			input := components.ReadString(components.Reader, "y/n: ")
+			input, err := components.ReadString(components.Reader, "y/n: ")
+			if err != nil {
+				return fmt.Errorf("failed userinput: %w", err)
+			}
 
 			if input == "y" {
 				cmd = exec.Command("winget", "install", "Gyan.FFmpeg")

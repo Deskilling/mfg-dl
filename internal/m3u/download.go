@@ -51,11 +51,12 @@ func DownloadSegments(index Index, baseURL, directory string) (err error) {
 		for attempt := range core.GetConfig().Downloads.MaxRetires {
 			log.Debug("Retry download", "url", j.url, "path", j.file)
 			err := request.DownloadFile(j.url, j.file)
-			if err == nil {
+			if err != nil {
 				if attempt == core.GetConfig().Downloads.MaxRetires {
-					log.Error("Failed downloading segment", "attempt", attempt, "url", j.url, "file", j.file, "err", err)
 					return err
 				}
+			} else {
+				break
 			}
 			time.Sleep(retryDelay)
 		}

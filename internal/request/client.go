@@ -38,7 +38,7 @@ func cachePath(endpoint string) string {
 	return base + endpoint
 }
 
-func Get(endpoint string, headers ...map[string]string) ([]byte, error) {
+func Get(endpoint string, headers ...map[string]string) (body []byte, err error) {
 	log.Debug("Sending Request", "url", endpoint)
 
 	if core.GetConfig().Cache.EnableCache {
@@ -55,7 +55,6 @@ func Get(endpoint string, headers ...map[string]string) ([]byte, error) {
 
 	req, err := http.NewRequest(http.MethodGet, endpoint, nil)
 	if err != nil {
-		log.Error("Building request failed", "url", endpoint, "err", err)
 		return []byte{}, err
 	}
 	req.Header.Set("User-Agent", userAgent)
@@ -68,17 +67,15 @@ func Get(endpoint string, headers ...map[string]string) ([]byte, error) {
 
 	resp, err := Client.Do(req)
 	if err != nil {
-		log.Error("Request failed", "url", endpoint, "err", err)
 		return []byte{}, err
 	}
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		log.Error("StatusCode is not Ok", "StatusCode", resp.StatusCode, "url", endpoint)
 		return []byte{}, fmt.Errorf("status %d", resp.StatusCode, "url", endpoint)
 	}
 
-	body, err := io.ReadAll(resp.Body)
+	body, err = io.ReadAll(resp.Body)
 	if err != nil {
 		return []byte{}, err
 	}

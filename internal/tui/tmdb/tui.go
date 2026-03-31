@@ -1,6 +1,7 @@
 package tmdb
 
 import (
+	"errors"
 	"fmt"
 
 	"mfg-dl/internal/search"
@@ -12,31 +13,53 @@ import (
 	"charm.land/log/v2"
 )
 
-func Tui() {
-	tmdbResult := Search()
-	service, index := Score(tmdbResult)
+func Tui() (err error) {
+	tmdbResult, err := Search()
+	if err != nil {
+		return fmt.Errorf("failed to search tmdb: %w", err)
+	}
+
+	service, index, err := Score(tmdbResult)
+	if err != nil {
+		return fmt.Errorf("failed to calcualte scores: %w", err)
+	}
 
 	var site *model.Site
 	site = &sites.Sites[index]
-	result, _ := sites.Sites[index].Search(tmdbResult.Score.Query[service])
+	result, err := sites.Sites[index].Search(tmdbResult.Score.Query[service])
+	if err != nil {
+		return fmt.Errorf("search failed: %w", err)
+	}
+
 	if len(result) == 0 {
-		log.Error("No search results")
-		return
+		return errors.New("no search results")
 	}
 
-	season := components.Seasons(site, result[0])
-
-	streams := components.Episodes(site, season)
-	if len(streams) == 0 {
-		return
+	season, err := components.Seasons(site, result[0])
+	if err != nil {
+		return fmt.Errorf("failed getting seasons: %w", err)
 	}
 
-	site.DownloadMultiple(streams)
+	streams, err := components.Episodes(site, season)
+	if err != nil || len(streams) == 0 {
+		return fmt.Errorf("failed getting streams from episodes: %w", err)
+	}
+
+	err = site.DownloadMultiple(streams)
+	if err != nil {
+		return fmt.Errorf("failed downloading: %w", err)
+	}
+
+	log.Info("All Downloads finished")
+	return nil
 }
 
-func Search() (result model.SearchResult) {
+func Search() (result model.SearchResult, err error) {
 	for {
-		input := components.ReadString(components.Reader, "Search: ")
+		input, err := components.ReadString(components.Reader, "Search: ")
+		if err != nil {
+			return model.SearchResult{}, fmt.Errorf("failed userinput: %w", err)
+		}
 
 		tmdbResults, err := search.Search(input)
 		if err != nil {
@@ -46,7 +69,10 @@ func Search() (result model.SearchResult) {
 			continue
 		}
 
-		selected := selectFromList(tmdbResults)
+		selected, err := selectFromList(tmdbResults)
+		if err != nil {
+			return model.SearchResult{}, fmt.Errorf("failed to select from list: %w", err)
+		}
 
 		var allServiceResults [][]model.SearchResult
 		for _, site := range sites.Sites {
@@ -68,18 +94,18 @@ func Search() (result model.SearchResult) {
 
 		search.Match(&selected, allServiceResults)
 		log.Debug("Got all Scores", "selected", selected.Score)
-		return selected
+		return selected, nil
 	}
 }
 
-func selectFromList(results []model.SearchResult) model.SearchResult {
+func selectFromList(results []model.SearchResult) (result model.SearchResult, err error) {
 	if len(results) == 0 {
-		log.Error("Search results are empty :(")
-		return model.SearchResult{}
+		return model.SearchResult{}, errors.New("results are empty")
 	}
 
 	if len(results) == 1 {
-		return results[0]
+		log.Infof("Selcted the only Result: %s", result.Name)
+		return results[0], nil
 	}
 
 	for {
@@ -87,7 +113,10 @@ func selectFromList(results []model.SearchResult) model.SearchResult {
 			fmt.Printf("[%v] %s %s\n", i+1, v.Name, v.ProductionYear)
 		}
 
-		input := components.ReadInt(components.Reader, "Enter: ")
+		input, err := components.ReadInt(components.Reader, "Enter: ")
+		if err != nil {
+			return model.SearchResult{}, fmt.Errorf("failed userinput: %w", err)
+		}
 		input--
 		if input < 0 || input >= len(results) {
 			util.ClearTerminal()
@@ -95,13 +124,13 @@ func selectFromList(results []model.SearchResult) model.SearchResult {
 			continue
 		}
 
-		return results[input]
+		return results[input], nil
 	}
 }
 
-func Score(result model.SearchResult) (service string, index int) {
+func Score(result model.SearchResult) (service string, index int, err error) {
 	if len(sites.Sites) == 1 {
-		return sites.Sites[0].Service, 0
+		return sites.Sites[0].Service, 0, nil
 	}
 
 	for {
@@ -112,7 +141,10 @@ func Score(result model.SearchResult) (service string, index int) {
 			fmt.Printf("[%v] %s %.2f%%\n", i+1, v.Service, result.Score.Score[v.Service]*100)
 		}
 
-		input := components.ReadInt(components.Reader, "Enter: ")
+		input, err := components.ReadInt(components.Reader, "Enter: ")
+		if err != nil {
+			return "", 0, fmt.Errorf("failed userinput: %w", err)
+		}
 		input--
 		if input < 0 || input >= len(sites.Sites) {
 			util.ClearTerminal()
@@ -120,6 +152,6 @@ func Score(result model.SearchResult) (service string, index int) {
 			continue
 		}
 
-		return sites.Sites[input].Service, input
+		return sites.Sites[input].Service, input, nil
 	}
 }
