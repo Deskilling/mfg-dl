@@ -4,7 +4,7 @@ package m3u
 
 import (
 	"bufio"
-	"fmt"
+	"errors"
 	"io"
 	"strconv"
 	"strings"
@@ -85,12 +85,13 @@ func ParseIndex(f io.ReadCloser) (m3u8Index Index, err error) {
 		}
 	}
 
-	if err := scanner.Err(); err != nil {
-		return Index{}, fmt.Errorf("error reading file: %w", err)
+	err = scanner.Err()
+	if err != nil {
+		return Index{}, err
 	}
 
 	if m3u8Index.Segments == nil {
-		return Index{}, fmt.Errorf("no segments found in the playlist")
+		return Index{}, errors.New("no segments found in index")
 	}
 
 	return m3u8Index, nil
