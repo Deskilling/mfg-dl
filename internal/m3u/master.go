@@ -4,10 +4,12 @@ package m3u
 
 import (
 	"bufio"
-	"fmt"
+	"errors"
 	"io"
 	"strconv"
 	"strings"
+
+	"charm.land/log/v2"
 )
 
 type VariantStream struct {
@@ -26,10 +28,8 @@ type VariantStream struct {
 }
 
 // TODO Improve error handle stuff and read how m3u actually works cheffe €€€€ :(
-func Parse(f io.ReadCloser) ([]VariantStream, error) {
+func Parse(f io.ReadCloser) (variantStream []VariantStream, err error) {
 	defer f.Close()
-
-	var variantStream []VariantStream
 
 	firstLine := true
 	scanner := bufio.NewScanner(f)
@@ -37,7 +37,7 @@ func Parse(f io.ReadCloser) ([]VariantStream, error) {
 	for scanner.Scan() {
 		line := scanner.Text()
 		if firstLine && !strings.HasPrefix(line, "#EXTM3U") {
-			return nil, fmt.Errorf(("invalid m3u file format. Expected #EXTM3U file header"))
+			return nil, errors.New(("invalid m3u file format. Expected #EXTM3U file header"))
 		}
 
 		firstLine = false
@@ -46,13 +46,13 @@ func Parse(f io.ReadCloser) ([]VariantStream, error) {
 			line := strings.ReplaceAll(line, "#EXTINF:", "")
 			trackInfo := strings.Split(line, ",")
 			if len(trackInfo) < 2 {
-				return nil, fmt.Errorf("invalid m3u file format. Expected EXTINF metadata to contain track length and name data")
+				return nil, errors.New("invalid m3u file format. Expected EXTINF metadata to contain track length and name data")
 			}
 		} else if strings.HasPrefix(line, "#EXT-X-STREAM-INF") {
 			line := strings.ReplaceAll(line, "#EXT-X-STREAM-INF:", "")
 			streamInfo := strings.Split(line, ",")
 			if len(streamInfo) < 1 {
-				return nil, fmt.Errorf(("invalid m3u file format. Expected EXT-X-STREAM-INF metadata to contain bitrate data"))
+				return nil, errors.New(("invalid m3u file format. Expected EXT-X-STREAM-INF metadata to contain bitrate data"))
 			}
 			stream := &VariantStream{}
 			for i, param := range streamInfo {
@@ -60,7 +60,7 @@ func Parse(f io.ReadCloser) ([]VariantStream, error) {
 					bandwidth := strings.Split(streamInfo[i], "=")[1]
 					bandwidthInt, err := strconv.Atoi(bandwidth)
 					if err != nil {
-						err = fmt.Errorf("unable to parse bandwidth: %w", err)
+						log.Error("unable to parse bandwidth", "err", err)
 						return nil, err
 					}
 					stream.Bandwidth = bandwidthInt
@@ -69,7 +69,7 @@ func Parse(f io.ReadCloser) ([]VariantStream, error) {
 					averageBandwidth := strings.Split(streamInfo[i], "=")[1]
 					averageBandwidthInt, err := strconv.Atoi(averageBandwidth)
 					if err != nil {
-						err = fmt.Errorf("unable to parse average bandwidth: %w", err)
+						log.Error("unable to parse average bandwidth", "err", err)
 						return nil, err
 					}
 					stream.AverageBandwidth = averageBandwidthInt
@@ -86,7 +86,7 @@ func Parse(f io.ReadCloser) ([]VariantStream, error) {
 					frameRate := strings.Split(streamInfo[i], "=")[1]
 					frameRateFloat, err := strconv.ParseFloat(frameRate, 64)
 					if err != nil {
-						err = fmt.Errorf("unable to parse frame rate: %w", err)
+						log.Error("unable to parse frame rate", "err", err)
 						return nil, err
 					}
 					stream.FrameRate = frameRateFloat

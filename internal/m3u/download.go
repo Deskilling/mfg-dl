@@ -7,9 +7,11 @@ import (
 
 	"mfg-dl/internal/core"
 	"mfg-dl/internal/request"
+
+	"charm.land/log/v2"
 )
 
-func DownloadSegments(index Index, baseURL, directory string) error {
+func DownloadSegments(index Index, baseURL, directory string) (err error) {
 	type job struct {
 		url  string
 		file string
@@ -34,11 +36,10 @@ func DownloadSegments(index Index, baseURL, directory string) error {
 
 			err := request.DownloadFile(url, file)
 			if err != nil {
+				log.Error("Failed to download", "url", url, "file", file)
 				retryMu.Lock()
 				retryQueue = append(retryQueue, job{url, file})
 				retryMu.Unlock()
-			} else {
-				// TOOD
 			}
 		}(i, seg)
 	}
@@ -47,10 +48,14 @@ func DownloadSegments(index Index, baseURL, directory string) error {
 
 	retryDelay := time.Duration(core.GetConfig().Downloads.RetryDelay) * time.Second
 	for _, j := range retryQueue {
-		for attempt := 0; attempt < core.GetConfig().Downloads.MaxRetires; attempt++ {
+		for attempt := range core.GetConfig().Downloads.MaxRetires {
+			log.Debug("Retry download", "url", j.url, "path", j.file)
 			err := request.DownloadFile(j.url, j.file)
 			if err == nil {
-				break
+				if attempt == core.GetConfig().Downloads.MaxRetires {
+					log.Error("Failed downloading segment", "attempt", attempt, "url", j.url, "file", j.file, "err", err)
+					return err
+				}
 			}
 			time.Sleep(retryDelay)
 		}
