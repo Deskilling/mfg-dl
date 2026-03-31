@@ -10,17 +10,15 @@ import (
 	"charm.land/log/v2"
 )
 
-func Episodes(site *model.Site, season model.Season) []model.Stream {
+func Episodes(site *model.Site, season model.Season) (streams []model.Stream, err error) {
 	episodes, err := site.Episodes(season)
 	if err != nil {
 		log.Error("Failed getting episodes", "service", site.Service, "href", season.Href)
-		return nil
+		return []model.Stream{}, err
 	}
 
-	for i := range episodes {
-		if strings.TrimSpace(episodes[i].EpisodeTitle) == "" {
-			episodes[i].EpisodeTitle = episodes[i].EpisodeAlternativeTitle
-		}
+	if len(episodes) == 0 {
+		return []model.Stream{}, fmt.Errorf("no episodes found: %w", err)
 	}
 
 	var u []int
@@ -29,10 +27,17 @@ func Episodes(site *model.Site, season model.Season) []model.Stream {
 	} else {
 		for {
 			for i := range episodes {
+				if strings.TrimSpace(episodes[i].EpisodeTitle) == "" {
+					episodes[i].EpisodeTitle = episodes[i].EpisodeAlternativeTitle
+				}
+
 				fmt.Printf("[%v] %s\n", i+1, episodes[i].EpisodeTitle)
 			}
 
-			v := ReadString(Reader, "Select (use 1,2,3,4 or all for selection): ")
+			v, err := ReadString(Reader, "Select (use 1,2,3,4 or all for selection): ")
+			if err != nil {
+				return []model.Stream{}, fmt.Errorf("failed userinput: %s", err)
+			}
 
 			if v == "all" {
 				u = make([]int, len(episodes))
@@ -59,11 +64,9 @@ func Episodes(site *model.Site, season model.Season) []model.Stream {
 
 	lang, err := Language(site, episodes[u[0]])
 	if err != nil {
-		log.Error("Failed getting languages", "service", site.Service, episodes[0].Href)
-		return nil
+		return []model.Stream{}, fmt.Errorf("failed getting language: %w", err)
 	}
 
-	var streams []model.Stream
 	for _, v := range u {
 		stream, err := site.Streams(episodes[v])
 		if err != nil {
@@ -78,5 +81,5 @@ func Episodes(site *model.Site, season model.Season) []model.Stream {
 		}
 	}
 
-	return streams
+	return streams, nil
 }

@@ -8,15 +8,15 @@ import (
 	"charm.land/log/v2"
 )
 
-func Seasons(site *model.Site, result model.SearchResult) model.Season {
+func Seasons(site *model.Site, result model.SearchResult) (season model.Season, err error) {
 	seasons, err := site.Seasons(result)
 	if err != nil {
-		return model.Season{}
+		return model.Season{}, fmt.Errorf("failed getting seasons: %w", err)
 	}
 
 	for {
 		if len(seasons) == 1 {
-			return seasons[0]
+			return seasons[0], nil
 		}
 
 		u := 1
@@ -29,7 +29,10 @@ func Seasons(site *model.Site, result model.SearchResult) model.Season {
 			u++
 		}
 
-		v := ReadInt(Reader, "Select: ")
+		v, err := ReadInt(Reader, "Select: ")
+		if err != nil {
+			return model.Season{}, fmt.Errorf("failed userinput: %s", err)
+		}
 		if seasons[0].SeasonLabel != "Alle Filme" {
 			v--
 		}
@@ -40,6 +43,6 @@ func Seasons(site *model.Site, result model.SearchResult) model.Season {
 			continue
 		}
 
-		return seasons[v]
+		return seasons[v], nil
 	}
 }

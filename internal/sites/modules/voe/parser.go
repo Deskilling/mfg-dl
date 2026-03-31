@@ -41,22 +41,19 @@ type VoeStream struct {
 	Directory string
 }
 
-func Parse(html string) (*VoeStream, error) {
+func Parse(html string) (stream *VoeStream, err error) {
 	if html == "" {
-		err := fmt.Errorf("not html parsed")
-		return nil, err
+		return nil, fmt.Errorf("not html parsed")
 	}
 
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(html))
 	if err != nil {
-		err = fmt.Errorf("could not create goquery document: %w", err)
-		return nil, err
+		return nil, fmt.Errorf("could not create goquery document: %w", err)
 	}
 
 	jsonElem := doc.Find("script[type='application/json']").First()
 	if jsonElem.Length() == 0 {
-		err = fmt.Errorf("no JSON found")
-		return nil, err
+		return nil, fmt.Errorf("no JSON found")
 	}
 
 	string := strings.TrimPrefix(strings.TrimSuffix(strings.TrimSpace(jsonElem.Text()), `"]`), `["`)
@@ -65,8 +62,8 @@ func Parse(html string) (*VoeStream, error) {
 
 	string, err = util.Base64Decode(string)
 	if err != nil {
-		err = fmt.Errorf("failed to decode base64: %s", err)
-		return nil, err
+		return nil, fmt.Errorf("failed to decode base64: %w", err)
+
 	}
 
 	string = util.ShiftChars(string, 3)
@@ -74,8 +71,7 @@ func Parse(html string) (*VoeStream, error) {
 
 	decoded, err := util.Base64Decode(string)
 	if err != nil {
-		err = fmt.Errorf("failed to decode base64: %s", err)
-		return nil, err
+		return nil, fmt.Errorf("failed to decode base64: %w", err)
 	}
 
 	replacer := strings.NewReplacer(`\/`, `/`)
@@ -84,30 +80,27 @@ func Parse(html string) (*VoeStream, error) {
 	var data VoeStream
 	err = json.Unmarshal([]byte(decoded), &data)
 	if err != nil {
-		err = fmt.Errorf("failed to umasharl json: %w", err)
-		return nil, err
+		return nil, fmt.Errorf("failed to umasharl json: %w", err)
 	}
 
 	return &data, nil
 }
 
-func VoeRemovePatterns(str string) string {
+func VoeRemovePatterns(str string) (result string) {
 	patterns := []string{"@$", "^^", "~@", "%?", "*~", "!!", "#&"}
-	result := str
 	for _, pat := range patterns {
-		result = strings.ReplaceAll(result, pat, "")
+		str = strings.ReplaceAll(str, pat, "")
 	}
-	return result
+	return str
 }
 
-func VoeUrlHtml(htmlContent string) (string, error) {
+func VoeUrlHtml(htmlContent string) (url string, err error) {
 	re := regexp.MustCompile(`window.location.href\s*=\s*['"](https://[^'"]+)['"]`)
 
 	matches := re.FindStringSubmatch(htmlContent)
 
 	if len(matches) <= 0 {
-		err := fmt.Errorf("no URL found in the provided HTML content")
-		return "", err
+		return "", fmt.Errorf("no URL found in the provided HTML content")
 	}
 
 	return matches[1], nil

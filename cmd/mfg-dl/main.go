@@ -49,10 +49,15 @@ func init() {
 
 func main() {
 	util.ClearTerminal()
+	var err error = nil
 	if core.GetConfig().Tui.Tmdb {
-		tmdb.Tui()
+		err = tmdb.Tui()
 	} else {
-		service.Tui()
+		err = service.Tui()
+	}
+
+	if err != nil {
+		log.Error(err)
 	}
 
 	fmt.Scanln()

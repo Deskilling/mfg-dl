@@ -7,7 +7,6 @@ import (
 	"mfg-dl/internal/request"
 	"mfg-dl/internal/sites/model"
 
-	"charm.land/log/v2"
 	"github.com/PuerkitoBio/goquery"
 )
 
@@ -30,7 +29,6 @@ func GetSeasons(result model.SearchResult) (seasons []model.Season, err error) {
 	}
 
 	if len(parsedSeasons) == 0 {
-		log.Error("No seasons found", "service", Name, "href", result.Href)
 		return nil, fmt.Errorf("%s not found", result.Href)
 	}
 

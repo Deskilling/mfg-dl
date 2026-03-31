@@ -12,25 +12,28 @@ import (
 
 var Reader *bufio.Reader = bufio.NewReader(os.Stdin)
 
-func ReadString(reader *bufio.Reader, prompt string) string {
+func ReadString(reader *bufio.Reader, prompt string) (input string, err error) {
 	fmt.Print(prompt)
-	input, err := reader.ReadString('\n')
+	input, err = reader.ReadString('\n')
 	if err != nil {
 		log.Error("Failed reading string")
-		return ""
+		return "", err
 	}
-	return strings.TrimSpace(input)
+	return strings.TrimSpace(input), nil
 }
 
-func ReadInt(reader *bufio.Reader, prompt string) int {
+func ReadInt(reader *bufio.Reader, prompt string) (val int, err error) {
 	for {
-		input := ReadString(reader, prompt)
+		input, err := ReadString(reader, prompt)
+		if err != nil {
+			return 0, err
+		}
 		val, err := strconv.Atoi(input)
 		if err != nil {
 			log.Error("input an integer")
 			continue
 		}
 
-		return val
+		return val, nil
 	}
 }

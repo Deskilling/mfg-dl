@@ -2,6 +2,7 @@ package aniworld
 
 import (
 	"slices"
+	"time"
 
 	"mfg-dl/internal/request"
 	"mfg-dl/internal/sites/model"
@@ -32,9 +33,12 @@ func Download(stream model.Stream) (err error) {
 
 func DownloadMultiple(streams []model.Stream) (err error) {
 	for _, v := range streams {
+		start := time.Now()
 		err = Download(v)
 		if err != nil {
 			log.Error("failed to download", "stream", streams)
+		} else {
+			log.Info("Downloaded", "title", v.Name, "season", v.SeasonNum, "episode", v.EpisodeNum, "time", time.Since(start))
 		}
 	}
 

@@ -5,11 +5,10 @@ package m3u
 import (
 	"bufio"
 	"errors"
+	"fmt"
 	"io"
 	"strconv"
 	"strings"
-
-	"charm.land/log/v2"
 )
 
 type VariantStream struct {
@@ -60,8 +59,7 @@ func Parse(f io.ReadCloser) (variantStream []VariantStream, err error) {
 					bandwidth := strings.Split(streamInfo[i], "=")[1]
 					bandwidthInt, err := strconv.Atoi(bandwidth)
 					if err != nil {
-						log.Error("unable to parse bandwidth", "err", err)
-						return nil, err
+						return nil, fmt.Errorf("unable to parse bandwidth: %w", err)
 					}
 					stream.Bandwidth = bandwidthInt
 				}
@@ -69,8 +67,7 @@ func Parse(f io.ReadCloser) (variantStream []VariantStream, err error) {
 					averageBandwidth := strings.Split(streamInfo[i], "=")[1]
 					averageBandwidthInt, err := strconv.Atoi(averageBandwidth)
 					if err != nil {
-						log.Error("unable to parse average bandwidth", "err", err)
-						return nil, err
+						return nil, fmt.Errorf("unable to parse average bandwidth: %s", err)
 					}
 					stream.AverageBandwidth = averageBandwidthInt
 				}
@@ -86,8 +83,7 @@ func Parse(f io.ReadCloser) (variantStream []VariantStream, err error) {
 					frameRate := strings.Split(streamInfo[i], "=")[1]
 					frameRateFloat, err := strconv.ParseFloat(frameRate, 64)
 					if err != nil {
-						log.Error("unable to parse frame rate", "err", err)
-						return nil, err
+						return nil, fmt.Errorf("unable to parse frame rate", err)
 					}
 					stream.FrameRate = frameRateFloat
 				}

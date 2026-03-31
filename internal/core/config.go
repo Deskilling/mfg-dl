@@ -1,6 +1,7 @@
 package core
 
 import (
+	"fmt"
 	"mfg-dl/pkg/config"
 	"mfg-dl/pkg/filesystem"
 
@@ -93,8 +94,7 @@ func InitConfig() error {
 		log.Info("Creating new config", "path", configLocation)
 		err = config.Save(configLocation, cfg)
 		if err != nil {
-			log.Error("Failed to save Config", "err", err)
-			return err
+			return fmt.Errorf("Failed to save config: %w", err)
 		}
 	}
 
