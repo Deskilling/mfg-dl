@@ -28,7 +28,7 @@ func GetSearch(term string) ([]model.SearchResult, error) {
 
 	parsedResults, err := ParseSearch(searchResults)
 	if err != nil {
-		return nil, fmt.Errorf("failed parsing search results for %s: %w", term, err)
+		return nil, fmt.Errorf("failed parsing search results: %w", err)
 	}
 
 	return parsedResults, nil
