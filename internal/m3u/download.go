@@ -7,6 +7,7 @@ import (
 
 	"mfg-dl/internal/core"
 	"mfg-dl/internal/request"
+	"mfg-dl/internal/tui/components"
 
 	"charm.land/log/v2"
 )
@@ -23,10 +24,13 @@ func DownloadSegments(index Index, baseURL, directory string) (err error) {
 	var retryMu sync.Mutex
 	var retryQueue []job
 
+	segmentCnt := len(index.Segments)
+
 	for i, seg := range index.Segments {
 		wg.Add(1)
 		semaphore <- struct{}{}
 
+		components.PrintProgress(i+1, segmentCnt)
 		go func(i int, seg Segment) {
 			defer wg.Done()
 			defer func() { <-semaphore }()
@@ -52,10 +56,11 @@ func DownloadSegments(index Index, baseURL, directory string) (err error) {
 			log.Debug("Retry download", "url", j.url, "path", j.file)
 			err := request.DownloadFile(j.url, j.file)
 			if err != nil {
-				if attempt == core.GetConfig().Downloads.MaxRetires {
+				if attempt == core.GetConfig().Downloads.MaxRetires-1 {
 					return err
 				}
 			} else {
+				log.Debug("Redownloaded unc")
 				break
 			}
 			time.Sleep(retryDelay)

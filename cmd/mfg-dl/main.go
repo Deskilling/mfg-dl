@@ -49,6 +49,7 @@ func init() {
 
 func main() {
 	util.ClearTerminal()
+
 	var err error = nil
 	if core.GetConfig().Tui.Tmdb {
 		err = tmdb.Tui()
