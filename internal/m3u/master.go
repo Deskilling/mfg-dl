@@ -36,7 +36,8 @@ func Parse(f io.ReadCloser) (variantStream []VariantStream, err error) {
 	for scanner.Scan() {
 		line := scanner.Text()
 		if firstLine && !strings.HasPrefix(line, "#EXTM3U") {
-			return nil, errors.New(("invalid m3u file format. Expected #EXTM3U file header"))
+			err = errors.New(("invalid m3u file format. Expected #EXTM3U file header"))
+			return
 		}
 
 		firstLine = false
@@ -45,13 +46,15 @@ func Parse(f io.ReadCloser) (variantStream []VariantStream, err error) {
 			line := strings.ReplaceAll(line, "#EXTINF:", "")
 			trackInfo := strings.Split(line, ",")
 			if len(trackInfo) < 2 {
-				return nil, errors.New("invalid m3u file format. Expected EXTINF metadata to contain track length and name data")
+				err = errors.New("invalid m3u file format. Expected EXTINF metadata to contain track length and name data")
+				return
 			}
 		} else if strings.HasPrefix(line, "#EXT-X-STREAM-INF") {
 			line := strings.ReplaceAll(line, "#EXT-X-STREAM-INF:", "")
 			streamInfo := strings.Split(line, ",")
 			if len(streamInfo) < 1 {
-				return nil, errors.New(("invalid m3u file format. Expected EXT-X-STREAM-INF metadata to contain bitrate data"))
+				err = errors.New(("invalid m3u file format. Expected EXT-X-STREAM-INF metadata to contain bitrate data"))
+				return
 			}
 			stream := &VariantStream{}
 			for i, param := range streamInfo {
@@ -120,5 +123,5 @@ func Parse(f io.ReadCloser) (variantStream []VariantStream, err error) {
 		}
 	}
 
-	return variantStream, nil
+	return
 }

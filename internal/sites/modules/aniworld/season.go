@@ -20,16 +20,19 @@ type Season struct {
 func GetSeasons(result model.SearchResult) (seasons []model.Season, err error) {
 	unparsedSeasons, err := request.Get(AniEndpoints["episodes"] + result.Href)
 	if err != nil {
-		return nil, err
+		err = fmt.Errorf("failed get for seasons: %w", err)
+		return
 	}
 
 	parsedSeasons, err := ParseSeasons(string(unparsedSeasons))
 	if err != nil {
-		return nil, err
+		err = fmt.Errorf("failed parsing seasons: %w", err)
+		return
 	}
 
 	if len(parsedSeasons) == 0 {
-		return nil, fmt.Errorf("%s not found", result.Href)
+		err = fmt.Errorf("%s not found", result.Href)
+		return
 	}
 
 	for i := range parsedSeasons {
@@ -47,19 +50,19 @@ func GetSeasons(result model.SearchResult) (seasons []model.Season, err error) {
 		seasons = append(seasons, season)
 	}
 
-	return seasons, nil
+	return
 }
 
 func ParseSeasons(html string) (seasons []Season, err error) {
 	if html == "" {
-		err := fmt.Errorf("not html parsed")
-		return nil, err
+		err = fmt.Errorf("not html parsed")
+		return
 	}
 
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(html))
 	if err != nil {
 		err = fmt.Errorf("could not create goquery document: %w", err)
-		return nil, err
+		return
 	}
 
 	doc.Find(".hosterSiteDirectNav ul a").Each(func(i int, s *goquery.Selection) {
@@ -86,5 +89,5 @@ func ParseSeasons(html string) (seasons []Season, err error) {
 		}
 	})
 
-	return seasons, nil
+	return
 }

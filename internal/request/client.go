@@ -55,7 +55,7 @@ func Get(endpoint string, headers ...map[string]string) (body []byte, err error)
 
 	req, err := http.NewRequest(http.MethodGet, endpoint, nil)
 	if err != nil {
-		return []byte{}, err
+		return
 	}
 	req.Header.Set("User-Agent", userAgent)
 
@@ -67,17 +67,18 @@ func Get(endpoint string, headers ...map[string]string) (body []byte, err error)
 
 	resp, err := Client.Do(req)
 	if err != nil {
-		return []byte{}, err
+		return
 	}
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		return []byte{}, fmt.Errorf("status %d", resp.StatusCode, "url", endpoint)
+		err = fmt.Errorf("status %d: %s", resp.StatusCode, endpoint)
+		return
 	}
 
 	body, err = io.ReadAll(resp.Body)
 	if err != nil {
-		return []byte{}, err
+		return
 	}
 
 	if core.GetConfig().Cache.EnableCache {
@@ -86,5 +87,5 @@ func Get(endpoint string, headers ...map[string]string) (body []byte, err error)
 		filesystem.WriteFile(path, body)
 	}
 
-	return body, nil
+	return
 }

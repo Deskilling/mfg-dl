@@ -24,16 +24,19 @@ func GetEpisodes(season model.Season) (episodes []model.Episode, err error) {
 
 	unparsedEpisodes, err := request.Get(url)
 	if err != nil {
-		return nil, fmt.Errorf("failed to GET Episodes: %w", err)
+		err = fmt.Errorf("failed to GET Episodes: %w", err)
+		return
 	}
 
 	parsedEpisodes, err := ParseEpisodes(string(unparsedEpisodes))
 	if err != nil {
-		return nil, fmt.Errorf("failed parsing episodes %w", err)
+		err = fmt.Errorf("failed parsing episodes %w", err)
+		return
 	}
 
 	if len(parsedEpisodes) == 0 {
-		return nil, err
+		err = fmt.Errorf("no episodes found")
+		return
 	}
 
 	for i := range parsedEpisodes {
@@ -54,19 +57,19 @@ func GetEpisodes(season model.Season) (episodes []model.Episode, err error) {
 		episodes = append(episodes, episode)
 	}
 
-	return episodes, nil
+	return
 }
 
 func ParseEpisodes(html string) (episodes []Episode, err error) {
 	if html == "" {
-		err := fmt.Errorf("not html parsed")
-		return nil, err
+		err = fmt.Errorf("not html parsed")
+		return
 	}
 
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(html))
 	if err != nil {
 		err = fmt.Errorf("could not create goquery document: %w", err)
-		return nil, err
+		return
 	}
 
 	doc.Find(".seasonEpisodesList tbody tr").Each(func(i int, s *goquery.Selection) {
@@ -95,5 +98,5 @@ func ParseEpisodes(html string) (episodes []Episode, err error) {
 		})
 	})
 
-	return episodes, nil
+	return
 }

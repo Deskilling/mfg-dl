@@ -13,6 +13,7 @@ func CleanUp() {
 	if err != nil {
 		return
 	}
+
 	for _, file := range files {
 		stat, _ := os.Stat(file)
 		if time.Since(stat.ModTime()) > time.Minute*time.Duration(GetConfig().Cache.Minutes) {

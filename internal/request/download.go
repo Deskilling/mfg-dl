@@ -12,24 +12,24 @@ import (
 func DownloadFile(url, filePath string) (err error) {
 	err = filesystem.CreatePath(filePath)
 	if err != nil {
-		return err
+		return
 	}
 
 	out, err := os.Create(filePath)
 	if err != nil {
-		return err
+		return
 	}
 	defer out.Close()
 
 	req, err := http.NewRequest(http.MethodGet, url, nil)
 	if err != nil {
-		return err
+		return
 	}
 
 	req.Header.Set("User-Agent", userAgent)
 	resp, err := Client.Do(req)
 	if err != nil {
-		return err
+		return
 	}
 	defer resp.Body.Close()
 
@@ -38,5 +38,5 @@ func DownloadFile(url, filePath string) (err error) {
 	}
 
 	_, err = io.Copy(out, resp.Body)
-	return err
+	return
 }

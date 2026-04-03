@@ -56,13 +56,13 @@ func Search(query string) (results []model.SearchResult, err error) {
 
 	body, err := request.Get(endpoint)
 	if err != nil {
-		return nil, err
+		return
 	}
 
 	var result tmdbResponse
 	err = json.Unmarshal(body, &result)
 	if err != nil {
-		return nil, err
+		return
 	}
 
 	sort.Slice(result.Results, func(i, j int) bool {
@@ -100,5 +100,5 @@ func Search(query string) (results []model.SearchResult, err error) {
 		})
 	}
 
-	return results, nil
+	return
 }

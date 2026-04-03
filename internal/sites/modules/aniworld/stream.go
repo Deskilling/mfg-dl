@@ -25,18 +25,19 @@ func GetStreams(episode model.Episode) (streams []model.Stream, err error) {
 	pageURL := BaseURL + episode.Href
 	unparsedStreams, err := request.Get(pageURL)
 	if err != nil {
-		return nil, fmt.Errorf("failed to GET Stream for %s: %w", episode.Href, err)
+		err = fmt.Errorf("failed to GET Stream for %s: %w", episode.Href, err)
+		return
 	}
 
 	parsedStreams, err := ParseStreams(string(unparsedStreams))
 	if err != nil {
 		err = fmt.Errorf("failed parsing Streams for %s: %w", episode.Href, err)
-		return nil, err
+		return
 	}
 
 	if len(parsedStreams) == 0 {
 		err = fmt.Errorf("%s not found", episode.Href)
-		return nil, err
+		return
 	}
 
 	for i := range parsedStreams {
@@ -62,19 +63,19 @@ func GetStreams(episode model.Episode) (streams []model.Stream, err error) {
 		streams = append(streams, stream)
 	}
 
-	return streams, nil
+	return
 }
 
 func ParseStreams(html string) (streams []Stream, err error) {
 	if html == "" {
-		err := fmt.Errorf("not html parsed")
-		return nil, err
+		err = fmt.Errorf("not html parsed")
+		return
 	}
 
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(html))
 	if err != nil {
 		err = fmt.Errorf("could not create goquery document: %w", err)
-		return nil, err
+		return
 	}
 
 	doc.Find("li[class*='episodeLink']").Each(func(i int, s *goquery.Selection) {
@@ -104,5 +105,5 @@ func ParseStreams(html string) (streams []Stream, err error) {
 		})
 	})
 
-	return streams, nil
+	return
 }

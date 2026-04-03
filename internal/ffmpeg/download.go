@@ -2,7 +2,6 @@ package ffmpeg
 
 import (
 	"bufio"
-	"fmt"
 	"os/exec"
 	"strconv"
 	"strings"
@@ -20,20 +19,22 @@ func GetTotalMicro(url string) (totalMicro int, err error) {
 
 	out, err := exec.Command("ffprobe", args...).Output()
 	if err != nil {
-		return 0, err
+		return
 	}
 
 	durStr := strings.TrimSpace(string(out))
 	if durStr == "" {
-		return 0, nil
+		return
 	}
 
 	durSec, err := strconv.ParseFloat(durStr, 64)
 	if err != nil {
-		return 0, err
+		return
 	}
 
-	return int(durSec * 1000 * 1000), nil
+	totalMicro = int(durSec * 1000 * 1000)
+
+	return
 }
 
 func DownloadHLS(url, output string) (err error) {
@@ -57,14 +58,14 @@ func DownloadHLS(url, output string) (err error) {
 
 	stdoutPipe, err := cmd.StdoutPipe()
 	if err != nil {
-		return err
+		return
 	}
 
 	cmd.Stderr = nil
 
 	err = cmd.Start()
 	if err != nil {
-		return err
+		return
 	}
 
 	go func() {
@@ -80,10 +81,5 @@ func DownloadHLS(url, output string) (err error) {
 	}()
 
 	err = cmd.Wait()
-	if err != nil {
-		return err
-	}
-
-	fmt.Println("Download complete.")
-	return nil
+	return
 }

@@ -86,8 +86,8 @@ var defaultConfig = Config{
 
 var cfg Config
 
-func InitConfig() error {
-	err := config.Load(configLocation, &cfg)
+func InitConfig() (err error) {
+	err = config.Load(configLocation, &cfg)
 	if err != nil {
 		cfg = defaultConfig
 
@@ -99,26 +99,27 @@ func InitConfig() error {
 	}
 
 	if GetConfig().Version != configVersion {
-		content, err := filesystem.ReadFile(configLocation)
+		var content []byte
+		content, err = filesystem.ReadFile(configLocation)
 		if err != nil {
-			return err
+			return
 		}
 
 		err = filesystem.WriteFile(configLocation+".old", content)
 		if err != nil {
-			return err
+			return
 		}
 
 		err = filesystem.DeleteFile(configLocation)
 		if err != nil {
-			return err
+			return
 		}
 
 		log.Warnf("Renamed old config: %s -> %s", configLocation, configLocation+".old")
 		return InitConfig()
 	}
 
-	return nil
+	return
 }
 
 func GetConfig() *Config {
