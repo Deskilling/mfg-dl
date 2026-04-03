@@ -15,12 +15,11 @@ func ConvertTSFilesToVideo(directory, output string) (err error) {
 
 	tsFiles, err := filesystem.ReadDirectory(directory, ".ts")
 	if err != nil {
-		return err
+		return
 	}
 
 	if len(tsFiles) == 0 {
 		return fmt.Errorf("no .ts files found in directory %s", directory)
-
 	}
 
 	sort.Slice(tsFiles, func(i, j int) bool {
@@ -46,9 +45,9 @@ func ConvertTSFilesToVideo(directory, output string) (err error) {
 	defer listFile.Close()
 
 	for _, file := range tsFiles {
-		_, err := fmt.Fprintf(listFile, "file '%s'\n", file.Name())
+		_, err = fmt.Fprintf(listFile, "file '%s'\n", file.Name())
 		if err != nil {
-			return err
+			return
 		}
 	}
 
@@ -67,9 +66,5 @@ func ConvertTSFilesToVideo(directory, output string) (err error) {
 	cmd.Stderr = os.Stderr
 
 	err = cmd.Run()
-	if err != nil {
-		return err
-	}
-
-	return nil
+	return
 }

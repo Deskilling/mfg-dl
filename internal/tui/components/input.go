@@ -17,23 +17,27 @@ func ReadString(reader *bufio.Reader, prompt string) (input string, err error) {
 	input, err = reader.ReadString('\n')
 	if err != nil {
 		log.Error("Failed reading string")
-		return "", err
+		return
 	}
-	return strings.TrimSpace(input), nil
+
+	input = strings.TrimSpace(input)
+	return
 }
 
 func ReadInt(reader *bufio.Reader, prompt string) (val int, err error) {
+	var input string
 	for {
-		input, err := ReadString(reader, prompt)
+		input, err = ReadString(reader, prompt)
 		if err != nil {
-			return 0, err
+			return
 		}
-		val, err := strconv.Atoi(input)
+
+		val, err = strconv.Atoi(input)
 		if err != nil {
 			log.Error("input an integer")
 			continue
 		}
 
-		return val, nil
+		return
 	}
 }

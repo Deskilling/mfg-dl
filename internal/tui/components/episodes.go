@@ -14,11 +14,12 @@ func Episodes(site *model.Site, season model.Season) (streams []model.Stream, er
 	episodes, err := site.Episodes(season)
 	if err != nil {
 		log.Error("Failed getting episodes", "service", site.Service, "href", season.Href)
-		return []model.Stream{}, err
+		return
 	}
 
 	if len(episodes) == 0 {
-		return []model.Stream{}, fmt.Errorf("no episodes found: %w", err)
+		err = fmt.Errorf("no episodes found: %w", err)
+		return
 	}
 
 	var u []int
@@ -64,7 +65,8 @@ func Episodes(site *model.Site, season model.Season) (streams []model.Stream, er
 
 	lang, err := Language(site, episodes[u[0]])
 	if err != nil {
-		return []model.Stream{}, fmt.Errorf("failed getting language: %w", err)
+		err = fmt.Errorf("failed getting language: %w", err)
+		return
 	}
 
 	for _, v := range u {
@@ -81,5 +83,5 @@ func Episodes(site *model.Site, season model.Season) (streams []model.Stream, er
 		}
 	}
 
-	return streams, nil
+	return
 }

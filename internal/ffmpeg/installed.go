@@ -33,5 +33,5 @@ func CheckInstalled() (err error) {
 		}
 	}
 
-	return nil
+	return
 }
