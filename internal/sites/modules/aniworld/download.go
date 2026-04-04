@@ -14,7 +14,7 @@ import (
 
 func Download(stream model.Stream) (err error) {
 	if !slices.Contains(Hoster, stream.Hoster) {
-		return
+		return nil
 	}
 
 	url := BaseURL + stream.Href
@@ -28,7 +28,7 @@ func Download(stream model.Stream) (err error) {
 	default:
 	}
 
-	return
+	return nil
 }
 
 func DownloadMultiple(streams []model.Stream) (err error) {
@@ -42,5 +42,5 @@ func DownloadMultiple(streams []model.Stream) (err error) {
 		}
 	}
 
-	return
+	return nil
 }

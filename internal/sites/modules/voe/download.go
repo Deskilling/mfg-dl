@@ -16,7 +16,7 @@ import (
 
 func BaseDownload(voeUrl, output string) (err error) {
 	if filesystem.ExistPath(output) {
-		return
+		return nil
 	}
 
 	baseHtml, err := request.Get(voeUrl)
@@ -38,9 +38,8 @@ func BaseDownload(voeUrl, output string) (err error) {
 }
 
 func PlayerDownload(voeUrl, output string) (err error) {
-	// File already downlaoded
 	if filesystem.ExistPath(output) {
-		return
+		return nil
 	}
 
 	voeHtml, err := request.Get(voeUrl)
@@ -58,10 +57,9 @@ func PlayerDownload(voeUrl, output string) (err error) {
 	if core.GetConfig().Downloads.FfmpegDownload {
 		err = ffmpeg.DownloadHLS(parsed.Source, output)
 		if err != nil {
-			err = fmt.Errorf("failed downloading hls stream with ffmpeg: %w", err)
+			return fmt.Errorf("failed downloading hls stream with ffmpeg: %w", err)
 		}
-
-		return
+		return nil
 	}
 
 	masterTxt, err := request.Get(parsed.Source)
@@ -102,7 +100,7 @@ func PlayerDownload(voeUrl, output string) (err error) {
 
 	}
 
-	return
+	return nil
 }
 
 // Uses best available quality
@@ -112,8 +110,7 @@ func GetBaseUrl(input string) (url string, err error) {
 	match := re.FindStringSubmatch(input)
 
 	if len(match) == 0 {
-		err = fmt.Errorf("no base url found in: %s", input)
-		return
+		return "", fmt.Errorf("no base url found in: %s", input)
 	}
 
 	return match[1] + "/", nil

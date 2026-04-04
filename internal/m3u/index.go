@@ -87,12 +87,12 @@ func ParseIndex(f io.ReadCloser) (m3u8Index Index, err error) {
 
 	err = scanner.Err()
 	if err != nil {
-		return
+		return Index{}, err
 	}
 
 	if m3u8Index.Segments == nil {
-		err = errors.New("no segments found in index")
+		return Index{}, errors.New("no segments found in index")
 	}
 
-	return
+	return m3u8Index, nil
 }

@@ -11,8 +11,7 @@ import (
 func Seasons(site *model.Site, result model.SearchResult) (season model.Season, err error) {
 	seasons, err := site.Seasons(result)
 	if err != nil {
-		err = fmt.Errorf("failed getting seasons: %w", err)
-		return
+		return model.Season{}, fmt.Errorf("failed getting seasons: %w", err)
 	}
 
 	for {
@@ -30,8 +29,7 @@ func Seasons(site *model.Site, result model.SearchResult) (season model.Season, 
 			u++
 		}
 
-		var v int = 0
-		v, err = ReadInt(Reader, "Select: ")
+		v, err := ReadInt(Reader, "Select: ")
 		if err != nil {
 			return model.Season{}, fmt.Errorf("failed userinput: %s", err)
 		}
@@ -45,7 +43,6 @@ func Seasons(site *model.Site, result model.SearchResult) (season model.Season, 
 			continue
 		}
 
-		season = seasons[v]
-		return
+		return seasons[v], nil
 	}
 }
