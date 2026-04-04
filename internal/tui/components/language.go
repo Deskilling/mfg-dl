@@ -11,7 +11,7 @@ import (
 func Language(site *model.Site, episode model.Episode) (lang string, err error) {
 	stream, err := site.Streams(episode)
 	if err != nil {
-		return
+		return "", err
 	}
 
 	seen := make(map[string]struct{})
@@ -25,8 +25,8 @@ func Language(site *model.Site, episode model.Episode) (lang string, err error) 
 	}
 
 	if len(languages) == 0 {
-		err = fmt.Errorf("no languages available")
-		return
+		log.Error("no language found", "site", site.Service, "href", episode.Href)
+		return "", fmt.Errorf("no languages available")
 	}
 
 	for {
@@ -34,11 +34,9 @@ func Language(site *model.Site, episode model.Episode) (lang string, err error) 
 			fmt.Printf("[%v] %s\n", i+1, languages[i])
 		}
 
-		var u int
-		u, err = ReadInt(Reader, "Select: ")
+		u, err := ReadInt(Reader, "Select: ")
 		if err != nil {
-			err = fmt.Errorf("failed userinput: %s", err)
-			return
+			return "", fmt.Errorf("failed userinput: %s", err)
 		}
 		u--
 
@@ -48,7 +46,6 @@ func Language(site *model.Site, episode model.Episode) (lang string, err error) 
 			continue
 		}
 
-		lang = languages[u]
-		return
+		return languages[u], nil
 	}
 }

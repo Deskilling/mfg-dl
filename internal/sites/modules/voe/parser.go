@@ -43,20 +43,17 @@ type VoeStream struct {
 
 func Parse(html string) (stream *VoeStream, err error) {
 	if html == "" {
-		err = fmt.Errorf("not html parsed")
-		return
+		return nil, fmt.Errorf("not html parsed")
 	}
 
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(html))
 	if err != nil {
-		err = fmt.Errorf("could not create goquery document: %w", err)
-		return
+		return nil, fmt.Errorf("could not create goquery document: %w", err)
 	}
 
 	jsonElem := doc.Find("script[type='application/json']").First()
 	if jsonElem.Length() == 0 {
-		err = fmt.Errorf("no JSON found")
-		return
+		return nil, fmt.Errorf("no JSON found")
 	}
 
 	string := strings.TrimPrefix(strings.TrimSuffix(strings.TrimSpace(jsonElem.Text()), `"]`), `["`)
@@ -65,8 +62,7 @@ func Parse(html string) (stream *VoeStream, err error) {
 
 	string, err = util.Base64Decode(string)
 	if err != nil {
-		err = fmt.Errorf("failed to decode base64: %w", err)
-		return
+		return nil, fmt.Errorf("failed to decode base64: %w", err)
 
 	}
 
@@ -75,8 +71,7 @@ func Parse(html string) (stream *VoeStream, err error) {
 
 	decoded, err := util.Base64Decode(string)
 	if err != nil {
-		err = fmt.Errorf("failed to decode base64: %w", err)
-		return
+		return nil, fmt.Errorf("failed to decode base64: %w", err)
 	}
 
 	replacer := strings.NewReplacer(`\/`, `/`)
@@ -85,8 +80,7 @@ func Parse(html string) (stream *VoeStream, err error) {
 	var data VoeStream
 	err = json.Unmarshal([]byte(decoded), &data)
 	if err != nil {
-		err = fmt.Errorf("failed to umasharl json: %w", err)
-		return
+		return nil, fmt.Errorf("failed to umasharl json: %w", err)
 	}
 
 	return &data, nil
@@ -95,10 +89,9 @@ func Parse(html string) (stream *VoeStream, err error) {
 func VoeRemovePatterns(str string) (result string) {
 	patterns := []string{"@$", "^^", "~@", "%?", "*~", "!!", "#&"}
 	for _, pat := range patterns {
-		result = strings.ReplaceAll(str, pat, "")
+		str = strings.ReplaceAll(str, pat, "")
 	}
-
-	return
+	return str
 }
 
 func VoeUrlHtml(htmlContent string) (url string, err error) {
@@ -107,10 +100,8 @@ func VoeUrlHtml(htmlContent string) (url string, err error) {
 	matches := re.FindStringSubmatch(htmlContent)
 
 	if len(matches) <= 0 {
-		err = fmt.Errorf("no URL found in the provided HTML content")
-		return
+		return "", fmt.Errorf("no URL found in the provided HTML content")
 	}
 
-	url = matches[1]
-	return
+	return matches[1], nil
 }

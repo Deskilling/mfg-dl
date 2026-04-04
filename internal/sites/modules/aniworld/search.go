@@ -18,22 +18,20 @@ type SearchResult struct {
 	ProductionYear string `json:"productionYear"`
 }
 
-func GetSearch(term string) (results []model.SearchResult, err error) {
+func GetSearch(term string) ([]model.SearchResult, error) {
 	encodedTerm := util.EncodeURIComponent(term)
 
 	searchResults, err := request.Get(AniEndpoints["search"] + encodedTerm)
 	if err != nil {
-		err = fmt.Errorf("failed to GET Search for %s: %w", term, err)
-		return
+		return nil, fmt.Errorf("failed to GET Search for %s: %w", term, err)
 	}
 
-	results, err = ParseSearch(searchResults)
+	parsedResults, err := ParseSearch(searchResults)
 	if err != nil {
-		err = fmt.Errorf("failed parsing search results: %w", err)
-		return
+		return nil, fmt.Errorf("failed parsing search results: %w", err)
 	}
 
-	return
+	return parsedResults, nil
 }
 
 func ParseSearch(data []byte) (search []model.SearchResult, err error) {
@@ -42,7 +40,7 @@ func ParseSearch(data []byte) (search []model.SearchResult, err error) {
 	err = json.Unmarshal(data, &searchResults)
 	if err != nil {
 		err = fmt.Errorf("failed to unmarshal search results: %w", err)
-		return
+		return nil, err
 	}
 
 	for _, v := range searchResults {
@@ -58,5 +56,5 @@ func ParseSearch(data []byte) (search []model.SearchResult, err error) {
 		search = append(search, result)
 	}
 
-	return
+	return search, nil
 }
