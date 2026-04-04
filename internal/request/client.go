@@ -82,8 +82,12 @@ func Get(endpoint string, headers ...map[string]string) (body []byte, err error)
 
 	if core.GetConfig().Cache.EnableCache {
 		path := cachePath(endpoint)
-		log.Debug("Writing to cache", "location", path)
-		filesystem.WriteFile(path, body)
+		log.Debug("Writing to cache", "path", path)
+
+		err = filesystem.WriteFile(path, body)
+		if err != nil {
+			log.Error("failed creating cache file", "path", path, "err", err)
+		}
 	}
 
 	return body, nil
