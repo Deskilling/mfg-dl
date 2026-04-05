@@ -1,6 +1,12 @@
 package aniworld
 
-import "mfg-dl/internal/sites/model"
+import (
+	"net/http"
+	"time"
+
+	"mfg-dl/internal/request"
+	"mfg-dl/internal/sites/modules/voe"
+)
 
 const Name = "Aniworld"
 const BaseURL = "https://aniworld.to"
@@ -13,15 +19,9 @@ var AniEndpoints = Endpoints{
 	"episodes": BaseURL + "/anime/stream/",
 }
 
-var Site = model.Site{
-	Service: Name,
-	Baseurl: BaseURL,
-
-	Search:           GetSearch,
-	Seasons:          GetSeasons,
-	Episodes:         GetEpisodes,
-	Streams:          GetStreams,
-	DownloadMultiple: DownloadMultiple,
+type Aniworld struct {
+	client *http.Client
+	voe    *voe.Voe
 }
 
 var Hoster []string = []string{"VOE"}
@@ -32,4 +32,18 @@ var AniLanguages = Languages{
 	"1": "gerdub",
 	"2": "engsub",
 	"3": "gersub",
+}
+
+func New() *Aniworld {
+	return &Aniworld{
+		client: &http.Client{
+			Timeout:   0 * time.Second,
+			Transport: request.Client.Transport,
+		},
+		voe: voe.New(),
+	}
+}
+
+func (site *Aniworld) Name() (service string) {
+	return Name
 }

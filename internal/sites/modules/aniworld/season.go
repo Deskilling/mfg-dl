@@ -17,8 +17,8 @@ type Season struct {
 	SeasonLabel string
 }
 
-func GetSeasons(result model.SearchResult) (seasons []model.Season, err error) {
-	unparsedSeasons, err := request.Get(AniEndpoints["episodes"] + result.Href)
+func (service *Aniworld) Seasons(result model.SearchResult) (seasons []model.Season, err error) {
+	unparsedSeasons, err := request.Get(service.client, AniEndpoints["episodes"]+result.Href)
 	if err != nil {
 		return nil, err
 	}

@@ -19,10 +19,10 @@ type Episode struct {
 	EpisodeNum              string
 }
 
-func GetEpisodes(season model.Season) (episodes []model.Episode, err error) {
+func (service *Aniworld) Episodes(season model.Season) (episodes []model.Episode, err error) {
 	url := BaseURL + season.Href
 
-	unparsedEpisodes, err := request.Get(url)
+	unparsedEpisodes, err := request.Get(service.client, url)
 	if err != nil {
 		return nil, fmt.Errorf("failed to GET Episodes: %w", err)
 	}

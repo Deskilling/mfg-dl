@@ -8,7 +8,7 @@ import (
 	"charm.land/log/v2"
 )
 
-func Seasons(site *model.Site, result model.SearchResult) (season model.Season, err error) {
+func Seasons(site model.Site, result model.SearchResult) (season model.Season, err error) {
 	seasons, err := site.Seasons(result)
 	if err != nil {
 		return model.Season{}, fmt.Errorf("failed getting seasons: %w", err)

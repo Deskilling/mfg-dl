@@ -6,13 +6,12 @@ import (
 
 	"mfg-dl/internal/request"
 	"mfg-dl/internal/sites/model"
-	"mfg-dl/internal/sites/modules/voe"
 	"mfg-dl/internal/util"
 
 	"charm.land/log/v2"
 )
 
-func Download(stream model.Stream) (err error) {
+func (service *Aniworld) Download(stream model.Stream) (err error) {
 	if !slices.Contains(Hoster, stream.Hoster) {
 		return nil
 	}
@@ -24,17 +23,17 @@ func Download(stream model.Stream) (err error) {
 
 	switch stream.Hoster {
 	case "VOE":
-		voe.BaseDownload(location, output)
+		service.voe.BaseDownload(location, output)
 	default:
 	}
 
 	return nil
 }
 
-func DownloadMultiple(streams []model.Stream) (err error) {
+func (service *Aniworld) DownloadMultiple(streams []model.Stream) (err error) {
 	for _, v := range streams {
 		start := time.Now()
-		err = Download(v)
+		err = service.Download(v)
 		if err != nil {
 			log.Error("failed to download", "stream", streams)
 		} else {

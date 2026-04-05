@@ -10,15 +10,16 @@ import (
 	"charm.land/log/v2"
 )
 
-func Episodes(site *model.Site, season model.Season) (streams []model.Stream, err error) {
+func Episodes(site model.Site, season model.Season) (streams []model.Stream, err error) {
+
 	episodes, err := site.Episodes(season)
 	if err != nil {
-		log.Error("Failed getting episodes", "service", site.Service, "href", season.Href)
+		log.Error("Failed getting episodes", "service", site.Name(), "href", season.Href)
 		return []model.Stream{}, err
 	}
 
 	if len(episodes) == 0 {
-		return []model.Stream{}, fmt.Errorf("no episodes found: %w", err)
+		return []model.Stream{}, fmt.Errorf("no episodes found")
 	}
 
 	var u []int

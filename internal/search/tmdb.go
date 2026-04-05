@@ -54,7 +54,7 @@ func Search(query string) (results []model.SearchResult, err error) {
 		})
 	*/
 
-	body, err := request.Get(endpoint)
+	body, err := request.Get(request.Client, endpoint)
 	if err != nil {
 		return nil, err
 	}
