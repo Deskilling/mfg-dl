@@ -18,10 +18,10 @@ type SearchResult struct {
 	ProductionYear string `json:"productionYear"`
 }
 
-func GetSearch(term string) ([]model.SearchResult, error) {
+func (service *Aniworld) Search(term string) ([]model.SearchResult, error) {
 	encodedTerm := util.EncodeURIComponent(term)
 
-	searchResults, err := request.Get(AniEndpoints["search"] + encodedTerm)
+	searchResults, err := request.Get(service.client, AniEndpoints["search"]+encodedTerm)
 	if err != nil {
 		return nil, fmt.Errorf("failed to GET Search for %s: %w", term, err)
 	}

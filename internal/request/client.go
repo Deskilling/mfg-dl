@@ -38,7 +38,7 @@ func cachePath(endpoint string) string {
 	return base + endpoint
 }
 
-func Get(endpoint string, headers ...map[string]string) (body []byte, err error) {
+func Get(client *http.Client, endpoint string, headers ...map[string]string) (body []byte, err error) {
 	log.Debug("Sending Request", "url", endpoint)
 
 	if core.GetConfig().Cache.EnableCache {

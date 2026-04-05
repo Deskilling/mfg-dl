@@ -21,9 +21,9 @@ type Stream struct {
 	Language                string
 }
 
-func GetStreams(episode model.Episode) (streams []model.Stream, err error) {
+func (service *Aniworld) Streams(episode model.Episode) (streams []model.Stream, err error) {
 	pageURL := BaseURL + episode.Href
-	unparsedStreams, err := request.Get(pageURL)
+	unparsedStreams, err := request.Get(service.client, pageURL)
 	if err != nil {
 		return nil, fmt.Errorf("failed to GET Stream for %s: %w", episode.Href, err)
 	}

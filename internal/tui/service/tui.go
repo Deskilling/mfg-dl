@@ -12,8 +12,7 @@ import (
 )
 
 func Tui() (err error) {
-	var site *model.Site
-	site, err = SelectModule()
+	site, err := SelectModule()
 	if err != nil {
 
 	}
@@ -41,20 +40,20 @@ func Tui() (err error) {
 	return nil
 }
 
-func SelectModule() (site *model.Site, err error) {
+func SelectModule() (site model.Site, err error) {
 	if len(sites.Sites) == 1 {
-		return &sites.Sites[0], nil
+		return sites.Sites[0], nil
 	}
 
 	for i := range sites.Sites {
 		u := i + 1
-		fmt.Printf("[%v] %s\n", u, sites.Sites[i].Service)
+		fmt.Printf("[%v] %s\n", u, site.Name())
 	}
 
 	for {
 		v, err := components.ReadInt(components.Reader, "Enter: ")
 		if err != nil {
-			return &model.Site{}, fmt.Errorf("failed userinput: %w", err)
+			return nil, fmt.Errorf("failed userinput: %w", err)
 		}
 		v--
 
@@ -62,11 +61,11 @@ func SelectModule() (site *model.Site, err error) {
 			continue
 		}
 
-		return &sites.Sites[v], nil
+		return sites.Sites[v], nil
 	}
 }
 
-func Search(site *model.Site) (result model.SearchResult, err error) {
+func Search(site model.Site) (result model.SearchResult, err error) {
 	for {
 		search, err := components.ReadString(components.Reader, "Search: ")
 		if err != nil {
@@ -75,7 +74,7 @@ func Search(site *model.Site) (result model.SearchResult, err error) {
 
 		results, err := site.Search(search)
 		if err != nil {
-			log.Error("Failed to search", "service", site.Service, "term", search)
+			log.Error("Failed to search", "service", site.Name(), "term", search)
 			continue
 		}
 

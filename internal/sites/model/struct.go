@@ -1,14 +1,12 @@
 package model
 
-type Site struct {
-	Service string
-	Baseurl string
-
-	Search           func(term string) ([]SearchResult, error)
-	Seasons          func(result SearchResult) ([]Season, error)
-	Episodes         func(season Season) ([]Episode, error)
-	Streams          func(episode Episode) ([]Stream, error)
-	DownloadMultiple func(streams []Stream) error
+type Site interface {
+	Name() (service string)
+	Search(term string) ([]SearchResult, error)
+	Seasons(result SearchResult) ([]Season, error)
+	Episodes(season Season) ([]Episode, error)
+	Streams(episode Episode) ([]Stream, error)
+	DownloadMultiple(streams []Stream) error
 }
 
 type Score struct {

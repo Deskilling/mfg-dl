@@ -14,12 +14,12 @@ import (
 	"mfg-dl/pkg/filesystem"
 )
 
-func BaseDownload(voeUrl, output string) (err error) {
+func (service Voe) BaseDownload(voeUrl, output string) (err error) {
 	if filesystem.ExistPath(output) {
 		return nil
 	}
 
-	baseHtml, err := request.Get(voeUrl)
+	baseHtml, err := request.Get(service.client, voeUrl)
 	if err != nil {
 		return fmt.Errorf("Failed to get voe: %w", err)
 	}
@@ -29,7 +29,7 @@ func BaseDownload(voeUrl, output string) (err error) {
 		return fmt.Errorf("Failed to extract voe url: %w", err)
 	}
 
-	err = PlayerDownload(baseUrl, output)
+	err = service.PlayerDownload(baseUrl, output)
 	if err != nil {
 		return fmt.Errorf("failed player download: %w", err)
 	}
@@ -37,12 +37,12 @@ func BaseDownload(voeUrl, output string) (err error) {
 	return nil
 }
 
-func PlayerDownload(voeUrl, output string) (err error) {
+func (service Voe) PlayerDownload(voeUrl, output string) (err error) {
 	if filesystem.ExistPath(output) {
 		return nil
 	}
 
-	voeHtml, err := request.Get(voeUrl)
+	voeHtml, err := request.Get(service.client, voeUrl)
 	if err != nil {
 		return fmt.Errorf("failed getting voe player: %w", err)
 	}
@@ -62,7 +62,7 @@ func PlayerDownload(voeUrl, output string) (err error) {
 		return nil
 	}
 
-	masterTxt, err := request.Get(parsed.Source)
+	masterTxt, err := request.Get(service.client, parsed.Source)
 	if err != nil {
 		return fmt.Errorf("failed get master file: %w", err)
 	}
@@ -77,7 +77,7 @@ func PlayerDownload(voeUrl, output string) (err error) {
 		return fmt.Errorf("failed getting voe baseurl: %w", err)
 	}
 
-	indexTxt, err := request.Get(baseUrl + master[0].URI)
+	indexTxt, err := request.Get(service.client, baseUrl+master[0].URI)
 	if err != nil {
 		return fmt.Errorf("failed get index file: %w", err)
 	}

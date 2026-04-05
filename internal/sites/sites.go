@@ -6,5 +6,5 @@ import (
 )
 
 var Sites = []model.Site{
-	aniworld.Site,
+	aniworld.New(),
 }

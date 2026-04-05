@@ -24,8 +24,7 @@ func Tui() (err error) {
 		return fmt.Errorf("failed to calcualte scores: %w", err)
 	}
 
-	var site *model.Site
-	site = &sites.Sites[index]
+	site := sites.Sites[index]
 	result, err := sites.Sites[index].Search(tmdbResult.Score.Query[service])
 	if err != nil {
 		return fmt.Errorf("search failed: %w", err)
@@ -78,7 +77,7 @@ func Search() (result model.SearchResult, err error) {
 		for _, site := range sites.Sites {
 			results, err := site.Search(util.NormalizeString(selected.Name))
 			if err != nil {
-				log.Error("Search returned error", "service", site.Service, "term", selected.Name, "err", err)
+				log.Error("Search returned error", "service", site.Name(), "term", selected.Name, "err", err)
 				continue
 			}
 
@@ -130,7 +129,7 @@ func selectFromList(results []model.SearchResult) (result model.SearchResult, er
 
 func Score(result model.SearchResult) (service string, index int, err error) {
 	if len(sites.Sites) == 1 {
-		return sites.Sites[0].Service, 0, nil
+		return sites.Sites[0].Name(), 0, nil
 	}
 
 	for {
@@ -138,7 +137,7 @@ func Score(result model.SearchResult) (service string, index int, err error) {
 		for i, v := range sites.Sites {
 			// TODO add like color based on percentage
 			// TODO filter out bad results
-			fmt.Printf("[%v] %s %.2f%%\n", i+1, v.Service, result.Score.Score[v.Service]*100)
+			fmt.Printf("[%v] %s %.2f%%\n", i+1, v.Name(), result.Score.Score[v.Name()]*100)
 		}
 
 		input, err := components.ReadInt(components.Reader, "Enter: ")
@@ -152,6 +151,6 @@ func Score(result model.SearchResult) (service string, index int, err error) {
 			continue
 		}
 
-		return sites.Sites[input].Service, input, nil
+		return sites.Sites[input].Name(), input, nil
 	}
 }
