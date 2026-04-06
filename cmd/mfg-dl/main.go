@@ -5,6 +5,7 @@ import (
 
 	"mfg-dl/internal/core"
 	"mfg-dl/internal/ffmpeg"
+	"mfg-dl/internal/sites"
 	"mfg-dl/internal/tui/service"
 	"mfg-dl/internal/tui/tmdb"
 	"mfg-dl/internal/util"
@@ -45,6 +46,7 @@ func init() {
 	}
 
 	core.CreateCleanupTask()
+	sites.Init()
 }
 
 func main() {

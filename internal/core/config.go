@@ -43,6 +43,7 @@ type Debug struct {
 
 type Config struct {
 	Tui       Tui
+	Services  map[string]bool `toml:"enabled" comment:"all services in here are enabled"`
 	Location  Location
 	Downloads Downloads
 	Cache     Cache
@@ -54,6 +55,10 @@ type Config struct {
 var defaultConfig = Config{
 	Tui: Tui{
 		Tmdb: true,
+	},
+
+	Services: map[string]bool{
+		"Aniworld": true,
 	},
 
 	Location: Location{
