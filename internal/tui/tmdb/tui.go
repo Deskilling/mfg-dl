@@ -14,6 +14,10 @@ import (
 )
 
 func Tui() (err error) {
+	if len(sites.Sites) == 0 {
+		return errors.New("no service available")
+	}
+
 	tmdbResult, err := Search()
 	if err != nil {
 		return fmt.Errorf("failed to search tmdb: %w", err)

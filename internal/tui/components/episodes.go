@@ -1,6 +1,7 @@
 package components
 
 import (
+	"errors"
 	"fmt"
 	"strings"
 
@@ -11,7 +12,6 @@ import (
 )
 
 func Episodes(site model.Site, season model.Season) (streams []model.Stream, err error) {
-
 	episodes, err := site.Episodes(season)
 	if err != nil {
 		log.Error("Failed getting episodes", "service", site.Name(), "href", season.Href)
@@ -19,11 +19,12 @@ func Episodes(site model.Site, season model.Season) (streams []model.Stream, err
 	}
 
 	if len(episodes) == 0 {
-		return []model.Stream{}, fmt.Errorf("no episodes found")
+		return []model.Stream{}, errors.New("no episodes found")
 	}
 
 	var u []int
 	if len(episodes) == 1 {
+		log.Info("Selected the only episode", "episodeNum", episodes[0].EpisodeNum, "seasonNum", season.SeasonNum)
 		u = append(u, 0)
 	} else {
 		for {
