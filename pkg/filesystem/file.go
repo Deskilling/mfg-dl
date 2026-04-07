@@ -1,12 +1,13 @@
 package filesystem
 
 import (
+	"errors"
 	"os"
 )
 
 func ReadFile(filepath string) (content []byte, err error) {
 	if !ExistPath(filepath) {
-		return nil, nil
+		return nil, errors.New("file does not exist")
 	}
 
 	byte, err := os.ReadFile(filepath)
