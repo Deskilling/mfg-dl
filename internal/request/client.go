@@ -16,7 +16,7 @@ import (
 var userAgent string = "deskilling/mfg-dl"
 
 var Client = &http.Client{
-	Timeout: 0,
+	Timeout: 30 * time.Second,
 	Transport: &http.Transport{
 		Proxy: http.ProxyFromEnvironment,
 

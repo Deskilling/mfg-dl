@@ -2,6 +2,7 @@ package m3u
 
 import (
 	"fmt"
+	"net/http"
 	"sync"
 	"time"
 
@@ -11,6 +12,11 @@ import (
 
 	"charm.land/log/v2"
 )
+
+var Client = &http.Client{
+	Timeout:   5 * time.Second,
+	Transport: request.Client.Transport,
+}
 
 func DownloadSegments(index Index, baseURL, directory string) (err error) {
 	type job struct {
@@ -38,7 +44,7 @@ func DownloadSegments(index Index, baseURL, directory string) (err error) {
 			file := fmt.Sprintf("%s%d.ts", directory, i)
 			url := baseURL + seg.URI
 
-			err := request.DownloadFile(url, file)
+			err := request.DownloadFile(Client, url, file)
 			if err != nil {
 				log.Error("Failed to download", "url", url, "file", file)
 				retryMu.Lock()
@@ -54,7 +60,7 @@ func DownloadSegments(index Index, baseURL, directory string) (err error) {
 	for _, j := range retryQueue {
 		for attempt := range core.GetConfig().Downloads.MaxRetires {
 			log.Debug("Retry download", "url", j.url, "path", j.file)
-			err := request.DownloadFile(j.url, j.file)
+			err := request.DownloadFile(Client, j.url, j.file)
 			if err != nil {
 				if attempt == core.GetConfig().Downloads.MaxRetires-1 {
 					return err
