@@ -9,7 +9,7 @@ import (
 	"mfg-dl/pkg/filesystem"
 )
 
-func DownloadFile(url, filePath string) (err error) {
+func DownloadFile(client *http.Client, url, filePath string) (err error) {
 	err = filesystem.CreatePath(filePath)
 	if err != nil {
 		return err
