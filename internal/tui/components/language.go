@@ -29,6 +29,11 @@ func Language(site model.Site, episode model.Episode) (lang string, err error) {
 		return "", fmt.Errorf("no languages available")
 	}
 
+	if len(languages) == 1 {
+		log.Info("Selected the only language available", "lang", languages[0])
+		return languages[0], nil
+	}
+
 	for {
 		for i := range languages {
 			fmt.Printf("[%v] %s\n", i+1, languages[i])
