@@ -50,13 +50,18 @@ func init() {
 }
 
 func main() {
-	util.ClearTerminal()
+	if core.GetConfig().Debug.LogLevel != -4 {
+		util.ClearTerminal()
+	}
 
 	var err error = nil
-	if core.GetConfig().Tui.Tmdb {
+	switch core.GetConfig().Tui.Mode {
+	case 0:
 		err = tmdb.Tui()
-	} else {
+	case 1:
 		err = service.Tui()
+	default:
+		log.Fatal("Invaild TUI Mode")
 	}
 
 	if err != nil {
