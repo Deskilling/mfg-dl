@@ -10,7 +10,7 @@ CGO_ENABLED := 0
 
 .DEFAULT_GOAL := build
 
-.PHONY: deps build build-all build-linux build-windows build-darwin release clean
+.PHONY: deps build build-all build-linux build-windows build-darwin release clean test
 
 deps:
 	@$(GO) mod download
@@ -41,3 +41,9 @@ clean:
 
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
+
+test:
+	$(GO) test ./test/...
+
+test-verbose:
+	$(GO) test -v ./test/...
