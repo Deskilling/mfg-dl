@@ -42,16 +42,18 @@ func (service *Aniworld) Episodes(season model.Season) (episodes []model.Episode
 	}
 
 	for _, v := range parsedEpisodes {
-		episode := model.Episode{
+		if v.EpisodeTitle == "" {
+			v.EpisodeTitle = v.EpisodeAlternativeTitle
+		}
+
+		episodes = append(episodes, model.Episode{
 			Name:                    v.Name,
 			Href:                    v.Href,
 			SeasonNum:               v.SeasonNum,
 			EpisodeTitle:            v.EpisodeTitle,
 			EpisodeAlternativeTitle: v.EpisodeAlternativeTitle,
 			EpisodeNum:              v.EpisodeNum,
-		}
-
-		episodes = append(episodes, episode)
+		})
 	}
 
 	return episodes, nil

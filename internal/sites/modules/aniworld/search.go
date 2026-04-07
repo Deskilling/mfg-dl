@@ -44,16 +44,14 @@ func ParseSearch(data []byte) (search []model.SearchResult, err error) {
 	}
 
 	for _, v := range searchResults {
-		result := model.SearchResult{
+		search = append(search, model.SearchResult{
 			Service:        Name,
 			Name:           html.UnescapeString(v.Name),
 			Href:           v.Href,
 			Description:    html.UnescapeString(v.Description),
 			Cover:          v.Cover,
 			ProductionYear: v.ProductionYear,
-		}
-
-		search = append(search, result)
+		})
 	}
 
 	return search, nil
