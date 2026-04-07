@@ -12,7 +12,7 @@ const configLocation string = "./config.toml"
 const configVersion string = "0.1"
 
 type Tui struct {
-	Tmdb bool `toml:"tmdb" comment:"uses tmdb as a search, recommendend in most cases"`
+	Mode int `toml:"tui" comment:"0 tmdb (recommendend)\n1 services directly"`
 }
 
 type Location struct {
@@ -43,7 +43,7 @@ type Debug struct {
 
 type Config struct {
 	Tui       Tui
-	Services  map[string]bool `toml:"enabled" comment:"all services in here are enabled"`
+	Services  map[string]bool `toml:"services" comment:"used to disable/enable modules"`
 	Location  Location
 	Downloads Downloads
 	Cache     Cache
@@ -54,7 +54,7 @@ type Config struct {
 
 var defaultConfig = Config{
 	Tui: Tui{
-		Tmdb: true,
+		Mode: 0,
 	},
 
 	Services: map[string]bool{
@@ -62,7 +62,7 @@ var defaultConfig = Config{
 	},
 
 	Location: Location{
-		FilePattern: "{location}/{name}/Season{season}/Episode-{episode}.{language}-{title}.mp4",
+		FilePattern: "{location}/{name}/Season{season}/Episode-{episode}-{language}-{title}.mp4",
 		Download:    "./downloads",
 		Temp:        "./temp",
 	},
