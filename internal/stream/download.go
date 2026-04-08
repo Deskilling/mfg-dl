@@ -1,4 +1,4 @@
-package m3u
+package stream
 
 import (
 	"fmt"
@@ -9,6 +9,7 @@ import (
 	"mfg-dl/internal/core"
 	"mfg-dl/internal/request"
 	"mfg-dl/internal/tui/components"
+	"mfg-dl/pkg/m3u8"
 
 	"charm.land/log/v2"
 )
@@ -18,7 +19,7 @@ var Client = &http.Client{
 	Transport: request.Client.Transport,
 }
 
-func DownloadSegments(index Index, baseURL, directory string) (err error) {
+func DownloadSegments(index m3u8.Index, baseURL, directory string) (err error) {
 	type job struct {
 		url  string
 		file string
@@ -37,7 +38,7 @@ func DownloadSegments(index Index, baseURL, directory string) (err error) {
 		semaphore <- struct{}{}
 
 		components.PrintProgress(i+1, segmentCnt)
-		go func(i int, seg Segment) {
+		go func(i int, seg m3u8.Segment) {
 			defer wg.Done()
 			defer func() { <-semaphore }()
 

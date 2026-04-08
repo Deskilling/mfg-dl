@@ -1,4 +1,4 @@
-package m3u
+package m3u8
 
 // based on https://github.com/jamesnetherton/m3u/
 

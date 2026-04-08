@@ -2,11 +2,12 @@ package m3u
 
 import (
 	"io"
-	"mfg-dl/internal/m3u"
-	"mfg-dl/pkg/filesystem"
 	"path/filepath"
 	"strings"
 	"testing"
+
+	"mfg-dl/pkg/filesystem"
+	"mfg-dl/pkg/m3u8"
 )
 
 const indexFiles string = "./data/index"
@@ -24,7 +25,7 @@ func TestIndexParser(t *testing.T) {
 			continue
 		}
 
-		streams, err := m3u.ParseIndex(io.NopCloser(strings.NewReader(string(content))))
+		streams, err := m3u8.ParseIndex(io.NopCloser(strings.NewReader(string(content))))
 		if err != nil {
 			t.Errorf("failed to parse %s: %v", v.Name(), err)
 			continue

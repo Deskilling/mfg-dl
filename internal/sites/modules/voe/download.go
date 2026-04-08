@@ -8,10 +8,11 @@ import (
 
 	"mfg-dl/internal/core"
 	"mfg-dl/internal/ffmpeg"
-	"mfg-dl/internal/m3u"
 	"mfg-dl/internal/request"
+	"mfg-dl/internal/stream"
 	"mfg-dl/internal/util"
 	"mfg-dl/pkg/filesystem"
+	"mfg-dl/pkg/m3u8"
 )
 
 func (service Voe) BaseDownload(voeUrl, output string) (err error) {
@@ -67,7 +68,7 @@ func (service Voe) PlayerDownload(voeUrl, output string) (err error) {
 		return fmt.Errorf("failed get master file: %w", err)
 	}
 
-	master, err := m3u.Parse(io.NopCloser(strings.NewReader(string(masterTxt))))
+	master, err := m3u8.Parse(io.NopCloser(strings.NewReader(string(masterTxt))))
 	if err != nil {
 		return fmt.Errorf("failed parsing master file: %w", err)
 	}
@@ -82,13 +83,13 @@ func (service Voe) PlayerDownload(voeUrl, output string) (err error) {
 		return fmt.Errorf("failed get index file: %w", err)
 	}
 
-	index, err := m3u.ParseIndex(io.NopCloser(strings.NewReader(string(indexTxt))))
+	index, err := m3u8.ParseIndex(io.NopCloser(strings.NewReader(string(indexTxt))))
 	if err != nil {
 		return fmt.Errorf("failed parsing index: %w", err)
 	}
 
 	dir := fmt.Sprintf("%s/segments/%s/", core.GetConfig().Location.Temp, parsed.Directory)
-	err = m3u.DownloadSegments(index, baseUrl, dir)
+	err = stream.DownloadSegments(index, baseUrl, dir)
 	if err != nil {
 		return fmt.Errorf("failed to download all segments for %s: %w", dir, err)
 	}

@@ -1,4 +1,4 @@
-package m3u
+package m3u8
 
 // based on https://github.com/jamesnetherton/m3u/
 
@@ -67,7 +67,7 @@ func Parse(f io.ReadCloser) (variantStream []VariantStream, err error) {
 					averageBandwidth := strings.Split(streamInfo[i], "=")[1]
 					averageBandwidthInt, err := strconv.Atoi(averageBandwidth)
 					if err != nil {
-						return nil, fmt.Errorf("unable to parse average bandwidth: %s", err)
+						return nil, fmt.Errorf("unable to parse average bandwidth: %w", err)
 					}
 					stream.AverageBandwidth = averageBandwidthInt
 				}
@@ -83,7 +83,7 @@ func Parse(f io.ReadCloser) (variantStream []VariantStream, err error) {
 					frameRate := strings.Split(streamInfo[i], "=")[1]
 					frameRateFloat, err := strconv.ParseFloat(frameRate, 64)
 					if err != nil {
-						return nil, fmt.Errorf("unable to parse frame rate", err)
+						return nil, fmt.Errorf("unable to parse frame rate: %w", err)
 					}
 					stream.FrameRate = frameRateFloat
 				}
