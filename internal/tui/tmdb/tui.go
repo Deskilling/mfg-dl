@@ -48,7 +48,7 @@ func Tui() (err error) {
 		return fmt.Errorf("failed getting streams from episodes: %w", err)
 	}
 
-	err = site.DownloadMultiple(streams)
+	err = components.DownloadMultiple(site, streams)
 	if err != nil {
 		return fmt.Errorf("failed downloading: %w", err)
 	}

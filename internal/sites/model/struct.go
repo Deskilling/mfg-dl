@@ -6,7 +6,7 @@ type Site interface {
 	Seasons(result SearchResult) ([]Season, error)
 	Episodes(season Season) ([]Episode, error)
 	Streams(episode Episode) ([]Stream, error)
-	DownloadMultiple(streams []Stream) error
+	Download(streams Stream) error
 }
 
 type Score struct {

@@ -32,7 +32,7 @@ func Tui() (err error) {
 		return
 	}
 
-	err = site.DownloadMultiple(streams)
+	err = components.DownloadMultiple(site, streams)
 	if err != nil {
 
 	}
