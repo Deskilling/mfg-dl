@@ -7,8 +7,8 @@ import (
 	"mfg-dl/internal/sites"
 	"mfg-dl/internal/sites/model"
 	"mfg-dl/internal/tui/components"
-	"mfg-dl/internal/util"
 
+	"charm.land/huh/v2"
 	"charm.land/log/v2"
 )
 
@@ -59,7 +59,7 @@ func SelectModule() (site model.Site, err error) {
 	}
 
 	for {
-		v, err := components.ReadInt(components.Reader, "Enter: ")
+		v, err := components.ReadInt("Enter: ")
 		if err != nil {
 			return nil, fmt.Errorf("failed userinput: %w", err)
 		}
@@ -75,7 +75,7 @@ func SelectModule() (site model.Site, err error) {
 
 func Search(site model.Site) (result model.SearchResult, err error) {
 	for {
-		search, err := components.ReadString(components.Reader, "Search: ")
+		search, err := components.ReadString("Search: ")
 		if err != nil {
 			return model.SearchResult{}, fmt.Errorf("failed userinput: %w", err)
 		}
@@ -94,25 +94,23 @@ func Search(site model.Site) (result model.SearchResult, err error) {
 			return results[0], nil
 		}
 
-		for {
-			for i := range results {
-				u := i + 1
-				fmt.Printf("[%v] %s\n", u, results[i].Name)
-			}
-
-			v, err := components.ReadInt(components.Reader, "Enter: ")
-			if err != nil {
-				return model.SearchResult{}, fmt.Errorf("failed userinput: %w", err)
-			}
-			v--
-
-			if v < 0 || v >= len(results) {
-				util.ClearTerminal()
-				log.Error("Invalid selection")
-				continue
-			}
-
-			return results[v], nil
+		var values []huh.Option[int]
+		for i, v := range results {
+			values = append(values, huh.NewOption(v.Name, i))
 		}
+
+		var v int
+		err = huh.NewSelect[int]().
+			Title("Pick a season").
+			Options(values...).
+			Value(&v).
+			WithTheme(components.Theme).
+			Run()
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		log.Info("Selected season", "seasonLabel", results[v].Name)
+		return results[v], nil
 	}
 }

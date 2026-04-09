@@ -17,7 +17,7 @@ func CheckInstalled() (err error) {
 		switch runtime.GOOS {
 		case ("windows"):
 			fmt.Println("Do you want to install ffmpeg (Gyan.FFmpeg) using winget?")
-			input, err := components.ReadString(components.Reader, "y/n: ")
+			input, err := components.ReadString("y/n: ")
 			if err != nil {
 				return fmt.Errorf("failed userinput: %w", err)
 			}
@@ -35,7 +35,7 @@ func CheckInstalled() (err error) {
 
 		case ("darwin"):
 			fmt.Println("Do you want to install ffmpeg using homebrew?")
-			input, err := components.ReadString(components.Reader, "y/n: ")
+			input, err := components.ReadString("y/n: ")
 			if err != nil {
 				return fmt.Errorf("failed userinput: %w", err)
 			}
