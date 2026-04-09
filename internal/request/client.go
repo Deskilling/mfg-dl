@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"os"
 	"time"
 
 	"mfg-dl/internal/core"
@@ -45,10 +46,15 @@ func Get(client *http.Client, endpoint string, headers ...map[string]string) (bo
 		path := cachePath(endpoint)
 
 		if filesystem.ExistPath(path) {
-			log.Debug("Using cached request", "file", path)
-			data, err := filesystem.ReadFile(path)
+			stat, err := os.Stat(path)
 			if err == nil {
-				return []byte(data), nil
+				if time.Since(stat.ModTime()) < time.Minute*time.Duration(core.GetConfig().Cache.Minutes) {
+					log.Debug("Using cached request", "file", path)
+					data, err := filesystem.ReadFile(path)
+					if err == nil {
+						return []byte(data), nil
+					}
+				}
 			}
 		}
 	}
