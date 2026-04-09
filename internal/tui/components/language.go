@@ -3,8 +3,8 @@ package components
 import (
 	"fmt"
 	"mfg-dl/internal/sites/model"
-	"mfg-dl/internal/util"
 
+	"charm.land/huh/v2"
 	"charm.land/log/v2"
 )
 
@@ -34,23 +34,21 @@ func Language(site model.Site, episode model.Episode) (lang string, err error) {
 		return languages[0], nil
 	}
 
-	for {
-		for i := range languages {
-			fmt.Printf("[%v] %s\n", i+1, languages[i])
-		}
-
-		u, err := ReadInt(Reader, "Select: ")
-		if err != nil {
-			return "", fmt.Errorf("failed userinput: %s", err)
-		}
-		u--
-
-		if u < 0 || u >= len(languages) {
-			util.ClearTerminal()
-			log.Error("Invalid selection")
-			continue
-		}
-
-		return languages[u], nil
+	var values []huh.Option[int]
+	for i, v := range languages {
+		values = append(values, huh.NewOption(v, i))
 	}
+
+	var v int
+	err = huh.NewSelect[int]().
+		Title("Pick a language").
+		Options(values...).
+		Value(&v).
+		WithTheme(Theme).
+		Run()
+	if err != nil {
+		return "", fmt.Errorf("failed userinput: %w", err)
+	}
+
+	return languages[v], nil
 }

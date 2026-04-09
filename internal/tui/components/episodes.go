@@ -6,8 +6,8 @@ import (
 	"strings"
 
 	"mfg-dl/internal/sites/model"
-	"mfg-dl/internal/util"
 
+	"charm.land/huh/v2"
 	"charm.land/log/v2"
 )
 
@@ -27,41 +27,29 @@ func Episodes(site model.Site, season model.Season) (streams []model.Stream, err
 		log.Info("Selected the only episode", "episodeNum", episodes[0].EpisodeNum, "seasonNum", season.SeasonNum)
 		u = append(u, 0)
 	} else {
-		for {
-			for i := range episodes {
-				if strings.TrimSpace(episodes[i].EpisodeTitle) == "" {
-					episodes[i].EpisodeTitle = episodes[i].EpisodeAlternativeTitle
-				}
-
-				fmt.Printf("[%v] %s\n", i+1, episodes[i].EpisodeTitle)
+		var values []huh.Option[int]
+		for i, v := range episodes {
+			title := strings.TrimSpace(v.EpisodeTitle)
+			if title == "" {
+				title = v.EpisodeAlternativeTitle
 			}
 
-			v, err := ReadString(Reader, "Select (use 1,2,3,4 or all for selection): ")
-			if err != nil {
-				return []model.Stream{}, fmt.Errorf("failed userinput: %s", err)
-			}
+			title = fmt.Sprintf("%v %s", v.EpisodeNum, title)
 
-			if v == "all" {
-				u = make([]int, len(episodes))
-				for i := range episodes {
-					u[i] = i
-				}
-				break
-			}
-
-			valid := []int{}
-			for _, w := range util.ParseMultipleInts(v) {
-				w--
-				if w >= 0 && w < len(episodes) {
-					valid = append(valid, w)
-				}
-			}
-
-			if len(valid) > 0 {
-				u = valid
-				break
-			}
+			values = append(values, huh.NewOption(title, i))
 		}
+
+		var selected []int
+		err := huh.NewMultiSelect[int]().
+			Title("Select episodes").
+			Options(values...).
+			Value(&selected).
+			WithTheme(Theme).
+			Run()
+		if err != nil {
+			return []model.Stream{}, fmt.Errorf("failed userinput: %w", err)
+		}
+		u = selected
 	}
 
 	lang, err := Language(site, episodes[u[0]])
