@@ -1,6 +1,7 @@
 package service
 
 import (
+	"errors"
 	"fmt"
 
 	"mfg-dl/internal/sites"
@@ -12,29 +13,36 @@ import (
 )
 
 func Tui() (err error) {
+	if len(sites.Sites) == 0 {
+		return errors.New("no service available")
+	}
+
 	site, err := SelectModule()
 	if err != nil {
-
+		return errors.New("failed to select service")
 	}
 	result, err := Search(site)
 	if err != nil {
-
+		return fmt.Errorf("failed to search: %w", err)
 	}
 	season, err := components.Seasons(site, result)
 	if err != nil {
+		return fmt.Errorf("failed to get seasons: %w", err)
 	}
 
 	streams, err := components.Episodes(site, season)
 	if err != nil {
+		return fmt.Errorf("failed to get episodes: %w", err)
 	}
 
 	if len(streams) == 0 {
-		return
+		return errors.New("no streams found")
 	}
 
 	err = components.DownloadMultiple(site, streams)
 	if err != nil {
-
+		// TODO add to downloadmultiple probabbly a check if everything failed or smth
+		return fmt.Errorf("failed to donwload all streams")
 	}
 
 	return nil
