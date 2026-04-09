@@ -51,8 +51,9 @@ func CheckInstalled() (err error) {
 				return nil
 			}
 		}
+
+		return errors.New("FFmpeg is not installed")
 	}
 
-	return errors.New("FFmpeg is not installed")
-
+	return nil
 }
