@@ -1,11 +1,10 @@
 package components
 
 import (
-	"errors"
 	"fmt"
 	"mfg-dl/internal/sites/model"
-	"mfg-dl/internal/util"
 
+	"charm.land/huh/v2"
 	"charm.land/log/v2"
 )
 
@@ -22,34 +21,24 @@ func Seasons(site model.Site, result model.SearchResult) (season model.Season, e
 
 	if len(seasons) == 1 {
 		log.Info("Selected the only season available", "seasonNum", seasons[0].SeasonNum)
-		return seasons[0], errors.New("no season found")
+		return seasons[0], nil
 	}
 
-	for {
-		u := 1
-		if seasons[0].SeasonLabel == "Alle Filme" {
-			u--
-		}
-
-		for i := range seasons {
-			fmt.Printf("[%v] %s\n", u, seasons[i].SeasonLabel)
-			u++
-		}
-
-		v, err := ReadInt(Reader, "Select: ")
-		if err != nil {
-			return model.Season{}, fmt.Errorf("failed userinput: %s", err)
-		}
-		if seasons[0].SeasonLabel != "Alle Filme" {
-			v--
-		}
-
-		if v < 0 || v >= len(seasons) {
-			util.ClearTerminal()
-			log.Error("Invalid selection")
-			continue
-		}
-
-		return seasons[v], nil
+	var values []huh.Option[int]
+	for i, v := range seasons {
+		values = append(values, huh.NewOption(v.SeasonLabel, i))
 	}
+
+	var v int
+	err = huh.NewSelect[int]().
+		Title("Select Season").
+		Options(values...).
+		Value(&v).
+		WithTheme(Theme).
+		Run()
+	if err != nil {
+		return model.Season{}, fmt.Errorf("failed userinput: %w", err)
+	}
+
+	return seasons[v], nil
 }
