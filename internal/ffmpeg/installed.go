@@ -14,7 +14,9 @@ func CheckInstalled() (err error) {
 	err = cmd.Run()
 
 	if err != nil {
-		if runtime.GOOS == "windows" {
+		switch runtime.GOOS {
+		case ("windows"):
+			fmt.Println("Do you want to install ffmpeg (Gyan.FFmpeg) using winget?")
 			input, err := components.ReadString(components.Reader, "y/n: ")
 			if err != nil {
 				return fmt.Errorf("failed userinput: %w", err)
@@ -27,11 +29,30 @@ func CheckInstalled() (err error) {
 				if err != nil {
 					return errors.New("Failed to install using Winget")
 				}
+
+				return nil
 			}
-		} else {
-			return errors.New("FFmpeg is not installed")
+
+		case ("darwin"):
+			fmt.Println("Do you want to install ffmpeg using homebrew?")
+			input, err := components.ReadString(components.Reader, "y/n: ")
+			if err != nil {
+				return fmt.Errorf("failed userinput: %w", err)
+			}
+
+			if input == "y" {
+				cmd = exec.Command("brew", "install", "ffmpeg")
+				err = cmd.Run()
+
+				if err != nil {
+					return errors.New("Failed to install using Winget")
+				}
+
+				return nil
+			}
 		}
 	}
 
-	return nil
+	return errors.New("FFmpeg is not installed")
+
 }
