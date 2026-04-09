@@ -1,39 +1,41 @@
 package components
 
 import (
-	"bufio"
-	"fmt"
-	"os"
+	"errors"
 	"strconv"
-	"strings"
 
-	"charm.land/log/v2"
+	"charm.land/huh/v2"
 )
 
-var Reader *bufio.Reader = bufio.NewReader(os.Stdin)
-
-func ReadString(reader *bufio.Reader, prompt string) (input string, err error) {
-	fmt.Print(prompt)
-	input, err = reader.ReadString('\n')
+func ReadString(prompt string) (string, error) {
+	var input string
+	err := huh.NewInput().
+		Title(prompt).
+		Value(&input).
+		WithTheme(Theme).
+		Run()
 	if err != nil {
-		log.Error("Failed reading string")
 		return "", err
 	}
-	return strings.TrimSpace(input), nil
+	return input, nil
 }
 
-func ReadInt(reader *bufio.Reader, prompt string) (val int, err error) {
-	for {
-		input, err := ReadString(reader, prompt)
-		if err != nil {
-			return 0, err
-		}
-		val, err := strconv.Atoi(input)
-		if err != nil {
-			log.Error("input an integer")
-			continue
-		}
-
-		return val, nil
+func ReadInt(prompt string) (int, error) {
+	var input string
+	err := huh.NewInput().
+		Title(prompt).
+		Validate(func(s string) error {
+			_, err := strconv.Atoi(s)
+			if err != nil {
+				return errors.New("input an integer")
+			}
+			return nil
+		}).
+		Value(&input).
+		WithTheme(Theme).
+		Run()
+	if err != nil {
+		return 0, err
 	}
+	return strconv.Atoi(input)
 }

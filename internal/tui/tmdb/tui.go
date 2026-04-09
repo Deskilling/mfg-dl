@@ -10,6 +10,7 @@ import (
 	"mfg-dl/internal/tui/components"
 	"mfg-dl/internal/util"
 
+	"charm.land/huh/v2"
 	"charm.land/log/v2"
 )
 
@@ -59,7 +60,7 @@ func Tui() (err error) {
 
 func Search() (result model.SearchResult, err error) {
 	for {
-		input, err := components.ReadString(components.Reader, "Search: ")
+		input, err := components.ReadString("Search: ")
 		if err != nil {
 			return model.SearchResult{}, fmt.Errorf("failed userinput: %w", err)
 		}
@@ -111,24 +112,23 @@ func selectFromList(results []model.SearchResult) (result model.SearchResult, er
 		return results[0], nil
 	}
 
-	for {
-		for i, v := range results {
-			fmt.Printf("[%v] %s %s\n", i+1, v.Name, v.ProductionYear)
-		}
-
-		input, err := components.ReadInt(components.Reader, "Enter: ")
-		if err != nil {
-			return model.SearchResult{}, fmt.Errorf("failed userinput: %w", err)
-		}
-		input--
-		if input < 0 || input >= len(results) {
-			util.ClearTerminal()
-			log.Error("Invalid input", "min", 1, "max", len(results))
-			continue
-		}
-
-		return results[input], nil
+	var values []huh.Option[int]
+	for i, v := range results {
+		values = append(values, huh.NewOption(v.Name, i))
 	}
+
+	var v int
+	err = huh.NewSelect[int]().
+		Title("Pick a Result").
+		Options(values...).
+		Value(&v).
+		WithTheme(components.Theme).
+		Run()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return results[v], nil
 }
 
 func Score(result model.SearchResult) (service string, index int, err error) {
@@ -144,7 +144,7 @@ func Score(result model.SearchResult) (service string, index int, err error) {
 			fmt.Printf("[%v] %s %.2f%%\n", i+1, v.Name(), result.Score.Score[v.Name()]*100)
 		}
 
-		input, err := components.ReadInt(components.Reader, "Enter: ")
+		input, err := components.ReadInt("Enter: ")
 		if err != nil {
 			return "", 0, fmt.Errorf("failed userinput: %w", err)
 		}
