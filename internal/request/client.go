@@ -40,6 +40,10 @@ func cachePath(endpoint string) string {
 }
 
 func Get(client *http.Client, endpoint string, headers ...map[string]string) (body []byte, err error) {
+	if client == nil {
+		client = Client
+	}
+
 	log.Debug("Sending Request", "url", endpoint)
 
 	if core.GetConfig().Cache.EnableCache {
