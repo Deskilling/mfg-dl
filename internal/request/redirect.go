@@ -4,8 +4,10 @@ import (
 	"net/http"
 )
 
-func Redirect(link string) (string, error) {
-	client := Client
+func Redirect(client *http.Client, link string) (string, error) {
+	if client == nil {
+		client = Client
+	}
 
 	client.CheckRedirect = func(req *http.Request, via []*http.Request) error { return http.ErrUseLastResponse }
 	req, err := http.NewRequest("HEAD", link, nil)

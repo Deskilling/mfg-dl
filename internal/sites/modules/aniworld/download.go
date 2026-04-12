@@ -14,7 +14,7 @@ func (service *Aniworld) Download(stream model.Stream) (err error) {
 	}
 
 	url := BaseURL + stream.Href
-	location, _ := request.Redirect(url)
+	location, _ := request.Redirect(nil, url)
 
 	output := util.BuildOutputPath(stream)
 
