@@ -1,6 +1,6 @@
 module mfg-dl
 
-go 1.25.8
+go 1.26
 
 require (
 	charm.land/huh/v2 v2.0.3
@@ -9,7 +9,6 @@ require (
 	github.com/PuerkitoBio/goquery v1.11.0
 	github.com/charmbracelet/colorprofile v0.4.2
 	github.com/pelletier/go-toml/v2 v2.2.4
-	golang.org/x/term v0.38.0
 	golang.org/x/text v0.32.0
 )
 
