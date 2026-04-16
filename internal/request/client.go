@@ -82,7 +82,7 @@ func Get(client *http.Client, endpoint string, headers ...map[string]string) (bo
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		return []byte{}, fmt.Errorf("status %d", resp.StatusCode, "url", endpoint)
+		return []byte{}, fmt.Errorf("status %d", resp.StatusCode)
 	}
 
 	body, err = io.ReadAll(resp.Body)
