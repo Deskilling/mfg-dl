@@ -10,7 +10,7 @@ import (
 	"strconv"
 )
 
-func ConvertTSFilesToVideo(directory, output string) (err error) {
+func ConvertTSFilesToVideo(directory, output string, args []string) (err error) {
 	filesystem.CreatePath(output)
 
 	tsFiles, err := filesystem.ReadDirectory(directory, ".ts")
@@ -52,16 +52,19 @@ func ConvertTSFilesToVideo(directory, output string) (err error) {
 		}
 	}
 
-	cmd := exec.Command("ffmpeg",
-		"-f", "concat",
-		"-safe", "0",
-		"-i", listFile.Name(),
-		"-c", "copy",
-		"-nostats",
-		"-loglevel", "error",
-		"-y",
-		output,
-	)
+	var finalArgs []string
+	for _, arg := range args {
+		switch arg {
+		case "input":
+			finalArgs = append(finalArgs, "-i", listFile.Name())
+		case "output":
+			finalArgs = append(finalArgs, output)
+		default:
+			finalArgs = append(finalArgs, arg)
+		}
+	}
+
+	cmd := exec.Command("ffmpeg", finalArgs...)
 
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
