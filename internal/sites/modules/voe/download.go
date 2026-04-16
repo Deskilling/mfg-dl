@@ -94,7 +94,8 @@ func (service Voe) PlayerDownload(voeUrl, output string) (err error) {
 		return fmt.Errorf("failed to download all segments for %s: %w", dir, err)
 	}
 
-	err = ffmpeg.ConvertTSFilesToVideo(dir, output)
+	args := []string{"-f", "concat", "-safe", "0", "-nostats", "-loglevel", "error", "-y", "input", "-c", "copy", "output"}
+	err = ffmpeg.ConvertTSFilesToVideo(dir, output, args)
 	if err != nil {
 		// TODO THIS ALSO MEANS IT FAILED IMPLEMENTATION BEFORE WAS KINDA ASS
 		return fmt.Errorf("failed creating video out of segments: %w", err)
