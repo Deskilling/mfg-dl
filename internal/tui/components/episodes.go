@@ -9,6 +9,7 @@ import (
 
 	"charm.land/huh/v2"
 	"charm.land/log/v2"
+	"golang.org/x/exp/slices"
 )
 
 func Episodes(site model.Site, season model.Season) (streams []model.Stream, err error) {
@@ -39,17 +40,28 @@ func Episodes(site model.Site, season model.Season) (streams []model.Stream, err
 			values = append(values, huh.NewOption(title, i))
 		}
 
+		values = append([]huh.Option[int]{huh.NewOption("Select All", -1)}, values...)
+
 		var selected []int
 		err := huh.NewMultiSelect[int]().
 			Title("Select episodes").
 			Options(values...).
 			Value(&selected).
+			Height(30).
 			WithTheme(Theme).
 			Run()
 		if err != nil {
 			return []model.Stream{}, fmt.Errorf("failed userinput: %w", err)
 		}
-		u = selected
+
+		if slices.Contains(selected, -1) {
+			u = make([]int, len(episodes))
+			for i := range episodes {
+				u[i] = i
+			}
+		} else {
+			u = selected
+		}
 	}
 
 	lang, err := Language(site, episodes[u[0]])
