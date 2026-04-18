@@ -50,14 +50,13 @@ func (service *Aniworld) Seasons(result model.SearchResult) (seasons []model.Sea
 
 func ParseSeasons(html string) (seasons []Season, err error) {
 	if html == "" {
-		err := fmt.Errorf("not html parsed")
+		err := fmt.Errorf("empty html")
 		return nil, err
 	}
 
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(html))
 	if err != nil {
-		err = fmt.Errorf("could not create goquery document: %w", err)
-		return nil, err
+		return nil, fmt.Errorf("could not create goquery document: %w", err)
 	}
 
 	doc.Find(".hosterSiteDirectNav ul a").Each(func(i int, s *goquery.Selection) {

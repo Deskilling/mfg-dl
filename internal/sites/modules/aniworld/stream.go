@@ -30,13 +30,11 @@ func (service *Aniworld) Streams(episode model.Episode) (streams []model.Stream,
 
 	parsedStreams, err := ParseStreams(string(unparsedStreams))
 	if err != nil {
-		err = fmt.Errorf("failed parsing Streams for %s: %w", episode.Href, err)
-		return nil, err
+		return nil, fmt.Errorf("failed parsing Streams for %s: %w", episode.Href, err)
 	}
 
 	if len(parsedStreams) == 0 {
-		err = fmt.Errorf("%s not found", episode.Href)
-		return nil, err
+		return nil, fmt.Errorf("%s not found", episode.Href)
 	}
 
 	for i := range parsedStreams {
@@ -65,14 +63,13 @@ func (service *Aniworld) Streams(episode model.Episode) (streams []model.Stream,
 
 func ParseStreams(html string) (streams []Stream, err error) {
 	if html == "" {
-		err := fmt.Errorf("not html parsed")
+		err := fmt.Errorf("empty html")
 		return nil, err
 	}
 
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(html))
 	if err != nil {
-		err = fmt.Errorf("could not create goquery document: %w", err)
-		return nil, err
+		return nil, fmt.Errorf("could not create goquery document: %w", err)
 	}
 
 	doc.Find("li[class*='episodeLink']").Each(func(i int, s *goquery.Selection) {
@@ -89,16 +86,12 @@ func ParseStreams(html string) (streams []Stream, err error) {
 			return
 		}
 
-		langKey, exists := s.Attr("data-lang-key")
-		var lang string
-		if exists {
-			lang = strings.TrimSpace(langKey)
-		}
+		langKey := strings.TrimSpace(s.AttrOr("data-lang-key", ""))
 
 		streams = append(streams, Stream{
 			Href:     href,
 			Hoster:   hosterName,
-			Language: AniLanguages[lang],
+			Language: AniLanguages[langKey],
 		})
 	})
 
