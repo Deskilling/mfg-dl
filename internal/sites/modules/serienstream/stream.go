@@ -88,7 +88,7 @@ func ParseStreams(html string) (streams []Stream, err error) {
 		streams = append(streams, Stream{
 			Href:     href,
 			Hoster:   hosterName,
-			Language: SerienstreamLanguages[language],
+			Language: language,
 		})
 	})
 
