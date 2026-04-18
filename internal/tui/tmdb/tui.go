@@ -136,25 +136,22 @@ func Score(result model.SearchResult) (service string, index int, err error) {
 		return sites.Sites[0].Name(), 0, nil
 	}
 
-	for {
-		fmt.Printf("%s\n", result.Name)
-		for i, v := range sites.Sites {
-			// TODO add like color based on percentage
-			// TODO filter out bad results
-			fmt.Printf("[%v] %s %.2f%%\n", i+1, v.Name(), result.Score.Score[v.Name()]*100)
-		}
-
-		input, err := components.ReadInt("Enter: ")
-		if err != nil {
-			return "", 0, fmt.Errorf("failed userinput: %w", err)
-		}
-		input--
-		if input < 0 || input >= len(sites.Sites) {
-			util.ClearTerminal()
-			log.Error("Invalid input", "min", 1, "max", len(sites.Sites))
-			continue
-		}
-
-		return sites.Sites[input].Name(), input, nil
+	var values []huh.Option[int]
+	for i, v := range sites.Sites {
+		label := fmt.Sprintf("%s %.2f%%", v.Name(), result.Score.Score[v.Name()]*100)
+		values = append(values, huh.NewOption(label, i))
 	}
+
+	var selected int
+	err = huh.NewSelect[int]().
+		Title(result.Name).
+		Options(values...).
+		Value(&selected).
+		WithTheme(components.Theme).
+		Run()
+	if err != nil {
+		return "", 0, fmt.Errorf("failed user input: %w", err)
+	}
+
+	return sites.Sites[selected].Name(), selected, nil
 }
