@@ -1,4 +1,4 @@
-package aniworld
+package serienstream
 
 import (
 	"fmt"
@@ -21,7 +21,7 @@ type Stream struct {
 	Language                string
 }
 
-func (service *Aniworld) Streams(episode model.Episode) (streams []model.Stream, err error) {
+func (service *Serienstream) Streams(episode model.Episode) (streams []model.Stream, err error) {
 	pageURL := BaseURL + episode.Href
 	unparsedStreams, err := request.Get(service.client, pageURL)
 	if err != nil {
@@ -63,8 +63,7 @@ func (service *Aniworld) Streams(episode model.Episode) (streams []model.Stream,
 
 func ParseStreams(html string) (streams []Stream, err error) {
 	if html == "" {
-		err := fmt.Errorf("empty html")
-		return nil, err
+		return nil, fmt.Errorf("empty html")
 	}
 
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(html))
@@ -72,26 +71,24 @@ func ParseStreams(html string) (streams []Stream, err error) {
 		return nil, fmt.Errorf("could not create goquery document: %w", err)
 	}
 
-	doc.Find("li[class*='episodeLink']").Each(func(i int, s *goquery.Selection) {
-		link := s.Find("a.watchEpisode")
-
-		href, exists := link.Attr("href")
-		if !exists {
+	doc.Find("#episode-links button.link-box").Each(func(i int, s *goquery.Selection) {
+		href, exists := s.Attr("data-play-url")
+		if !exists || href == "" {
 			return
 		}
 
-		hosterName := strings.TrimSpace(link.Find("h4").Text())
+		hosterName := strings.TrimSpace(s.AttrOr("data-provider-name", ""))
 
 		if hosterName == "" {
 			return
 		}
 
-		langKey := strings.TrimSpace(s.AttrOr("data-lang-key", ""))
+		language := strings.TrimSpace(s.AttrOr("data-language-label", ""))
 
 		streams = append(streams, Stream{
 			Href:     href,
 			Hoster:   hosterName,
-			Language: AniLanguages[langKey],
+			Language: SerienstreamLanguages[language],
 		})
 	})
 

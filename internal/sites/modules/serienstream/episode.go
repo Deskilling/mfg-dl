@@ -1,4 +1,4 @@
-package aniworld
+package serienstream
 
 import (
 	"fmt"
@@ -19,7 +19,7 @@ type Episode struct {
 	EpisodeNum              string
 }
 
-func (service *Aniworld) Episodes(season model.Season) (episodes []model.Episode, err error) {
+func (service *Serienstream) Episodes(season model.Season) (episodes []model.Episode, err error) {
 	url := BaseURL + season.Href
 
 	unparsedEpisodes, err := request.Get(service.client, url)
@@ -33,7 +33,7 @@ func (service *Aniworld) Episodes(season model.Season) (episodes []model.Episode
 	}
 
 	if len(parsedEpisodes) == 0 {
-		return nil, err
+		return nil, fmt.Errorf("no episodes found for %s", season.Href)
 	}
 
 	for i := range parsedEpisodes {
@@ -61,8 +61,7 @@ func (service *Aniworld) Episodes(season model.Season) (episodes []model.Episode
 
 func ParseEpisodes(html string) (episodes []Episode, err error) {
 	if html == "" {
-		err := fmt.Errorf("empty html")
-		return nil, err
+		return nil, fmt.Errorf("empty html")
 	}
 
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(html))
@@ -70,22 +69,24 @@ func ParseEpisodes(html string) (episodes []Episode, err error) {
 		return nil, fmt.Errorf("could not create goquery document: %w", err)
 	}
 
-	doc.Find(".seasonEpisodesList tbody tr").Each(func(i int, s *goquery.Selection) {
-		episodeLink := s.Find("td.seasonEpisodeTitle a")
-		href, exists := episodeLink.Attr("href")
+	doc.Find(".episode-table tbody tr.episode-row").Each(func(i int, s *goquery.Selection) {
+		onclick, exists := s.Attr("onclick")
 		if !exists {
 			return
 		}
 
-		episodeNum := strings.TrimSpace(s.Find("meta[itemprop='episodeNumber']").Text())
+		href := strings.TrimPrefix(onclick, "window.location='")
+		href = strings.TrimSuffix(href, "'")
+
+		episodeNum := strings.TrimSpace(s.Find(".episode-number-cell").Text())
 		if episodeNum == "" {
 			episodeNum = "00"
 		} else if len(episodeNum) == 1 {
 			episodeNum = "0" + episodeNum
 		}
 
-		title := strings.TrimSpace(episodeLink.Find("strong").Text())
-		alternativeTitle := strings.TrimSpace(episodeLink.Find("span").Text())
+		title := strings.TrimSpace(s.Find(".episode-title-ger").AttrOr("title", ""))
+		alternativeTitle := strings.TrimSpace(s.Find(".episode-title-eng").AttrOr("title", ""))
 
 		episodes = append(episodes, Episode{
 			Href:                    href,

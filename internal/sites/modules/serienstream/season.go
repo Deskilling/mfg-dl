@@ -1,4 +1,4 @@
-package aniworld
+package serienstream
 
 import (
 	"fmt"
@@ -17,8 +17,8 @@ type Season struct {
 	SeasonLabel string
 }
 
-func (service *Aniworld) Seasons(result model.SearchResult) (seasons []model.Season, err error) {
-	unparsedSeasons, err := request.Get(service.client, AniEndpoints["episodes"]+result.Href)
+func (service *Serienstream) Seasons(result model.SearchResult) (seasons []model.Season, err error) {
+	unparsedSeasons, err := request.Get(service.client, SerienstreamEndpoints["default"]+result.Href)
 	if err != nil {
 		return nil, err
 	}
@@ -50,37 +50,49 @@ func (service *Aniworld) Seasons(result model.SearchResult) (seasons []model.Sea
 
 func ParseSeasons(html string) (seasons []Season, err error) {
 	if html == "" {
-		err := fmt.Errorf("empty html")
-		return nil, err
+		return nil, fmt.Errorf("empty html")
 	}
 
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(html))
+
 	if err != nil {
 		return nil, fmt.Errorf("could not create goquery document: %w", err)
 	}
 
-	doc.Find(".hosterSiteDirectNav ul a").Each(func(i int, s *goquery.Selection) {
+	doc.Find("#season-nav a.alphabet-link").Each(func(i int, s *goquery.Selection) {
 		href, exists := s.Attr("href")
 		if !exists {
 			return
-		} else if strings.Contains(href, "/staffel-") && !strings.Contains(href, "/episode-") || strings.Contains(href, "/filme") {
-			label, exists := s.Attr("title")
-			if !exists {
-				return
-			}
-
-			seasonNumber := strings.TrimSpace(strings.TrimPrefix(label, "Staffel "))
-
-			if len(seasonNumber) == 1 {
-				seasonNumber = "0" + seasonNumber
-			}
-
-			seasons = append(seasons, Season{
-				Href:        href,
-				SeasonLabel: label,
-				SeasonNum:   seasonNumber,
-			})
 		}
+
+		data, exists := s.Attr("data-season-pill")
+		if !exists {
+			return
+		}
+
+		label := strings.TrimSpace(s.Text())
+
+		if !strings.Contains(href, "/staffel-") {
+			return
+		}
+
+		var seasonNum string
+		if data == "0" {
+			seasonNum = "00"
+			label = "Filme"
+		} else {
+			seasonNum = data
+			if len(seasonNum) == 1 {
+				seasonNum = "0" + seasonNum
+			}
+			label = "Staffel " + data
+		}
+
+		seasons = append(seasons, Season{
+			Href:        href,
+			SeasonLabel: label,
+			SeasonNum:   seasonNum,
+		})
 	})
 
 	return seasons, nil
