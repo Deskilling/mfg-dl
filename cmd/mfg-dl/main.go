@@ -5,6 +5,7 @@ import (
 
 	"mfg-dl/internal/core"
 	"mfg-dl/internal/ffmpeg"
+	"mfg-dl/internal/server"
 	"mfg-dl/internal/sites"
 	"mfg-dl/internal/tui/service"
 	"mfg-dl/internal/tui/tmdb"
@@ -60,6 +61,8 @@ func main() {
 		err = tmdb.Tui()
 	case 1:
 		err = service.Tui()
+	case 2:
+		err = server.Start()
 	default:
 		log.Fatal("Invaild TUI Mode")
 	}
