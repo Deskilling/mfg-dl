@@ -10,43 +10,43 @@ type Site interface {
 }
 
 type Score struct {
-	Score map[string]float64
-	Query map[string]string
+	Score map[string]float64 `json:"score"`
+	Query map[string]string  `json:"query"`
 }
 
 type SearchResult struct {
-	Service        string
-	Name           string
-	Href           string
-	Description    string
-	Cover          string
-	ProductionYear string
-	Score          Score
+	Service        string `json:"service"`
+	Name           string `json:"name"`
+	Href           string `json:"href"`
+	Description    string `json:"description"`
+	Cover          string `json:"cover"`
+	ProductionYear string `json:"productionYear"`
+	Score          Score  `json:"score"`
 }
 
 type Season struct {
-	Name        string
-	Href        string
-	SeasonNum   string
-	SeasonLabel string
+	Name        string `json:"name"`
+	Href        string `json:"href"`
+	SeasonNum   string `json:"seasonNum"`
+	SeasonLabel string `json:"seasonLabel"`
 }
 
 type Episode struct {
-	Name                    string
-	Href                    string
-	SeasonNum               string
-	EpisodeTitle            string
-	EpisodeAlternativeTitle string
-	EpisodeNum              string
+	Name                    string `json:"name"`
+	Href                    string `json:"href"`
+	SeasonNum               string `json:"seasonNum"`
+	EpisodeTitle            string `json:"episodeTitle"`
+	EpisodeAlternativeTitle string `json:"episodeAltTitle"`
+	EpisodeNum              string `json:"episodeNum"`
 }
 
 type Stream struct {
-	Name                    string
-	Href                    string
-	SeasonNum               string
-	EpisodeTitle            string
-	EpisodeAlternativeTitle string
-	EpisodeNum              string
-	Hoster                  string
-	Language                string
+	Name                    string `json:"name"`
+	Href                    string `json:"href"`
+	SeasonNum               string `json:"seasonNum"`
+	EpisodeTitle            string `json:"episodeTitle"`
+	EpisodeAlternativeTitle string `json:"episodeAltTitle"`
+	EpisodeNum              string `json:"episodeNum"`
+	Hoster                  string `json:"hoster"`
+	Language                string `json:"language"`
 }
