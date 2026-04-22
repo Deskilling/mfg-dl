@@ -5,6 +5,9 @@ import (
 	"net/http"
 
 	"mfg-dl/internal/search"
+	"mfg-dl/internal/sites"
+	"mfg-dl/internal/sites/model"
+	"mfg-dl/internal/util"
 
 	"charm.land/log/v2"
 )
@@ -55,6 +58,33 @@ func handleMatch(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
+
+	name := r.URL.Query().Get("name")
+	if name == "" {
+		http.Error(w, "missing name", http.StatusBadRequest)
+		return
+	}
+
+	selected := model.SearchResult{
+		Service: "TMDB",
+		Name:    name,
+	}
+
+	var allServiceResults [][]model.SearchResult
+	for _, site := range sites.Sites {
+		results, err := site.Search(util.NormalizeString(name))
+		if err != nil {
+			log.Error("search failed", "service", site.Name(), "err", err)
+			continue
+		}
+		if len(results) > 0 {
+			allServiceResults = append(allServiceResults, results)
+		}
+	}
+
+	search.Match(&selected, allServiceResults)
+
+	json.NewEncoder(w).Encode(selected)
 }
 
 func handleSeasons(w http.ResponseWriter, r *http.Request) {
