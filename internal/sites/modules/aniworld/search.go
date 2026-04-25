@@ -47,7 +47,7 @@ func ParseSearch(data []byte) (search []model.SearchResult, err error) {
 		search = append(search, model.SearchResult{
 			Service:        Name,
 			Name:           html.UnescapeString(v.Name),
-			Href:           v.Href,
+			Href:           "/anime/stream/" + v.Href,
 			Description:    html.UnescapeString(v.Description),
 			Cover:          v.Cover,
 			ProductionYear: v.ProductionYear,
