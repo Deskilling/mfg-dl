@@ -1,9 +1,10 @@
 package core
 
 import (
-	"mfg-dl/pkg/filesystem"
 	"os"
 	"time"
+
+	"github.com/Deskilling/gopkg/pkg/filesystem"
 
 	"charm.land/log/v2"
 )

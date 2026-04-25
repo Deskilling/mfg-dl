@@ -2,8 +2,10 @@ package core
 
 import (
 	"fmt"
-	"mfg-dl/pkg/config"
-	"mfg-dl/pkg/filesystem"
+
+	"github.com/Deskilling/gopkg/pkg/config"
+
+	"github.com/Deskilling/gopkg/pkg/filesystem"
 
 	"charm.land/log/v2"
 )

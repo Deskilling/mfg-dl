@@ -2,12 +2,13 @@ package ffmpeg
 
 import (
 	"fmt"
-	"mfg-dl/pkg/filesystem"
 	"os"
 	"os/exec"
 	"path/filepath"
 	"sort"
 	"strconv"
+
+	"github.com/Deskilling/gopkg/pkg/filesystem"
 )
 
 func ConvertTSFilesToVideo(directory, output string, args []string) (err error) {
