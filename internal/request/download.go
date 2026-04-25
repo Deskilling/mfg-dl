@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"os"
 
-	"mfg-dl/pkg/filesystem"
+	"github.com/Deskilling/gopkg/pkg/filesystem"
 )
 
 func DownloadFile(client *http.Client, url, filePath string) (err error) {

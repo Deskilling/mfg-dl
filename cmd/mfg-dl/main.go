@@ -10,7 +10,8 @@ import (
 	"mfg-dl/internal/tui/service"
 	"mfg-dl/internal/tui/tmdb"
 	"mfg-dl/internal/util"
-	"mfg-dl/pkg/filesystem"
+
+	"github.com/Deskilling/gopkg/pkg/filesystem"
 
 	"charm.land/log/v2"
 )

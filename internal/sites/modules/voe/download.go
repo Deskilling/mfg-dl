@@ -11,8 +11,10 @@ import (
 	"mfg-dl/internal/request"
 	"mfg-dl/internal/stream"
 	"mfg-dl/internal/util"
-	"mfg-dl/pkg/filesystem"
-	"mfg-dl/pkg/m3u8"
+
+	"github.com/Deskilling/gopkg/pkg/m3u8"
+
+	"github.com/Deskilling/gopkg/pkg/filesystem"
 )
 
 func (service Voe) BaseDownload(voeUrl, output string) (err error) {

@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	"mfg-dl/pkg/filesystem"
+	"github.com/Deskilling/gopkg/pkg/filesystem"
 )
 
 func GetTotalMicro(url string) (totalMicro int, err error) {

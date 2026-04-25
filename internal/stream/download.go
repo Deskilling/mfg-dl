@@ -9,7 +9,8 @@ import (
 	"mfg-dl/internal/core"
 	"mfg-dl/internal/request"
 	"mfg-dl/internal/tui/components"
-	"mfg-dl/pkg/m3u8"
+
+	"github.com/Deskilling/gopkg/pkg/m3u8"
 
 	"charm.land/log/v2"
 )

@@ -9,7 +9,8 @@ import (
 
 	"mfg-dl/internal/core"
 	"mfg-dl/internal/util"
-	"mfg-dl/pkg/filesystem"
+
+	"github.com/Deskilling/gopkg/pkg/filesystem"
 
 	"charm.land/log/v2"
 )
