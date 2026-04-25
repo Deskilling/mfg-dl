@@ -18,6 +18,7 @@ func Start() error {
 	mux.HandleFunc("/health", handleHealth)
 	mux.HandleFunc("/search", handleSearch)
 	mux.HandleFunc("/match", handleMatch)
+	mux.HandleFunc("/searchSite", handleSearchSite)
 	mux.HandleFunc("/seasons", handleSeasons)
 	mux.HandleFunc("/episodes", handleEpisodes)
 	mux.HandleFunc("/streams", handleStreams)
@@ -87,18 +88,90 @@ func handleMatch(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(selected)
 }
 
-func handleSeasons(w http.ResponseWriter, r *http.Request) {
+func handleSearchSite(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
 		http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
+
+	query := r.URL.Query().Get("q")
+	if query == "" {
+		http.Error(w, "missing query", http.StatusBadRequest)
+		return
+	}
+
+	serviceName := r.URL.Query().Get("service")
+	if serviceName == "" {
+		http.Error(w, "missing service", http.StatusBadRequest)
+		return
+	}
+
+	var site model.Site
+	for _, s := range sites.Sites {
+		if s.Name() == serviceName {
+			site = s
+			break
+		}
+	}
+
+	if site == nil {
+		http.Error(w, "service not found", http.StatusNotFound)
+		return
+	}
+
+	result, _ := site.Search(query)
+
+	json.NewEncoder(w).Encode(result)
+}
+
+func handleSeasons(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	serviceName := r.URL.Query().Get("service")
+	if serviceName == "" {
+		http.Error(w, "missing service", http.StatusBadRequest)
+		return
+	}
+
+	var season model.Season
+	err := json.NewDecoder(r.Body).Decode(&season)
+	if err != nil {
+		http.Error(w, "invalid body", http.StatusBadRequest)
+		return
+	}
+
+	var site model.Site
+	for _, s := range sites.Sites {
+		if s.Name() == serviceName {
+			site = s
+			break
+		}
+	}
+
+	if site == nil {
+		http.Error(w, "service not found", http.StatusNotFound)
+		return
+	}
+
+	episodes, err := site.Episodes(season)
+	if err != nil {
+		log.Error("failed getting episodes", "service", serviceName, "err", err)
+		http.Error(w, "failed getting episodes", http.StatusInternalServerError)
+		return
+	}
+
+	json.NewEncoder(w).Encode(episodes)
 }
 
 func handleEpisodes(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodGet {
+	if r.Method != http.MethodPost {
 		http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
+
 }
 
 func handleStreams(w http.ResponseWriter, r *http.Request) {
