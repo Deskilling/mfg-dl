@@ -14,7 +14,7 @@ import (
 const seasonFiles = "./data/seasons"
 
 func TestAniworldSeasonParse(t *testing.T) {
-	files, err := filesystem.ReadDirectory(seasonFiles, ".html")
+	files, err := filesystem.ReadDirectory(seasonFiles, ".txt")
 	if err != nil {
 		t.Fatalf("failed reading %s directory: %v", seasonFiles, err)
 	}
