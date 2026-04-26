@@ -23,7 +23,7 @@
           version = "0.0.1";
           src = ./.;
 
-          vendorHash = "sha256-BrXg35DXKhqdVVyEyiL0uyUm41zwDajNtdcEavHaVzg=";
+          vendorHash = /gomod2nix.toml;
           subPackages = [ "cmd/mfg-dl" ];
 
           ldflags = [
