@@ -77,7 +77,8 @@ func ParseEpisodes(html string) (episodes []Episode, err error) {
 			return
 		}
 
-		episodeNum := strings.TrimSpace(s.Find("meta[itemprop='episodeNumber']").Text())
+		episodeNum, _ := s.Find("meta[itemprop='episodeNumber']").Attr("content")
+		episodeNum = strings.TrimSpace(episodeNum)
 		if episodeNum == "" {
 			episodeNum = "00"
 		} else if len(episodeNum) == 1 {
