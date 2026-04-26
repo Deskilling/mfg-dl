@@ -10,7 +10,7 @@ CGO_ENABLED := 0
 
 .DEFAULT_GOAL := build
 
-.PHONY: deps build build-all build-linux build-windows build-darwin release clean test
+.PHONY: deps build build-all build-linux build-windows build-darwin release clean test update
 
 deps:
 	@$(GO) mod download
@@ -47,3 +47,9 @@ test:
 
 test-verbose:
 	$(GO) test -v ./test/...
+
+update:
+	$(GO) mod tidy
+	@if command -v nix > /dev/null 2>&1; then \
+		nix run github:nix-community/gomod2nix -- generate --with-deps; \
+	fi
