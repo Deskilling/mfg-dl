@@ -59,28 +59,39 @@ func ParseSeasons(html string) (seasons []Season, err error) {
 		return nil, fmt.Errorf("could not create goquery document: %w", err)
 	}
 
-	doc.Find(".hosterSiteDirectNav ul a").Each(func(i int, s *goquery.Selection) {
+	doc.Find(".hosterSiteDirectNav ul:first-child a").Each(func(i int, s *goquery.Selection) {
 		href, exists := s.Attr("href")
 		if !exists {
 			return
-		} else if strings.Contains(href, "/staffel-") && !strings.Contains(href, "/episode-") || strings.Contains(href, "/filme") {
-			label, exists := s.Attr("title")
-			if !exists {
-				return
-			}
+		}
 
-			seasonNumber := strings.TrimSpace(strings.TrimPrefix(label, "Staffel "))
+		isFilme := strings.Contains(href, "/filme")
+		isSeason := strings.Contains(href, "/staffel-")
 
+		if !isFilme && !isSeason {
+			return
+		}
+
+		label, exists := s.Attr("title")
+		if !exists {
+			return
+		}
+
+		var seasonNumber string
+		if isFilme {
+			seasonNumber = "00"
+		} else {
+			seasonNumber = strings.TrimSpace(strings.TrimPrefix(label, "Staffel "))
 			if len(seasonNumber) == 1 {
 				seasonNumber = "0" + seasonNumber
 			}
-
-			seasons = append(seasons, Season{
-				Href:        href,
-				SeasonLabel: label,
-				SeasonNum:   seasonNumber,
-			})
 		}
+
+		seasons = append(seasons, Season{
+			Href:        href,
+			SeasonLabel: label,
+			SeasonNum:   seasonNumber,
+		})
 	})
 
 	return seasons, nil
