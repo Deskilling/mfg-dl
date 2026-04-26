@@ -53,9 +53,9 @@ func SelectModule() (site model.Site, err error) {
 		return sites.Sites[0], nil
 	}
 
-	for i := range sites.Sites {
+	for i, v := range sites.Sites {
 		u := i + 1
-		fmt.Printf("[%v] %s\n", u, site.Name())
+		fmt.Printf("[%v] %s\n", u, v.Name())
 	}
 
 	for {
