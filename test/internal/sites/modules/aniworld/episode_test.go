@@ -5,6 +5,7 @@ import (
 	"strings"
 	"testing"
 
+	"mfg-dl/internal/sites/model"
 	"mfg-dl/internal/sites/modules/aniworld"
 
 	"github.com/Deskilling/gopkg/pkg/filesystem"
@@ -44,5 +45,68 @@ func TestAniworldEpisodeParse(t *testing.T) {
 		}
 
 		t.Logf("Passed for %s (%d Episodes)", v.Name(), len(episodes))
+	}
+}
+
+// SeasonNum && SeasonLabel dont matter in this context, only the Href is relevant
+var sampleSeasons []model.Season = []model.Season{
+	{
+		Name:        "Detektiv Conan",
+		Href:        "/anime/stream/detektiv-conan/staffel-1",
+		SeasonNum:   "01",
+		SeasonLabel: "Staffel 1",
+	},
+	{
+		Name:        "My Neighbor Totoro",
+		Href:        "/anime/stream/my-neighbor-totoro",
+		SeasonNum:   "01",
+		SeasonLabel: "Staffel 1",
+	},
+	{
+		Name:        "One Piece",
+		Href:        "/anime/stream/one-piece",
+		SeasonNum:   "01",
+		SeasonLabel: "Staffel 1",
+	},
+	{
+		Name:        "Princess Mononoke",
+		Href:        "/anime/stream/princess-mononoke",
+		SeasonNum:   "01",
+		SeasonLabel: "Staffel 1",
+	},
+	{
+		Name:        "Rascal Does Not Dream of Bunny Girl Senpai",
+		Href:        "/anime/stream/rascal-does-not-dream-of-bunny-girl-senpai",
+		SeasonNum:   "01",
+		SeasonLabel: "Staffel 1",
+	},
+}
+
+func TestAniworldEpisodeLive(t *testing.T) {
+	site := aniworld.New()
+
+	for _, v := range sampleSeasons {
+		seasons, err := site.Episodes(v)
+		if err != nil {
+			t.Errorf("failed getting seasons for %s: %v", v.Name, err)
+			continue
+		}
+		if len(seasons) == 0 {
+			t.Errorf("%s: expected seasons, got none", v.Name)
+			continue
+		}
+
+		for i, s := range seasons {
+			if s.Href == "" {
+				t.Errorf("%s [%d]: empty href", s.Name, i)
+			}
+			if strings.Contains(s.EpisodeNum, " ") {
+				t.Errorf("%s [%d]: invalid episode number: %q", s.Name, i, s.EpisodeNum)
+			}
+			if s.EpisodeTitle == "" {
+				t.Errorf("%s [%d]: invalid episode title: %q", s.Name, i, s.EpisodeTitle)
+			}
+		}
+		t.Logf("Passed for %s (%d seasons)", v.Name, len(seasons))
 	}
 }

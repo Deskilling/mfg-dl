@@ -48,7 +48,7 @@ func TestAniworldSeasonParse(t *testing.T) {
 	}
 }
 
-var animes []model.SearchResult = []model.SearchResult{
+var sampleSearchResults []model.SearchResult = []model.SearchResult{
 	{
 		Name: "Detektiv Conan",
 		Href: "/anime/stream/detektiv-conan",
@@ -74,7 +74,7 @@ var animes []model.SearchResult = []model.SearchResult{
 func TestAniworldSeasonLive(t *testing.T) {
 	site := aniworld.New()
 
-	for _, v := range animes {
+	for _, v := range sampleSearchResults {
 		seasons, err := site.Seasons(v)
 		if err != nil {
 			t.Errorf("failed getting seasons for %s: %v", v.Name, err)
