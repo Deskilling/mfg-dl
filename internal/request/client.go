@@ -35,9 +35,9 @@ var Client = &http.Client{
 func cachePath(endpoint string) string {
 	base := core.GetConfig().Location.Temp + "/cache/requests/"
 	if core.GetConfig().Debug.Sha256Cache {
-		return base + util.Hash256String(endpoint)
+		return base + util.Hash256String(endpoint) + ".tmp"
 	}
-	return base + endpoint
+	return base + endpoint + ".tmp"
 }
 
 func Get(client *http.Client, endpoint string, headers ...map[string]string) (body []byte, err error) {
