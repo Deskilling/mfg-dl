@@ -60,7 +60,8 @@ var defaultConfig = Config{
 	},
 
 	Services: map[string]bool{
-		"Aniworld": true,
+		"Aniworld":     true,
+		"Serienstream": true,
 	},
 
 	Location: Location{
