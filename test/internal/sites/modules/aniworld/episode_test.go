@@ -11,16 +11,16 @@ import (
 	"github.com/Deskilling/gopkg/pkg/filesystem"
 )
 
-const episodeFiles = "./data/stream"
+const seasonFiles = "./data/stream"
 
 func TestAniworldEpisodeParse(t *testing.T) {
-	files, err := filesystem.ReadDirectory(episodeFiles, ".txt")
+	files, err := filesystem.ReadDirectory(seasonFiles, ".txt")
 	if err != nil {
-		t.Fatalf("failed reading %s directory: %v", episodeFiles, err)
+		t.Fatalf("failed reading %s directory: %v", seasonFiles, err)
 	}
 
 	for _, v := range files {
-		content, err := filesystem.ReadFile(filepath.Join(episodeFiles, v.Name()))
+		content, err := filesystem.ReadFile(filepath.Join(seasonFiles, v.Name()))
 		if err != nil {
 			t.Errorf("failed reading file %s: %v", v.Name(), err)
 			continue
