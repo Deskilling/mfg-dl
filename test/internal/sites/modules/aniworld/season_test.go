@@ -11,7 +11,7 @@ import (
 	"github.com/Deskilling/gopkg/pkg/filesystem"
 )
 
-const seasonFiles = "./data/seasons"
+const seasonFiles = "./data/stream"
 
 func TestAniworldSeasonParse(t *testing.T) {
 	files, err := filesystem.ReadDirectory(seasonFiles, ".txt")
