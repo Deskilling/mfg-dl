@@ -94,7 +94,7 @@ func VoeRemovePatterns(str string) (result string) {
 	return str
 }
 
-func VoeUrlHtml(htmlContent string) (url string, err error) {
+func VoeRedirect(htmlContent string) (url string, err error) {
 	re := regexp.MustCompile(`window.location.href\s*=\s*['"](https://[^'"]+)['"]`)
 
 	matches := re.FindStringSubmatch(htmlContent)
