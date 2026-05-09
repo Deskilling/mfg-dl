@@ -27,7 +27,7 @@ func (service Voe) BaseDownload(voeUrl, output string) (err error) {
 		return fmt.Errorf("Failed to get voe: %w", err)
 	}
 
-	baseUrl, err := VoeUrlHtml(string(baseHtml))
+	baseUrl, err := VoeRedirect(string(baseHtml))
 	if err != nil {
 		return fmt.Errorf("Failed to extract voe url: %w", err)
 	}
