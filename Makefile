@@ -10,13 +10,16 @@ CGO_ENABLED := 0
 
 .DEFAULT_GOAL := build
 
-.PHONY: deps build build-all build-linux build-windows build-darwin release clean test update
+.PHONY: deps build build-all build-linux build-windows build-darwin release clean test update run
 
 deps:
 	@$(GO) mod download
 
 build: $(BUILD_DIR) deps
 	CGO_ENABLED=$(CGO_ENABLED) $(GO) build $(GOFLAGS) $(LDFLAGS) -o $(BUILD_DIR)/$(BINARY_NAME) $(MAIN_PATH)
+
+run: build
+	$(BUILD_DIR)/$(BINARY_NAME)
 
 build-all: build-linux build-windows build-darwin
 
