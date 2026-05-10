@@ -26,6 +26,7 @@ type SearchResult struct {
 }
 
 type Season struct {
+	Service     string `json:"service"`
 	Name        string `json:"name"`
 	Href        string `json:"href"`
 	SeasonNum   string `json:"seasonNum"`
@@ -33,6 +34,7 @@ type Season struct {
 }
 
 type Episode struct {
+	Service                 string `json:"service"`
 	Name                    string `json:"name"`
 	Href                    string `json:"href"`
 	SeasonNum               string `json:"seasonNum"`
@@ -42,6 +44,7 @@ type Episode struct {
 }
 
 type Stream struct {
+	Service                 string `json:"service"`
 	Name                    string `json:"name"`
 	Href                    string `json:"href"`
 	SeasonNum               string `json:"seasonNum"`
