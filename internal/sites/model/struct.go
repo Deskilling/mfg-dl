@@ -12,6 +12,7 @@ type Site interface {
 type Score struct {
 	Score map[string]float64 `json:"score"`
 	Query map[string]string  `json:"query"`
+	Href  map[string]string  `json:"href"`
 }
 
 type SearchResult struct {
