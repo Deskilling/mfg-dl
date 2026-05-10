@@ -1,0 +1,2619 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="csrf-token" content="bx9nQQQrIfZSSDmk1zprNZU5BGZYTQIJFVdTNG0U">
+    <meta name="referrer" content="no-referrer">
+    <link href="https://example.com/css2?family=Open+Sans:wght@400;600;700&display=swap"
+          rel="stylesheet">
+    <link rel="preconnect" href="https://example.com" crossorigin>
+
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="MyWebSite" />
+    <link rel="manifest" href="/site.webmanifest" />
+    
+    <meta name="description" content="Schaue Squid Game Staffel 1 an. Alle Episoden verfügbar zum Streamen online. Ein mysteriöses Überlebens-Spiel verspricht einen Gewinn von 45.6 Milliarden W...">
+            <meta name="keywords" content="Squid Game, staffel 1, online anschauen, episoden, streaming">
+        <link rel="canonical" href="/serie/squid-game/staffel-1">
+    <meta property="og:type" content="video.tv_show">
+    <meta property="og:url" content="/serie/squid-game/staffel-1">
+    <meta property="og:description" content="Schaue Squid Game Staffel 1 an. Alle Episoden verfügbar zum Streamen online. Ein mysteriöses Überlebens-Spiel verspricht einen Gewinn von 45.6 Milliarden W...">
+    <meta property="og:image" content="https://example.com/media/images/backdrop/orig/squid-game-uTwurYAT">
+    
+    <meta name="robots" content="index, follow">
+
+            
+                <script type="application/ld+json">
+            {
+    "@context": "https://example.com",
+    "@type": "WebSite",
+    "url": "https://example.com",
+    "description": "Schaue Squid Game Staffel 1 an. Alle Episoden verf\u00fcgbar zum Streamen online. Ein mysteri\u00f6ses \u00dcberlebens-Spiel verspricht einen Gewinn von 45.6 Milliarden W..."
+}
+        </script>
+        <!-- шаблон верхнего колонтитула -->
+<link rel="preload" as="style" href="https://example.com/build/assets/app-C8pHEO6X.css" /><link rel="preload" as="style" href="https://example.com/build/assets/home-hero-BbaAHR5K.css" /><link rel="preload" as="style" href="https://example.com/build/assets/app-pa69gbN9.css" /><link rel="modulepreload" as="script" href="https://example.com/build/assets/app-CBexlo3Z.js" /><link rel="modulepreload" as="script" href="https://example.com/build/assets/bootstrap.esm-DnDI_4RK.js" /><link rel="modulepreload" as="script" href="https://example.com/build/assets/axios-BdB_xsQE.js" /><link rel="modulepreload" as="script" href="https://example.com/build/assets/home-hero-A8wuSaH9.js" /><link rel="modulepreload" as="script" href="https://example.com/build/assets/mount-BpuXyHW7.js" /><link rel="modulepreload" as="script" href="https://example.com/build/assets/chunk-D4-o3Q16.js" /><link rel="modulepreload" as="script" href="https://example.com/build/assets/createPopper-UiYpD3xJ.js" /><link rel="modulepreload" as="script" href="https://example.com/build/assets/TextTemplatePicker-bkb0p8VN.js" /><link rel="modulepreload" as="script" href="https://example.com/build/assets/jsx-runtime-CsptfSWK.js" /><link rel="modulepreload" as="script" href="https://example.com/build/assets/TimeAgo-DO7Ijftg.js" /><link rel="stylesheet" href="https://example.com/build/assets/app-C8pHEO6X.css" /><link rel="stylesheet" href="https://example.com/build/assets/home-hero-BbaAHR5K.css" /><link rel="stylesheet" href="https://example.com/build/assets/app-pa69gbN9.css" /><script type="module" src="https://example.com/build/assets/app-CBexlo3Z.js"></script><script type="module" src="https://example.com/build/assets/mount-BpuXyHW7.js"></script>        
+    
+        <script>
+        (function() {
+            var spriteUrl = 'https://example.com/assets/svg/icons.svg?v=1769662442';
+            var inserted = false;
+
+
+            function insertSprite(svg) {
+                if (!svg || inserted) return;
+                var div = document.createElement('div');
+            
+                div.style.position = 'absolute';
+                div.style.width = '0';
+                div.style.height = '0';
+                div.style.overflow = 'hidden';
+                div.setAttribute('aria-hidden', 'true');
+
+                try {
+                    var parser = new DOMParser();
+                    var doc = parser.parseFromString(svg, 'image/svg+xml');
+                    var svgEl = doc.documentElement;
+                    if (svgEl && svgEl.nodeName.toLowerCase() === 'svg') {
+                        div.appendChild(document.importNode(svgEl, true));
+                    } else {
+                        div.innerHTML = svg;
+                    }
+                } catch (e) {
+                    div.innerHTML = svg;
+                }
+                div.setAttribute('id', 'svg-sprite-container');
+                var target = document.body || document.documentElement;
+                target.insertBefore(div, target.firstChild);
+                inserted = true;
+            }
+
+            function loadSprite() {
+                fetch(spriteUrl, {
+                    method: 'GET',
+                    cache: 'default',
+                    credentials: 'same-origin'
+                })
+                    .then(function(response) {
+                        if (!response.ok) {
+                            console.warn('SVG sprite failed to load:', response.status);
+                            return null;
+                        }
+                        return response.text();
+                    })
+                    .then(function(svg) {
+                        if (svg) {
+                            insertSprite(svg);
+                        }
+                    })
+                    .catch(function(error) {
+                        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                            console.warn('SVG sprite loading error:', error);
+                        }
+                    });
+            }
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', loadSprite);
+            } else {
+                loadSprite();
+            }
+        })();
+    </script>
+</head>
+<body data-is-staff="0">
+        <!-- Секция верхней панели -->
+    
+    
+    <!-- Основная навигационная -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-header py-1 py-lg-2">
+        <div class="container-fluid px-2 px-md-3 px-lg-3 px-xl-4 position-relative">
+            
+            <a class="navbar-brand position-relative me-2" href="/">
+                <span class="logo-summary">UPDATE</span>
+            </a>
+
+            
+            <div class="d-flex align-items-center ms-auto me-2 d-lg-none gap-2">
+                                
+                <button id="search-toggle-mobile"
+                        data-bs-toggle="modal"
+                        data-bs-target="#searchModal" class="btn btn-link text-white nav-search-icon">
+                    <svg class="icon large" width="24" height="24" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true" style="display: inline-block; vertical-align: middle; flex-shrink: 0;">
+                        <path d="M508.5 468.9L387.1 347.5c-2.3-2.3-5.3-3.5-8.5-3.5h-13.2c31.5-36.5 50.6-84 50.6-136C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c52 0 99.5-19.1 136-50.6v13.2c0 3.2 1.3 6.2 3.5 8.5l121.4 121.4c4.7 4.7 12.3 4.7 17 0l22.6-22.6c4.7-4.7 4.7-12.3 0-17zM208 368c-88.4 0-160-71.6-160-160S119.6 48 208 48s160 71.6 160 160-71.6 160-160 160z"/>
+                    </svg>
+                </button>
+            </div>
+
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#mainNav" aria-controls="mainNav"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon navbar-toggler-icon-large"></span>
+            </button>
+
+            <!-- Центральное меню навигации -->
+            
+            <div id="mainNav" class="collapse navbar-collapse">
+                <ul class="navbar-nav mx-lg-auto align-items-lg-center nav-primary gap-lg-2">
+                    
+                    <li class="nav-item d-none d-lg-block">
+                        <button id="search-toggle-desktop"
+                                data-bs-toggle="modal"
+                                data-bs-target="#searchModal"
+                                class="btn btn-link text-white nav-search-icon"
+                                title="Search">
+                            <svg class="icon large" width="24" height="24" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true" style="display: inline-block; vertical-align: middle; flex-shrink: 0;">
+                                <path d="M508.5 468.9L387.1 347.5c-2.3-2.3-5.3-3.5-8.5-3.5h-13.2c31.5-36.5 50.6-84 50.6-136C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c52 0 99.5-19.1 136-50.6v13.2c0 3.2 1.3 6.2 3.5 8.5l121.4 121.4c4.7 4.7 12.3 4.7 17 0l22.6-22.6c4.7-4.7 4.7-12.3 0-17zM208 368c-88.4 0-160-71.6-160-160S119.6 48 208 48s160 71.6 160 160-71.6 160-160 160z"/>
+                            </svg>
+                        </button>
+                    </li>
+
+                    
+                    <li class="nav-item">
+                        <a class="nav-link px-3 "
+                           href="/">Startseite</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3 "
+                           href="/serien">Serien</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3 "
+                           href="/beliebte-serien">Beliebt</a>
+                    </li>
+                    <li class="nav-item d-none d-xl-block">
+                        <a class="nav-link px-3" target="_blank" href="https://example.com">example</a>
+                    </li>
+
+                    
+                    <li class="nav-item dropdown d-none d-lg-block">
+                        <a class="nav-link px-3 dropdown-toggle no-arrow"
+                           href="#" id="moreDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            <svg class="icon navbar-icon large" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display: inline-block; vertical-align: middle; flex-shrink: 0;">
+                                <circle cx="5" cy="5" r="2"/>
+                                <circle cx="12" cy="5" r="2"/>
+                                <circle cx="19" cy="5" r="2"/>
+                                <circle cx="5" cy="12" r="2"/>
+                                <circle cx="12" cy="12" r="2"/>
+                                <circle cx="19" cy="12" r="2"/>
+                                <circle cx="5" cy="19" r="2"/>
+                                <circle cx="12" cy="19" r="2"/>
+                                <circle cx="19" cy="19" r="2"/>
+                            </svg>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end p-2" aria-labelledby="moreDropdown">
+                            <li><a class="dropdown-item" href="/serienkalender">Kalender</a></li>
+                            <li><a class="dropdown-item" href="/serienwuensche">Wunschliste</a></li>
+                            <li><a class="dropdown-item" href="/random">Zufällig</a></li>
+                            <li><a class="dropdown-item" href="/faqs">Hilfe</a></li>
+                            <li><a class="dropdown-item" href="/anleitung">Anleitung</a></li>
+                        </ul>
+                    </li>
+
+                    
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link px-3" href="https://example.com">example</a>
+                    </li>
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link px-3" href="/serienkalender">Kalender</a>
+                    </li>
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link px-3" href="/serienwuensche">Wunschliste</a>
+                    </li>
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link px-3" href="/random">Zufällig</a>
+                    </li>
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link px-3" href="/faqs">Hilfe</a>
+                    </li>
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link px-3" href="/anleitung">Anleitung</a>
+                    </li>
+                    <li class="nav-item d-lg-none">
+                    </li>
+
+                    
+                                            <li class="nav-item d-md-none">
+                            <hr class="dropdown-divider my-2">
+                        </li>
+                        <li class="nav-item d-lg-none">
+                            <a class="nav-link px-3" href="/login">Anmelden</a>
+                        </li>
+                        <li class="nav-item d-lg-none">
+                            <a class="nav-link px-3" href="/registrierung">Registrierung</a>
+                        </li>
+                                        
+                                    </ul>
+
+                <!-- Блок пользовательского интерфейса -->
+                <script>
+                    window.App = window.App || {};
+                    window.App.locale = "de";
+                </script>
+                
+                                    <div class="d-none d-lg-flex ms-lg-3 align-items-center gap-2">
+                        <a href="/login"
+                           class="btn btn-outline-light border-0 rounded-pill px-3 text-decoration-none">Anmelden</a>
+                        <a href="/registrierung"
+                           class="btn btn-primary rounded-pill px-3 btn-orange">Registrierung</a>
+                    </div>
+                            </div>
+        </div>
+    </nav>
+
+    
+                        <div class="show-header-wrapper">
+        <div class="backdrop-picture" style="--backdrop-height:550px;">
+    <picture>
+        
+        <source
+            type="image/avif"
+            data-srcset="
+          /media/images/backdrop/mobile/squid-game-uTwurYAT?format=avif   375w,
+          /media/images/backdrop/tablet/squid-game-uTwurYAT?format=avif   768w,
+          /media/images/backdrop/desktop/squid-game-uTwurYAT?format=avif  1024w
+        "
+            sizes="(max-width:600px)375px,(max-width:992px)768px,100vw"
+        >
+
+        
+        <source
+            type="image/webp"
+            data-srcset="
+          /media/images/backdrop/mobile/squid-game-uTwurYAT?format=webp   375w,
+          /media/images/backdrop/tablet/squid-game-uTwurYAT?format=webp   768w,
+          /media/images/backdrop/desktop/squid-game-uTwurYAT?format=webp  1024w
+        "
+            sizes="(max-width:600px)375px,(max-width:992px)768px,100vw"
+        >
+
+        
+        <img
+            data-src="/media/images/backdrop/desktop/squid-game-uTwurYAT?format=jpg"
+            data-srcset="
+          /media/images/backdrop/desktop/squid-game-uTwurYAT?format=jpg 1x,
+          /media/images/backdrop/2x-desktop/squid-game-uTwurYAT?format=jpg 2x
+        "
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+            alt="Backdrop"
+        >
+    </picture>
+</div>
+        <div class="container-fluid px-2 px-md-3 px-lg-3 px-xl-4 position-relative" style="z-index:1">
+
+            <nav aria-label="breadcrumb" class="pb-0 pb-md-1 pb-lg-2 pt-1 small">
+    <ol class="breadcrumb bg-transparent m-0">
+                                                <li class="breadcrumb-item ">
+                    <a href="/" class="link-light text-decoration-none" title="Startseite">
+                        Startseite
+                    </a>
+                </li>
+                                                            <li class="breadcrumb-item ">
+                    <a href="/serien" class="link-light text-decoration-none" title="Serien">
+                        Serien
+                    </a>
+                </li>
+                                                            <li class="breadcrumb-item show-name">
+                    <a href="/serie/squid-game" class="link-light text-decoration-none" title="Squid Game">
+                        Squid Game
+                    </a>
+                </li>
+                                                            <li class="breadcrumb-item active text-white " aria-current="page" title="Staffel 1">
+                    Staffel 1
+                </li>
+                        </ol>
+</nav>
+
+            
+            <div class="row g-4 mb-2">
+    
+    <div class="col-12 col-md-9 col-lg-10 text-light">
+                    <button type="button"
+                    class="btn btn-glass float-end btn-compact"
+                    data-bs-toggle="modal"
+                    data-bs-target="#trailerModal"
+                    data-trailer-url="https://example.com/watch?v=ALJ5EPWAfsc">
+                <svg 
+    class="icon me-1"
+            viewBox="0 0 448 512"
+    fill="currentColor"
+    aria-hidden="true"
+    style="display: inline-block; vertical-align: middle; flex-shrink: 0;"
+>
+    <use href="#icon-play"></use>
+</svg>
+
+                <span>Trailer</span>
+            </button>
+        
+        
+        <div class="d-md-none float-end text-end show-cover-mobile" style="max-width: 120px; clear: right;">
+            <picture>
+    
+    <source
+        type="image/avif"
+        data-srcset="
+      /media/images/channel/mobile/squid-game-ugrenvcm?format=avif         375w,
+      /media/images/channel/tablet/squid-game-ugrenvcm?format=avif         768w,
+      /media/images/channel/desktop/squid-game-ugrenvcm?format=avif       1024w
+    "
+        sizes="(max-width: 600px) 375px,
+           (max-width: 992px) 768px,
+           1024px">
+
+    
+    <source
+        type="image/webp"
+        data-srcset="
+      /media/images/channel/mobile/squid-game-ugrenvcm?format=webp         375w,
+      /media/images/channel/tablet/squid-game-ugrenvcm?format=webp         768w,
+      /media/images/channel/desktop/squid-game-ugrenvcm?format=webp       1024w
+    "
+        sizes="(max-width: 600px) 375px,
+           (max-width: 992px) 768px,
+           1024px">
+
+    
+    <img
+        data-src="/media/images/channel/desktop/squid-game-ugrenvcm?format=jpg"
+        data-srcset="
+      /media/images/channel/desktop/squid-game-ugrenvcm?format=jpg      1x,
+      /media/images/channel/2x-desktop/squid-game-ugrenvcm?format=jpg   2x
+    "
+        src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+        alt="Squid Game"
+        class="img-fluid w-100">
+</picture>
+                    </div>
+
+        <h1 class="h2 mb-1 fw-bold">
+            Squid Game
+                                </h1>
+        <p class="small text-muted mb-2">
+
+                            <a class="small text-muted" href="/jahr/2021">2021</a>
+                        –
+                            <a class="small text-muted" href="/jahr/2025">2025</a>
+                        &bull;
+            FSK 18
+                            &bull;
+                <a href="https://example.com/title/tt10919420/"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="small text-muted">
+                    IMDb
+                </a>
+                    </p>
+
+        <div class="series-description" id="series-desc-7388">
+            <p class="clamped">
+                <span class="description-text">Ein mysteriöses Überlebens-Spiel verspricht einen Gewinn von 45.6 Milliarden Won. Die kann Seong Gi-Hun (Lee Jung-jae) gut gebrauchen, denn sein Leben ist eine einzige Talfahrt. Er lebt bei seiner Mutter, leidet an Spielsucht und hat kaum Geld, um seine Tochter finanziell zu versorgen. Das könnte sich alles ändern, als er auf einen rätselhaften Fremden trifft.</span>
+            </p>
+                            <button
+                    type="button"
+                    class="show-more-toggle"
+                    data-expanded="false"
+                    style="display: none;"
+                >Mehr anzeigen</button>
+                    </div>
+        <script>
+            (function() {
+                function initDescriptionToggle() {
+                    const descId = 'series-desc-7388';
+                    const wrapper = document.getElementById(descId);
+                    if (!wrapper) {
+                        setTimeout(initDescriptionToggle, 100);
+                        return;
+                    }
+
+                    const textEl = wrapper.querySelector('.description-text');
+                    const btn = wrapper.querySelector('.show-more-toggle');
+                    const p = wrapper.querySelector('p');
+                    if (!textEl || !p) return;
+                    if (!btn) return;
+
+                    const originalText = textEl.textContent.trim();
+                    if (!originalText) return;
+
+                    let isExpanded = false;
+
+                    function checkAndTruncate() {
+                        if (p.offsetWidth === 0) {
+                            setTimeout(checkAndTruncate, 100);
+                            return;
+                        }
+
+                        // First check if text needs truncation by comparing heights
+                        const tempFull = document.createElement('div');
+                        const computedStyle = window.getComputedStyle(p);
+                        tempFull.style.cssText = 'position:absolute;visibility:hidden;width:' + p.offsetWidth + 'px;font-size:' + computedStyle.fontSize + ';font-family:' + computedStyle.fontFamily + ';line-height:' + computedStyle.lineHeight + ';padding:' + computedStyle.padding + ';white-space:normal;word-wrap:break-word;box-sizing:border-box;';
+                        tempFull.textContent = originalText;
+                        document.body.appendChild(tempFull);
+
+                        const lineHeight = parseFloat(computedStyle.lineHeight) || 24;
+                        const maxHeight = lineHeight * 3;
+                        const needsTruncation = tempFull.offsetHeight > maxHeight;
+                        document.body.removeChild(tempFull);
+
+                        if (!needsTruncation) {
+                            btn.style.display = 'none';
+                            return;
+                        }
+
+                        // Text needs truncation, find the right point
+                        const temp = document.createElement('div');
+                        temp.style.cssText = tempFull.style.cssText;
+                        document.body.appendChild(temp);
+
+                        const btnText = 'Mehr anzeigen';
+                        let left = 0;
+                        let right = originalText.length;
+                        let bestFit = '';
+
+                        while (left <= right) {
+                            const mid = Math.floor((left + right) / 2);
+                            const testText = originalText.substring(0, mid) + '... ' + btnText;
+                            temp.textContent = testText;
+
+                            if (temp.offsetHeight <= maxHeight) {
+                                bestFit = originalText.substring(0, mid);
+                                left = mid + 1;
+                            } else {
+                                right = mid - 1;
+                            }
+                        }
+
+                        document.body.removeChild(temp);
+
+                        if (bestFit.length > 0 && bestFit.length < originalText.length) {
+                            textEl.textContent = bestFit;
+                            btn.style.display = 'inline';
+                        } else {
+                            btn.style.display = 'none';
+                        }
+                    }
+
+                    function toggleDescription(e) {
+                        e.preventDefault();
+                        isExpanded = !isExpanded;
+
+                        if (isExpanded) {
+                            textEl.textContent = originalText;
+                            btn.textContent = 'Weniger anzeigen';
+                            p.classList.remove('clamped');
+                        } else {
+                            checkAndTruncate();
+                            btn.textContent = 'Mehr anzeigen';
+                            p.classList.add('clamped');
+                        }
+                    }
+
+                    btn.addEventListener('click', toggleDescription);
+                    setTimeout(checkAndTruncate, 150);
+
+                    let resizeTimer;
+                    window.addEventListener('resize', function() {
+                        clearTimeout(resizeTimer);
+                        resizeTimer = setTimeout(function() {
+                            if (!isExpanded) {
+                                checkAndTruncate();
+                            }
+                        }, 250);
+                    });
+                }
+
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', initDescriptionToggle);
+                } else {
+                    setTimeout(initDescriptionToggle, 50);
+                }
+            })();
+        </script>
+
+        
+
+        <ul class="mt-2 mb-3 list-unstyled d-flex flex-wrap gap-4 row-gap-1 small">
+                            
+                <li class="series-group">
+                    <strong class="me-1">Regisseur:</strong>
+
+                    
+                                            <a href="/regisseur/dong-hyuk-hwang" class="link-light">Dong-hyuk Hwang</a>                    
+                    
+                                    </li>
+                            
+                <li class="series-group">
+                    <strong class="me-1">Produzent:</strong>
+
+                    
+                                            <a href="/produzent/dong-hyuk-hwang" class="link-light">Dong-hyuk Hwang</a>                    
+                    
+                                    </li>
+                            
+                <li class="series-group">
+                    <strong class="me-1">Besetzung:</strong>
+
+                    
+                                            <a href="/schauspieler/lee-jung-jae" class="link-light">Lee Jung-jae</a>,                                            <a href="/schauspieler/park-hae-soo" class="link-light">Park Hae-soo</a>,                                            <a href="/schauspieler/wi-ha-jun" class="link-light">Wi Ha-jun</a>                    
+                    
+                                            <span class="extra-items d-none">
+                                                    , <a href="/schauspieler/heo-sung-tae" class="link-light">Heo Sung-tae</a>
+                                                            , <a href="/schauspieler/kim-joo-ryoung" class="link-light">Kim Joo-ryoung</a>
+                                                            , <a href="/schauspieler/jung-ho-yeon" class="link-light">Jung Ho-yeon</a>
+                                                            , <a href="/schauspieler/lee-you-mi" class="link-light">Lee You-mi</a>
+                                                            , <a href="/schauspieler/anupam-tripathi" class="link-light">Anupam Tripathi</a>
+                                                            , <a href="/schauspieler/gong-yoo" class="link-light">Gong Yoo</a>
+                                                            , <a href="/schauspieler/yoo-sung-ju" class="link-light">Yoo Sung-ju</a>
+                                                            , <a href="/schauspieler/oh-yeong-su" class="link-light">Oh Yeong-su</a>
+                                                            , <a href="/schauspieler/shawna" class="link-light">Shawna</a>
+                                            </span>
+
+                        <button
+                            type="button"
+                            class="btn btn-sm text-white-50 p-0 toggle-more"
+                            data-count="9"
+                            aria-expanded="false"
+                        >
+                            &amp; 9 mehr
+                        </button>
+                                    </li>
+                            
+                <li class="series-group">
+                    <strong class="me-1">Land:</strong>
+
+                    
+                                            <a href="/land/sdkorea" class="link-light">Südkorea</a>                    
+                    
+                                    </li>
+                            
+                <li class="series-group">
+                    <strong class="me-1">Genre:</strong>
+
+                    
+                                            <a href="/genre/thriller" class="link-light">Thriller</a>,                                            <a href="/genre/abenteuer" class="link-light">Abenteuer</a>,                                            <a href="/genre/action" class="link-light">Action</a>                    
+                    
+                                            <span class="extra-items d-none">
+                                                    , <a href="/genre/drama" class="link-light">Drama</a>
+                                                            , <a href="/genre/mystery" class="link-light">Mystery</a>
+                                                            , <a href="/genre/k-drama" class="link-light">K-Drama</a>
+                                                            , <a href="/genre/krimi" class="link-light">Krimi</a>
+                                            </span>
+
+                        <button
+                            type="button"
+                            class="btn btn-sm text-white-50 p-0 toggle-more"
+                            data-count="4"
+                            aria-expanded="false"
+                        >
+                            &amp; 4 mehr
+                        </button>
+                                    </li>
+                    </ul>
+
+        
+        <div class="row align-items-center d-none d-md-flex">
+            <div class="col">
+                <div class="p-2 small px-3" style=" background: #44adf34f; border: 1px solid #44adf3b0; border-radius: 3rem;display: inline-block;">Du kannst dich <a href="/login" class="text-white">anmelden</a> oder <a href="/registrierung" class="text-white">registrieren</a> (kostenlos), um gesehene Episoden zu speichern. </div>
+            </div>
+            <div class="col-auto ms-auto">
+                                    <div class="d-flex align-items-center mb-3">
+                        <div class="d-flex align-items-center gap-1 p-2">
+                            <span class="small text-white-50">
+                                                                1,047 Bewertungen
+                            </span>
+                        </div>
+                    </div>
+                            </div>
+        </div>
+
+        
+        <div class="d-md-none">
+            <div class="p-2 small px-3" style=" background: #44adf34f; border: 1px solid #44adf3b0; border-radius: 3rem;display: inline-block;">Du kannst dich <a href="/login" class="text-white">anmelden</a> oder <a href="/registrierung" class="text-white">registrieren</a> (kostenlos), um gesehene Episoden zu speichern. </div>
+                            <div class="d-flex align-items-center mb-3">
+                    <div class=d-flex align-items-center gap-1 p-2">
+                        <span class="small text-white-50">
+                            0 Bewertungen
+                        </span>
+                    </div>
+                </div>
+                    </div>
+
+    </div>
+
+    
+    <div class="col-3 col-md-3 col-lg-2 d-none d-md-block">
+        <picture>
+    
+    <source
+        type="image/avif"
+        data-srcset="
+      /media/images/channel/mobile/squid-game-ugrenvcm?format=avif         375w,
+      /media/images/channel/tablet/squid-game-ugrenvcm?format=avif         768w,
+      /media/images/channel/desktop/squid-game-ugrenvcm?format=avif       1024w
+    "
+        sizes="(max-width: 600px) 375px,
+           (max-width: 992px) 768px,
+           1024px">
+
+    
+    <source
+        type="image/webp"
+        data-srcset="
+      /media/images/channel/mobile/squid-game-ugrenvcm?format=webp         375w,
+      /media/images/channel/tablet/squid-game-ugrenvcm?format=webp         768w,
+      /media/images/channel/desktop/squid-game-ugrenvcm?format=webp       1024w
+    "
+        sizes="(max-width: 600px) 375px,
+           (max-width: 992px) 768px,
+           1024px">
+
+    
+    <img
+        data-src="/media/images/channel/desktop/squid-game-ugrenvcm?format=jpg"
+        data-srcset="
+      /media/images/channel/desktop/squid-game-ugrenvcm?format=jpg      1x,
+      /media/images/channel/2x-desktop/squid-game-ugrenvcm?format=jpg   2x
+    "
+        src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+        alt="Squid Game"
+        class="img-fluid w-100">
+</picture>
+            </div>
+</div>
+
+            
+            <nav class="mb-2" id="season-nav">
+    <ul class="nav list-items-nav">
+        <li class="nav-item me-2">
+            <span class="season-pills__label">Staffeln:</span>
+        </li>
+
+                    
+            <li class="nav-item me-1 mb-2">
+                <a
+                    href="/serie/squid-game/staffel-1"
+                    class="alphabet-link nav-link bg-primary "
+                    data-season-pill="1"
+                > 1 </a>
+            </li>
+                    
+            <li class="nav-item me-1 mb-2">
+                <a
+                    href="/serie/squid-game/staffel-2"
+                    class="alphabet-link nav-link  "
+                    data-season-pill="2"
+                > 2 </a>
+            </li>
+                    
+            <li class="nav-item me-1 mb-2">
+                <a
+                    href="/serie/squid-game/staffel-3"
+                    class="alphabet-link nav-link  "
+                    data-season-pill="3"
+                > 3 </a>
+            </li>
+            </ul>
+</nav>
+
+            <nav class="mb-3" id="episode-nav">
+        <ul class="nav list-items-nav">
+            <li class="nav-item me-2">
+      <span class="season-pills__label">
+         Episoden:       </span>
+            </li>
+
+                            
+                <li class="nav-item me-1 mb-2">
+                    <a href="/serie/squid-game/staffel-1/episode-1"
+                       class=" alphabet-link nav-link   ">
+                        1
+                    </a>
+                </li>
+                            
+                <li class="nav-item me-1 mb-2">
+                    <a href="/serie/squid-game/staffel-1/episode-2"
+                       class=" alphabet-link nav-link   ">
+                        2
+                    </a>
+                </li>
+                            
+                <li class="nav-item me-1 mb-2">
+                    <a href="/serie/squid-game/staffel-1/episode-3"
+                       class=" alphabet-link nav-link   ">
+                        3
+                    </a>
+                </li>
+                            
+                <li class="nav-item me-1 mb-2">
+                    <a href="/serie/squid-game/staffel-1/episode-4"
+                       class=" alphabet-link nav-link   ">
+                        4
+                    </a>
+                </li>
+                            
+                <li class="nav-item me-1 mb-2">
+                    <a href="/serie/squid-game/staffel-1/episode-5"
+                       class=" alphabet-link nav-link   ">
+                        5
+                    </a>
+                </li>
+                            
+                <li class="nav-item me-1 mb-2">
+                    <a href="/serie/squid-game/staffel-1/episode-6"
+                       class=" alphabet-link nav-link   ">
+                        6
+                    </a>
+                </li>
+                            
+                <li class="nav-item me-1 mb-2">
+                    <a href="/serie/squid-game/staffel-1/episode-7"
+                       class=" alphabet-link nav-link   ">
+                        7
+                    </a>
+                </li>
+                            
+                <li class="nav-item me-1 mb-2">
+                    <a href="/serie/squid-game/staffel-1/episode-8"
+                       class=" alphabet-link nav-link   ">
+                        8
+                    </a>
+                </li>
+                            
+                <li class="nav-item me-1 mb-2">
+                    <a href="/serie/squid-game/staffel-1/episode-9"
+                       class=" alphabet-link nav-link   ">
+                        9
+                    </a>
+                </li>
+                    </ul>
+    </nav>
+
+            
+
+            <section class="episode-section mt-4">
+    <div class="d-flex justify-content-between align-items-center mt-3 mb-2">
+        <h2 class="h3 m-0 fw-bold"> Staffel 1 </h2>
+            </div>
+
+    <div class="table-responsive episode-table-wrap shadow-sm rounded-4 overflow-hidden mt-2">
+        <table class="table episode-table table-borderless align-middle mb-0 bg-transparent">
+            <thead class="table-dark sticky-top top-0">
+            <tr class="text-uppercase small letter-spacing-1">
+                <th scope="col" class="col-1 text-center fw-semibold">#</th>
+                                <th scope="col" class=" col-6 ">Titel</th>
+                <th scope="col" class="col-3 text-end">Wo anschauen</th>
+                <th scope="col" class="col-2 text-end">Sprache</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            
+                
+                
+                <tr
+                    class="episode-row  "
+                    onclick="window.location='/serie/squid-game/staffel-1/episode-1'"
+                >
+                    <th scope="row" class="text-center fw-semibold episode-number-cell">1</th>
+                    
+                    
+                    <td class="fw-medium episode-title-cell">
+                        <strong class="d-block episode-title-ger" title="Rotes Licht, grünes Licht">Rotes Licht, grünes Licht</strong>
+                        <span class="text-white-50 episode-title-eng" title="Red Light, Green Light">
+                Red Light, Green Light
+            </span>
+
+                                            </td>
+
+                    
+                    <td class="episode-watch-cell">
+                                                    <div class="text-end gap-1 d-flex justify-content-end align-items-center">
+                                                                                                            <img src="/storage/providers/voe.svg" 
+                                             alt="VOE" 
+                                             title="VOE" 
+                                             class="watch-link" 
+                                             width="32" 
+                                             height="32"
+                                             style="object-fit: contain; display: block;">
+                                                                                                </div>
+                                            </td>
+                    
+                    <td class="text-end episode-language-cell">
+                                                                                    <svg class="watch-language large svg-flag-german" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-german"></use>
+                                </svg>
+                                                            <svg class="watch-language large svg-flag-english" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-english"></use>
+                                </svg>
+                                                            <svg class="watch-language large svg-flag-english-german" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-english-german"></use>
+                                </svg>
+                                                                        </td>
+                </tr>
+            
+                
+                
+                <tr
+                    class="episode-row  "
+                    onclick="window.location='/serie/squid-game/staffel-1/episode-2'"
+                >
+                    <th scope="row" class="text-center fw-semibold episode-number-cell">2</th>
+                    
+                    
+                    <td class="fw-medium episode-title-cell">
+                        <strong class="d-block episode-title-ger" title="Hölle">Hölle</strong>
+                        <span class="text-white-50 episode-title-eng" title="Hell">
+                Hell
+            </span>
+
+                                            </td>
+
+                    
+                    <td class="episode-watch-cell">
+                                                    <div class="text-end gap-1 d-flex justify-content-end align-items-center">
+                                                                                                            <img src="/storage/providers/voe.svg" 
+                                             alt="VOE" 
+                                             title="VOE" 
+                                             class="watch-link" 
+                                             width="32" 
+                                             height="32"
+                                             style="object-fit: contain; display: block;">
+                                                                                                </div>
+                                            </td>
+                    
+                    <td class="text-end episode-language-cell">
+                                                                                    <svg class="watch-language large svg-flag-german" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-german"></use>
+                                </svg>
+                                                            <svg class="watch-language large svg-flag-english" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-english"></use>
+                                </svg>
+                                                            <svg class="watch-language large svg-flag-english-german" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-english-german"></use>
+                                </svg>
+                                                                        </td>
+                </tr>
+            
+                
+                
+                <tr
+                    class="episode-row  "
+                    onclick="window.location='/serie/squid-game/staffel-1/episode-3'"
+                >
+                    <th scope="row" class="text-center fw-semibold episode-number-cell">3</th>
+                    
+                    
+                    <td class="fw-medium episode-title-cell">
+                        <strong class="d-block episode-title-ger" title="Der Mann mit dem Schirm">Der Mann mit dem Schirm</strong>
+                        <span class="text-white-50 episode-title-eng" title="The Man with the Umbrella">
+                The Man with the Umbrella
+            </span>
+
+                                            </td>
+
+                    
+                    <td class="episode-watch-cell">
+                                                    <div class="text-end gap-1 d-flex justify-content-end align-items-center">
+                                                                                                            <img src="/storage/providers/voe.svg" 
+                                             alt="VOE" 
+                                             title="VOE" 
+                                             class="watch-link" 
+                                             width="32" 
+                                             height="32"
+                                             style="object-fit: contain; display: block;">
+                                                                                                </div>
+                                            </td>
+                    
+                    <td class="text-end episode-language-cell">
+                                                                                    <svg class="watch-language large svg-flag-german" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-german"></use>
+                                </svg>
+                                                            <svg class="watch-language large svg-flag-english" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-english"></use>
+                                </svg>
+                                                            <svg class="watch-language large svg-flag-english-german" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-english-german"></use>
+                                </svg>
+                                                                        </td>
+                </tr>
+            
+                
+                
+                <tr
+                    class="episode-row  "
+                    onclick="window.location='/serie/squid-game/staffel-1/episode-4'"
+                >
+                    <th scope="row" class="text-center fw-semibold episode-number-cell">4</th>
+                    
+                    
+                    <td class="fw-medium episode-title-cell">
+                        <strong class="d-block episode-title-ger" title="Zum Team halten">Zum Team halten</strong>
+                        <span class="text-white-50 episode-title-eng" title="Stick to the Team">
+                Stick to the Team
+            </span>
+
+                                            </td>
+
+                    
+                    <td class="episode-watch-cell">
+                                                    <div class="text-end gap-1 d-flex justify-content-end align-items-center">
+                                                                                                            <img src="/storage/providers/voe.svg" 
+                                             alt="VOE" 
+                                             title="VOE" 
+                                             class="watch-link" 
+                                             width="32" 
+                                             height="32"
+                                             style="object-fit: contain; display: block;">
+                                                                                                </div>
+                                            </td>
+                    
+                    <td class="text-end episode-language-cell">
+                                                                                    <svg class="watch-language large svg-flag-german" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-german"></use>
+                                </svg>
+                                                            <svg class="watch-language large svg-flag-english" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-english"></use>
+                                </svg>
+                                                            <svg class="watch-language large svg-flag-english-german" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-english-german"></use>
+                                </svg>
+                                                                        </td>
+                </tr>
+            
+                
+                
+                <tr
+                    class="episode-row  "
+                    onclick="window.location='/serie/squid-game/staffel-1/episode-5'"
+                >
+                    <th scope="row" class="text-center fw-semibold episode-number-cell">5</th>
+                    
+                    
+                    <td class="fw-medium episode-title-cell">
+                        <strong class="d-block episode-title-ger" title="Eine gerechte Welt">Eine gerechte Welt</strong>
+                        <span class="text-white-50 episode-title-eng" title="A Fair World">
+                A Fair World
+            </span>
+
+                                            </td>
+
+                    
+                    <td class="episode-watch-cell">
+                                                    <div class="text-end gap-1 d-flex justify-content-end align-items-center">
+                                                                                                            <img src="/storage/providers/voe.svg" 
+                                             alt="VOE" 
+                                             title="VOE" 
+                                             class="watch-link" 
+                                             width="32" 
+                                             height="32"
+                                             style="object-fit: contain; display: block;">
+                                                                                                </div>
+                                            </td>
+                    
+                    <td class="text-end episode-language-cell">
+                                                                                    <svg class="watch-language large svg-flag-german" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-german"></use>
+                                </svg>
+                                                            <svg class="watch-language large svg-flag-english" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-english"></use>
+                                </svg>
+                                                            <svg class="watch-language large svg-flag-english-german" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-english-german"></use>
+                                </svg>
+                                                                        </td>
+                </tr>
+            
+                
+                
+                <tr
+                    class="episode-row  "
+                    onclick="window.location='/serie/squid-game/staffel-1/episode-6'"
+                >
+                    <th scope="row" class="text-center fw-semibold episode-number-cell">6</th>
+                    
+                    
+                    <td class="fw-medium episode-title-cell">
+                        <strong class="d-block episode-title-ger" title="Gganbu">Gganbu</strong>
+                        <span class="text-white-50 episode-title-eng" title="Gganbu">
+                Gganbu
+            </span>
+
+                                            </td>
+
+                    
+                    <td class="episode-watch-cell">
+                                                    <div class="text-end gap-1 d-flex justify-content-end align-items-center">
+                                                                                                            <img src="/storage/providers/voe.svg" 
+                                             alt="VOE" 
+                                             title="VOE" 
+                                             class="watch-link" 
+                                             width="32" 
+                                             height="32"
+                                             style="object-fit: contain; display: block;">
+                                                                                                </div>
+                                            </td>
+                    
+                    <td class="text-end episode-language-cell">
+                                                                                    <svg class="watch-language large svg-flag-german" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-german"></use>
+                                </svg>
+                                                            <svg class="watch-language large svg-flag-english" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-english"></use>
+                                </svg>
+                                                            <svg class="watch-language large svg-flag-english-german" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-english-german"></use>
+                                </svg>
+                                                                        </td>
+                </tr>
+            
+                
+                
+                <tr
+                    class="episode-row  "
+                    onclick="window.location='/serie/squid-game/staffel-1/episode-7'"
+                >
+                    <th scope="row" class="text-center fw-semibold episode-number-cell">7</th>
+                    
+                    
+                    <td class="fw-medium episode-title-cell">
+                        <strong class="d-block episode-title-ger" title="Die VIPs">Die VIPs</strong>
+                        <span class="text-white-50 episode-title-eng" title="VIPS">
+                VIPS
+            </span>
+
+                                            </td>
+
+                    
+                    <td class="episode-watch-cell">
+                                                    <div class="text-end gap-1 d-flex justify-content-end align-items-center">
+                                                                                                            <img src="/storage/providers/voe.svg" 
+                                             alt="VOE" 
+                                             title="VOE" 
+                                             class="watch-link" 
+                                             width="32" 
+                                             height="32"
+                                             style="object-fit: contain; display: block;">
+                                                                                                </div>
+                                            </td>
+                    
+                    <td class="text-end episode-language-cell">
+                                                                                    <svg class="watch-language large svg-flag-german" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-german"></use>
+                                </svg>
+                                                            <svg class="watch-language large svg-flag-english" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-english"></use>
+                                </svg>
+                                                            <svg class="watch-language large svg-flag-english-german" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-english-german"></use>
+                                </svg>
+                                                                        </td>
+                </tr>
+            
+                
+                
+                <tr
+                    class="episode-row  "
+                    onclick="window.location='/serie/squid-game/staffel-1/episode-8'"
+                >
+                    <th scope="row" class="text-center fw-semibold episode-number-cell">8</th>
+                    
+                    
+                    <td class="fw-medium episode-title-cell">
+                        <strong class="d-block episode-title-ger" title="Frontmann">Frontmann</strong>
+                        <span class="text-white-50 episode-title-eng" title="Front Man">
+                Front Man
+            </span>
+
+                                            </td>
+
+                    
+                    <td class="episode-watch-cell">
+                                                    <div class="text-end gap-1 d-flex justify-content-end align-items-center">
+                                                                                                            <img src="/storage/providers/voe.svg" 
+                                             alt="VOE" 
+                                             title="VOE" 
+                                             class="watch-link" 
+                                             width="32" 
+                                             height="32"
+                                             style="object-fit: contain; display: block;">
+                                                                                                </div>
+                                            </td>
+                    
+                    <td class="text-end episode-language-cell">
+                                                                                    <svg class="watch-language large svg-flag-german" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-german"></use>
+                                </svg>
+                                                            <svg class="watch-language large svg-flag-english" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-english"></use>
+                                </svg>
+                                                            <svg class="watch-language large svg-flag-english-german" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-english-german"></use>
+                                </svg>
+                                                                        </td>
+                </tr>
+            
+                
+                
+                <tr
+                    class="episode-row  "
+                    onclick="window.location='/serie/squid-game/staffel-1/episode-9'"
+                >
+                    <th scope="row" class="text-center fw-semibold episode-number-cell">9</th>
+                    
+                    
+                    <td class="fw-medium episode-title-cell">
+                        <strong class="d-block episode-title-ger" title="Glückstag">Glückstag</strong>
+                        <span class="text-white-50 episode-title-eng" title="One Lucky Day">
+                One Lucky Day
+            </span>
+
+                                            </td>
+
+                    
+                    <td class="episode-watch-cell">
+                                                    <div class="text-end gap-1 d-flex justify-content-end align-items-center">
+                                                                                                            <img src="/storage/providers/voe.svg" 
+                                             alt="VOE" 
+                                             title="VOE" 
+                                             class="watch-link" 
+                                             width="32" 
+                                             height="32"
+                                             style="object-fit: contain; display: block;">
+                                                                                                </div>
+                                            </td>
+                    
+                    <td class="text-end episode-language-cell">
+                                                                                    <svg class="watch-language large svg-flag-german" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-german"></use>
+                                </svg>
+                                                            <svg class="watch-language large svg-flag-english" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-english"></use>
+                                </svg>
+                                                            <svg class="watch-language large svg-flag-english-german" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-english-german"></use>
+                                </svg>
+                                                                        </td>
+                </tr>
+                        </tbody>
+        </table>
+    </div>
+
+</section>
+
+
+            
+            
+            <section class="continue-widget mt-4">
+    <h2 class="text-primary fw-bold h5 mb-3">Das schauen andere</h2>
+
+    <div class="d-flex align-items-stretch">
+        
+        <div class="continue-swiper swiper flex-grow-1 me-2">
+            <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/arcane" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+                                    
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/arcane-ke1wp3k6?format=avif 375w,
+                                            /media/images/channel/tablet/arcane-ke1wp3k6?format=avif 768w,
+                                            /media/images/channel/desktop/arcane-ke1wp3k6?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/arcane-ke1wp3k6?format=webp 375w,
+                                            /media/images/channel/tablet/arcane-ke1wp3k6?format=webp 768w,
+                                            /media/images/channel/desktop/arcane-ke1wp3k6?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <img data-src="/media/images/channel/desktop/arcane-ke1wp3k6?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="Arcane"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/arcane" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">Arcane</span>
+                                    <span class="d-block text-muted">Animation</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/my-name" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+                                    
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/my-name-8ptu5n4z?format=avif 375w,
+                                            /media/images/channel/tablet/my-name-8ptu5n4z?format=avif 768w,
+                                            /media/images/channel/desktop/my-name-8ptu5n4z?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/my-name-8ptu5n4z?format=webp 375w,
+                                            /media/images/channel/tablet/my-name-8ptu5n4z?format=webp 768w,
+                                            /media/images/channel/desktop/my-name-8ptu5n4z?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <img data-src="/media/images/channel/desktop/my-name-8ptu5n4z?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="My Name"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/my-name" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">My Name</span>
+                                    <span class="d-block text-muted">Action</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/das-rad-der-zeit" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+                                    
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/das-rad-der-zeit-ssvo58sn?format=avif 375w,
+                                            /media/images/channel/tablet/das-rad-der-zeit-ssvo58sn?format=avif 768w,
+                                            /media/images/channel/desktop/das-rad-der-zeit-ssvo58sn?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/das-rad-der-zeit-ssvo58sn?format=webp 375w,
+                                            /media/images/channel/tablet/das-rad-der-zeit-ssvo58sn?format=webp 768w,
+                                            /media/images/channel/desktop/das-rad-der-zeit-ssvo58sn?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <img data-src="/media/images/channel/desktop/das-rad-der-zeit-ssvo58sn?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="Das Rad der Zeit"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/das-rad-der-zeit" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">Das Rad der Zeit</span>
+                                    <span class="d-block text-muted">Fantasy</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/hellbound" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+                                    
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/hellbound-qg10toqh?format=avif 375w,
+                                            /media/images/channel/tablet/hellbound-qg10toqh?format=avif 768w,
+                                            /media/images/channel/desktop/hellbound-qg10toqh?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/hellbound-qg10toqh?format=webp 375w,
+                                            /media/images/channel/tablet/hellbound-qg10toqh?format=webp 768w,
+                                            /media/images/channel/desktop/hellbound-qg10toqh?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <img data-src="/media/images/channel/desktop/hellbound-qg10toqh?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="Hellbound"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/hellbound" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">Hellbound</span>
+                                    <span class="d-block text-muted">Horror</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/dp" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+                                    
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/dp-f1tb6dji?format=avif 375w,
+                                            /media/images/channel/tablet/dp-f1tb6dji?format=avif 768w,
+                                            /media/images/channel/desktop/dp-f1tb6dji?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/dp-f1tb6dji?format=webp 375w,
+                                            /media/images/channel/tablet/dp-f1tb6dji?format=webp 768w,
+                                            /media/images/channel/desktop/dp-f1tb6dji?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <img data-src="/media/images/channel/desktop/dp-f1tb6dji?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="D.P."
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/dp" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">D.P.</span>
+                                    <span class="d-block text-muted">Action</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/dr-brain" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+                                    
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/dr-brain-kkornwby?format=avif 375w,
+                                            /media/images/channel/tablet/dr-brain-kkornwby?format=avif 768w,
+                                            /media/images/channel/desktop/dr-brain-kkornwby?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/dr-brain-kkornwby?format=webp 375w,
+                                            /media/images/channel/tablet/dr-brain-kkornwby?format=webp 768w,
+                                            /media/images/channel/desktop/dr-brain-kkornwby?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <img data-src="/media/images/channel/desktop/dr-brain-kkornwby?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="Dr. Brain"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/dr-brain" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">Dr. Brain</span>
+                                    <span class="d-block text-muted">Science Fiction</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/foundation" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+                                    
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/foundation-6zikucyu?format=avif 375w,
+                                            /media/images/channel/tablet/foundation-6zikucyu?format=avif 768w,
+                                            /media/images/channel/desktop/foundation-6zikucyu?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/foundation-6zikucyu?format=webp 375w,
+                                            /media/images/channel/tablet/foundation-6zikucyu?format=webp 768w,
+                                            /media/images/channel/desktop/foundation-6zikucyu?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <img data-src="/media/images/channel/desktop/foundation-6zikucyu?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="Foundation"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/foundation" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">Foundation</span>
+                                    <span class="d-block text-muted">Science Fiction</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/cowboy-bebop-2021" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+                                    
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/cowboy-bebop-2021-ojcnvioz?format=avif 375w,
+                                            /media/images/channel/tablet/cowboy-bebop-2021-ojcnvioz?format=avif 768w,
+                                            /media/images/channel/desktop/cowboy-bebop-2021-ojcnvioz?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/cowboy-bebop-2021-ojcnvioz?format=webp 375w,
+                                            /media/images/channel/tablet/cowboy-bebop-2021-ojcnvioz?format=webp 768w,
+                                            /media/images/channel/desktop/cowboy-bebop-2021-ojcnvioz?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <img data-src="/media/images/channel/desktop/cowboy-bebop-2021-ojcnvioz?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="Cowboy Bebop (2021)"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/cowboy-bebop-2021" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">Cowboy Bebop (2021)</span>
+                                    <span class="d-block text-muted">Science Fiction</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/american-horror-stories" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+                                    
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/american-horror-stories-ulnz9qta?format=avif 375w,
+                                            /media/images/channel/tablet/american-horror-stories-ulnz9qta?format=avif 768w,
+                                            /media/images/channel/desktop/american-horror-stories-ulnz9qta?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/american-horror-stories-ulnz9qta?format=webp 375w,
+                                            /media/images/channel/tablet/american-horror-stories-ulnz9qta?format=webp 768w,
+                                            /media/images/channel/desktop/american-horror-stories-ulnz9qta?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <img data-src="/media/images/channel/desktop/american-horror-stories-ulnz9qta?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="American Horror Stories"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/american-horror-stories" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">American Horror Stories</span>
+                                    <span class="d-block text-muted">Horror</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/chucky" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+                                    
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/chucky-qh8b7w9r?format=avif 375w,
+                                            /media/images/channel/tablet/chucky-qh8b7w9r?format=avif 768w,
+                                            /media/images/channel/desktop/chucky-qh8b7w9r?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/chucky-qh8b7w9r?format=webp 375w,
+                                            /media/images/channel/tablet/chucky-qh8b7w9r?format=webp 768w,
+                                            /media/images/channel/desktop/chucky-qh8b7w9r?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <img data-src="/media/images/channel/desktop/chucky-qh8b7w9r?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="Chucky"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/chucky" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">Chucky</span>
+                                    <span class="d-block text-muted">Horror</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/only-murders-in-the-building" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+                                    
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/only-murders-in-the-building-now81312?format=avif 375w,
+                                            /media/images/channel/tablet/only-murders-in-the-building-now81312?format=avif 768w,
+                                            /media/images/channel/desktop/only-murders-in-the-building-now81312?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/only-murders-in-the-building-now81312?format=webp 375w,
+                                            /media/images/channel/tablet/only-murders-in-the-building-now81312?format=webp 768w,
+                                            /media/images/channel/desktop/only-murders-in-the-building-now81312?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <img data-src="/media/images/channel/desktop/only-murders-in-the-building-now81312?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="Only Murders in the Building"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/only-murders-in-the-building" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">Only Murders in the Building</span>
+                                    <span class="d-block text-muted">Drama</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/dexter-new-blood" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+                                    
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/dexter-new-blood-196yvaxc?format=avif 375w,
+                                            /media/images/channel/tablet/dexter-new-blood-196yvaxc?format=avif 768w,
+                                            /media/images/channel/desktop/dexter-new-blood-196yvaxc?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/dexter-new-blood-196yvaxc?format=webp 375w,
+                                            /media/images/channel/tablet/dexter-new-blood-196yvaxc?format=webp 768w,
+                                            /media/images/channel/desktop/dexter-new-blood-196yvaxc?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <img data-src="/media/images/channel/desktop/dexter-new-blood-196yvaxc?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="Dexter: New Blood"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/dexter-new-blood" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">Dexter: New Blood</span>
+                                    <span class="d-block text-muted">Krimi</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/la-brea" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+                                    
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/la-brea-zllfz2e1?format=avif 375w,
+                                            /media/images/channel/tablet/la-brea-zllfz2e1?format=avif 768w,
+                                            /media/images/channel/desktop/la-brea-zllfz2e1?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/la-brea-zllfz2e1?format=webp 375w,
+                                            /media/images/channel/tablet/la-brea-zllfz2e1?format=webp 768w,
+                                            /media/images/channel/desktop/la-brea-zllfz2e1?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <img data-src="/media/images/channel/desktop/la-brea-zllfz2e1?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="La Brea"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/la-brea" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">La Brea</span>
+                                    <span class="d-block text-muted">Mystery</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/what-if-2021" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+                                    
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/what-if-2021-ji82cdvq?format=avif 375w,
+                                            /media/images/channel/tablet/what-if-2021-ji82cdvq?format=avif 768w,
+                                            /media/images/channel/desktop/what-if-2021-ji82cdvq?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/what-if-2021-ji82cdvq?format=webp 375w,
+                                            /media/images/channel/tablet/what-if-2021-ji82cdvq?format=webp 768w,
+                                            /media/images/channel/desktop/what-if-2021-ji82cdvq?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <img data-src="/media/images/channel/desktop/what-if-2021-ji82cdvq?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="What If"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/what-if-2021" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">What If</span>
+                                    <span class="d-block text-muted">Animation</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/the-white-lotus" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+                                    
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/the-white-lotus-z4ihgmap?format=avif 375w,
+                                            /media/images/channel/tablet/the-white-lotus-z4ihgmap?format=avif 768w,
+                                            /media/images/channel/desktop/the-white-lotus-z4ihgmap?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/the-white-lotus-z4ihgmap?format=webp 375w,
+                                            /media/images/channel/tablet/the-white-lotus-z4ihgmap?format=webp 768w,
+                                            /media/images/channel/desktop/the-white-lotus-z4ihgmap?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <img data-src="/media/images/channel/desktop/the-white-lotus-z4ihgmap?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="The White Lotus"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/the-white-lotus" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">The White Lotus</span>
+                                    <span class="d-block text-muted">Dramedy</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/mayor-of-kingstown" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+                                    
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/mayor-of-kingstown-18fhuk5z?format=avif 375w,
+                                            /media/images/channel/tablet/mayor-of-kingstown-18fhuk5z?format=avif 768w,
+                                            /media/images/channel/desktop/mayor-of-kingstown-18fhuk5z?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/mayor-of-kingstown-18fhuk5z?format=webp 375w,
+                                            /media/images/channel/tablet/mayor-of-kingstown-18fhuk5z?format=webp 768w,
+                                            /media/images/channel/desktop/mayor-of-kingstown-18fhuk5z?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <img data-src="/media/images/channel/desktop/mayor-of-kingstown-18fhuk5z?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="Mayor of Kingstown"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/mayor-of-kingstown" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">Mayor of Kingstown</span>
+                                    <span class="d-block text-muted">Krimi</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/leverage-redemption" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+                                    
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/leverage-redemption-nzirpptr?format=avif 375w,
+                                            /media/images/channel/tablet/leverage-redemption-nzirpptr?format=avif 768w,
+                                            /media/images/channel/desktop/leverage-redemption-nzirpptr?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/leverage-redemption-nzirpptr?format=webp 375w,
+                                            /media/images/channel/tablet/leverage-redemption-nzirpptr?format=webp 768w,
+                                            /media/images/channel/desktop/leverage-redemption-nzirpptr?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <img data-src="/media/images/channel/desktop/leverage-redemption-nzirpptr?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="Leverage: Redemption"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/leverage-redemption" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">Leverage: Redemption</span>
+                                    <span class="d-block text-muted">Krimi</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/day-of-the-dead" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+                                    
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/day-of-the-dead-xvyfuvdm?format=avif 375w,
+                                            /media/images/channel/tablet/day-of-the-dead-xvyfuvdm?format=avif 768w,
+                                            /media/images/channel/desktop/day-of-the-dead-xvyfuvdm?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/day-of-the-dead-xvyfuvdm?format=webp 375w,
+                                            /media/images/channel/tablet/day-of-the-dead-xvyfuvdm?format=webp 768w,
+                                            /media/images/channel/desktop/day-of-the-dead-xvyfuvdm?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <img data-src="/media/images/channel/desktop/day-of-the-dead-xvyfuvdm?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="Day of the Dead"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/day-of-the-dead" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">Day of the Dead</span>
+                                    <span class="d-block text-muted">Horror</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/yellowjackets" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+                                    
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/yellowjackets-xq9j90bt?format=avif 375w,
+                                            /media/images/channel/tablet/yellowjackets-xq9j90bt?format=avif 768w,
+                                            /media/images/channel/desktop/yellowjackets-xq9j90bt?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/yellowjackets-xq9j90bt?format=webp 375w,
+                                            /media/images/channel/tablet/yellowjackets-xq9j90bt?format=webp 768w,
+                                            /media/images/channel/desktop/yellowjackets-xq9j90bt?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <img data-src="/media/images/channel/desktop/yellowjackets-xq9j90bt?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="Yellowjackets"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/yellowjackets" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">Yellowjackets</span>
+                                    <span class="d-block text-muted">Mystery</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/chapelwaite" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+                                    
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/chapelwaite-w97rfquh?format=avif 375w,
+                                            /media/images/channel/tablet/chapelwaite-w97rfquh?format=avif 768w,
+                                            /media/images/channel/desktop/chapelwaite-w97rfquh?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/chapelwaite-w97rfquh?format=webp 375w,
+                                            /media/images/channel/tablet/chapelwaite-w97rfquh?format=webp 768w,
+                                            /media/images/channel/desktop/chapelwaite-w97rfquh?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <img data-src="/media/images/channel/desktop/chapelwaite-w97rfquh?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="Chapelwaite"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/chapelwaite" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">Chapelwaite</span>
+                                    <span class="d-block text-muted">Drama</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/record-of-ragnarok" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+                                    
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/record-of-ragnarok-AAuJYWDZ?format=avif 375w,
+                                            /media/images/channel/tablet/record-of-ragnarok-AAuJYWDZ?format=avif 768w,
+                                            /media/images/channel/desktop/record-of-ragnarok-AAuJYWDZ?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/record-of-ragnarok-AAuJYWDZ?format=webp 375w,
+                                            /media/images/channel/tablet/record-of-ragnarok-AAuJYWDZ?format=webp 768w,
+                                            /media/images/channel/desktop/record-of-ragnarok-AAuJYWDZ?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+                                    
+                                    <img data-src="/media/images/channel/desktop/record-of-ragnarok-AAuJYWDZ?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="Record of Ragnarok"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/record-of-ragnarok" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">Record of Ragnarok</span>
+                                    <span class="d-block text-muted">Anime</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                            </div>
+        </div>
+
+        
+        
+        <div class="continue-nav d-flex flex-column">
+            <button class="continue-next btn-nav mb-2"><svg 
+    class="icon"
+            viewBox="0 0 320 512"
+    fill="currentColor"
+    aria-hidden="true"
+    style="display: inline-block; vertical-align: middle; flex-shrink: 0;"
+>
+    <use href="#icon-chevron-right"></use>
+</svg>
+
+</button>
+            <button class="continue-prev btn-nav mt-auto"><svg 
+    class="icon"
+            viewBox="0 0 320 512"
+    fill="currentColor"
+    aria-hidden="true"
+    style="display: inline-block; vertical-align: middle; flex-shrink: 0;"
+>
+    <use href="#icon-chevron-left"></use>
+</svg>
+
+</button>
+        </div>
+    </div>
+</section>
+            <h4 class="mt-4 mb-2 h5 fw-bold text-primary pb-1">Benutzer-Sammlungen mit Squid Game</h4>
+
+    <div class="row">
+                    <div class="col-12 col-md-4 col-lg-3 mb-2">
+                <a href="/sammlung/mix-tape-3127">
+                    <div class="card-mini card-mini-tile card-mini--tiny has-photo">
+                        <picture>
+                            
+                            <source type="image/avif"
+                                    data-srcset="
+            /media/images/backdrop/tile/hot-skull-lsi2ml31?format=avif 1x,
+            /media/images/backdrop/2x-tile/hot-skull-lsi2ml31?format=avif 2x
+          "
+                                    sizes="(max-width: 991.98px) 50vw, 25vw" />
+                            
+                            <source type="image/webp"
+                                    data-srcset="
+            /media/images/backdrop/tile/hot-skull-lsi2ml31?format=webp 1x,
+            /media/images/backdrop/2x-tile/hot-skull-lsi2ml31?format=webp 2x
+          "
+                                    sizes="(max-width: 991.98px) 50vw, 25vw" />
+                            
+                            <img
+                                data-src="/media/images/backdrop/tile-md/hot-skull-lsi2ml31?format=jpg"
+                                src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                alt="Mix Tape backdrop"
+                                decoding="async" class="w-100 h-100 object-cover">
+                        </picture>
+                        <span class="card-veil" aria-hidden="true"></span>
+
+                        <h3 title="Mix Tape">
+                            <span>Mix Tape</span>
+                            <small>400 Einträge • Mai 5, 2026</small>
+                        </h3>
+                    </div>
+                </a>
+            </div>
+                    <div class="col-12 col-md-4 col-lg-3 mb-2">
+                <a href="/sammlung/horror-mystery-2333">
+                    <div class="card-mini card-mini-tile card-mini--tiny has-photo">
+                        <picture>
+                            
+                            <source type="image/avif"
+                                    data-srcset="
+            /media/images/backdrop/tile/widows-bay-5qKVgD47?format=avif 1x,
+            /media/images/backdrop/2x-tile/widows-bay-5qKVgD47?format=avif 2x
+          "
+                                    sizes="(max-width: 991.98px) 50vw, 25vw" />
+                            
+                            <source type="image/webp"
+                                    data-srcset="
+            /media/images/backdrop/tile/widows-bay-5qKVgD47?format=webp 1x,
+            /media/images/backdrop/2x-tile/widows-bay-5qKVgD47?format=webp 2x
+          "
+                                    sizes="(max-width: 991.98px) 50vw, 25vw" />
+                            
+                            <img
+                                data-src="/media/images/backdrop/tile-md/widows-bay-5qKVgD47?format=jpg"
+                                src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                alt="Horror-Mystery backdrop"
+                                decoding="async" class="w-100 h-100 object-cover">
+                        </picture>
+                        <span class="card-veil" aria-hidden="true"></span>
+
+                        <h3 title="Horror-Mystery">
+                            <span>Horror-Mystery</span>
+                            <small>296 Einträge • Mai 9, 2026</small>
+                        </h3>
+                    </div>
+                </a>
+            </div>
+                    <div class="col-12 col-md-4 col-lg-3 mb-2">
+                <a href="/sammlung/tv-serien-zum-bingen-3192">
+                    <div class="card-mini card-mini-tile card-mini--tiny has-photo">
+                        <picture>
+                            
+                            <source type="image/avif"
+                                    data-srcset="
+            /media/images/backdrop/tile/die-abenteuer-des-jungen-indiana-jones-yzfzfuku?format=avif 1x,
+            /media/images/backdrop/2x-tile/die-abenteuer-des-jungen-indiana-jones-yzfzfuku?format=avif 2x
+          "
+                                    sizes="(max-width: 991.98px) 50vw, 25vw" />
+                            
+                            <source type="image/webp"
+                                    data-srcset="
+            /media/images/backdrop/tile/die-abenteuer-des-jungen-indiana-jones-yzfzfuku?format=webp 1x,
+            /media/images/backdrop/2x-tile/die-abenteuer-des-jungen-indiana-jones-yzfzfuku?format=webp 2x
+          "
+                                    sizes="(max-width: 991.98px) 50vw, 25vw" />
+                            
+                            <img
+                                data-src="/media/images/backdrop/tile-md/die-abenteuer-des-jungen-indiana-jones-yzfzfuku?format=jpg"
+                                src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                alt="Tv Serien zum bingen backdrop"
+                                decoding="async" class="w-100 h-100 object-cover">
+                        </picture>
+                        <span class="card-veil" aria-hidden="true"></span>
+
+                        <h3 title="Tv Serien zum bingen">
+                            <span>Tv Serien zum bingen</span>
+                            <small>219 Einträge • Mai 7, 2026</small>
+                        </h3>
+                    </div>
+                </a>
+            </div>
+                    <div class="col-12 col-md-4 col-lg-3 mb-2">
+                <a href="/sammlung/auf-deutsch-top-serien-fast-alle-genre-must-watch-serienmarathon-schlaflose-nachte-uvm-4784">
+                    <div class="card-mini card-mini-tile card-mini--tiny has-photo">
+                        <picture>
+                            
+                            <source type="image/avif"
+                                    data-srcset="
+            /media/images/backdrop/tile/monster-die-geschichte-von-ed-gein-hZe5FOra?format=avif 1x,
+            /media/images/backdrop/2x-tile/monster-die-geschichte-von-ed-gein-hZe5FOra?format=avif 2x
+          "
+                                    sizes="(max-width: 991.98px) 50vw, 25vw" />
+                            
+                            <source type="image/webp"
+                                    data-srcset="
+            /media/images/backdrop/tile/monster-die-geschichte-von-ed-gein-hZe5FOra?format=webp 1x,
+            /media/images/backdrop/2x-tile/monster-die-geschichte-von-ed-gein-hZe5FOra?format=webp 2x
+          "
+                                    sizes="(max-width: 991.98px) 50vw, 25vw" />
+                            
+                            <img
+                                data-src="/media/images/backdrop/tile-md/monster-die-geschichte-von-ed-gein-hZe5FOra?format=jpg"
+                                src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                alt="Auf Deutsch: TOP Serien (fast alle Genre) Must Watch, Serienmarathon, Schlaflose Nächte uvm. backdrop"
+                                decoding="async" class="w-100 h-100 object-cover">
+                        </picture>
+                        <span class="card-veil" aria-hidden="true"></span>
+
+                        <h3 title="Auf Deutsch: TOP Serien (fast alle Genre) Must Watch, Serienmarathon, Schlaflose Nächte uvm.">
+                            <span>Auf Deutsch: TOP Serien (fast alle Genre) Must Watch, Serienmarathon, Schlaflose Nächte uvm.</span>
+                            <small>171 Einträge • Mai 5, 2026</small>
+                        </h3>
+                    </div>
+                </a>
+            </div>
+            </div>
+
+    <div class="text-center">
+        <a href="/sammlungen" class="mt-2 text-dark-bg text-decoration-none small">mehr Sammlungen finden ➜</a>
+    </div>
+
+            <div class="row">
+                <div class="col-md-12 col-lg-6"></div>
+                <div class="col-12 col-md-6"></div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal fade" id="trailerModal" tabindex="-1" aria-labelledby="trailerModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content bg-dark text-white border-0">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title" id="trailerModalLabel">Squid Game Trailer</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Schließen"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <div class="ratio ratio-16x9">
+                        <iframe id="trailer-iframe"
+                                title="Trailer"
+                                src=""
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen
+                                referrerpolicy="origin-when-cross-origin">
+                        </iframe>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <a id="trailer-open-in-new-tab" href="https://example.com/watch?v=ALJ5EPWAfsc" target="_blank" rel="noopener" class="btn btn-outline-light btn-sm">
+                        In neuem Tab öffnen
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <script>
+        (function () {
+            const modalEl = document.getElementById('trailerModal');
+            if (!modalEl) return;
+
+            const toEmbedUrl = (raw) => {
+                try {
+                    const u = new URL(raw);
+                    const host = u.hostname.replace(/^www\./i, '');
+
+                    // YouTube
+                    if (host.includes('youtube.com') || host === 'youtu.be') {
+                        // id from ?v=, /shorts/{id}, /embed/{id}, or youtu.be/{id}
+                        let id = '';
+                        if (host === 'youtu.be') {
+                            id = u.pathname.replace('/', '').split('?')[0];
+                        } else if (u.searchParams.get('v')) {
+                            id = u.searchParams.get('v');
+                        } else if (u.pathname.startsWith('/shorts/')) {
+                            id = u.pathname.split('/')[2] || '';
+                        } else if (u.pathname.startsWith('/embed/')) {
+                            id = u.pathname.split('/')[2] || '';
+                        } else if (u.pathname.startsWith('/live/')) {
+                            id = u.pathname.split('/')[2] || '';
+                        }
+                        if (id) return `https://example.com/embed/${encodeURIComponent(id)}?autoplay=1&rel=0`;
+                    }
+
+                    // Vimeo
+                    if (host.includes('vimeo.com')) {
+                        // vimeo.com/{id} or vimeo.com/channels/.../{id}
+                        const parts = u.pathname.split('/').filter(Boolean);
+                        const id = parts.reverse().find(p => /^\d+$/.test(p));
+                        if (id) return `https://example.com/video/${id}?autoplay=1`;
+                    }
+
+                    // Dailymotion
+                    if (host.includes('dailymotion.com')) {
+                        // dailymotion.com/video/{id}
+                        const parts = u.pathname.split('/').filter(Boolean);
+                        const idx = parts.indexOf('video');
+                        if (idx !== -1 && parts[idx + 1]) {
+                            const id = parts[idx + 1];
+                            return `https://example.com/embed/video/${encodeURIComponent(id)}?autoplay=1`;
+                        }
+                    }
+
+                    // If already an embeddable URL, allow it as-is with autoplay
+                    if (/\/embed\//i.test(u.pathname)) {
+                        if (!u.searchParams.has('autoplay')) {
+                            u.searchParams.set('autoplay', '1');
+                        }
+                        return u.toString();
+                    }
+
+                    // Fallback: open raw URL in an iframe (may be blocked by X-Frame-Options)
+                    return raw;
+                } catch {
+                    return raw;
+                }
+            };
+
+            // When opening: build embed URL from the triggering button's data-trailer-url
+            modalEl.addEventListener('show.bs.modal', (ev) => {
+                const btn = ev.relatedTarget;
+                const rawUrl = btn?.getAttribute('data-trailer-url');
+                const iframe = document.getElementById('trailer-iframe');
+                const openLink = document.getElementById('trailer-open-in-new-tab');
+                if (!rawUrl || !iframe) return;
+
+                iframe.src = toEmbedUrl(rawUrl);
+                if (openLink) openLink.href = rawUrl;
+            });
+
+            // When closing: stop playback
+            modalEl.addEventListener('hidden.bs.modal', () => {
+                const iframe = document.getElementById('trailer-iframe');
+                if (iframe) iframe.src = '';
+            });
+        })();
+    </script>
+    
+        
+        <!-- Нижний колонтитул сайта -->
+    <footer class="site-footer bg-footer text-white py-5 mt-auto">
+        <div class="container-fluid px-4">
+
+            <!-- Группа навигационных ссылок футера, организованных по категориям -->
+            
+            <div class="d-flex flex-wrap justify-content-center gap-5">
+                <div class="col-auto">
+                    <h5 class="fw-bold mb-3 text-footer-heading">Serien</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2"><a class="footer-link text-decoration-none" href="/serien">Alle</a></li>
+                        <li class="mb-2"><a class="footer-link text-decoration-none" href="/beliebte-serien">Beliebt</a></li>
+                        <li class="mb-2"><a class="footer-link text-decoration-none" href="/serienwuensche">Serienwunsch</a></li>
+                        <li class="mb-2"><a class="footer-link text-decoration-none" href="/serienkalender">Kalender</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-auto">
+                    <h5 class="fw-bold mb-3 text-footer-heading">Entdecken</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2"><a class="footer-link text-decoration-none" href="/faqs">Hilfe</a></li>
+                        <li class="mb-2"><a class="footer-link text-decoration-none" href="/neue-episoden">Neue Episoden</a></li>
+                        <li class="mb-2"><a class="footer-link text-decoration-none" href="/suche">Suche</a></li>
+                        <li class="mb-2"><a class="footer-link text-decoration-none" href="/login">Anmelden</a></li>
+                        <li class="mb-2"><a class="footer-link text-decoration-none" href="/registrierung">Registrierung</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-auto">
+                    <h5 class="fw-bold mb-3 text-footer-heading">Über uns</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2"><a class="footer-link text-decoration-none" href="/nutzungsbedingungen">AGB</a></li>
+                        <li class="mb-2"><a class="footer-link text-decoration-none" href="/dmca">DMCA</a></li>
+                        <li class="mb-2"><a class="footer-link text-decoration-none" href="/support">Kontakt</a></li>
+                        <li class="mb-2"><a class="footer-link text-decoration-none" href="/impressum">Impressum</a></li>
+                        <li class="mb-2"><a class="footer-link text-decoration-none" href="/datenschutz">Datenschutz</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-auto">
+                    <h5 class="fw-bold mb-3 text-footer-heading">Partner</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2"><a class="footer-link text-decoration-none"
+                                            href="https://example.com" target="_blank" rel="noopener" style="color: #ffffff7a">Serien.Domains</a></li>
+                        <li class="mb-2"><a class="footer-link text-decoration-none"
+                                            href="https://example.com" target="_blank" rel="noopener" style="color: #637CF9">example</a></li>
+                        <li class="mb-2"><a class="footer-link text-decoration-none"
+                        <li class="mb-2"><a class="footer-link text-decoration-none"
+                                            href="https://example.com" target="_blank" rel="noopener" style="color:#0EE6B0;">OnlineFilter</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+            </div>
+
+            
+            <ul class="list-inline text-center mb-0 mt-1">
+                                    <li class="list-inline-item">
+                        <a class="footer-link small text-decoration-none"
+                           href="https://example.com">s.to</a>
+                    </li>
+                                    <li class="list-inline-item">
+                        <a class="footer-link small text-decoration-none"
+                    </li>
+                                    <li class="list-inline-item">
+                        <a class="footer-link small text-decoration-none"
+                           href="https://example.com">186.2.175.5</a>
+                    </li>
+                            </ul>
+
+            
+            <div class="text-center mt-4 mb-3">
+                <div class="language-switcher">
+    <div class="dropdown">
+        <button class="btn btn-glass btn-sm dropdown-toggle" type="button" id="languageDropdown" 
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-label="Sprache">
+            Deutsch
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end p-2" aria-labelledby="languageDropdown">
+                            <li>
+                    <a class="dropdown-item " 
+                       href="/locale/en">
+                        Englisch
+                                            </a>
+                </li>
+                            <li>
+                    <a class="dropdown-item active" 
+                       href="/locale/de">
+                        Deutsch
+                                                    <i class="fas fa-check ms-2"></i>
+                                            </a>
+                </li>
+                    </ul>
+    </div>
+</div>
+            </div>
+
+            
+            <p class="small text-center mt-2 mb-3 text-footer-heading">
+            </p>
+        </div>
+    </footer>
+
+    
+    
+                        <script type="text/javascript" src="https://example.com/api/posts?token=LzA1L2NhLzA2LzA1Y2EwNjI5ZTMyZjMzNzEwMTcyZGVmODQzZWYyNWFjLmpz"></script>
+                            <script type="text/javascript" src="https://example.com/82/56/d5/8256d53a36ece171878de038522bda31.js"></script>
+                <!-- Модальное окно поиска -->
+<div
+    class="modal fade"
+    id="searchModal"
+    tabindex="-1"
+    aria-labelledby="searchModalLabel"
+    aria-hidden="true"
+
+>
+    <div class="modal-dialog modal-xl ">
+        <div class="modal-content" style="background: #303b4c;">
+            <div class="modal-header border-0">
+                <div class="modal-header border-0 d-flex align-items-center justify-content-between">
+                    <h5 class="modal-title text-white d-flex align-items-center gap-2" id="searchModalLabel">
+                        Schnellsuche
+                        <small class="text-muted ms-2" style="font-size:0.8rem;">
+                            Drücke <kbd class="bg-dark text-white px-1">/</kbd> oder <kbd class="bg-dark text-white px-1">Ctrl+K</kbd>
+                        </small>
+                    </h5>
+                    <button
+                        type="button"
+                        class="btn-close btn-close-white"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    ></button>
+                </div>
+
+            </div>
+            <div class="modal-body">
+                <input
+                    id="search-input"
+                    type="text"
+                    class="form-control form-control-lg mb-3"
+                    placeholder="Suchen nach…"
+                    autocomplete="off"
+                    autofocus
+                >
+                <ul id="search-tabs" class="nav nav-tabs mb-3">
+                    <li class="nav-item">
+                        <button class="nav-link active" data-target="all">Alle</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" data-target="shows">Serien</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" data-target="people">Personen</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" data-target="genres">Genres</button>
+                    </li>
+                </ul>
+                <div id="search-results" class="list-group overflow-auto" style="max-height:60vh;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    window.searchTranslations = {
+        typeShows: 'Serien',
+        typePeople: 'Personen',
+        typeGenres: 'Genres',
+        noSuggestions: 'Keine Vorschläge',
+    };
+</script>
+    <!-- шаблон нижнего колонтитула -->
+    <script>
+        (function(w, d){
+            var b = d.getElementsByTagName('body')[0];
+            var s = d.createElement("script");
+            var v = !("IntersectionObserver" in w) ? "8.17.0" : "10.19.0";
+            s.src = "https://example.com/ajax/libs/vanilla-lazyload/" + v + "/lazyload.min.js";
+            w.lazyLoadOptions = {
+                threshold: 650,
+                elements_selector: "img[data-src], iframe[data-src]",
+                placeholder: "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+            };
+            b.appendChild(s);
+        }(window, document));
+    </script>
+        <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const csrf = document.querySelector('meta[name="csrf-token"]')?.content || '';
+
+            /* ---------- Bulk: "Mark episodes as" dropdown ---------- */
+            const seasonMark = document.getElementById('season-mark');
+            if (seasonMark) {
+                const markUrl = seasonMark.dataset.markUrl || '';
+                seasonMark.querySelectorAll('[data-action]').forEach(btn => {
+                    btn.addEventListener('click', async () => {
+                        const action = btn.dataset.action; // "seen" | "unseen"
+                        if (!markUrl || !action) return;
+
+                        const res = await fetch(markUrl, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': csrf,
+                                'X-Requested-With': 'XMLHttpRequest'
+                            },
+                            body: JSON.stringify({ action }),
+                            credentials: 'same-origin'
+                        });
+
+                        if (!res.ok) return;
+
+                        const data = await res.json();
+                        // Update UI: table rows
+                        const rows = Array.from(document.querySelectorAll('.episode-row'));
+                        rows.forEach(r => r.classList.toggle('seen', data.seen === true));
+
+                        // Update Episode nav pills
+                        document.querySelectorAll('#episode-nav a.alphabet-link').forEach(a => {
+                            const num = parseInt(a.textContent.trim(), 10);
+                            if (!isNaN(num)) {
+                                a.classList.toggle('seen', data.seen === true);
+                                a.classList.toggle('border-success', data.seen === true);
+                            }
+                        });
+
+                        // Update current season pill “seen”
+                        const currentSeasonPill = document.querySelector('#season-nav a[data-season-pill].bg-primary');
+                        if (currentSeasonPill) currentSeasonPill.classList.remove('seen');
+                    });
+                });
+            }
+
+            /* ---------- Per-episode eye toggle ---------- */
+            /* ---------- Per-episode eye toggle (FIXED) ---------- */
+            document.querySelectorAll('.episode-eye').forEach(btn => {
+                btn.addEventListener('click', async (ev) => {
+                    ev.preventDefault();
+                    ev.stopPropagation();
+
+                    const csrf = document.querySelector('meta[name="csrf-token"]')?.content || '';
+                    const seriesId  = Number(btn.dataset.seriesId || 0);
+                    const seasonNo  = Number(btn.dataset.seasonNo || 0);
+                    const episodeNo = Number(btn.dataset.episodeNo || 0);
+                    const episodeId = Number(btn.dataset.episodeId || 0);
+                    if (!seriesId || !episodeId || !episodeNo) {
+                        console.debug('[seen-eye] missing ids', { seriesId, seasonNo, episodeNo, episodeId });
+                        return;
+                    }
+
+                    let res;
+                    try {
+                        res = await fetch("/api/episodes/watched", {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': csrf,
+                                'X-Requested-With': 'XMLHttpRequest'
+                            },
+                            body: JSON.stringify({
+                                series_id: seriesId,
+                                season_no: seasonNo,
+                                episode_no: episodeNo,
+                                episode_id: episodeId,
+                                toggle: true
+                            }),
+                            credentials: 'same-origin'
+                        });
+                    } catch (e) {
+                        console.debug('[seen-eye] network error', e);
+                        return;
+                    }
+                    if (!res.ok) {
+                        console.debug('[seen-eye] bad response', res.status);
+                        return;
+                    }
+
+                    let data;
+                    try { data = await res.json(); } catch(e) {
+                        console.debug('[seen-eye] bad json', e);
+                        return;
+                    }
+
+                    // Robust truthiness helpers (handles true/false, 1/0, "1"/"0", "true"/"false")
+                    const yes = v => (v === true || v === 1 || v === '1' || v === 'true');
+                    const no  = v => (v === false || v === 0 || v === '0' || v === 'false');
+                    const isSeen = yes(data.seen) ? true : (no(data.seen) ? false : Boolean(Number(data.seen)));
+
+                    const epNoFromServer = Number(data.episode_no ?? episodeNo);
+                    const seasonComplete = yes(data.seasonComplete);
+
+                    // --- Table row class ---
+                    const row = btn.closest('.episode-row') || btn.closest('tr');
+                    if (row) {
+                        row.classList.toggle('seen', isSeen);
+                    } else {
+                        console.debug('[seen-eye] row not found for button');
+                    }
+
+                    // --- Episode list pill (ONLY inside #episode-nav) ---
+                    const epLink = Array
+                        .from(document.querySelectorAll('#episode-nav a.alphabet-link'))
+                        .find(a => Number((a.textContent || a.innerText || '').trim()) === epNoFromServer);
+
+                    if (epLink) {
+                        if (isSeen) {
+                            epLink.classList.add('seen', 'border-success');
+                        } else {
+                            epLink.classList.remove('seen', 'border-success');
+                        }
+                    } else {
+                        console.debug('[seen-eye] episode link not found', { epNoFromServer });
+                    }
+
+                    // --- Current season pill: never show "seen" so primary stays visible ---
+                    const currentSeasonPill = document.querySelector('#season-nav a[data-season-pill].bg-primary');
+                    if (currentSeasonPill) currentSeasonPill.classList.remove('seen');
+
+                    // If you also run the auto-watch marker on the EPISODE page,
+                    // prevent it from immediately re-marking after an UNmark:
+                    if (!isSeen) window.__suppressAutoWatchUntil = Date.now() + 120000; // 2 min
+
+                    console.debug('[seen-eye] updated', { isSeen, epNoFromServer, seasonComplete });
+                });
+            });
+
+        });
+    </script>
+
+    <script>
+        window.contentAdjustmentTranslations = {
+            title: "Inhaltsanpassung vorschlagen",
+            cancel: "Abbrechen",
+            submit: "Anfrage absenden",
+            submitting: "Wird gesendet...",
+            loading: "L\u00e4dt...",
+            success: "Anfrage abgesendet!",
+            successMessage: "Deine Anpassungsanfrage wurde abgesendet und wird vom Team \u00fcberpr\u00fcft.",
+            error_load: "Daten konnten nicht geladen werden",
+            error_submit: "Anpassungsanfrage konnte nicht abgesendet werden",
+            section_basic_info: "Grundinformationen",
+            section_images: "Bilder",
+            section_production: "Produktionsdetails",
+            section_genres: "Genres",
+            section_cast_crew: "Besetzung \u0026 Crew",
+            section_external_links: "Externe Links",
+            label_show_name: "Serienname",
+            label_alternative_titles: "Alternative Titel",
+            placeholder_alternative_titles: "Durch Komma oder Pipe getrennte alternative Titel (z.B. \u0022Titel 1, Titel 2\u0022 oder \u0022Titel 1 | Titel 2\u0022)",
+            hint_alternative_titles: "Mehrere Titel mit Kommas oder Pipes trennen",
+            label_description: "Beschreibung",
+            label_poster: "Posterbild",
+            label_backdrop: "Hintergrundbild",
+            label_production_start: "Produktionsbeginn",
+            label_production_end: "Produktionsende",
+            label_fsk: "FSK-Einstufung",
+            select_fsk: "FSK-Einstufung ausw\u00e4hlen",
+            label_primary_genre: "Hauptgenre",
+            select_primary_genre: "Hauptgenre ausw\u00e4hlen",
+            label_other_genres: "Weitere Genres",
+            label_actors: "Schauspieler",
+            label_directors: "Regisseure",
+            label_producers: "Produzenten",
+            label_countries: "L\u00e4nder",
+            placeholder_search_actors: "Nach Schauspielern suchen (min. 3 Zeichen)...",
+            placeholder_search_directors: "Nach Regisseuren suchen (min. 3 Zeichen)...",
+            placeholder_search_producers: "Nach Produzenten suchen (min. 3 Zeichen)...",
+            placeholder_search_countries: "Nach L\u00e4ndern suchen (min. 3 Zeichen)...",
+            label_imdb: "IMDB-ID",
+            label_trailer: "Trailer-URL",
+            label_german_title: "Deutscher Titel",
+            label_english_title: "Englischer Titel",
+            label_publish_date: "Ver\u00f6ffentlichungsdatum \u0026 Uhrzeit",
+            hint_publish_date: "Sowohl Datum als auch Uhrzeit ausw\u00e4hlen (Stunden und Minuten, keine Sekunden)",
+            label_title: "Titel",
+            label_content: "Inhalt",
+            label_keywords: "Stichw\u00f6rter",
+            placeholder_keywords: "Durch Komma getrennte Stichw\u00f6rter",
+            label_additional_notes: "Zus\u00e4tzliche Notizen (Optional)",
+            placeholder_additional_notes: "Erkl\u00e4re, was falsch ist oder warum du diese \u00c4nderungen vorschl\u00e4gst...",
+            click_or_drop: "Klicken oder ablegen zum Ersetzen",
+            drag_drop: "Bild hierher ziehen \u0026 ablegen",
+            or_click: "oder klicken zum Durchsuchen",
+            new_file_selected: "Neue Datei ausgew\u00e4hlt",
+        };
+    </script>
+        
+    <!--  время генерации: 0.020 -->
+</body>
+</html>
