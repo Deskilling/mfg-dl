@@ -114,6 +114,8 @@ func Calculate(s1, s2 string) float64 {
 func Match(selected *model.SearchResult, services [][]model.SearchResult) {
 	selected.Score.Score = make(map[string]float64)
 	selected.Score.Query = make(map[string]string)
+	selected.Score.Href = make(map[string]string)
+
 	for _, service := range services {
 		for _, u := range service {
 			score := Calculate(selected.Name, u.Name)
@@ -121,6 +123,7 @@ func Match(selected *model.SearchResult, services [][]model.SearchResult) {
 				log.Debug("Calculated Score", "name", u.Name, "service", u.Service, "score", score)
 				selected.Score.Query[u.Service] = u.Name
 				selected.Score.Score[u.Service] = score
+				selected.Score.Href[u.Service] = u.Href
 			} else {
 				// TODO - When new module do smth here
 			}
