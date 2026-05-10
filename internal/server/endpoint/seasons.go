@@ -16,7 +16,6 @@ func HandleSeasons(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var searchResult model.SearchResult
-
 	err := json.NewDecoder(r.Body).Decode(&searchResult)
 	if err != nil {
 		writeError(w, "invalid request body: "+err.Error(), http.StatusBadRequest)
