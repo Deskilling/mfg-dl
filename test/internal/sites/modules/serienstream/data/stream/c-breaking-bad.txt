@@ -1,0 +1,2620 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="csrf-token" content="gtcuL0nl21fdSlWSuCf9yLMHs4Dp0kLMfSPn3U4z">
+    <meta name="referrer" content="no-referrer">
+    <link href="https://example.com/css2?family=Open+Sans:wght@400;600;700&display=swap"
+          rel="stylesheet">
+    <link rel="preconnect" href="https://example.com" crossorigin>
+
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="MyWebSite" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <meta name="description" content="Schaue Breaking Bad Staffel 1 an. Alle Episoden verfügbar zum Streamen online. Nachdem er von seiner lebensbedrohlichen Krankheit erfahren hat, begleitet W...">
+            <meta name="keywords" content="Breaking Bad, staffel 1, online anschauen, episoden, streaming">
+        <link rel="canonical" href="/serie/breaking-bad/staffel-1">
+    <meta property="og:type" content="video.tv_show">
+    <meta property="og:url" content="/serie/breaking-bad/staffel-1">
+    <meta property="og:description" content="Schaue Breaking Bad Staffel 1 an. Alle Episoden verfügbar zum Streamen online. Nachdem er von seiner lebensbedrohlichen Krankheit erfahren hat, begleitet W...">
+    <meta property="og:image" content="https://example.com/media/images/backdrop/orig/breaking-bad-GY2Ftir3">
+
+    <meta name="robots" content="index, follow">
+
+
+                <script type="application/ld+json">
+            {
+    "@context": "https://example.com",
+    "@type": "WebSite",
+    "url": "https://example.com",
+    "description": "Schaue Breaking Bad Staffel 1 an. Alle Episoden verf\u00fcgbar zum Streamen online. Nachdem er von seiner lebensbedrohlichen Krankheit erfahren hat, begleitet W..."
+}
+        </script>
+        <!-- шаблон верхнего колонтитула -->
+<link rel="preload" as="style" href="https://example.com/build/assets/app-C8pHEO6X.css" /><link rel="preload" as="style" href="https://example.com/build/assets/home-hero-BbaAHR5K.css" /><link rel="preload" as="style" href="https://example.com/build/assets/app-pa69gbN9.css" /><link rel="modulepreload" as="script" href="https://example.com/build/assets/app-CBexlo3Z.js" /><link rel="modulepreload" as="script" href="https://example.com/build/assets/bootstrap.esm-DnDI_4RK.js" /><link rel="modulepreload" as="script" href="https://example.com/build/assets/axios-BdB_xsQE.js" /><link rel="modulepreload" as="script" href="https://example.com/build/assets/home-hero-A8wuSaH9.js" /><link rel="modulepreload" as="script" href="https://example.com/build/assets/mount-BpuXyHW7.js" /><link rel="modulepreload" as="script" href="https://example.com/build/assets/chunk-D4-o3Q16.js" /><link rel="modulepreload" as="script" href="https://example.com/build/assets/createPopper-UiYpD3xJ.js" /><link rel="modulepreload" as="script" href="https://example.com/build/assets/TextTemplatePicker-bkb0p8VN.js" /><link rel="modulepreload" as="script" href="https://example.com/build/assets/jsx-runtime-CsptfSWK.js" /><link rel="modulepreload" as="script" href="https://example.com/build/assets/TimeAgo-DO7Ijftg.js" /><link rel="stylesheet" href="https://example.com/build/assets/app-C8pHEO6X.css" /><link rel="stylesheet" href="https://example.com/build/assets/home-hero-BbaAHR5K.css" /><link rel="stylesheet" href="https://example.com/build/assets/app-pa69gbN9.css" /><script type="module" src="https://example.com/build/assets/app-CBexlo3Z.js"></script><script type="module" src="https://example.com/build/assets/mount-BpuXyHW7.js"></script>
+
+        <script>
+        (function() {
+            var spriteUrl = 'https://example.com/assets/svg/icons.svg?v=1769662442';
+            var inserted = false;
+
+
+            function insertSprite(svg) {
+                if (!svg || inserted) return;
+                var div = document.createElement('div');
+
+                div.style.position = 'absolute';
+                div.style.width = '0';
+                div.style.height = '0';
+                div.style.overflow = 'hidden';
+                div.setAttribute('aria-hidden', 'true');
+
+                try {
+                    var parser = new DOMParser();
+                    var doc = parser.parseFromString(svg, 'image/svg+xml');
+                    var svgEl = doc.documentElement;
+                    if (svgEl && svgEl.nodeName.toLowerCase() === 'svg') {
+                        div.appendChild(document.importNode(svgEl, true));
+                    } else {
+                        div.innerHTML = svg;
+                    }
+                } catch (e) {
+                    div.innerHTML = svg;
+                }
+                div.setAttribute('id', 'svg-sprite-container');
+                var target = document.body || document.documentElement;
+                target.insertBefore(div, target.firstChild);
+                inserted = true;
+            }
+
+            function loadSprite() {
+                fetch(spriteUrl, {
+                    method: 'GET',
+                    cache: 'default',
+                    credentials: 'same-origin'
+                })
+                    .then(function(response) {
+                        if (!response.ok) {
+                            console.warn('SVG sprite failed to load:', response.status);
+                            return null;
+                        }
+                        return response.text();
+                    })
+                    .then(function(svg) {
+                        if (svg) {
+                            insertSprite(svg);
+                        }
+                    })
+                    .catch(function(error) {
+                        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                            console.warn('SVG sprite loading error:', error);
+                        }
+                    });
+            }
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', loadSprite);
+            } else {
+                loadSprite();
+            }
+        })();
+    </script>
+</head>
+<body data-is-staff="0">
+        <!-- Секция верхней панели -->
+
+
+    <!-- Основная навигационная -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-header py-1 py-lg-2">
+        <div class="container-fluid px-2 px-md-3 px-lg-3 px-xl-4 position-relative">
+
+            <a class="navbar-brand position-relative me-2" href="/">
+                <span class="logo-summary">UPDATE</span>
+            </a>
+
+
+            <div class="d-flex align-items-center ms-auto me-2 d-lg-none gap-2">
+
+                <button id="search-toggle-mobile"
+                        data-bs-toggle="modal"
+                        data-bs-target="#searchModal" class="btn btn-link text-white nav-search-icon">
+                    <svg class="icon large" width="24" height="24" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true" style="display: inline-block; vertical-align: middle; flex-shrink: 0;">
+                        <path d="M508.5 468.9L387.1 347.5c-2.3-2.3-5.3-3.5-8.5-3.5h-13.2c31.5-36.5 50.6-84 50.6-136C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c52 0 99.5-19.1 136-50.6v13.2c0 3.2 1.3 6.2 3.5 8.5l121.4 121.4c4.7 4.7 12.3 4.7 17 0l22.6-22.6c4.7-4.7 4.7-12.3 0-17zM208 368c-88.4 0-160-71.6-160-160S119.6 48 208 48s160 71.6 160 160-71.6 160-160 160z"/>
+                    </svg>
+                </button>
+            </div>
+
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#mainNav" aria-controls="mainNav"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon navbar-toggler-icon-large"></span>
+            </button>
+
+            <!-- Центральное меню навигации -->
+
+            <div id="mainNav" class="collapse navbar-collapse">
+                <ul class="navbar-nav mx-lg-auto align-items-lg-center nav-primary gap-lg-2">
+
+                    <li class="nav-item d-none d-lg-block">
+                        <button id="search-toggle-desktop"
+                                data-bs-toggle="modal"
+                                data-bs-target="#searchModal"
+                                class="btn btn-link text-white nav-search-icon"
+                                title="Search">
+                            <svg class="icon large" width="24" height="24" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true" style="display: inline-block; vertical-align: middle; flex-shrink: 0;">
+                                <path d="M508.5 468.9L387.1 347.5c-2.3-2.3-5.3-3.5-8.5-3.5h-13.2c31.5-36.5 50.6-84 50.6-136C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c52 0 99.5-19.1 136-50.6v13.2c0 3.2 1.3 6.2 3.5 8.5l121.4 121.4c4.7 4.7 12.3 4.7 17 0l22.6-22.6c4.7-4.7 4.7-12.3 0-17zM208 368c-88.4 0-160-71.6-160-160S119.6 48 208 48s160 71.6 160 160-71.6 160-160 160z"/>
+                            </svg>
+                        </button>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a class="nav-link px-3 "
+                           href="/">Startseite</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3 "
+                           href="/serien">Serien</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3 "
+                           href="/beliebte-serien">Beliebt</a>
+                    </li>
+                    <li class="nav-item d-none d-xl-block">
+                        <a class="nav-link px-3" target="_blank" href="https://example.com">example</a>
+                    </li>
+
+
+                    <li class="nav-item dropdown d-none d-lg-block">
+                        <a class="nav-link px-3 dropdown-toggle no-arrow"
+                           href="#" id="moreDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            <svg class="icon navbar-icon large" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display: inline-block; vertical-align: middle; flex-shrink: 0;">
+                                <circle cx="5" cy="5" r="2"/>
+                                <circle cx="12" cy="5" r="2"/>
+                                <circle cx="19" cy="5" r="2"/>
+                                <circle cx="5" cy="12" r="2"/>
+                                <circle cx="12" cy="12" r="2"/>
+                                <circle cx="19" cy="12" r="2"/>
+                                <circle cx="5" cy="19" r="2"/>
+                                <circle cx="12" cy="19" r="2"/>
+                                <circle cx="19" cy="19" r="2"/>
+                            </svg>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end p-2" aria-labelledby="moreDropdown">
+                            <li><a class="dropdown-item" href="/serienkalender">Kalender</a></li>
+                            <li><a class="dropdown-item" href="/serienwuensche">Wunschliste</a></li>
+                            <li><a class="dropdown-item" href="/random">Zufällig</a></li>
+                            <li><a class="dropdown-item" href="/faqs">Hilfe</a></li>
+                            <li><a class="dropdown-item" href="/anleitung">Anleitung</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link px-3" href="https://example.com">example</a>
+                    </li>
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link px-3" href="/serienkalender">Kalender</a>
+                    </li>
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link px-3" href="/serienwuensche">Wunschliste</a>
+                    </li>
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link px-3" href="/random">Zufällig</a>
+                    </li>
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link px-3" href="/faqs">Hilfe</a>
+                    </li>
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link px-3" href="/anleitung">Anleitung</a>
+                    </li>
+                    <li class="nav-item d-lg-none">
+                    </li>
+
+
+                                            <li class="nav-item d-md-none">
+                            <hr class="dropdown-divider my-2">
+                        </li>
+                        <li class="nav-item d-lg-none">
+                            <a class="nav-link px-3" href="/login">Anmelden</a>
+                        </li>
+                        <li class="nav-item d-lg-none">
+                            <a class="nav-link px-3" href="/registrierung">Registrierung</a>
+                        </li>
+
+                                    </ul>
+
+                <!-- Блок пользовательского интерфейса -->
+                <script>
+                    window.App = window.App || {};
+                    window.App.locale = "de";
+                </script>
+
+                                    <div class="d-none d-lg-flex ms-lg-3 align-items-center gap-2">
+                        <a href="/login"
+                           class="btn btn-outline-light border-0 rounded-pill px-3 text-decoration-none">Anmelden</a>
+                        <a href="/registrierung"
+                           class="btn btn-primary rounded-pill px-3 btn-orange">Registrierung</a>
+                    </div>
+                            </div>
+        </div>
+    </nav>
+
+
+                        <div class="show-header-wrapper">
+        <div class="backdrop-picture" style="--backdrop-height:550px;">
+    <picture>
+
+        <source
+            type="image/avif"
+            data-srcset="
+          /media/images/backdrop/mobile/breaking-bad-GY2Ftir3?format=avif   375w,
+          /media/images/backdrop/tablet/breaking-bad-GY2Ftir3?format=avif   768w,
+          /media/images/backdrop/desktop/breaking-bad-GY2Ftir3?format=avif  1024w
+        "
+            sizes="(max-width:600px)375px,(max-width:992px)768px,100vw"
+        >
+
+
+        <source
+            type="image/webp"
+            data-srcset="
+          /media/images/backdrop/mobile/breaking-bad-GY2Ftir3?format=webp   375w,
+          /media/images/backdrop/tablet/breaking-bad-GY2Ftir3?format=webp   768w,
+          /media/images/backdrop/desktop/breaking-bad-GY2Ftir3?format=webp  1024w
+        "
+            sizes="(max-width:600px)375px,(max-width:992px)768px,100vw"
+        >
+
+
+        <img
+            data-src="/media/images/backdrop/desktop/breaking-bad-GY2Ftir3?format=jpg"
+            data-srcset="
+          /media/images/backdrop/desktop/breaking-bad-GY2Ftir3?format=jpg 1x,
+          /media/images/backdrop/2x-desktop/breaking-bad-GY2Ftir3?format=jpg 2x
+        "
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+            alt="Backdrop"
+        >
+    </picture>
+</div>
+        <div class="container-fluid px-2 px-md-3 px-lg-3 px-xl-4 position-relative" style="z-index:1">
+
+            <nav aria-label="breadcrumb" class="pb-0 pb-md-1 pb-lg-2 pt-1 small">
+    <ol class="breadcrumb bg-transparent m-0">
+                                                <li class="breadcrumb-item ">
+                    <a href="/" class="link-light text-decoration-none" title="Startseite">
+                        Startseite
+                    </a>
+                </li>
+                                                            <li class="breadcrumb-item ">
+                    <a href="/serien" class="link-light text-decoration-none" title="Serien">
+                        Serien
+                    </a>
+                </li>
+                                                            <li class="breadcrumb-item show-name">
+                    <a href="/serie/breaking-bad" class="link-light text-decoration-none" title="Breaking Bad">
+                        Breaking Bad
+                    </a>
+                </li>
+                                                            <li class="breadcrumb-item active text-white " aria-current="page" title="Staffel 1">
+                    Staffel 1
+                </li>
+                        </ol>
+</nav>
+
+
+            <div class="row g-4 mb-2">
+
+    <div class="col-12 col-md-9 col-lg-10 text-light">
+                    <button type="button"
+                    class="btn btn-glass float-end btn-compact"
+                    data-bs-toggle="modal"
+                    data-bs-target="#trailerModal"
+                    data-trailer-url="https://example.com/watch?v=U9HS1-FMNbQ">
+                <svg
+    class="icon me-1"
+            viewBox="0 0 448 512"
+    fill="currentColor"
+    aria-hidden="true"
+    style="display: inline-block; vertical-align: middle; flex-shrink: 0;"
+>
+    <use href="#icon-play"></use>
+</svg>
+
+                <span>Trailer</span>
+            </button>
+
+
+        <div class="d-md-none float-end text-end show-cover-mobile" style="max-width: 120px; clear: right;">
+            <picture>
+
+    <source
+        type="image/avif"
+        data-srcset="
+      /media/images/channel/mobile/breaking-bad-7c90ppib?format=avif         375w,
+      /media/images/channel/tablet/breaking-bad-7c90ppib?format=avif         768w,
+      /media/images/channel/desktop/breaking-bad-7c90ppib?format=avif       1024w
+    "
+        sizes="(max-width: 600px) 375px,
+           (max-width: 992px) 768px,
+           1024px">
+
+
+    <source
+        type="image/webp"
+        data-srcset="
+      /media/images/channel/mobile/breaking-bad-7c90ppib?format=webp         375w,
+      /media/images/channel/tablet/breaking-bad-7c90ppib?format=webp         768w,
+      /media/images/channel/desktop/breaking-bad-7c90ppib?format=webp       1024w
+    "
+        sizes="(max-width: 600px) 375px,
+           (max-width: 992px) 768px,
+           1024px">
+
+
+    <img
+        data-src="/media/images/channel/desktop/breaking-bad-7c90ppib?format=jpg"
+        data-srcset="
+      /media/images/channel/desktop/breaking-bad-7c90ppib?format=jpg      1x,
+      /media/images/channel/2x-desktop/breaking-bad-7c90ppib?format=jpg   2x
+    "
+        src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+        alt="Breaking Bad"
+        class="img-fluid w-100">
+</picture>
+                    </div>
+
+        <h1 class="h2 mb-1 fw-bold">
+            Breaking Bad
+                                </h1>
+        <p class="small text-muted mb-2">
+
+                            <a class="small text-muted" href="/jahr/2008">2008</a>
+                        –
+                            <a class="small text-muted" href="/jahr/2013">2013</a>
+                        &bull;
+            FSK 16
+                            &bull;
+                <a href="https://example.com/title/tt0903747/"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="small text-muted">
+                    IMDb
+                </a>
+                    </p>
+
+        <div class="series-description" id="series-desc-420">
+            <p class="clamped">
+                <span class="description-text">Nachdem er von seiner lebensbedrohlichen Krankheit erfahren hat, begleitet Walter White seinen Schwippschwager Hank, der bei der DEA arbeitet, zu einem Einsatz, bei dem ein Methamphetamin-Labor ausgehoben wird. Dort entdeckt er seinen ehemaligen Schüler Jesse Pinkman, als der gerade vom Tatort flieht. Walter sucht Jesse später auf und zwingt ihn dazu, sein Partner bei der Produktion von Methamphetamin zu werden. Jesse soll vor allem die von Walter produzierte erstklassige Droge verkaufen. Mit dem Erlös will Walter die von seiner Krankenkasse nicht finanzierte, enorm teure Behandlung bezahlen und eine Rücklage für die Familie bilden, falls er trotz Behandlung nicht überleben sollte. Jesse ist beeindruckt von der Qualität des Produkts und vermittelt später durch einen Freund den Kontakt zum lokalen Drogenboss Tuco Salamanca, der die beiden durch sein psychotisches Verhalten vor Probleme stellt.</span>
+            </p>
+                            <button
+                    type="button"
+                    class="show-more-toggle"
+                    data-expanded="false"
+                    style="display: none;"
+                >Mehr anzeigen</button>
+                    </div>
+        <script>
+            (function() {
+                function initDescriptionToggle() {
+                    const descId = 'series-desc-420';
+                    const wrapper = document.getElementById(descId);
+                    if (!wrapper) {
+                        setTimeout(initDescriptionToggle, 100);
+                        return;
+                    }
+
+                    const textEl = wrapper.querySelector('.description-text');
+                    const btn = wrapper.querySelector('.show-more-toggle');
+                    const p = wrapper.querySelector('p');
+                    if (!textEl || !p) return;
+                    if (!btn) return;
+
+                    const originalText = textEl.textContent.trim();
+                    if (!originalText) return;
+
+                    let isExpanded = false;
+
+                    function checkAndTruncate() {
+                        if (p.offsetWidth === 0) {
+                            setTimeout(checkAndTruncate, 100);
+                            return;
+                        }
+
+                        // First check if text needs truncation by comparing heights
+                        const tempFull = document.createElement('div');
+                        const computedStyle = window.getComputedStyle(p);
+                        tempFull.style.cssText = 'position:absolute;visibility:hidden;width:' + p.offsetWidth + 'px;font-size:' + computedStyle.fontSize + ';font-family:' + computedStyle.fontFamily + ';line-height:' + computedStyle.lineHeight + ';padding:' + computedStyle.padding + ';white-space:normal;word-wrap:break-word;box-sizing:border-box;';
+                        tempFull.textContent = originalText;
+                        document.body.appendChild(tempFull);
+
+                        const lineHeight = parseFloat(computedStyle.lineHeight) || 24;
+                        const maxHeight = lineHeight * 3;
+                        const needsTruncation = tempFull.offsetHeight > maxHeight;
+                        document.body.removeChild(tempFull);
+
+                        if (!needsTruncation) {
+                            btn.style.display = 'none';
+                            return;
+                        }
+
+                        // Text needs truncation, find the right point
+                        const temp = document.createElement('div');
+                        temp.style.cssText = tempFull.style.cssText;
+                        document.body.appendChild(temp);
+
+                        const btnText = 'Mehr anzeigen';
+                        let left = 0;
+                        let right = originalText.length;
+                        let bestFit = '';
+
+                        while (left <= right) {
+                            const mid = Math.floor((left + right) / 2);
+                            const testText = originalText.substring(0, mid) + '... ' + btnText;
+                            temp.textContent = testText;
+
+                            if (temp.offsetHeight <= maxHeight) {
+                                bestFit = originalText.substring(0, mid);
+                                left = mid + 1;
+                            } else {
+                                right = mid - 1;
+                            }
+                        }
+
+                        document.body.removeChild(temp);
+
+                        if (bestFit.length > 0 && bestFit.length < originalText.length) {
+                            textEl.textContent = bestFit;
+                            btn.style.display = 'inline';
+                        } else {
+                            btn.style.display = 'none';
+                        }
+                    }
+
+                    function toggleDescription(e) {
+                        e.preventDefault();
+                        isExpanded = !isExpanded;
+
+                        if (isExpanded) {
+                            textEl.textContent = originalText;
+                            btn.textContent = 'Weniger anzeigen';
+                            p.classList.remove('clamped');
+                        } else {
+                            checkAndTruncate();
+                            btn.textContent = 'Mehr anzeigen';
+                            p.classList.add('clamped');
+                        }
+                    }
+
+                    btn.addEventListener('click', toggleDescription);
+                    setTimeout(checkAndTruncate, 150);
+
+                    let resizeTimer;
+                    window.addEventListener('resize', function() {
+                        clearTimeout(resizeTimer);
+                        resizeTimer = setTimeout(function() {
+                            if (!isExpanded) {
+                                checkAndTruncate();
+                            }
+                        }, 250);
+                    });
+                }
+
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', initDescriptionToggle);
+                } else {
+                    setTimeout(initDescriptionToggle, 50);
+                }
+            })();
+        </script>
+
+
+
+        <ul class="mt-2 mb-3 list-unstyled d-flex flex-wrap gap-4 row-gap-1 small">
+
+                <li class="series-group">
+                    <strong class="me-1">Regisseur:</strong>
+
+
+                                            <a href="/regisseur/michelle-maclaren" class="link-light">Michelle MacLaren</a>,                                            <a href="/regisseur/adam-bernstein" class="link-light">Adam Bernstein</a>,                                            <a href="/regisseur/vince-gilligan" class="link-light">Vince Gilligan</a>
+
+                                            <span class="extra-items d-none">
+                                                    , <a href="/regisseur/colin-bucksey" class="link-light">Colin Bucksey</a>
+                                                            , <a href="/regisseur/michael-slovis" class="link-light">Michael Slovis</a>
+                                                            , <a href="/regisseur/bryan-cranston" class="link-light">Bryan Cranston</a>
+                                                            , <a href="/regisseur/terry-mcdonough" class="link-light">Terry McDonough</a>
+                                                            , <a href="/regisseur/johan-renck" class="link-light">Johan Renck</a>
+                                                            , <a href="/regisseur/rian-johnson" class="link-light">Rian Johnson</a>
+                                                            , <a href="/regisseur/scott-winant" class="link-light">Scott Winant</a>
+                                                            , <a href="/regisseur/peter-gould" class="link-light">Peter Gould</a>
+                                                            , <a href="/regisseur/tricia-brock" class="link-light">Tricia Brock</a>
+                                                            , <a href="/regisseur/bronwen-hughes" class="link-light">Bronwen Hughes</a>
+                                                            , <a href="/regisseur/tim-hunter" class="link-light">Tim Hunter</a>
+                                                            , <a href="/regisseur/jim-mckay" class="link-light">Jim McKay</a>
+                                                            , <a href="/regisseur/phil-abraham" class="link-light">Phil Abraham</a>
+                                                            , <a href="/regisseur/john-dahl" class="link-light">John Dahl</a>
+                                                            , <a href="/regisseur/flix-enrquez-alcal" class="link-light">Félix Enríquez Alcalá</a>
+                                                            , <a href="/regisseur/charles-haid" class="link-light">Charles Haid</a>
+                                                            , <a href="/regisseur/peter-medak" class="link-light">Peter Medak</a>
+                                                            , <a href="/regisseur/john-shiban" class="link-light">John Shiban</a>
+                                                            , <a href="/regisseur/david-slade" class="link-light">David Slade</a>
+                                                            , <a href="/regisseur/george-mastras" class="link-light">George Mastras</a>
+                                                            , <a href="/regisseur/thomas-schnauz" class="link-light">Thomas Schnauz</a>
+                                                            , <a href="/regisseur/sam-catlin" class="link-light">Sam Catlin</a>
+                                            </span>
+
+                        <button
+                            type="button"
+                            class="btn btn-sm text-white-50 p-0 toggle-more"
+                            data-count="22"
+                            aria-expanded="false"
+                        >
+                            &amp; 22 mehr
+                        </button>
+                                    </li>
+
+                <li class="series-group">
+                    <strong class="me-1">Produzent:</strong>
+
+
+                                            <a href="/produzent/vince-gilligan" class="link-light">Vince Gilligan</a>,                                            <a href="/produzent/mark-johnson" class="link-light">Mark Johnson</a>,                                            <a href="/produzent/stewart-lyons" class="link-light">Stewart Lyons</a>
+
+                                            <span class="extra-items d-none">
+                                                    , <a href="/produzent/diane-mercer" class="link-light">Diane Mercer</a>
+                                                            , <a href="/produzent/michelle-maclaren" class="link-light">Michelle MacLaren</a>
+                                                            , <a href="/produzent/bryan-cranston" class="link-light">Bryan Cranston</a>
+                                                            , <a href="/produzent/karen-moore" class="link-light">Karen Moore</a>
+                                                            , <a href="/produzent/patty-lin" class="link-light">Patty Lin</a>
+                                            </span>
+
+                        <button
+                            type="button"
+                            class="btn btn-sm text-white-50 p-0 toggle-more"
+                            data-count="5"
+                            aria-expanded="false"
+                        >
+                            &amp; 5 mehr
+                        </button>
+                                    </li>
+
+                <li class="series-group">
+                    <strong class="me-1">Besetzung:</strong>
+
+
+                                            <a href="/schauspieler/aaron-paul" class="link-light">Aaron Paul</a>,                                            <a href="/schauspieler/anna-gunn" class="link-light">Anna Gunn</a>,                                            <a href="/schauspieler/bryan-cranston" class="link-light">Bryan Cranston</a>
+
+                                            <span class="extra-items d-none">
+                                                    , <a href="/schauspieler/dean-norris" class="link-light">Dean Norris</a>
+                                                            , <a href="/schauspieler/betsy-brandt" class="link-light">Betsy Brandt</a>
+                                                            , <a href="/schauspieler/rj-mitte" class="link-light">RJ Mitte</a>
+                                                            , <a href="/schauspieler/bob-odenkirk" class="link-light">Bob Odenkirk</a>
+                                                            , <a href="/schauspieler/steven-michael-quezada" class="link-light">Steven Michael Quezada</a>
+                                                            , <a href="/schauspieler/jonathan-banks" class="link-light">Jonathan Banks</a>
+                                                            , <a href="/schauspieler/giancarlo-esposito" class="link-light">Giancarlo Esposito</a>
+                                                            , <a href="/schauspieler/charles-baker" class="link-light">Charles Baker</a>
+                                                            , <a href="/schauspieler/jesse-plemons" class="link-light">Jesse Plemons</a>
+                                                            , <a href="/schauspieler/christopher-cousins" class="link-light">Christopher Cousins</a>
+                                                            , <a href="/schauspieler/laura-fraser" class="link-light">Laura Fraser</a>
+                                                            , <a href="/schauspieler/matt-jones" class="link-light">Matt Jones</a>
+                                                            , <a href="/schauspieler/michael-shamus-wiles" class="link-light">Michael Shamus Wiles</a>
+                                                            , <a href="/schauspieler/lavell-crawford" class="link-light">Lavell Crawford</a>
+                                                            , <a href="/schauspieler/ray-campbell" class="link-light">Ray Campbell</a>
+                                                            , <a href="/schauspieler/krysten-ritter" class="link-light">Krysten Ritter</a>
+                                                            , <a href="/schauspieler/carmen-serano" class="link-light">Carmen Serano</a>
+                                                            , <a href="/schauspieler/emily-rios" class="link-light">Emily Rios</a>
+                                                            , <a href="/schauspieler/tina-parker" class="link-light">Tina Parker</a>
+                                                            , <a href="/schauspieler/mark-margolis" class="link-light">Mark Margolis</a>
+                                                            , <a href="/schauspieler/jeremiah-bitsui" class="link-light">Jeremiah Bitsui</a>
+                                                            , <a href="/schauspieler/ian-posada" class="link-light">Ian Posada</a>
+                                                            , <a href="/schauspieler/david-costabile" class="link-light">David Costabile</a>
+                                                            , <a href="/schauspieler/michael-bowen" class="link-light">Michael Bowen</a>
+                                            </span>
+
+                        <button
+                            type="button"
+                            class="btn btn-sm text-white-50 p-0 toggle-more"
+                            data-count="24"
+                            aria-expanded="false"
+                        >
+                            &amp; 24 mehr
+                        </button>
+                                    </li>
+
+                <li class="series-group">
+                    <strong class="me-1">Land:</strong>
+
+
+                                            <a href="/land/usa" class="link-light">USA</a>
+
+                                    </li>
+
+                <li class="series-group">
+                    <strong class="me-1">Genre:</strong>
+
+
+                                            <a href="/genre/thriller" class="link-light">Thriller</a>,                                            <a href="/genre/krimi" class="link-light">Krimi</a>,                                            <a href="/genre/drama" class="link-light">Drama</a>
+
+                                    </li>
+                    </ul>
+
+
+        <div class="row align-items-center d-none d-md-flex">
+            <div class="col">
+                <div class="p-2 small px-3" style=" background: #44adf34f; border: 1px solid #44adf3b0; border-radius: 3rem;display: inline-block;">Du kannst dich <a href="/login" class="text-white">anmelden</a> oder <a href="/registrierung" class="text-white">registrieren</a> (kostenlos), um gesehene Episoden zu speichern. </div>
+            </div>
+            <div class="col-auto ms-auto">
+                                    <div class="d-flex align-items-center mb-3">
+                        <div class="d-flex align-items-center gap-1 p-2">
+                            <span class="small text-white-50">
+                                                                813 Bewertungen
+                            </span>
+                        </div>
+                    </div>
+                            </div>
+        </div>
+
+
+        <div class="d-md-none">
+            <div class="p-2 small px-3" style=" background: #44adf34f; border: 1px solid #44adf3b0; border-radius: 3rem;display: inline-block;">Du kannst dich <a href="/login" class="text-white">anmelden</a> oder <a href="/registrierung" class="text-white">registrieren</a> (kostenlos), um gesehene Episoden zu speichern. </div>
+                            <div class="d-flex align-items-center mb-3">
+                    <div class=d-flex align-items-center gap-1 p-2">
+                        <span class="small text-white-50">
+                            0 Bewertungen
+                        </span>
+                    </div>
+                </div>
+                    </div>
+
+    </div>
+
+
+    <div class="col-3 col-md-3 col-lg-2 d-none d-md-block">
+        <picture>
+
+    <source
+        type="image/avif"
+        data-srcset="
+      /media/images/channel/mobile/breaking-bad-7c90ppib?format=avif         375w,
+      /media/images/channel/tablet/breaking-bad-7c90ppib?format=avif         768w,
+      /media/images/channel/desktop/breaking-bad-7c90ppib?format=avif       1024w
+    "
+        sizes="(max-width: 600px) 375px,
+           (max-width: 992px) 768px,
+           1024px">
+
+
+    <source
+        type="image/webp"
+        data-srcset="
+      /media/images/channel/mobile/breaking-bad-7c90ppib?format=webp         375w,
+      /media/images/channel/tablet/breaking-bad-7c90ppib?format=webp         768w,
+      /media/images/channel/desktop/breaking-bad-7c90ppib?format=webp       1024w
+    "
+        sizes="(max-width: 600px) 375px,
+           (max-width: 992px) 768px,
+           1024px">
+
+
+    <img
+        data-src="/media/images/channel/desktop/breaking-bad-7c90ppib?format=jpg"
+        data-srcset="
+      /media/images/channel/desktop/breaking-bad-7c90ppib?format=jpg      1x,
+      /media/images/channel/2x-desktop/breaking-bad-7c90ppib?format=jpg   2x
+    "
+        src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+        alt="Breaking Bad"
+        class="img-fluid w-100">
+</picture>
+            </div>
+</div>
+
+
+            <nav class="mb-2" id="season-nav">
+    <ul class="nav list-items-nav">
+        <li class="nav-item me-2">
+            <span class="season-pills__label">Staffeln:</span>
+        </li>
+
+
+            <li class="nav-item me-1 mb-2">
+                <a
+                    href="/serie/breaking-bad/staffel-0"
+                    class="alphabet-link nav-link  "
+                    data-season-pill="0"
+                > Filme </a>
+            </li>
+
+            <li class="nav-item me-1 mb-2">
+                <a
+                    href="/serie/breaking-bad/staffel-1"
+                    class="alphabet-link nav-link bg-primary "
+                    data-season-pill="1"
+                > 1 </a>
+            </li>
+
+            <li class="nav-item me-1 mb-2">
+                <a
+                    href="/serie/breaking-bad/staffel-2"
+                    class="alphabet-link nav-link  "
+                    data-season-pill="2"
+                > 2 </a>
+            </li>
+
+            <li class="nav-item me-1 mb-2">
+                <a
+                    href="/serie/breaking-bad/staffel-3"
+                    class="alphabet-link nav-link  "
+                    data-season-pill="3"
+                > 3 </a>
+            </li>
+
+            <li class="nav-item me-1 mb-2">
+                <a
+                    href="/serie/breaking-bad/staffel-4"
+                    class="alphabet-link nav-link  "
+                    data-season-pill="4"
+                > 4 </a>
+            </li>
+
+            <li class="nav-item me-1 mb-2">
+                <a
+                    href="/serie/breaking-bad/staffel-5"
+                    class="alphabet-link nav-link  "
+                    data-season-pill="5"
+                > 5 </a>
+            </li>
+            </ul>
+</nav>
+
+            <nav class="mb-3" id="episode-nav">
+        <ul class="nav list-items-nav">
+            <li class="nav-item me-2">
+      <span class="season-pills__label">
+         Episoden:       </span>
+            </li>
+
+
+                <li class="nav-item me-1 mb-2">
+                    <a href="/serie/breaking-bad/staffel-1/episode-1"
+                       class=" alphabet-link nav-link   ">
+                        1
+                    </a>
+                </li>
+
+                <li class="nav-item me-1 mb-2">
+                    <a href="/serie/breaking-bad/staffel-1/episode-2"
+                       class=" alphabet-link nav-link   ">
+                        2
+                    </a>
+                </li>
+
+                <li class="nav-item me-1 mb-2">
+                    <a href="/serie/breaking-bad/staffel-1/episode-3"
+                       class=" alphabet-link nav-link   ">
+                        3
+                    </a>
+                </li>
+
+                <li class="nav-item me-1 mb-2">
+                    <a href="/serie/breaking-bad/staffel-1/episode-4"
+                       class=" alphabet-link nav-link   ">
+                        4
+                    </a>
+                </li>
+
+                <li class="nav-item me-1 mb-2">
+                    <a href="/serie/breaking-bad/staffel-1/episode-5"
+                       class=" alphabet-link nav-link   ">
+                        5
+                    </a>
+                </li>
+
+                <li class="nav-item me-1 mb-2">
+                    <a href="/serie/breaking-bad/staffel-1/episode-6"
+                       class=" alphabet-link nav-link   ">
+                        6
+                    </a>
+                </li>
+
+                <li class="nav-item me-1 mb-2">
+                    <a href="/serie/breaking-bad/staffel-1/episode-7"
+                       class=" alphabet-link nav-link   ">
+                        7
+                    </a>
+                </li>
+                    </ul>
+    </nav>
+
+
+
+            <section class="episode-section mt-4">
+    <div class="d-flex justify-content-between align-items-center mt-3 mb-2">
+        <h2 class="h3 m-0 fw-bold"> Staffel 1 </h2>
+            </div>
+
+    <div class="table-responsive episode-table-wrap shadow-sm rounded-4 overflow-hidden mt-2">
+        <table class="table episode-table table-borderless align-middle mb-0 bg-transparent">
+            <thead class="table-dark sticky-top top-0">
+            <tr class="text-uppercase small letter-spacing-1">
+                <th scope="col" class="col-1 text-center fw-semibold">#</th>
+                                <th scope="col" class=" col-6 ">Titel</th>
+                <th scope="col" class="col-3 text-end">Wo anschauen</th>
+                <th scope="col" class="col-2 text-end">Sprache</th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+
+
+                <tr
+                    class="episode-row  "
+                    onclick="window.location='/serie/breaking-bad/staffel-1/episode-1'"
+                >
+                    <th scope="row" class="text-center fw-semibold episode-number-cell">1</th>
+
+
+                    <td class="fw-medium episode-title-cell">
+                        <strong class="d-block episode-title-ger" title="Der Einstieg">Der Einstieg</strong>
+                        <span class="text-white-50 episode-title-eng" title="Pilot">
+                Pilot
+            </span>
+
+                                            </td>
+
+
+                    <td class="episode-watch-cell">
+                                                    <div class="text-end gap-1 d-flex justify-content-end align-items-center">
+                                                                                                            <img src="/storage/providers/voe.svg"
+                                             alt="VOE"
+                                             title="VOE"
+                                             class="watch-link"
+                                             width="32"
+                                             height="32"
+                                             style="object-fit: contain; display: block;">
+                                                                                                                                                <img src="/storage/providers/vidoza.svg"
+                                             alt="Vidoza"
+                                             title="Vidoza"
+                                             class="watch-link"
+                                             width="32"
+                                             height="32"
+                                             style="object-fit: contain; display: block;">
+                                                                                                </div>
+                                            </td>
+
+                    <td class="text-end episode-language-cell">
+                                                                                    <svg class="watch-language large svg-flag-german" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-german"></use>
+                                </svg>
+                                                            <svg class="watch-language large svg-flag-english" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-english"></use>
+                                </svg>
+                                                                        </td>
+                </tr>
+
+
+
+                <tr
+                    class="episode-row  "
+                    onclick="window.location='/serie/breaking-bad/staffel-1/episode-2'"
+                >
+                    <th scope="row" class="text-center fw-semibold episode-number-cell">2</th>
+
+
+                    <td class="fw-medium episode-title-cell">
+                        <strong class="d-block episode-title-ger" title="Die Katze ist im Sack">Die Katze ist im Sack</strong>
+                        <span class="text-white-50 episode-title-eng" title="Cat&#039;s in the Bag">
+                Cat&#039;s in the Bag
+            </span>
+
+                                            </td>
+
+
+                    <td class="episode-watch-cell">
+                                                    <div class="text-end gap-1 d-flex justify-content-end align-items-center">
+                                                                                                            <img src="/storage/providers/voe.svg"
+                                             alt="VOE"
+                                             title="VOE"
+                                             class="watch-link"
+                                             width="32"
+                                             height="32"
+                                             style="object-fit: contain; display: block;">
+                                                                                                                                                <img src="/storage/providers/vidoza.svg"
+                                             alt="Vidoza"
+                                             title="Vidoza"
+                                             class="watch-link"
+                                             width="32"
+                                             height="32"
+                                             style="object-fit: contain; display: block;">
+                                                                                                </div>
+                                            </td>
+
+                    <td class="text-end episode-language-cell">
+                                                                                    <svg class="watch-language large svg-flag-german" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-german"></use>
+                                </svg>
+                                                            <svg class="watch-language large svg-flag-english" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-english"></use>
+                                </svg>
+                                                                        </td>
+                </tr>
+
+
+
+                <tr
+                    class="episode-row  "
+                    onclick="window.location='/serie/breaking-bad/staffel-1/episode-3'"
+                >
+                    <th scope="row" class="text-center fw-semibold episode-number-cell">3</th>
+
+
+                    <td class="fw-medium episode-title-cell">
+                        <strong class="d-block episode-title-ger" title="Und der Sack ist im Fluss">Und der Sack ist im Fluss</strong>
+                        <span class="text-white-50 episode-title-eng" title="and the Bag&#039;s in the River">
+                and the Bag&#039;s in the River
+            </span>
+
+                                            </td>
+
+
+                    <td class="episode-watch-cell">
+                                                    <div class="text-end gap-1 d-flex justify-content-end align-items-center">
+                                                                                                            <img src="/storage/providers/voe.svg"
+                                             alt="VOE"
+                                             title="VOE"
+                                             class="watch-link"
+                                             width="32"
+                                             height="32"
+                                             style="object-fit: contain; display: block;">
+                                                                                                                                                <img src="/storage/providers/vidoza.svg"
+                                             alt="Vidoza"
+                                             title="Vidoza"
+                                             class="watch-link"
+                                             width="32"
+                                             height="32"
+                                             style="object-fit: contain; display: block;">
+                                                                                                </div>
+                                            </td>
+
+                    <td class="text-end episode-language-cell">
+                                                                                    <svg class="watch-language large svg-flag-german" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-german"></use>
+                                </svg>
+                                                            <svg class="watch-language large svg-flag-english" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-english"></use>
+                                </svg>
+                                                                        </td>
+                </tr>
+
+
+
+                <tr
+                    class="episode-row  "
+                    onclick="window.location='/serie/breaking-bad/staffel-1/episode-4'"
+                >
+                    <th scope="row" class="text-center fw-semibold episode-number-cell">4</th>
+
+
+                    <td class="fw-medium episode-title-cell">
+                        <strong class="d-block episode-title-ger" title="Die Diagnose">Die Diagnose</strong>
+                        <span class="text-white-50 episode-title-eng" title="Cancer Man">
+                Cancer Man
+            </span>
+
+                                            </td>
+
+
+                    <td class="episode-watch-cell">
+                                                    <div class="text-end gap-1 d-flex justify-content-end align-items-center">
+                                                                                                            <img src="/storage/providers/voe.svg"
+                                             alt="VOE"
+                                             title="VOE"
+                                             class="watch-link"
+                                             width="32"
+                                             height="32"
+                                             style="object-fit: contain; display: block;">
+                                                                                                                                                <img src="/storage/providers/vidoza.svg"
+                                             alt="Vidoza"
+                                             title="Vidoza"
+                                             class="watch-link"
+                                             width="32"
+                                             height="32"
+                                             style="object-fit: contain; display: block;">
+                                                                                                </div>
+                                            </td>
+
+                    <td class="text-end episode-language-cell">
+                                                                                    <svg class="watch-language large svg-flag-german" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-german"></use>
+                                </svg>
+                                                            <svg class="watch-language large svg-flag-english" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-english"></use>
+                                </svg>
+                                                                        </td>
+                </tr>
+
+
+
+                <tr
+                    class="episode-row  "
+                    onclick="window.location='/serie/breaking-bad/staffel-1/episode-5'"
+                >
+                    <th scope="row" class="text-center fw-semibold episode-number-cell">5</th>
+
+
+                    <td class="fw-medium episode-title-cell">
+                        <strong class="d-block episode-title-ger" title="Grauzonen">Grauzonen</strong>
+                        <span class="text-white-50 episode-title-eng" title="Gray Matter">
+                Gray Matter
+            </span>
+
+                                            </td>
+
+
+                    <td class="episode-watch-cell">
+                                                    <div class="text-end gap-1 d-flex justify-content-end align-items-center">
+                                                                                                            <img src="/storage/providers/voe.svg"
+                                             alt="VOE"
+                                             title="VOE"
+                                             class="watch-link"
+                                             width="32"
+                                             height="32"
+                                             style="object-fit: contain; display: block;">
+                                                                                                                                                <img src="/storage/providers/vidoza.svg"
+                                             alt="Vidoza"
+                                             title="Vidoza"
+                                             class="watch-link"
+                                             width="32"
+                                             height="32"
+                                             style="object-fit: contain; display: block;">
+                                                                                                </div>
+                                            </td>
+
+                    <td class="text-end episode-language-cell">
+                                                                                    <svg class="watch-language large svg-flag-german" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-german"></use>
+                                </svg>
+                                                            <svg class="watch-language large svg-flag-english" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-english"></use>
+                                </svg>
+                                                                        </td>
+                </tr>
+
+
+
+                <tr
+                    class="episode-row  "
+                    onclick="window.location='/serie/breaking-bad/staffel-1/episode-6'"
+                >
+                    <th scope="row" class="text-center fw-semibold episode-number-cell">6</th>
+
+
+                    <td class="fw-medium episode-title-cell">
+                        <strong class="d-block episode-title-ger" title="In der Höhle des Löwen">In der Höhle des Löwen</strong>
+                        <span class="text-white-50 episode-title-eng" title="Crazy Handful of Nothin?">
+                Crazy Handful of Nothin?
+            </span>
+
+                                            </td>
+
+
+                    <td class="episode-watch-cell">
+                                                    <div class="text-end gap-1 d-flex justify-content-end align-items-center">
+                                                                                                            <img src="/storage/providers/voe.svg"
+                                             alt="VOE"
+                                             title="VOE"
+                                             class="watch-link"
+                                             width="32"
+                                             height="32"
+                                             style="object-fit: contain; display: block;">
+                                                                                                                                                <img src="/storage/providers/vidoza.svg"
+                                             alt="Vidoza"
+                                             title="Vidoza"
+                                             class="watch-link"
+                                             width="32"
+                                             height="32"
+                                             style="object-fit: contain; display: block;">
+                                                                                                </div>
+                                            </td>
+
+                    <td class="text-end episode-language-cell">
+                                                                                    <svg class="watch-language large svg-flag-german" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-german"></use>
+                                </svg>
+                                                            <svg class="watch-language large svg-flag-english" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-english"></use>
+                                </svg>
+                                                                        </td>
+                </tr>
+
+
+
+                <tr
+                    class="episode-row  "
+                    onclick="window.location='/serie/breaking-bad/staffel-1/episode-7'"
+                >
+                    <th scope="row" class="text-center fw-semibold episode-number-cell">7</th>
+
+
+                    <td class="fw-medium episode-title-cell">
+                        <strong class="d-block episode-title-ger" title="Lehrgeld">Lehrgeld</strong>
+                        <span class="text-white-50 episode-title-eng" title="A-No-Rough-Stuff-Type-Deal">
+                A-No-Rough-Stuff-Type-Deal
+            </span>
+
+                                            </td>
+
+
+                    <td class="episode-watch-cell">
+                                                    <div class="text-end gap-1 d-flex justify-content-end align-items-center">
+                                                                                                            <img src="/storage/providers/voe.svg"
+                                             alt="VOE"
+                                             title="VOE"
+                                             class="watch-link"
+                                             width="32"
+                                             height="32"
+                                             style="object-fit: contain; display: block;">
+                                                                                                                                                <img src="/storage/providers/vidoza.svg"
+                                             alt="Vidoza"
+                                             title="Vidoza"
+                                             class="watch-link"
+                                             width="32"
+                                             height="32"
+                                             style="object-fit: contain; display: block;">
+                                                                                                </div>
+                                            </td>
+
+                    <td class="text-end episode-language-cell">
+                                                                                    <svg class="watch-language large svg-flag-german" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-german"></use>
+                                </svg>
+                                                            <svg class="watch-language large svg-flag-english" width="44" height="32" viewBox="0 0 465 336" fill="currentColor">
+                                    <use href="#icon-flag-english"></use>
+                                </svg>
+                                                                        </td>
+                </tr>
+                        </tbody>
+        </table>
+    </div>
+
+</section>
+
+
+
+
+            <section class="continue-widget mt-4">
+    <h2 class="text-primary fw-bold h5 mb-3">Das schauen andere</h2>
+
+    <div class="d-flex align-items-stretch">
+
+        <div class="continue-swiper swiper flex-grow-1 me-2">
+            <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/arrow" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/arrow-e1nsvmmx?format=avif 375w,
+                                            /media/images/channel/tablet/arrow-e1nsvmmx?format=avif 768w,
+                                            /media/images/channel/desktop/arrow-e1nsvmmx?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/arrow-e1nsvmmx?format=webp 375w,
+                                            /media/images/channel/tablet/arrow-e1nsvmmx?format=webp 768w,
+                                            /media/images/channel/desktop/arrow-e1nsvmmx?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <img data-src="/media/images/channel/desktop/arrow-e1nsvmmx?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="Arrow"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/arrow" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">Arrow</span>
+                                    <span class="d-block text-muted">Fantasy</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/burn-notice" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/burn-notice-81mwune2?format=avif 375w,
+                                            /media/images/channel/tablet/burn-notice-81mwune2?format=avif 768w,
+                                            /media/images/channel/desktop/burn-notice-81mwune2?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/burn-notice-81mwune2?format=webp 375w,
+                                            /media/images/channel/tablet/burn-notice-81mwune2?format=webp 768w,
+                                            /media/images/channel/desktop/burn-notice-81mwune2?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <img data-src="/media/images/channel/desktop/burn-notice-81mwune2?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="Burn Notice"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/burn-notice" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">Burn Notice</span>
+                                    <span class="d-block text-muted">Action</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/banshee-small-town-big-secrets" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/banshee-small-town-big-secrets-gytccr6c?format=avif 375w,
+                                            /media/images/channel/tablet/banshee-small-town-big-secrets-gytccr6c?format=avif 768w,
+                                            /media/images/channel/desktop/banshee-small-town-big-secrets-gytccr6c?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/banshee-small-town-big-secrets-gytccr6c?format=webp 375w,
+                                            /media/images/channel/tablet/banshee-small-town-big-secrets-gytccr6c?format=webp 768w,
+                                            /media/images/channel/desktop/banshee-small-town-big-secrets-gytccr6c?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <img data-src="/media/images/channel/desktop/banshee-small-town-big-secrets-gytccr6c?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="Banshee: Small Town. Big Secrets."
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/banshee-small-town-big-secrets" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">Banshee: Small Town. Big Secrets.</span>
+                                    <span class="d-block text-muted">Thriller</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/chicago-p-d" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/chicago-p-d-bxr104y8?format=avif 375w,
+                                            /media/images/channel/tablet/chicago-p-d-bxr104y8?format=avif 768w,
+                                            /media/images/channel/desktop/chicago-p-d-bxr104y8?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/chicago-p-d-bxr104y8?format=webp 375w,
+                                            /media/images/channel/tablet/chicago-p-d-bxr104y8?format=webp 768w,
+                                            /media/images/channel/desktop/chicago-p-d-bxr104y8?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <img data-src="/media/images/channel/desktop/chicago-p-d-bxr104y8?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="Chicago P.D."
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/chicago-p-d" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">Chicago P.D.</span>
+                                    <span class="d-block text-muted">Krimi</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/band-of-brothers" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/band-of-brothers-naarurel?format=avif 375w,
+                                            /media/images/channel/tablet/band-of-brothers-naarurel?format=avif 768w,
+                                            /media/images/channel/desktop/band-of-brothers-naarurel?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/band-of-brothers-naarurel?format=webp 375w,
+                                            /media/images/channel/tablet/band-of-brothers-naarurel?format=webp 768w,
+                                            /media/images/channel/desktop/band-of-brothers-naarurel?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <img data-src="/media/images/channel/desktop/band-of-brothers-naarurel?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="Band of Brothers - Wir waren wie Brüder"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/band-of-brothers" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">Band of Brothers - Wir waren wie Brüder</span>
+                                    <span class="d-block text-muted">Historie</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/bones-die-knochenjagerin" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/bones-die-knochenjagerin-33e8uiwc?format=avif 375w,
+                                            /media/images/channel/tablet/bones-die-knochenjagerin-33e8uiwc?format=avif 768w,
+                                            /media/images/channel/desktop/bones-die-knochenjagerin-33e8uiwc?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/bones-die-knochenjagerin-33e8uiwc?format=webp 375w,
+                                            /media/images/channel/tablet/bones-die-knochenjagerin-33e8uiwc?format=webp 768w,
+                                            /media/images/channel/desktop/bones-die-knochenjagerin-33e8uiwc?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <img data-src="/media/images/channel/desktop/bones-die-knochenjagerin-33e8uiwc?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="Bones - Die Knochenjägerin"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/bones-die-knochenjagerin" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">Bones - Die Knochenjägerin</span>
+                                    <span class="d-block text-muted">Krimi</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/das-a-team" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/das-a-team-vejulqy3?format=avif 375w,
+                                            /media/images/channel/tablet/das-a-team-vejulqy3?format=avif 768w,
+                                            /media/images/channel/desktop/das-a-team-vejulqy3?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/das-a-team-vejulqy3?format=webp 375w,
+                                            /media/images/channel/tablet/das-a-team-vejulqy3?format=webp 768w,
+                                            /media/images/channel/desktop/das-a-team-vejulqy3?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <img data-src="/media/images/channel/desktop/das-a-team-vejulqy3?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="Das A-Team"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/das-a-team" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">Das A-Team</span>
+                                    <span class="d-block text-muted">Action</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/better-call-saul" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/better-call-saul-i5gCie1w?format=avif 375w,
+                                            /media/images/channel/tablet/better-call-saul-i5gCie1w?format=avif 768w,
+                                            /media/images/channel/desktop/better-call-saul-i5gCie1w?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/better-call-saul-i5gCie1w?format=webp 375w,
+                                            /media/images/channel/tablet/better-call-saul-i5gCie1w?format=webp 768w,
+                                            /media/images/channel/desktop/better-call-saul-i5gCie1w?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <img data-src="/media/images/channel/desktop/better-call-saul-i5gCie1w?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="Better Call Saul"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/better-call-saul" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">Better Call Saul</span>
+                                    <span class="d-block text-muted">Krimi</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/blue-bloods" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/blue-bloods-m6jqqoj4?format=avif 375w,
+                                            /media/images/channel/tablet/blue-bloods-m6jqqoj4?format=avif 768w,
+                                            /media/images/channel/desktop/blue-bloods-m6jqqoj4?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/blue-bloods-m6jqqoj4?format=webp 375w,
+                                            /media/images/channel/tablet/blue-bloods-m6jqqoj4?format=webp 768w,
+                                            /media/images/channel/desktop/blue-bloods-m6jqqoj4?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <img data-src="/media/images/channel/desktop/blue-bloods-m6jqqoj4?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="Blue Bloods - Crime Scene New York"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/blue-bloods" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">Blue Bloods - Crime Scene New York</span>
+                                    <span class="d-block text-muted">Krimi</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/criminal-minds" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/criminal-minds-cefcnkpl?format=avif 375w,
+                                            /media/images/channel/tablet/criminal-minds-cefcnkpl?format=avif 768w,
+                                            /media/images/channel/desktop/criminal-minds-cefcnkpl?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/criminal-minds-cefcnkpl?format=webp 375w,
+                                            /media/images/channel/tablet/criminal-minds-cefcnkpl?format=webp 768w,
+                                            /media/images/channel/desktop/criminal-minds-cefcnkpl?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <img data-src="/media/images/channel/desktop/criminal-minds-cefcnkpl?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="Criminal Minds"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/criminal-minds" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">Criminal Minds</span>
+                                    <span class="d-block text-muted">Krimi</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/death-note" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/death-note-6olbccqu?format=avif 375w,
+                                            /media/images/channel/tablet/death-note-6olbccqu?format=avif 768w,
+                                            /media/images/channel/desktop/death-note-6olbccqu?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/death-note-6olbccqu?format=webp 375w,
+                                            /media/images/channel/tablet/death-note-6olbccqu?format=webp 768w,
+                                            /media/images/channel/desktop/death-note-6olbccqu?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <img data-src="/media/images/channel/desktop/death-note-6olbccqu?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="Death Note"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/death-note" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">Death Note</span>
+                                    <span class="d-block text-muted">Anime</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/castle" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/castle-8gig07ow?format=avif 375w,
+                                            /media/images/channel/tablet/castle-8gig07ow?format=avif 768w,
+                                            /media/images/channel/desktop/castle-8gig07ow?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/castle-8gig07ow?format=webp 375w,
+                                            /media/images/channel/tablet/castle-8gig07ow?format=webp 768w,
+                                            /media/images/channel/desktop/castle-8gig07ow?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <img data-src="/media/images/channel/desktop/castle-8gig07ow?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="Castle"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/castle" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">Castle</span>
+                                    <span class="d-block text-muted">Krimi</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/bosch" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/bosch-0902bjxn?format=avif 375w,
+                                            /media/images/channel/tablet/bosch-0902bjxn?format=avif 768w,
+                                            /media/images/channel/desktop/bosch-0902bjxn?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/bosch-0902bjxn?format=webp 375w,
+                                            /media/images/channel/tablet/bosch-0902bjxn?format=webp 768w,
+                                            /media/images/channel/desktop/bosch-0902bjxn?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <img data-src="/media/images/channel/desktop/bosch-0902bjxn?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="Bosch"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/bosch" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">Bosch</span>
+                                    <span class="d-block text-muted">Krimi</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/akte-x" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/akte-x-88gcdp2e?format=avif 375w,
+                                            /media/images/channel/tablet/akte-x-88gcdp2e?format=avif 768w,
+                                            /media/images/channel/desktop/akte-x-88gcdp2e?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/akte-x-88gcdp2e?format=webp 375w,
+                                            /media/images/channel/tablet/akte-x-88gcdp2e?format=webp 768w,
+                                            /media/images/channel/desktop/akte-x-88gcdp2e?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <img data-src="/media/images/channel/desktop/akte-x-88gcdp2e?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="Akte X - Die unheimlichen Fälle des FBI"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/akte-x" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">Akte X - Die unheimlichen Fälle des FBI</span>
+                                    <span class="d-block text-muted">Mystery</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/boston-legal" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/boston-legal-azmg74nc?format=avif 375w,
+                                            /media/images/channel/tablet/boston-legal-azmg74nc?format=avif 768w,
+                                            /media/images/channel/desktop/boston-legal-azmg74nc?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/boston-legal-azmg74nc?format=webp 375w,
+                                            /media/images/channel/tablet/boston-legal-azmg74nc?format=webp 768w,
+                                            /media/images/channel/desktop/boston-legal-azmg74nc?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <img data-src="/media/images/channel/desktop/boston-legal-azmg74nc?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="Boston Legal"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/boston-legal" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">Boston Legal</span>
+                                    <span class="d-block text-muted">Dramedy</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/amber-ein-maedchen-verschwindet" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/amber-ein-maedchen-verschwindet-163mjds5?format=avif 375w,
+                                            /media/images/channel/tablet/amber-ein-maedchen-verschwindet-163mjds5?format=avif 768w,
+                                            /media/images/channel/desktop/amber-ein-maedchen-verschwindet-163mjds5?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/amber-ein-maedchen-verschwindet-163mjds5?format=webp 375w,
+                                            /media/images/channel/tablet/amber-ein-maedchen-verschwindet-163mjds5?format=webp 768w,
+                                            /media/images/channel/desktop/amber-ein-maedchen-verschwindet-163mjds5?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <img data-src="/media/images/channel/desktop/amber-ein-maedchen-verschwindet-163mjds5?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="Amber - Ein Mädchen verschwindet"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/amber-ein-maedchen-verschwindet" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">Amber - Ein Mädchen verschwindet</span>
+                                    <span class="d-block text-muted">Thriller</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/charmed" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/charmed-4di9nqsw?format=avif 375w,
+                                            /media/images/channel/tablet/charmed-4di9nqsw?format=avif 768w,
+                                            /media/images/channel/desktop/charmed-4di9nqsw?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/charmed-4di9nqsw?format=webp 375w,
+                                            /media/images/channel/tablet/charmed-4di9nqsw?format=webp 768w,
+                                            /media/images/channel/desktop/charmed-4di9nqsw?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <img data-src="/media/images/channel/desktop/charmed-4di9nqsw?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="Charmed - Zauberhafte Hexen"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/charmed" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">Charmed - Zauberhafte Hexen</span>
+                                    <span class="d-block text-muted">Fantasy</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/death-in-paradise" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/death-in-paradise-no3lirp5?format=avif 375w,
+                                            /media/images/channel/tablet/death-in-paradise-no3lirp5?format=avif 768w,
+                                            /media/images/channel/desktop/death-in-paradise-no3lirp5?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/death-in-paradise-no3lirp5?format=webp 375w,
+                                            /media/images/channel/tablet/death-in-paradise-no3lirp5?format=webp 768w,
+                                            /media/images/channel/desktop/death-in-paradise-no3lirp5?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <img data-src="/media/images/channel/desktop/death-in-paradise-no3lirp5?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="Death in Paradise"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/death-in-paradise" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">Death in Paradise</span>
+                                    <span class="d-block text-muted">Krimi</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/bube-dame-koenig-gras" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/bube-dame-koenig-gras-p3rdmgmu?format=avif 375w,
+                                            /media/images/channel/tablet/bube-dame-koenig-gras-p3rdmgmu?format=avif 768w,
+                                            /media/images/channel/desktop/bube-dame-koenig-gras-p3rdmgmu?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/bube-dame-koenig-gras-p3rdmgmu?format=webp 375w,
+                                            /media/images/channel/tablet/bube-dame-koenig-gras-p3rdmgmu?format=webp 768w,
+                                            /media/images/channel/desktop/bube-dame-koenig-gras-p3rdmgmu?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <img data-src="/media/images/channel/desktop/bube-dame-koenig-gras-p3rdmgmu?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="Bube, Dame, König, grAs"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/bube-dame-koenig-gras" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">Bube, Dame, König, grAs</span>
+                                    <span class="d-block text-muted">Comedy</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/alcatraz" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/alcatraz-3w9onn48?format=avif 375w,
+                                            /media/images/channel/tablet/alcatraz-3w9onn48?format=avif 768w,
+                                            /media/images/channel/desktop/alcatraz-3w9onn48?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/alcatraz-3w9onn48?format=webp 375w,
+                                            /media/images/channel/tablet/alcatraz-3w9onn48?format=webp 768w,
+                                            /media/images/channel/desktop/alcatraz-3w9onn48?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <img data-src="/media/images/channel/desktop/alcatraz-3w9onn48?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="Alcatraz"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/alcatraz" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">Alcatraz</span>
+                                    <span class="d-block text-muted">Thriller</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                                    <div class="swiper-slide">
+                        <article class="continue-card">
+                            <a href="/serie/deadwood" class="d-block continue-cover rounded-2 overflow-hidden mb-2">
+                                <picture>
+
+                                    <source type="image/avif"
+                                            data-srcset="
+                                            /media/images/channel/mobile/deadwood-9jnwq1gh?format=avif 375w,
+                                            /media/images/channel/tablet/deadwood-9jnwq1gh?format=avif 768w,
+                                            /media/images/channel/desktop/deadwood-9jnwq1gh?format=avif 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <source type="image/webp"
+                                            data-srcset="
+                                            /media/images/channel/mobile/deadwood-9jnwq1gh?format=webp 375w,
+                                            /media/images/channel/tablet/deadwood-9jnwq1gh?format=webp 768w,
+                                            /media/images/channel/desktop/deadwood-9jnwq1gh?format=webp 1024w"
+                                            sizes="(max-width:600px) 375px, (max-width:992px) 768px, 1024px">
+
+
+                                    <img data-src="/media/images/channel/desktop/deadwood-9jnwq1gh?format=jpg"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                         alt="Deadwood"
+                                         class="img-fluid w-100 h-100 object-fit-cover">
+                                </picture>
+                            </a>
+                            <h3 class="continue-title mb-0">
+                                <a href="/serie/deadwood" class="stretched-link text-reset text-decoration-none">
+                                    <span class="d-block fs-6 fw-semibold mb-1">Deadwood</span>
+                                    <span class="d-block text-muted">Western</span>
+                                </a>
+                            </h3>
+                        </article>
+                    </div>
+                            </div>
+        </div>
+
+
+
+        <div class="continue-nav d-flex flex-column">
+            <button class="continue-next btn-nav mb-2"><svg
+    class="icon"
+            viewBox="0 0 320 512"
+    fill="currentColor"
+    aria-hidden="true"
+    style="display: inline-block; vertical-align: middle; flex-shrink: 0;"
+>
+    <use href="#icon-chevron-right"></use>
+</svg>
+
+</button>
+            <button class="continue-prev btn-nav mt-auto"><svg
+    class="icon"
+            viewBox="0 0 320 512"
+    fill="currentColor"
+    aria-hidden="true"
+    style="display: inline-block; vertical-align: middle; flex-shrink: 0;"
+>
+    <use href="#icon-chevron-left"></use>
+</svg>
+
+</button>
+        </div>
+    </div>
+</section>
+            <h4 class="mt-4 mb-2 h5 fw-bold text-primary pb-1">Benutzer-Sammlungen mit Breaking Bad</h4>
+
+    <div class="row">
+                    <div class="col-12 col-md-4 col-lg-3 mb-2">
+                <a href="/sammlung/mix-tape-3127">
+                    <div class="card-mini card-mini-tile card-mini--tiny has-photo">
+                        <picture>
+
+                            <source type="image/avif"
+                                    data-srcset="
+            /media/images/backdrop/tile/hot-skull-lsi2ml31?format=avif 1x,
+            /media/images/backdrop/2x-tile/hot-skull-lsi2ml31?format=avif 2x
+          "
+                                    sizes="(max-width: 991.98px) 50vw, 25vw" />
+
+                            <source type="image/webp"
+                                    data-srcset="
+            /media/images/backdrop/tile/hot-skull-lsi2ml31?format=webp 1x,
+            /media/images/backdrop/2x-tile/hot-skull-lsi2ml31?format=webp 2x
+          "
+                                    sizes="(max-width: 991.98px) 50vw, 25vw" />
+
+                            <img
+                                data-src="/media/images/backdrop/tile-md/hot-skull-lsi2ml31?format=jpg"
+                                src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                alt="Mix Tape backdrop"
+                                decoding="async" class="w-100 h-100 object-cover">
+                        </picture>
+                        <span class="card-veil" aria-hidden="true"></span>
+
+                        <h3 title="Mix Tape">
+                            <span>Mix Tape</span>
+                            <small>400 Einträge • Mai 5, 2026</small>
+                        </h3>
+                    </div>
+                </a>
+            </div>
+                    <div class="col-12 col-md-4 col-lg-3 mb-2">
+                <a href="/sammlung/robbalu-streamfrak-81">
+                    <div class="card-mini card-mini-tile card-mini--tiny has-photo">
+                        <picture>
+
+                            <source type="image/avif"
+                                    data-srcset="
+            /media/images/backdrop/tile/unconditional-2026-3jDxndh4?format=avif 1x,
+            /media/images/backdrop/2x-tile/unconditional-2026-3jDxndh4?format=avif 2x
+          "
+                                    sizes="(max-width: 991.98px) 50vw, 25vw" />
+
+                            <source type="image/webp"
+                                    data-srcset="
+            /media/images/backdrop/tile/unconditional-2026-3jDxndh4?format=webp 1x,
+            /media/images/backdrop/2x-tile/unconditional-2026-3jDxndh4?format=webp 2x
+          "
+                                    sizes="(max-width: 991.98px) 50vw, 25vw" />
+
+                            <img
+                                data-src="/media/images/backdrop/tile-md/unconditional-2026-3jDxndh4?format=jpg"
+                                src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                alt="🍿🎬📽️📺 Misch-Masch📺📽️🎬🍿 backdrop"
+                                decoding="async" class="w-100 h-100 object-cover">
+                        </picture>
+                        <span class="card-veil" aria-hidden="true"></span>
+
+                        <h3 title="🍿🎬📽️📺 Misch-Masch📺📽️🎬🍿">
+                            <span>🍿🎬📽️📺 Misch-Masch📺📽️🎬🍿</span>
+                            <small>393 Einträge • Mai 8, 2026</small>
+                        </h3>
+                    </div>
+                </a>
+            </div>
+                    <div class="col-12 col-md-4 col-lg-3 mb-2">
+                <a href="/sammlung/thriller-krimi-2338">
+                    <div class="card-mini card-mini-tile card-mini--tiny has-photo">
+                        <picture>
+
+                            <source type="image/avif"
+                                    data-srcset="
+            /media/images/backdrop/tile/tonnano-3eStBeGr?format=avif 1x,
+            /media/images/backdrop/2x-tile/tonnano-3eStBeGr?format=avif 2x
+          "
+                                    sizes="(max-width: 991.98px) 50vw, 25vw" />
+
+                            <source type="image/webp"
+                                    data-srcset="
+            /media/images/backdrop/tile/tonnano-3eStBeGr?format=webp 1x,
+            /media/images/backdrop/2x-tile/tonnano-3eStBeGr?format=webp 2x
+          "
+                                    sizes="(max-width: 991.98px) 50vw, 25vw" />
+
+                            <img
+                                data-src="/media/images/backdrop/tile-md/tonnano-3eStBeGr?format=jpg"
+                                src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                alt="Thriller-Krimi backdrop"
+                                decoding="async" class="w-100 h-100 object-cover">
+                        </picture>
+                        <span class="card-veil" aria-hidden="true"></span>
+
+                        <h3 title="Thriller-Krimi">
+                            <span>Thriller-Krimi</span>
+                            <small>308 Einträge • Mai 4, 2026</small>
+                        </h3>
+                    </div>
+                </a>
+            </div>
+                    <div class="col-12 col-md-4 col-lg-3 mb-2">
+                <a href="/sammlung/endzeit-661">
+                    <div class="card-mini card-mini-tile card-mini--tiny has-photo">
+                        <picture>
+
+                            <source type="image/avif"
+                                    data-srcset="
+            /media/images/backdrop/tile/citadel-wj6wq7rx?format=avif 1x,
+            /media/images/backdrop/2x-tile/citadel-wj6wq7rx?format=avif 2x
+          "
+                                    sizes="(max-width: 991.98px) 50vw, 25vw" />
+
+                            <source type="image/webp"
+                                    data-srcset="
+            /media/images/backdrop/tile/citadel-wj6wq7rx?format=webp 1x,
+            /media/images/backdrop/2x-tile/citadel-wj6wq7rx?format=webp 2x
+          "
+                                    sizes="(max-width: 991.98px) 50vw, 25vw" />
+
+                            <img
+                                data-src="/media/images/backdrop/tile-md/citadel-wj6wq7rx?format=jpg"
+                                src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                alt="DYSTOPIE--UTOPIE--EUTOPIE❣️❣️❣️ backdrop"
+                                decoding="async" class="w-100 h-100 object-cover">
+                        </picture>
+                        <span class="card-veil" aria-hidden="true"></span>
+
+                        <h3 title="DYSTOPIE--UTOPIE--EUTOPIE❣️❣️❣️">
+                            <span>DYSTOPIE--UTOPIE--EUTOPIE❣️❣️❣️</span>
+                            <small>299 Einträge • Mai 9, 2026</small>
+                        </h3>
+                    </div>
+                </a>
+            </div>
+            </div>
+
+    <div class="text-center">
+        <a href="/sammlungen" class="mt-2 text-dark-bg text-decoration-none small">mehr Sammlungen finden ➜</a>
+    </div>
+
+            <div class="row">
+                <div class="col-md-12 col-lg-6"></div>
+                <div class="col-12 col-md-6"></div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal fade" id="trailerModal" tabindex="-1" aria-labelledby="trailerModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content bg-dark text-white border-0">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title" id="trailerModalLabel">Breaking Bad Trailer</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Schließen"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <div class="ratio ratio-16x9">
+                        <iframe id="trailer-iframe"
+                                title="Trailer"
+                                src=""
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen
+                                referrerpolicy="origin-when-cross-origin">
+                        </iframe>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <a id="trailer-open-in-new-tab" href="https://example.com/watch?v=U9HS1-FMNbQ" target="_blank" rel="noopener" class="btn btn-outline-light btn-sm">
+                        In neuem Tab öffnen
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        (function () {
+            const modalEl = document.getElementById('trailerModal');
+            if (!modalEl) return;
+
+            const toEmbedUrl = (raw) => {
+                try {
+                    const u = new URL(raw);
+                    const host = u.hostname.replace(/^www\./i, '');
+
+                    // YouTube
+                    if (host.includes('youtube.com') || host === 'youtu.be') {
+                        // id from ?v=, /shorts/{id}, /embed/{id}, or youtu.be/{id}
+                        let id = '';
+                        if (host === 'youtu.be') {
+                            id = u.pathname.replace('/', '').split('?')[0];
+                        } else if (u.searchParams.get('v')) {
+                            id = u.searchParams.get('v');
+                        } else if (u.pathname.startsWith('/shorts/')) {
+                            id = u.pathname.split('/')[2] || '';
+                        } else if (u.pathname.startsWith('/embed/')) {
+                            id = u.pathname.split('/')[2] || '';
+                        } else if (u.pathname.startsWith('/live/')) {
+                            id = u.pathname.split('/')[2] || '';
+                        }
+                        if (id) return `https://example.com/embed/${encodeURIComponent(id)}?autoplay=1&rel=0`;
+                    }
+
+                    // Vimeo
+                    if (host.includes('vimeo.com')) {
+                        // vimeo.com/{id} or vimeo.com/channels/.../{id}
+                        const parts = u.pathname.split('/').filter(Boolean);
+                        const id = parts.reverse().find(p => /^\d+$/.test(p));
+                        if (id) return `https://example.com/video/${id}?autoplay=1`;
+                    }
+
+                    // Dailymotion
+                    if (host.includes('dailymotion.com')) {
+                        // dailymotion.com/video/{id}
+                        const parts = u.pathname.split('/').filter(Boolean);
+                        const idx = parts.indexOf('video');
+                        if (idx !== -1 && parts[idx + 1]) {
+                            const id = parts[idx + 1];
+                            return `https://example.com/embed/video/${encodeURIComponent(id)}?autoplay=1`;
+                        }
+                    }
+
+                    // If already an embeddable URL, allow it as-is with autoplay
+                    if (/\/embed\//i.test(u.pathname)) {
+                        if (!u.searchParams.has('autoplay')) {
+                            u.searchParams.set('autoplay', '1');
+                        }
+                        return u.toString();
+                    }
+
+                    // Fallback: open raw URL in an iframe (may be blocked by X-Frame-Options)
+                    return raw;
+                } catch {
+                    return raw;
+                }
+            };
+
+            // When opening: build embed URL from the triggering button's data-trailer-url
+            modalEl.addEventListener('show.bs.modal', (ev) => {
+                const btn = ev.relatedTarget;
+                const rawUrl = btn?.getAttribute('data-trailer-url');
+                const iframe = document.getElementById('trailer-iframe');
+                const openLink = document.getElementById('trailer-open-in-new-tab');
+                if (!rawUrl || !iframe) return;
+
+                iframe.src = toEmbedUrl(rawUrl);
+                if (openLink) openLink.href = rawUrl;
+            });
+
+            // When closing: stop playback
+            modalEl.addEventListener('hidden.bs.modal', () => {
+                const iframe = document.getElementById('trailer-iframe');
+                if (iframe) iframe.src = '';
+            });
+        })();
+    </script>
+
+
+        <!-- Нижний колонтитул сайта -->
+    <footer class="site-footer bg-footer text-white py-5 mt-auto">
+        <div class="container-fluid px-4">
+
+            <!-- Группа навигационных ссылок футера, организованных по категориям -->
+
+            <div class="d-flex flex-wrap justify-content-center gap-5">
+                <div class="col-auto">
+                    <h5 class="fw-bold mb-3 text-footer-heading">Serien</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2"><a class="footer-link text-decoration-none" href="/serien">Alle</a></li>
+                        <li class="mb-2"><a class="footer-link text-decoration-none" href="/beliebte-serien">Beliebt</a></li>
+                        <li class="mb-2"><a class="footer-link text-decoration-none" href="/serienwuensche">Serienwunsch</a></li>
+                        <li class="mb-2"><a class="footer-link text-decoration-none" href="/serienkalender">Kalender</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-auto">
+                    <h5 class="fw-bold mb-3 text-footer-heading">Entdecken</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2"><a class="footer-link text-decoration-none" href="/faqs">Hilfe</a></li>
+                        <li class="mb-2"><a class="footer-link text-decoration-none" href="/neue-episoden">Neue Episoden</a></li>
+                        <li class="mb-2"><a class="footer-link text-decoration-none" href="/suche">Suche</a></li>
+                        <li class="mb-2"><a class="footer-link text-decoration-none" href="/login">Anmelden</a></li>
+                        <li class="mb-2"><a class="footer-link text-decoration-none" href="/registrierung">Registrierung</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-auto">
+                    <h5 class="fw-bold mb-3 text-footer-heading">Über uns</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2"><a class="footer-link text-decoration-none" href="/nutzungsbedingungen">AGB</a></li>
+                        <li class="mb-2"><a class="footer-link text-decoration-none" href="/dmca">DMCA</a></li>
+                        <li class="mb-2"><a class="footer-link text-decoration-none" href="/support">Kontakt</a></li>
+                        <li class="mb-2"><a class="footer-link text-decoration-none" href="/impressum">Impressum</a></li>
+                        <li class="mb-2"><a class="footer-link text-decoration-none" href="/datenschutz">Datenschutz</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-auto">
+                    <h5 class="fw-bold mb-3 text-footer-heading">Partner</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2"><a class="footer-link text-decoration-none"
+                                            href="https://example.com" target="_blank" rel="noopener" style="color: #ffffff7a">Serien.Domains</a></li>
+                        <li class="mb-2"><a class="footer-link text-decoration-none"
+                                            href="https://example.com" target="_blank" rel="noopener" style="color: #637CF9">example</a></li>
+                        <li class="mb-2"><a class="footer-link text-decoration-none"
+                        <li class="mb-2"><a class="footer-link text-decoration-none"
+                                            href="https://example.com" target="_blank" rel="noopener" style="color:#0EE6B0;">OnlineFilter</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+            </div>
+
+
+            <ul class="list-inline text-center mb-0 mt-1">
+                                    <li class="list-inline-item">
+                        <a class="footer-link small text-decoration-none"
+                           href="https://example.com">s.to</a>
+                    </li>
+                                    <li class="list-inline-item">
+                        <a class="footer-link small text-decoration-none"
+                    </li>
+                                    <li class="list-inline-item">
+                        <a class="footer-link small text-decoration-none"
+                           href="https://example.com">example</a>
+                    </li>
+                            </ul>
+
+
+            <div class="text-center mt-4 mb-3">
+                <div class="language-switcher">
+    <div class="dropdown">
+        <button class="btn btn-glass btn-sm dropdown-toggle" type="button" id="languageDropdown"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-label="Sprache">
+            Deutsch
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end p-2" aria-labelledby="languageDropdown">
+                            <li>
+                    <a class="dropdown-item "
+                       href="/locale/en">
+                        Englisch
+                                            </a>
+                </li>
+                            <li>
+                    <a class="dropdown-item active"
+                       href="/locale/de">
+                        Deutsch
+                                                    <i class="fas fa-check ms-2"></i>
+                                            </a>
+                </li>
+                    </ul>
+    </div>
+</div>
+            </div>
+
+
+            <p class="small text-center mt-2 mb-3 text-footer-heading">
+            </p>
+        </div>
+    </footer>
+
+
+
+                        <script type="text/javascript" src="https://example.com/api/posts?token=LzA1L2NhLzA2LzA1Y2EwNjI5ZTMyZjMzNzEwMTcyZGVmODQzZWYyNWFjLmpz"></script>
+                            <script type="text/javascript" src="https://example.com/82/56/d5/8256d53a36ece171878de038522bda31.js"></script>
+                <!-- Модальное окно поиска -->
+<div
+    class="modal fade"
+    id="searchModal"
+    tabindex="-1"
+    aria-labelledby="searchModalLabel"
+    aria-hidden="true"
+
+>
+    <div class="modal-dialog modal-xl ">
+        <div class="modal-content" style="background: #303b4c;">
+            <div class="modal-header border-0">
+                <div class="modal-header border-0 d-flex align-items-center justify-content-between">
+                    <h5 class="modal-title text-white d-flex align-items-center gap-2" id="searchModalLabel">
+                        Schnellsuche
+                        <small class="text-muted ms-2" style="font-size:0.8rem;">
+                            Drücke <kbd class="bg-dark text-white px-1">/</kbd> oder <kbd class="bg-dark text-white px-1">Ctrl+K</kbd>
+                        </small>
+                    </h5>
+                    <button
+                        type="button"
+                        class="btn-close btn-close-white"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    ></button>
+                </div>
+
+            </div>
+            <div class="modal-body">
+                <input
+                    id="search-input"
+                    type="text"
+                    class="form-control form-control-lg mb-3"
+                    placeholder="Suchen nach…"
+                    autocomplete="off"
+                    autofocus
+                >
+                <ul id="search-tabs" class="nav nav-tabs mb-3">
+                    <li class="nav-item">
+                        <button class="nav-link active" data-target="all">Alle</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" data-target="shows">Serien</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" data-target="people">Personen</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" data-target="genres">Genres</button>
+                    </li>
+                </ul>
+                <div id="search-results" class="list-group overflow-auto" style="max-height:60vh;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    window.searchTranslations = {
+        typeShows: 'Serien',
+        typePeople: 'Personen',
+        typeGenres: 'Genres',
+        noSuggestions: 'Keine Vorschläge',
+    };
+</script>
+    <!-- шаблон нижнего колонтитула -->
+    <script>
+        (function(w, d){
+            var b = d.getElementsByTagName('body')[0];
+            var s = d.createElement("script");
+            var v = !("IntersectionObserver" in w) ? "8.17.0" : "10.19.0";
+            s.src = "https://example.com/ajax/libs/vanilla-lazyload/" + v + "/lazyload.min.js";
+            w.lazyLoadOptions = {
+                threshold: 650,
+                elements_selector: "img[data-src], iframe[data-src]",
+                placeholder: "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+            };
+            b.appendChild(s);
+        }(window, document));
+    </script>
+        <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const csrf = document.querySelector('meta[name="csrf-token"]')?.content || '';
+
+            /* ---------- Bulk: "Mark episodes as" dropdown ---------- */
+            const seasonMark = document.getElementById('season-mark');
+            if (seasonMark) {
+                const markUrl = seasonMark.dataset.markUrl || '';
+                seasonMark.querySelectorAll('[data-action]').forEach(btn => {
+                    btn.addEventListener('click', async () => {
+                        const action = btn.dataset.action; // "seen" | "unseen"
+                        if (!markUrl || !action) return;
+
+                        const res = await fetch(markUrl, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': csrf,
+                                'X-Requested-With': 'XMLHttpRequest'
+                            },
+                            body: JSON.stringify({ action }),
+                            credentials: 'same-origin'
+                        });
+
+                        if (!res.ok) return;
+
+                        const data = await res.json();
+                        // Update UI: table rows
+                        const rows = Array.from(document.querySelectorAll('.episode-row'));
+                        rows.forEach(r => r.classList.toggle('seen', data.seen === true));
+
+                        // Update Episode nav pills
+                        document.querySelectorAll('#episode-nav a.alphabet-link').forEach(a => {
+                            const num = parseInt(a.textContent.trim(), 10);
+                            if (!isNaN(num)) {
+                                a.classList.toggle('seen', data.seen === true);
+                                a.classList.toggle('border-success', data.seen === true);
+                            }
+                        });
+
+                        // Update current season pill “seen”
+                        const currentSeasonPill = document.querySelector('#season-nav a[data-season-pill].bg-primary');
+                        if (currentSeasonPill) currentSeasonPill.classList.remove('seen');
+                    });
+                });
+            }
+
+            /* ---------- Per-episode eye toggle ---------- */
+            /* ---------- Per-episode eye toggle (FIXED) ---------- */
+            document.querySelectorAll('.episode-eye').forEach(btn => {
+                btn.addEventListener('click', async (ev) => {
+                    ev.preventDefault();
+                    ev.stopPropagation();
+
+                    const csrf = document.querySelector('meta[name="csrf-token"]')?.content || '';
+                    const seriesId  = Number(btn.dataset.seriesId || 0);
+                    const seasonNo  = Number(btn.dataset.seasonNo || 0);
+                    const episodeNo = Number(btn.dataset.episodeNo || 0);
+                    const episodeId = Number(btn.dataset.episodeId || 0);
+                    if (!seriesId || !episodeId || !episodeNo) {
+                        console.debug('[seen-eye] missing ids', { seriesId, seasonNo, episodeNo, episodeId });
+                        return;
+                    }
+
+                    let res;
+                    try {
+                        res = await fetch("/api/episodes/watched", {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': csrf,
+                                'X-Requested-With': 'XMLHttpRequest'
+                            },
+                            body: JSON.stringify({
+                                series_id: seriesId,
+                                season_no: seasonNo,
+                                episode_no: episodeNo,
+                                episode_id: episodeId,
+                                toggle: true
+                            }),
+                            credentials: 'same-origin'
+                        });
+                    } catch (e) {
+                        console.debug('[seen-eye] network error', e);
+                        return;
+                    }
+                    if (!res.ok) {
+                        console.debug('[seen-eye] bad response', res.status);
+                        return;
+                    }
+
+                    let data;
+                    try { data = await res.json(); } catch(e) {
+                        console.debug('[seen-eye] bad json', e);
+                        return;
+                    }
+
+                    // Robust truthiness helpers (handles true/false, 1/0, "1"/"0", "true"/"false")
+                    const yes = v => (v === true || v === 1 || v === '1' || v === 'true');
+                    const no  = v => (v === false || v === 0 || v === '0' || v === 'false');
+                    const isSeen = yes(data.seen) ? true : (no(data.seen) ? false : Boolean(Number(data.seen)));
+
+                    const epNoFromServer = Number(data.episode_no ?? episodeNo);
+                    const seasonComplete = yes(data.seasonComplete);
+
+                    // --- Table row class ---
+                    const row = btn.closest('.episode-row') || btn.closest('tr');
+                    if (row) {
+                        row.classList.toggle('seen', isSeen);
+                    } else {
+                        console.debug('[seen-eye] row not found for button');
+                    }
+
+                    // --- Episode list pill (ONLY inside #episode-nav) ---
+                    const epLink = Array
+                        .from(document.querySelectorAll('#episode-nav a.alphabet-link'))
+                        .find(a => Number((a.textContent || a.innerText || '').trim()) === epNoFromServer);
+
+                    if (epLink) {
+                        if (isSeen) {
+                            epLink.classList.add('seen', 'border-success');
+                        } else {
+                            epLink.classList.remove('seen', 'border-success');
+                        }
+                    } else {
+                        console.debug('[seen-eye] episode link not found', { epNoFromServer });
+                    }
+
+                    // --- Current season pill: never show "seen" so primary stays visible ---
+                    const currentSeasonPill = document.querySelector('#season-nav a[data-season-pill].bg-primary');
+                    if (currentSeasonPill) currentSeasonPill.classList.remove('seen');
+
+                    // If you also run the auto-watch marker on the EPISODE page,
+                    // prevent it from immediately re-marking after an UNmark:
+                    if (!isSeen) window.__suppressAutoWatchUntil = Date.now() + 120000; // 2 min
+
+                    console.debug('[seen-eye] updated', { isSeen, epNoFromServer, seasonComplete });
+                });
+            });
+
+        });
+    </script>
+
+    <script>
+        window.contentAdjustmentTranslations = {
+            title: "Inhaltsanpassung vorschlagen",
+            cancel: "Abbrechen",
+            submit: "Anfrage absenden",
+            submitting: "Wird gesendet...",
+            loading: "L\u00e4dt...",
+            success: "Anfrage abgesendet!",
+            successMessage: "Deine Anpassungsanfrage wurde abgesendet und wird vom Team \u00fcberpr\u00fcft.",
+            error_load: "Daten konnten nicht geladen werden",
+            error_submit: "Anpassungsanfrage konnte nicht abgesendet werden",
+            section_basic_info: "Grundinformationen",
+            section_images: "Bilder",
+            section_production: "Produktionsdetails",
+            section_genres: "Genres",
+            section_cast_crew: "Besetzung \u0026 Crew",
+            section_external_links: "Externe Links",
+            label_show_name: "Serienname",
+            label_alternative_titles: "Alternative Titel",
+            placeholder_alternative_titles: "Durch Komma oder Pipe getrennte alternative Titel (z.B. \u0022Titel 1, Titel 2\u0022 oder \u0022Titel 1 | Titel 2\u0022)",
+            hint_alternative_titles: "Mehrere Titel mit Kommas oder Pipes trennen",
+            label_description: "Beschreibung",
+            label_poster: "Posterbild",
+            label_backdrop: "Hintergrundbild",
+            label_production_start: "Produktionsbeginn",
+            label_production_end: "Produktionsende",
+            label_fsk: "FSK-Einstufung",
+            select_fsk: "FSK-Einstufung ausw\u00e4hlen",
+            label_primary_genre: "Hauptgenre",
+            select_primary_genre: "Hauptgenre ausw\u00e4hlen",
+            label_other_genres: "Weitere Genres",
+            label_actors: "Schauspieler",
+            label_directors: "Regisseure",
+            label_producers: "Produzenten",
+            label_countries: "L\u00e4nder",
+            placeholder_search_actors: "Nach Schauspielern suchen (min. 3 Zeichen)...",
+            placeholder_search_directors: "Nach Regisseuren suchen (min. 3 Zeichen)...",
+            placeholder_search_producers: "Nach Produzenten suchen (min. 3 Zeichen)...",
+            placeholder_search_countries: "Nach L\u00e4ndern suchen (min. 3 Zeichen)...",
+            label_imdb: "IMDB-ID",
+            label_trailer: "Trailer-URL",
+            label_german_title: "Deutscher Titel",
+            label_english_title: "Englischer Titel",
+            label_publish_date: "Ver\u00f6ffentlichungsdatum \u0026 Uhrzeit",
+            hint_publish_date: "Sowohl Datum als auch Uhrzeit ausw\u00e4hlen (Stunden und Minuten, keine Sekunden)",
+            label_title: "Titel",
+            label_content: "Inhalt",
+            label_keywords: "Stichw\u00f6rter",
+            placeholder_keywords: "Durch Komma getrennte Stichw\u00f6rter",
+            label_additional_notes: "Zus\u00e4tzliche Notizen (Optional)",
+            placeholder_additional_notes: "Erkl\u00e4re, was falsch ist oder warum du diese \u00c4nderungen vorschl\u00e4gst...",
+            click_or_drop: "Klicken oder ablegen zum Ersetzen",
+            drag_drop: "Bild hierher ziehen \u0026 ablegen",
+            or_click: "oder klicken zum Durchsuchen",
+            new_file_selected: "Neue Datei ausgew\u00e4hlt",
+        };
+    </script>
+
+    <!--  время генерации: 0.016 -->
+</body>
+</html>
