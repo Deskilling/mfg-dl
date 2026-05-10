@@ -46,7 +46,7 @@ func TestVoeParse(t *testing.T) {
 			continue
 		}
 
-		t.Logf("Passed for %s", v)
+		t.Logf("Passed for %s", v.Name())
 	}
 }
 

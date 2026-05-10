@@ -107,6 +107,6 @@ func TestAniworldEpisodeLive(t *testing.T) {
 				t.Errorf("%s [%d]: invalid episode title: %q", s.Name, i, s.EpisodeTitle)
 			}
 		}
-		t.Logf("Passed for %s (%d seasons)", v.Name, len(seasons))
+		t.Logf("Passed for %s (%d episodes)", v.Name, len(seasons))
 	}
 }
