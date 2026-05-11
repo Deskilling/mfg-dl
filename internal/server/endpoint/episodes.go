@@ -9,6 +9,11 @@ import (
 	"charm.land/log/v2"
 )
 
+/*
+ * POST /episodes
+ * expects json of model.Season
+ * returns []model.Episode as json
+ */
 func HandleEpisodes(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		writeError(w, "method not allowed", http.StatusMethodNotAllowed)

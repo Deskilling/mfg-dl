@@ -9,6 +9,11 @@ import (
 	"charm.land/log/v2"
 )
 
+/*
+ * POST /download
+ * expects json of model.Stream
+ * returns status
+ */
 func HandleDownload(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		writeError(w, "method not allowed", http.StatusMethodNotAllowed)

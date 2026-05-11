@@ -9,6 +9,11 @@ import (
 	"charm.land/log/v2"
 )
 
+/*
+ * POST /seasons
+ * expects json of model.SearchResult
+ * returns []model.Seasons as json
+ */
 func HandleSeasons(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		writeError(w, "method not allowed", http.StatusMethodNotAllowed)
