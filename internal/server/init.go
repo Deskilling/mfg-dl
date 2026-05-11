@@ -13,6 +13,7 @@ func Start() error {
 
 	mux.HandleFunc("/health", endpoint.HandleHealth)
 	mux.HandleFunc("/search", endpoint.HandleSearch)
+	mux.HandleFunc("/score", endpoint.HandleScore)
 	mux.HandleFunc("/searchsite", endpoint.HandleSearchSite)
 	mux.HandleFunc("/seasons", endpoint.HandleSeasons)
 	mux.HandleFunc("/episodes", endpoint.HandleEpisodes)
