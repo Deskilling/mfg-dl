@@ -12,6 +12,7 @@ func Start() error {
 	mux := http.NewServeMux()
 
 	mux.HandleFunc("/health", endpoint.HandleHealth)
+	mux.HandleFunc("/services", endpoint.HandleServices)
 	mux.HandleFunc("/search", endpoint.HandleSearch)
 	mux.HandleFunc("/score", endpoint.HandleScore)
 	mux.HandleFunc("/searchsite", endpoint.HandleSearchSite)
