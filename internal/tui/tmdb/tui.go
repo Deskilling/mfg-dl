@@ -30,7 +30,7 @@ func Tui() (err error) {
 	}
 
 	site := sites.Sites[index]
-	result, err := sites.Sites[index].Search(tmdbResult.Score.Query[service])
+	result, err := sites.Sites[index].Search(tmdbResult.Score[service].Query)
 	if err != nil {
 		return fmt.Errorf("search failed: %w", err)
 	}
@@ -138,7 +138,7 @@ func Score(result model.SearchResult) (service string, index int, err error) {
 
 	var values []huh.Option[int]
 	for i, v := range sites.Sites {
-		label := fmt.Sprintf("%s %.2f%%", v.Name(), result.Score.Score[v.Name()]*100)
+		label := fmt.Sprintf("%s %.2f%%", v.Name(), result.Score[v.Name()].Score*100)
 		values = append(values, huh.NewOption(label, i))
 	}
 
