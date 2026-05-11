@@ -2,7 +2,9 @@ package server
 
 import (
 	"net/http"
+	"strconv"
 
+	"mfg-dl/internal/core"
 	"mfg-dl/internal/server/endpoint"
 
 	"charm.land/log/v2"
@@ -21,6 +23,6 @@ func Start() error {
 	mux.HandleFunc("/streams", endpoint.HandleStreams)
 	mux.HandleFunc("/download", endpoint.HandleDownload)
 
-	log.Info("Starting server", "addr", ":6702")
-	return http.ListenAndServe(":6702", middleware(mux))
+	log.Info("Starting server", "addr", core.GetConfig().Server.Port)
+	return http.ListenAndServe(":"+strconv.Itoa(core.GetConfig().Server.Port), middleware(mux))
 }
