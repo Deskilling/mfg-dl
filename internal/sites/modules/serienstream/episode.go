@@ -47,6 +47,7 @@ func (service *Serienstream) Episodes(season model.Season) (episodes []model.Epi
 		}
 
 		episodes = append(episodes, model.Episode{
+			Service:                 Name,
 			Name:                    v.Name,
 			Href:                    v.Href,
 			SeasonNum:               v.SeasonNum,
