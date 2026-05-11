@@ -47,6 +47,7 @@ func (service *Aniworld) Streams(episode model.Episode) (streams []model.Stream,
 
 	for _, v := range parsedStreams {
 		streams = append(streams, model.Stream{
+			Service:                 Name,
 			Name:                    v.Name,
 			Href:                    v.Href,
 			SeasonNum:               v.SeasonNum,

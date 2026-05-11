@@ -11,10 +11,10 @@ import (
 )
 
 const configLocation string = "./config.toml"
-const configVersion string = "0.1"
+const configVersion string = "0.2"
 
 type Tui struct {
-	Mode int `toml:"tui" comment:"0 tmdb (recommendend)\n1 services directly"`
+	Mode int `toml:"tui" comment:"0 tmdb (recommendend)\n1 services directly\n2 for server mode"`
 }
 
 type Location struct {
@@ -38,6 +38,10 @@ type Cache struct {
 	CleanMinutes int  `toml:"cacheClean" comment:"How often in Minutes to check the cache"`
 }
 
+type Server struct {
+	Port int `toml:"port" comment:"Which port to use"`
+}
+
 type Debug struct {
 	LogLevel    int  `toml:"loglevel" comment:"log level: Debug (-4), Info (0), Warn (4), Error (8), Fatal (12)"`
 	Sha256Cache bool `toml:"sha256cache" comment:"Hash cache filenames with sha256"`
@@ -49,6 +53,7 @@ type Config struct {
 	Location  Location
 	Downloads Downloads
 	Cache     Cache
+	Server    Server
 	Debug     Debug
 
 	Version string
@@ -82,6 +87,10 @@ var defaultConfig = Config{
 		EnableCache:  true,
 		Minutes:      60,
 		CleanMinutes: 30,
+	},
+
+	Server: Server{
+		Port: 6702,
 	},
 
 	Debug: Debug{

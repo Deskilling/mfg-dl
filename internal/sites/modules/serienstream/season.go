@@ -38,6 +38,7 @@ func (service *Serienstream) Seasons(result model.SearchResult) (seasons []model
 
 	for _, v := range parsedSeasons {
 		seasons = append(seasons, model.Season{
+			Service:     Name,
 			Name:        v.Name,
 			Href:        v.Href,
 			SeasonNum:   v.SeasonNum,
