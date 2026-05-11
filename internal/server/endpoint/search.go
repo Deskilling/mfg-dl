@@ -11,6 +11,7 @@ import (
 
 /*
  * GET /search?q=...
+ * q = query
  * Searches TMDB
  * returns json object of []model.SearchResult
  */
