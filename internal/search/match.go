@@ -7,8 +7,6 @@ import (
 	"unicode/utf8"
 
 	"mfg-dl/internal/sites/model"
-
-	"charm.land/log/v2"
 )
 
 // https://github.com/jhvst/go-jaro-winkler-distance/blob/master/algo.go
@@ -112,18 +110,18 @@ func Calculate(s1, s2 string) float64 {
 }
 
 func Match(selected *model.SearchResult, services [][]model.SearchResult) {
-	selected.Score.Score = make(map[string]float64)
-	selected.Score.Query = make(map[string]string)
-	selected.Score.Href = make(map[string]string)
-
+	if selected.Score == nil {
+		selected.Score = make(map[string]model.Score)
+	}
 	for _, service := range services {
 		for _, u := range service {
 			score := Calculate(selected.Name, u.Name)
-			if score > selected.Score.Score[u.Service] {
-				log.Debug("Calculated Score", "name", u.Name, "service", u.Service, "score", score)
-				selected.Score.Query[u.Service] = u.Name
-				selected.Score.Score[u.Service] = score
-				selected.Score.Href[u.Service] = u.Href
+			s := selected.Score[u.Service]
+			if score > s.Score {
+				s.Query = u.Name
+				s.Score = score
+				s.Href = u.Href
+				selected.Score[u.Service] = s
 			} else {
 				// TODO - When new module do smth here
 			}

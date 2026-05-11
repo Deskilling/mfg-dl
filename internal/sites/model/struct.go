@@ -10,19 +10,19 @@ type Site interface {
 }
 
 type Score struct {
-	Score map[string]float64 `json:"score"`
-	Query map[string]string  `json:"query"`
-	Href  map[string]string  `json:"href"`
+	Score float64 `json:"score"`
+	Query string  `json:"query"`
+	Href  string  `json:"href"`
 }
 
 type SearchResult struct {
-	Service        string `json:"service"`
-	Name           string `json:"name"`
-	Href           string `json:"href"`
-	Description    string `json:"description"`
-	Cover          string `json:"cover"`
-	ProductionYear string `json:"productionYear"`
-	Score          Score  `json:"score"`
+	Service        string           `json:"service"`
+	Name           string           `json:"name"`
+	Href           string           `json:"href"`
+	Description    string           `json:"description"`
+	Cover          string           `json:"cover"`
+	ProductionYear string           `json:"productionYear"`
+	Score          map[string]Score `json:"scores"`
 }
 
 type Season struct {
