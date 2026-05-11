@@ -95,6 +95,7 @@ func Search(query string) (results []model.SearchResult, err error) {
 			Service:        "TMDB",
 			Name:           util.NormalizeString(v.Title),
 			Href:           fmt.Sprintf("/%s/%d", v.MediaType, v.ID),
+			Cover:          fmt.Sprintf("https://image.tmdb.org/t/p/w1280/%s", v.PosterPath),
 			ProductionYear: v.ReleaseDate,
 			Description:    v.Overview,
 		})
