@@ -1,0 +1,1 @@
+- [ ] Return just empty model if an error occured, especially in the search
