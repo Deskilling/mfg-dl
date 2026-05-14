@@ -10,13 +10,13 @@ import (
 )
 
 /*
- * GET /search?q=...
+ * GET OR POST /search?q=...
  * q = query
  * Searches TMDB
  * returns json object of []model.SearchResult
  */
 func HandleSearch(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodGet {
+	if r.Method != http.MethodGet && r.Method != http.MethodPost {
 		writeError(w, "method not allowed", http.StatusMethodNotAllowed)
 		return
 	}

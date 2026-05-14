@@ -8,13 +8,13 @@ import (
 )
 
 /*
- * Get /searchsite?q=...&service=...
+ * Get OR POST /searchsite?q=...&service=...
  * q = query
  * service = service
  * returns []model.SearchResults as json
  */
 func HandleSearchSite(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodGet {
+	if r.Method != http.MethodGet && r.Method != http.MethodPost {
 		writeError(w, "method not allowed", http.StatusMethodNotAllowed)
 		return
 	}

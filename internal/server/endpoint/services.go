@@ -8,11 +8,11 @@ import (
 )
 
 /*
- * GET /services
+ * GET OR POST /services
  * returns list of enabled services
  */
 func HandleServices(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodGet {
+	if r.Method != http.MethodGet && r.Method != http.MethodPost {
 		writeError(w, "method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
