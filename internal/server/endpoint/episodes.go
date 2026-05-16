@@ -34,7 +34,7 @@ func HandleEpisodes(w http.ResponseWriter, r *http.Request) {
 
 	episodes, err := site.Episodes(season)
 	if err != nil {
-		log.Errorf("failed episodes", "err", err)
+		log.Error("failed episodes", "err", err)
 		writeError(w, "episodes failed", http.StatusInternalServerError)
 		return
 	}

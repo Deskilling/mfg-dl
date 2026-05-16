@@ -34,7 +34,7 @@ func HandleDownload(w http.ResponseWriter, r *http.Request) {
 
 	err = site.Download(stream)
 	if err != nil {
-		log.Errorf("failed episodes", "err", err)
+		log.Error("failed episodes", "err", err)
 		writeError(w, "episodes failed", http.StatusInternalServerError)
 		return
 	}

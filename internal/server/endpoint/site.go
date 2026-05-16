@@ -38,7 +38,7 @@ func HandleSearchSite(w http.ResponseWriter, r *http.Request) {
 
 	result, err := site.Search(query)
 	if err != nil {
-		log.Errorf("failed search", "err", err)
+		log.Error("failed search", "err", err)
 		writeError(w, "search failed", http.StatusInternalServerError)
 		return
 	}

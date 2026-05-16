@@ -34,7 +34,7 @@ func HandleStreams(w http.ResponseWriter, r *http.Request) {
 
 	streams, err := site.Streams(episode)
 	if err != nil {
-		log.Errorf("failed streams", "err", err)
+		log.Error("failed streams", "err", err)
 		writeError(w, "streams failed", http.StatusInternalServerError)
 		return
 	}
