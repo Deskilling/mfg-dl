@@ -31,3 +31,7 @@ go.work.sum
 
 # mac finder files
 .DS_Store
+
+# devenv
+.envrc
+/.direnv
