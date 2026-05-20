@@ -53,6 +53,3 @@ test-verbose:
 
 update:
 	$(GO) mod tidy
-	@if command -v nix > /dev/null 2>&1; then \
-		nix run github:nix-community/gomod2nix -- generate --with-deps; \
-	fi
