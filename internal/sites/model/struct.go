@@ -21,6 +21,7 @@ type SearchResult struct {
 	Href           string           `json:"href"`
 	Description    string           `json:"description"`
 	Cover          string           `json:"cover"`
+	CoverPath      string           `json:"coverPath"`
 	ProductionYear string           `json:"productionYear"`
 	Score          map[string]Score `json:"scores"`
 }
