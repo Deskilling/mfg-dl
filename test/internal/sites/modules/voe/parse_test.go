@@ -51,13 +51,13 @@ func TestVoeParse(t *testing.T) {
 }
 
 var sampleVoeParseUrl []string = []string{
-	"https://vickisaveworker.com/e/o6pq69uxu7wl",
-	"https://vickisaveworker.com/e/6q1ngfkyvebf",
-	"https://vickisaveworker.com/e/xqo6271z5tev",
-	"https://vickisaveworker.com/e/lutc9vijlalf",
-	"https://vickisaveworker.com/e/wark5ec0rq4w",
-	"https://vickisaveworker.com/e/kukevkqehqyg",
-	"https://vickisaveworker.com/e/dfwfjaxudbea",
+	"https://jennifereconomicgive.com/e/o6pq69uxu7wl",
+	"https://jennifereconomicgive.com/e/6q1ngfkyvebf",
+	"https://jennifereconomicgive.com/e/xqo6271z5tev",
+	"https://jennifereconomicgive.com/e/lutc9vijlalf",
+	"https://jennifereconomicgive.com/e/wark5ec0rq4w",
+	"https://jennifereconomicgive.com/e/kukevkqehqyg",
+	"https://jennifereconomicgive.com/e/dfwfjaxudbea",
 }
 
 func TestVoeParseLive(t *testing.T) {
