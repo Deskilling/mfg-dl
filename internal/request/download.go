@@ -6,10 +6,16 @@ import (
 	"net/http"
 	"os"
 
+	"charm.land/log/v2"
 	"github.com/Deskilling/gopkg/pkg/filesystem"
 )
 
 func DownloadFile(client *http.Client, url, filePath string) (err error) {
+	if url == "" {
+		log.Error("invalid url to request")
+		return fmt.Errorf("invalid url")
+	}
+
 	err = filesystem.CreatePath(filePath)
 	if err != nil {
 		return err

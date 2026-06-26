@@ -41,6 +41,11 @@ func cachePath(endpoint string) string {
 }
 
 func Get(client *http.Client, endpoint string, headers ...map[string]string) (body []byte, err error) {
+	if endpoint == "" {
+		log.Error("invalid url to request")
+		return []byte{}, fmt.Errorf("invalid url")
+	}
+
 	if client == nil {
 		client = Client
 	}
