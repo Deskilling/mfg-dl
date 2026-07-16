@@ -4,97 +4,49 @@ import (
 	"fmt"
 	"strings"
 
-	"mfg-dl/internal/request"
 	"mfg-dl/internal/sites/model"
 
-	"github.com/PuerkitoBio/goquery"
+	"github.com/gocolly/colly/v2"
 )
 
-type Stream struct {
-	Name                    string
-	Href                    string
-	SeasonNum               string
-	EpisodeTitle            string
-	EpisodeAlternativeTitle string
-	EpisodeNum              string
-	Hoster                  string
-	Language                string
-}
-
 func (service *Aniworld) Streams(episode model.Episode) (streams []model.Stream, err error) {
-	pageURL := BaseURL + episode.Href
-	unparsedStreams, err := request.Get(service.client, pageURL)
-	if err != nil {
-		return nil, fmt.Errorf("failed to GET Stream for %s: %w", episode.Href, err)
-	}
+	c := colly.NewCollector(
+		colly.MaxDepth(1),
+		colly.Async(true),
+	)
 
-	parsedStreams, err := ParseStreams(string(unparsedStreams))
-	if err != nil {
-		return nil, fmt.Errorf("failed parsing Streams for %s: %w", episode.Href, err)
-	}
+	c.OnHTML("ul.row li", func(e *colly.HTMLElement) {
+		hosterName := e.ChildText("h4")
+		if hosterName == "" {
+			hosterName = e.ChildAttr("i.icon", "title")
+			hosterName = strings.TrimPrefix(hosterName, "Hoster ")
+		}
 
-	if len(parsedStreams) == 0 {
-		return nil, fmt.Errorf("%s not found", episode.Href)
-	}
+		linkTarget := e.Attr("data-link-target")
+		if linkTarget == "" {
+			linkTarget = e.ChildAttr("a.watchEpisode", "href")
+		}
 
-	for i := range parsedStreams {
-		parsedStreams[i].Name = episode.Name
-		parsedStreams[i].SeasonNum = episode.SeasonNum
-		parsedStreams[i].EpisodeTitle = episode.EpisodeTitle
-		parsedStreams[i].EpisodeAlternativeTitle = episode.EpisodeAlternativeTitle
-		parsedStreams[i].EpisodeNum = episode.EpisodeNum
-	}
+		langKey := e.Attr("data-lang-key")
 
-	for _, v := range parsedStreams {
 		streams = append(streams, model.Stream{
 			Service:                 Name,
-			Name:                    v.Name,
-			Href:                    v.Href,
-			SeasonNum:               v.SeasonNum,
-			EpisodeTitle:            v.EpisodeTitle,
-			EpisodeAlternativeTitle: v.EpisodeAlternativeTitle,
-			EpisodeNum:              v.EpisodeNum,
-			Hoster:                  v.Hoster,
-			Language:                v.Language,
-		})
-	}
-
-	return streams, nil
-}
-
-func ParseStreams(html string) (streams []Stream, err error) {
-	if html == "" {
-		err := fmt.Errorf("empty html")
-		return nil, err
-	}
-
-	doc, err := goquery.NewDocumentFromReader(strings.NewReader(html))
-	if err != nil {
-		return nil, fmt.Errorf("could not create goquery document: %w", err)
-	}
-
-	doc.Find("li[class*='episodeLink']").Each(func(i int, s *goquery.Selection) {
-		link := s.Find("a.watchEpisode")
-
-		href, exists := link.Attr("href")
-		if !exists {
-			return
-		}
-
-		hosterName := strings.TrimSpace(link.Find("h4").Text())
-
-		if hosterName == "" {
-			return
-		}
-
-		langKey := strings.TrimSpace(s.AttrOr("data-lang-key", ""))
-
-		streams = append(streams, Stream{
-			Href:     href,
-			Hoster:   hosterName,
-			Language: AniLanguages[langKey],
+			Name:                    episode.Name,
+			Href:                    linkTarget,
+			SeasonNum:               episode.SeasonNum,
+			EpisodeTitle:            episode.EpisodeTitle,
+			EpisodeAlternativeTitle: episode.EpisodeAlternativeTitle,
+			EpisodeNum:              episode.EpisodeNum,
+			Hoster:                  hosterName,
+			Language:                AniLanguages[langKey],
 		})
 	})
+
+	err = c.Visit(BaseURL + episode.Href)
+	if err != nil {
+		fmt.Printf("Failed to visit initial URL: %v\n", err)
+	}
+	c.Wait()
 
 	return streams, nil
 }
