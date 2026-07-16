@@ -2,100 +2,52 @@ package aniworld
 
 import (
 	"fmt"
-	"strings"
-
-	"mfg-dl/internal/request"
 	"mfg-dl/internal/sites/model"
 
-	"github.com/PuerkitoBio/goquery"
+	"charm.land/log/v2"
+	"github.com/gocolly/colly/v2"
 )
 
-type Episode struct {
-	Name                    string
-	Href                    string
-	SeasonNum               string
-	EpisodeTitle            string
-	EpisodeAlternativeTitle string
-	EpisodeNum              string
-}
-
 func (service *Aniworld) Episodes(season model.Season) (episodes []model.Episode, err error) {
-	url := BaseURL + season.Href
+	c := colly.NewCollector(
+		colly.MaxDepth(1),
+	)
 
-	unparsedEpisodes, err := request.Get(service.client, url)
-	if err != nil {
-		return nil, fmt.Errorf("failed to GET Episodes: %w", err)
-	}
-
-	parsedEpisodes, err := ParseEpisodes(string(unparsedEpisodes))
-	if err != nil {
-		return nil, fmt.Errorf("failed parsing episodes %w", err)
-	}
-
-	if len(parsedEpisodes) == 0 {
-		return nil, err
-	}
-
-	for i := range parsedEpisodes {
-		parsedEpisodes[i].Name = season.Name
-		parsedEpisodes[i].SeasonNum = season.SeasonNum
-	}
-
-	for _, v := range parsedEpisodes {
-		if v.EpisodeTitle == "" {
-			v.EpisodeTitle = v.EpisodeAlternativeTitle
-		}
-
-		episodes = append(episodes, model.Episode{
-			Service:                 Name,
-			Name:                    v.Name,
-			Href:                    v.Href,
-			SeasonNum:               v.SeasonNum,
-			EpisodeTitle:            v.EpisodeTitle,
-			EpisodeAlternativeTitle: v.EpisodeAlternativeTitle,
-			EpisodeNum:              v.EpisodeNum,
-		})
-	}
-
-	return episodes, nil
-}
-
-func ParseEpisodes(html string) (episodes []Episode, err error) {
-	if html == "" {
-		err := fmt.Errorf("empty html")
-		return nil, err
-	}
-
-	doc, err := goquery.NewDocumentFromReader(strings.NewReader(html))
-	if err != nil {
-		return nil, fmt.Errorf("could not create goquery document: %w", err)
-	}
-
-	doc.Find(".seasonEpisodesList tbody tr").Each(func(i int, s *goquery.Selection) {
-		episodeLink := s.Find("td.seasonEpisodeTitle a")
-		href, exists := episodeLink.Attr("href")
-		if !exists {
+	c.OnHTML("table.seasonEpisodesList tbody tr", func(e *colly.HTMLElement) {
+		numberText := e.Attr("data-episode-season-id")
+		if numberText == "" {
 			return
 		}
 
-		episodeNum, _ := s.Find("meta[itemprop='episodeNumber']").Attr("content")
-		episodeNum = strings.TrimSpace(episodeNum)
-		if episodeNum == "" {
-			episodeNum = "00"
-		} else if len(episodeNum) == 1 {
-			episodeNum = "0" + episodeNum
+		var numberStr string
+		for _, char := range numberText {
+			if char >= '0' && char <= '9' {
+				numberStr += string(char)
+			}
 		}
 
-		title := strings.TrimSpace(episodeLink.Find("strong").Text())
-		alternativeTitle := strings.TrimSpace(episodeLink.Find("span").Text())
+		formattedNumber := fmt.Sprintf("%02s", numberStr)
+		mainTitle := e.ChildText("td.seasonEpisodeTitle a strong")
+		secondaryTitle := e.ChildText("td.seasonEpisodeTitle a span")
 
-		episodes = append(episodes, Episode{
+		href := e.ChildAttr("td.seasonEpisodeTitle a", "href")
+
+		episodes = append(episodes, model.Episode{
+			Service:                 Name,
+			Name:                    season.Name,
 			Href:                    href,
-			EpisodeTitle:            title,
-			EpisodeAlternativeTitle: alternativeTitle,
-			EpisodeNum:              episodeNum,
+			SeasonNum:               season.SeasonNum,
+			EpisodeTitle:            mainTitle,
+			EpisodeAlternativeTitle: secondaryTitle,
+			EpisodeNum:              formattedNumber,
 		})
 	})
 
-	return episodes, nil
+	err = c.Visit(BaseURL + season.Href)
+	if err != nil {
+		log.Error(err)
+	}
+	c.Wait()
+
+	return episodes, err
 }
