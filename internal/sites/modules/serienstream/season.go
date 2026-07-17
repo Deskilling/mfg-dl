@@ -4,97 +4,59 @@ import (
 	"fmt"
 	"strings"
 
-	"mfg-dl/internal/request"
 	"mfg-dl/internal/sites/model"
 
-	"github.com/PuerkitoBio/goquery"
+	"github.com/gocolly/colly/v2"
 )
 
-type Season struct {
-	Name        string
-	Href        string
-	SeasonNum   string
-	SeasonLabel string
-}
-
 func (service *Serienstream) Seasons(result model.SearchResult) (seasons []model.Season, err error) {
-	unparsedSeasons, err := request.Get(service.client, SerienstreamEndpoints["default"]+result.Href)
-	if err != nil {
-		return nil, err
-	}
+	c := colly.NewCollector(
+		colly.MaxDepth(1),
+		colly.Async(true),
+	)
 
-	parsedSeasons, err := ParseSeasons(string(unparsedSeasons))
-	if err != nil {
-		return nil, err
-	}
+	c.OnHTML("ul.nav.list-items-nav li.nav-item a[href]", func(e *colly.HTMLElement) {
+		href := e.Attr("href")
+		if href == "" {
+			return
+		}
 
-	if len(parsedSeasons) == 0 {
-		return nil, fmt.Errorf("%s not found", result.Href)
-	}
+		if strings.Contains(href, "/episode-") {
+			return
+		}
 
-	for i := range parsedSeasons {
-		parsedSeasons[i].Name = result.Name
-	}
+		label := e.Text
+		if label == "" {
+			return
+		}
 
-	for _, v := range parsedSeasons {
+		isFilme := strings.Contains(href, "/filme") || strings.Contains(href, "/staffel-0")
+		isSeason := strings.Contains(href, "/staffel-") && !strings.Contains(href, "/staffel-0")
+
+		if !isFilme && !isSeason {
+			return
+		}
+
+		num := "00"
+		if isSeason {
+			num = fmt.Sprintf("%02s", strings.TrimSpace(label))
+			label = "Season" + label
+		}
+
 		seasons = append(seasons, model.Season{
 			Service:     Name,
-			Name:        v.Name,
-			Href:        v.Href,
-			SeasonNum:   v.SeasonNum,
-			SeasonLabel: v.SeasonLabel,
-		})
-	}
-
-	return seasons, nil
-}
-
-func ParseSeasons(html string) (seasons []Season, err error) {
-	if html == "" {
-		return nil, fmt.Errorf("empty html")
-	}
-
-	doc, err := goquery.NewDocumentFromReader(strings.NewReader(html))
-
-	if err != nil {
-		return nil, fmt.Errorf("could not create goquery document: %w", err)
-	}
-
-	doc.Find("#season-nav a.alphabet-link").Each(func(i int, s *goquery.Selection) {
-		href, exists := s.Attr("href")
-		if !exists {
-			return
-		}
-
-		data, exists := s.Attr("data-season-pill")
-		if !exists {
-			return
-		}
-
-		label := strings.TrimSpace(s.Text())
-
-		if !strings.Contains(href, "/staffel-") {
-			return
-		}
-
-		var seasonNum string
-		if data == "0" {
-			seasonNum = "00"
-			label = "Filme"
-		} else {
-			seasonNum = data
-			if len(seasonNum) == 1 {
-				seasonNum = "0" + seasonNum
-			}
-			label = "Staffel " + data
-		}
-
-		seasons = append(seasons, Season{
+			Name:        result.Name,
 			Href:        href,
-			SeasonLabel: label,
-			SeasonNum:   seasonNum,
+			SeasonNum:   num,
+			SeasonLabel: strings.TrimSpace(label),
 		})
 	})
+
+	err = c.Visit(BaseURL + result.Href)
+	if err != nil {
+		fmt.Printf("Failed to visit initial URL: %v\n", err)
+	}
+	c.Wait()
 
 	return seasons, nil
 }
