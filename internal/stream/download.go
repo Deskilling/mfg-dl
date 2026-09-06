@@ -1,23 +1,26 @@
 package stream
 
 import (
+	"errors"
 	"fmt"
 	"net/http"
-	"sync"
 	"time"
 
 	"mfg-dl/internal/core"
 	"mfg-dl/internal/request"
-	"mfg-dl/internal/tui/components"
-
-	"github.com/Deskilling/gopkg/pkg/m3u8"
 
 	"charm.land/log/v2"
+	"github.com/Deskilling/gopkg/pkg/m3u8"
+	"github.com/cavaliergopher/grab/v3"
 )
 
-var Client = &http.Client{
-	Timeout:   5 * time.Second,
-	Transport: request.Client.Transport,
+var Client = grab.NewClient()
+
+func init() {
+	Client.HTTPClient = &http.Client{
+		Timeout:   60 * time.Second,
+		Transport: request.Client.Transport,
+	}
 }
 
 func DownloadSegments(index m3u8.Index, baseURL, directory string) (err error) {
@@ -26,53 +29,56 @@ func DownloadSegments(index m3u8.Index, baseURL, directory string) (err error) {
 		file string
 	}
 
-	var wg sync.WaitGroup
-	semaphore := make(chan struct{}, core.GetConfig().Downloads.MaxSegmentConcurrency)
+	cfg := core.GetConfig().Downloads
 
-	var retryMu sync.Mutex
-	var retryQueue []job
-
-	segmentCnt := len(index.Segments)
-
+	reqs := make([]*grab.Request, 0, len(index.Segments))
 	for i, seg := range index.Segments {
-		wg.Add(1)
-		semaphore <- struct{}{}
+		file := fmt.Sprintf("%s%d.ts", directory, i)
+		url := baseURL + seg.URI
 
-		components.PrintProgress(i+1, segmentCnt)
-		go func(i int, seg m3u8.Segment) {
-			defer wg.Done()
-			defer func() { <-semaphore }()
-
-			file := fmt.Sprintf("%s%d.ts", directory, i)
-			url := baseURL + seg.URI
-
-			err := request.DownloadFile(Client, url, file)
-			if err != nil {
-				log.Error("Failed to download", "url", url, "file", file)
-				retryMu.Lock()
-				retryQueue = append(retryQueue, job{url, file})
-				retryMu.Unlock()
-			}
-		}(i, seg)
+		req, err := grab.NewRequest(file, url)
+		if err != nil {
+			return fmt.Errorf("building request for segment %d: %w", i, err)
+		}
+		reqs = append(reqs, req)
 	}
 
-	wg.Wait()
+	respCh := Client.DoBatch(cfg.MaxSegmentConcurrency, reqs...)
 
-	retryDelay := time.Duration(core.GetConfig().Downloads.RetryDelay) * time.Second
-	for _, j := range retryQueue {
-		for attempt := range core.GetConfig().Downloads.MaxRetires {
-			log.Debug("Retry download", "url", j.url, "path", j.file)
-			err := request.DownloadFile(Client, j.url, j.file)
+	var failed []job
+	for resp := range respCh {
+		if err := resp.Err(); err != nil {
+			log.Error("Failed to download", "url", resp.Request.URL(), "file", resp.Filename, "err", err)
+			failed = append(failed, job{url: resp.Request.URL().String(), file: resp.Filename})
+		}
+	}
+
+	retryDelay := time.Duration(cfg.RetryDelay) * time.Second
+	var stillFailed []error
+	for _, j := range failed {
+		var lastErr error
+		for attempt := range cfg.MaxRetires {
+			req, err := grab.NewRequest(j.file, j.url)
 			if err != nil {
-				if attempt == core.GetConfig().Downloads.MaxRetires-1 {
-					return err
-				}
-			} else {
-				log.Debug("Redownloaded unc")
+				lastErr = err
 				break
 			}
-			time.Sleep(retryDelay)
+			resp := Client.Do(req)
+			if lastErr = resp.Err(); lastErr == nil {
+				break
+			}
+			if attempt < cfg.MaxRetires-1 {
+				time.Sleep(retryDelay)
+			}
 		}
+		if lastErr != nil {
+			log.Error("GG on segment", "url", j.url, "path", j.file, "err", lastErr)
+			stillFailed = append(stillFailed, fmt.Errorf("%s: %w", j.file, lastErr))
+		}
+	}
+
+	if len(stillFailed) > 0 {
+		return fmt.Errorf("%d segment(s) failed permanently: %w", len(stillFailed), errors.Join(stillFailed...))
 	}
 
 	return nil
