@@ -8,7 +8,9 @@ require (
 	charm.land/log/v2 v2.0.0
 	github.com/Deskilling/gopkg v0.0.0-20260425145211-86cbbd8c946b
 	github.com/PuerkitoBio/goquery v1.11.0
+	github.com/cavaliergopher/grab/v3 v3.0.1
 	github.com/charmbracelet/colorprofile v0.4.2
+	github.com/gocolly/colly/v2 v2.3.0
 	golang.org/x/exp v0.0.0-20250106191152-7588d65b2ba8
 	golang.org/x/text v0.32.0
 )
@@ -35,7 +37,6 @@ require (
 	github.com/dustin/go-humanize v1.0.1 // indirect
 	github.com/go-logfmt/logfmt v0.6.0 // indirect
 	github.com/gobwas/glob v0.2.3 // indirect
-	github.com/gocolly/colly/v2 v2.3.0 // indirect
 	github.com/golang/groupcache v0.0.0-20241129210726-2c02b8208cf8 // indirect
 	github.com/golang/protobuf v1.5.4 // indirect
 	github.com/kennygrant/sanitize v1.2.4 // indirect
