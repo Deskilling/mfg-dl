@@ -1,6 +1,7 @@
 package aniworld
 
 import (
+	"fmt"
 	"slices"
 
 	"mfg-dl/internal/request"
@@ -14,13 +15,16 @@ func (service *Aniworld) Download(stream model.Stream) (err error) {
 	}
 
 	url := BaseURL + stream.Href
-	location, _ := request.Redirect(nil, url)
+	location, err := request.Redirect(nil, url)
+	if err != nil {
+		return fmt.Errorf("failed to resolve redirect: %w", err)
+	}
 
 	output := util.BuildOutputPath(stream)
 
 	switch stream.Hoster {
 	case "VOE":
-		service.voe.BaseDownload(location, output)
+		return service.voe.BaseDownload(location, output)
 	default:
 	}
 

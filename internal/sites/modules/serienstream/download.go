@@ -1,6 +1,8 @@
 package serienstream
 
 import (
+	"fmt"
+
 	"mfg-dl/internal/request"
 	"mfg-dl/internal/sites/model"
 	"mfg-dl/internal/util"
@@ -14,13 +16,16 @@ func (service *Serienstream) Download(stream model.Stream) (err error) {
 	}
 
 	url := BaseURL + stream.Href
-	location, _ := request.Redirect(nil, url)
+	location, err := request.Redirect(nil, url)
+	if err != nil {
+		return fmt.Errorf("failed to resolve redirect: %w", err)
+	}
 
 	output := util.BuildOutputPath(stream)
 
 	switch stream.Hoster {
 	case "VOE":
-		service.voe.BaseDownload(location, output)
+		return service.voe.BaseDownload(location, output)
 	default:
 	}
 
