@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"mfg-dl/internal/request"
+	"mfg-dl/internal/sites/model"
 	"mfg-dl/internal/sites/modules/voe"
 )
 
@@ -45,4 +46,11 @@ func New() *Serienstream {
 
 func (site *Serienstream) Name() (service string) {
 	return Name
+}
+
+func (site *Serienstream) Languages() model.Languages{
+	return model.Languages{
+		Subbed: []string{"german"},
+		Dubbed: []string{"english", "german"},
+	}
 }

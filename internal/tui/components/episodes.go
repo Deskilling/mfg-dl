@@ -12,7 +12,7 @@ import (
 	"golang.org/x/exp/slices"
 )
 
-func Episodes(site model.Site, season model.Season) (streams []model.Stream, err error) {
+func Episodes(site model.Module, season model.Season) (streams []model.Stream, err error) {
 	episodes, err := site.Episodes(season)
 	if err != nil {
 		log.Error("Failed getting episodes", "service", site.Name(), "href", season.Href)

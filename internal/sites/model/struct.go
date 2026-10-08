@@ -1,12 +1,25 @@
 package model
 
-type Site interface {
-	Name() (service string)
+type Module interface {
+	// static
+	Name() string
+	Languages() Languages
+
+	// searches module and returns all results,
+	// also expected rest of functions
+	//
+	// this may not be the most memory efficient
+	// approach, but in this scale its not really important
 	Search(term string) ([]SearchResult, error)
 	Seasons(result SearchResult) ([]Season, error)
 	Episodes(season Season) ([]Episode, error)
 	Streams(episode Episode) ([]Stream, error)
-	Download(streams Stream) error
+	Download(stream Stream) error
+}
+
+type Languages struct {
+	Subbed []string
+	Dubbed []string
 }
 
 type Score struct {

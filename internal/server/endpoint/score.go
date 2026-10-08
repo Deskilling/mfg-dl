@@ -35,7 +35,7 @@ func HandleScore(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var allServiceResults [][]model.SearchResult
-	for _, site := range sites.Sites {
+	for _, site := range sites.Modules {
 		results, err := site.Search(util.NormalizeString(selected.Name))
 		if err != nil {
 			log.Error("score search failed", "service", site.Name(), "err", err)

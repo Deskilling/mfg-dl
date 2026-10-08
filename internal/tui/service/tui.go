@@ -13,7 +13,7 @@ import (
 )
 
 func Tui() (err error) {
-	if len(sites.Sites) == 0 {
+	if len(sites.Modules) == 0 {
 		return errors.New("no service available")
 	}
 
@@ -48,12 +48,12 @@ func Tui() (err error) {
 	return nil
 }
 
-func SelectModule() (site model.Site, err error) {
-	if len(sites.Sites) == 1 {
-		return sites.Sites[0], nil
+func SelectModule() (site model.Module, err error) {
+	if len(sites.Modules) == 1 {
+		return sites.Modules[0], nil
 	}
 
-	for i, v := range sites.Sites {
+	for i, v := range sites.Modules {
 		u := i + 1
 		fmt.Printf("[%v] %s\n", u, v.Name())
 	}
@@ -65,15 +65,15 @@ func SelectModule() (site model.Site, err error) {
 		}
 		v--
 
-		if v < 0 || v >= len(sites.Sites) {
+		if v < 0 || v >= len(sites.Modules) {
 			continue
 		}
 
-		return sites.Sites[v], nil
+		return sites.Modules[v], nil
 	}
 }
 
-func Search(site model.Site) (result model.SearchResult, err error) {
+func Search(site model.Module) (result model.SearchResult, err error) {
 	for {
 		search, err := components.ReadString("Search: ")
 		if err != nil {

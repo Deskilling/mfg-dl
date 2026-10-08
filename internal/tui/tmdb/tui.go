@@ -15,7 +15,7 @@ import (
 )
 
 func Tui() (err error) {
-	if len(sites.Sites) == 0 {
+	if len(sites.Modules) == 0 {
 		return errors.New("no service available")
 	}
 
@@ -29,8 +29,8 @@ func Tui() (err error) {
 		return fmt.Errorf("failed to calcualte scores: %w", err)
 	}
 
-	site := sites.Sites[index]
-	result, err := sites.Sites[index].Search(tmdbResult.Score[service].Query)
+	site := sites.Modules[index]
+	result, err := sites.Modules[index].Search(tmdbResult.Score[service].Query)
 	if err != nil {
 		return fmt.Errorf("search failed: %w", err)
 	}
@@ -79,7 +79,7 @@ func Search() (result model.SearchResult, err error) {
 		}
 
 		var allServiceResults [][]model.SearchResult
-		for _, site := range sites.Sites {
+		for _, site := range sites.Modules {
 			results, err := site.Search(util.NormalizeString(selected.Name))
 			if err != nil {
 				log.Error("Search returned error", "service", site.Name(), "term", selected.Name, "err", err)
@@ -132,12 +132,12 @@ func selectFromList(results []model.SearchResult) (result model.SearchResult, er
 }
 
 func Score(result model.SearchResult) (service string, index int, err error) {
-	if len(sites.Sites) == 1 {
-		return sites.Sites[0].Name(), 0, nil
+	if len(sites.Modules) == 1 {
+		return sites.Modules[0].Name(), 0, nil
 	}
 
 	var values []huh.Option[int]
-	for i, v := range sites.Sites {
+	for i, v := range sites.Modules {
 		label := fmt.Sprintf("%s %.2f%%", v.Name(), result.Score[v.Name()].Score*100)
 		values = append(values, huh.NewOption(label, i))
 	}
@@ -153,5 +153,5 @@ func Score(result model.SearchResult) (service string, index int, err error) {
 		return "", 0, fmt.Errorf("failed user input: %w", err)
 	}
 
-	return sites.Sites[selected].Name(), selected, nil
+	return sites.Modules[selected].Name(), selected, nil
 }

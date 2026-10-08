@@ -18,8 +18,8 @@ func writeError(w http.ResponseWriter, message string, code int) {
 	json.NewEncoder(w).Encode(apiError{Code: code, Message: message})
 }
 
-func getSite(name string) model.Site {
-	for _, v := range sites.Sites {
+func getSite(name string) model.Module {
+	for _, v := range sites.Modules {
 		if v.Name() == name {
 			return v
 		}

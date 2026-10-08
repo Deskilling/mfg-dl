@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"mfg-dl/internal/request"
+	"mfg-dl/internal/sites/model"
 	"mfg-dl/internal/sites/modules/voe"
 )
 
@@ -46,4 +47,11 @@ func New() *Aniworld {
 
 func (site *Aniworld) Name() (service string) {
 	return Name
+}
+
+func (site *Aniworld) Languages() model.Languages{
+	return model.Languages{
+		Subbed: []string{"german"},
+		Dubbed: []string{"english", "german"},
+	}
 }

@@ -8,7 +8,7 @@ import (
 	"charm.land/log/v2"
 )
 
-func Language(site model.Site, episode model.Episode) (lang string, err error) {
+func Language(site model.Module, episode model.Episode) (lang string, err error) {
 	stream, err := site.Streams(episode)
 	if err != nil {
 		return "", err

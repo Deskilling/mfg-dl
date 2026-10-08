@@ -1,6 +1,6 @@
 module mfg-dl
 
-go 1.26
+go 1.26.5
 
 require (
 	charm.land/huh/v2 v2.0.3
@@ -9,7 +9,7 @@ require (
 	github.com/Deskilling/gopkg v0.0.0-20260425145211-86cbbd8c946b
 	github.com/PuerkitoBio/goquery v1.11.0
 	github.com/cavaliergopher/grab/v3 v3.0.1
-	github.com/charmbracelet/colorprofile v0.4.2
+	github.com/charmbracelet/colorprofile v0.4.3
 	github.com/gocolly/colly/v2 v2.3.0
 	golang.org/x/exp v0.0.0-20250106191152-7588d65b2ba8
 	golang.org/x/text v0.32.0
@@ -17,7 +17,7 @@ require (
 
 require (
 	charm.land/bubbles/v2 v2.0.0 // indirect
-	charm.land/bubbletea/v2 v2.0.2 // indirect
+	charm.land/bubbletea/v2 v2.0.8 // indirect
 	github.com/andybalholm/cascadia v1.3.3 // indirect
 	github.com/antchfx/htmlquery v1.3.5 // indirect
 	github.com/antchfx/xmlquery v1.5.0 // indirect
@@ -25,8 +25,8 @@ require (
 	github.com/atotto/clipboard v0.1.4 // indirect
 	github.com/bits-and-blooms/bitset v1.24.4 // indirect
 	github.com/catppuccin/go v0.2.0 // indirect
-	github.com/charmbracelet/ultraviolet v0.0.0-20260205113103-524a6607adb8 // indirect
-	github.com/charmbracelet/x/ansi v0.11.6 // indirect
+	github.com/charmbracelet/ultraviolet v0.0.0-20260703014108-f5a850f9c2b7 // indirect
+	github.com/charmbracelet/x/ansi v0.11.7 // indirect
 	github.com/charmbracelet/x/exp/ordered v0.1.0 // indirect
 	github.com/charmbracelet/x/exp/strings v0.0.0-20240722160745-212f7b056ed0 // indirect
 	github.com/charmbracelet/x/term v0.2.2 // indirect
@@ -40,8 +40,8 @@ require (
 	github.com/golang/groupcache v0.0.0-20241129210726-2c02b8208cf8 // indirect
 	github.com/golang/protobuf v1.5.4 // indirect
 	github.com/kennygrant/sanitize v1.2.4 // indirect
-	github.com/lucasb-eyer/go-colorful v1.3.0 // indirect
-	github.com/mattn/go-runewidth v0.0.21 // indirect
+	github.com/lucasb-eyer/go-colorful v1.4.0 // indirect
+	github.com/mattn/go-runewidth v0.0.23 // indirect
 	github.com/mitchellh/hashstructure/v2 v2.0.2 // indirect
 	github.com/muesli/cancelreader v0.2.2 // indirect
 	github.com/nlnwa/whatwg-url v0.6.2 // indirect
@@ -51,8 +51,8 @@ require (
 	github.com/temoto/robotstxt v1.1.2 // indirect
 	github.com/xo/terminfo v0.0.0-20220910002029-abceb7e1c41e // indirect
 	golang.org/x/net v0.48.0 // indirect
-	golang.org/x/sync v0.19.0 // indirect
-	golang.org/x/sys v0.42.0 // indirect
+	golang.org/x/sync v0.21.0 // indirect
+	golang.org/x/sys v0.46.0 // indirect
 	google.golang.org/appengine v1.6.8 // indirect
 	google.golang.org/protobuf v1.36.10 // indirect
 )

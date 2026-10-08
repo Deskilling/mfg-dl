@@ -7,7 +7,7 @@ import (
 	"charm.land/log/v2"
 )
 
-func DownloadMultiple(service model.Site, streams []model.Stream) (err error) {
+func DownloadMultiple(service model.Module, streams []model.Stream) (err error) {
 	for _, v := range streams {
 		start := time.Now()
 		err = service.Download(v)

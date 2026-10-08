@@ -18,7 +18,7 @@ func HandleServices(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var names []string
-	for _, site := range sites.Sites {
+	for _, site := range sites.Modules {
 		names = append(names, site.Name())
 	}
 
