@@ -2,11 +2,10 @@ package endpoint
 
 import (
 	"encoding/json"
+	"log/slog"
 	"net/http"
 
 	"mfg-dl/internal/sites/model"
-
-	"charm.land/log/v2"
 )
 
 /*
@@ -34,7 +33,7 @@ func HandleDownload(w http.ResponseWriter, r *http.Request) {
 
 	err = site.Download(stream)
 	if err != nil {
-		log.Error("failed episodes", "err", err)
+		slog.Error("failed episodes", "err", err)
 		writeError(w, "episodes failed", http.StatusInternalServerError)
 		return
 	}

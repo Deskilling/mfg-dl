@@ -3,14 +3,13 @@ package search
 import (
 	"encoding/json"
 	"fmt"
+	"log/slog"
 	"net/url"
 	"sort"
 
 	"mfg-dl/internal/request"
 	"mfg-dl/internal/sites/model"
 	"mfg-dl/internal/util"
-
-	"charm.land/log/v2"
 )
 
 // var tmdbAPIKey = "TMDB_API_KEY"
@@ -79,7 +78,7 @@ func Search(query string) (results []model.SearchResult, err error) {
 		}
 
 		if v.VoteCount < 2 && v.Popularity < 1.0 {
-			log.Debug("Excluded", "title", v.Title, "voteCount", v.VoteCount, "popularity", v.Popularity)
+			slog.Debug("Excluded", "title", v.Title, "voteCount", v.VoteCount, "popularity", v.Popularity)
 			continue
 		}
 

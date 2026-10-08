@@ -2,11 +2,10 @@ package endpoint
 
 import (
 	"encoding/json"
+	"log/slog"
 	"net/http"
 
 	"mfg-dl/internal/sites/model"
-
-	"charm.land/log/v2"
 )
 
 /*
@@ -34,7 +33,7 @@ func HandleStreams(w http.ResponseWriter, r *http.Request) {
 
 	streams, err := site.Streams(episode)
 	if err != nil {
-		log.Error("failed streams", "err", err)
+		slog.Error("failed streams", "err", err)
 		writeError(w, "streams failed", http.StatusInternalServerError)
 		return
 	}

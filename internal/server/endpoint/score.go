@@ -2,14 +2,13 @@ package endpoint
 
 import (
 	"encoding/json"
+	"log/slog"
 	"net/http"
 
 	"mfg-dl/internal/search"
 	"mfg-dl/internal/sites"
 	"mfg-dl/internal/sites/model"
 	"mfg-dl/internal/util"
-
-	"charm.land/log/v2"
 )
 
 /*
@@ -38,7 +37,7 @@ func HandleScore(w http.ResponseWriter, r *http.Request) {
 	for _, site := range sites.Modules {
 		results, err := site.Search(util.NormalizeString(selected.Name))
 		if err != nil {
-			log.Error("score search failed", "service", site.Name(), "err", err)
+			slog.Error("score search failed", "service", site.Name(), "err", err)
 			continue
 		}
 		if len(results) > 0 {

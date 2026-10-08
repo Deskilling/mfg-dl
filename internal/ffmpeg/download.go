@@ -3,6 +3,7 @@ package ffmpeg
 import (
 	"bufio"
 	"fmt"
+	"log/slog"
 	"os/exec"
 	"strconv"
 	"strings"
@@ -76,6 +77,10 @@ func DownloadHLS(url, output string) (err error) {
 			if ok {
 				// TODO
 			}
+		}
+		err := scanner.Err()
+		if err != nil {
+			slog.Error("Failed reading from stdout", "err", err)
 		}
 	}()
 

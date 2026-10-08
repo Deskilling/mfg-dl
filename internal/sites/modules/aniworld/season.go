@@ -2,6 +2,7 @@ package aniworld
 
 import (
 	"fmt"
+	"log/slog"
 	"mfg-dl/internal/sites/model"
 	"strings"
 
@@ -52,9 +53,10 @@ func (service *Aniworld) Seasons(result model.SearchResult) (seasons []model.Sea
 		})
 	})
 
-	err = c.Visit(BaseURL + result.Href)
+	url := BaseURL + result.Href
+	err = c.Visit(url)
 	if err != nil {
-		fmt.Printf("Failed to visit initial URL: %v\n", err)
+		slog.Error("failed visiting site", "url", url, "err", err)
 	}
 	c.Wait()
 

@@ -2,9 +2,9 @@ package aniworld
 
 import (
 	"fmt"
+	"log/slog"
 	"mfg-dl/internal/sites/model"
 
-	"charm.land/log/v2"
 	"github.com/gocolly/colly/v2"
 )
 
@@ -43,9 +43,10 @@ func (service *Aniworld) Episodes(season model.Season) (episodes []model.Episode
 		})
 	})
 
-	err = c.Visit(BaseURL + season.Href)
+	url := BaseURL + season.Href
+	err = c.Visit(url)
 	if err != nil {
-		log.Error(err)
+		slog.Error("failed visiting site", "url", url, "err", err)
 	}
 	c.Wait()
 

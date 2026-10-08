@@ -3,13 +3,13 @@ package stream
 import (
 	"errors"
 	"fmt"
+	"log/slog"
 	"net/http"
 	"time"
 
 	"mfg-dl/internal/core"
 	"mfg-dl/internal/request"
 
-	"charm.land/log/v2"
 	"github.com/Deskilling/gopkg/pkg/m3u8"
 	"github.com/cavaliergopher/grab/v3"
 )
@@ -48,7 +48,7 @@ func DownloadSegments(index m3u8.Index, baseURL, directory string) (err error) {
 	var failed []job
 	for resp := range respCh {
 		if err := resp.Err(); err != nil {
-			log.Error("Failed to download", "url", resp.Request.URL(), "file", resp.Filename, "err", err)
+			slog.Error("Failed to download", "url", resp.Request.URL(), "file", resp.Filename, "err", err)
 			failed = append(failed, job{url: resp.Request.URL().String(), file: resp.Filename})
 		}
 	}
@@ -72,7 +72,7 @@ func DownloadSegments(index m3u8.Index, baseURL, directory string) (err error) {
 			}
 		}
 		if lastErr != nil {
-			log.Error("GG on segment", "url", j.url, "path", j.file, "err", lastErr)
+			slog.Error("GG on segment", "url", j.url, "path", j.file, "err", lastErr)
 			stillFailed = append(stillFailed, fmt.Errorf("%s: %w", j.file, lastErr))
 		}
 	}

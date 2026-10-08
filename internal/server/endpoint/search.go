@@ -3,6 +3,7 @@ package endpoint
 import (
 	"encoding/json"
 	"fmt"
+	"log/slog"
 	"net/http"
 	"path/filepath"
 
@@ -11,7 +12,6 @@ import (
 	"mfg-dl/internal/search"
 	"mfg-dl/internal/sites/model"
 
-	"charm.land/log/v2"
 	"github.com/Deskilling/gopkg/pkg/filesystem"
 )
 
@@ -35,7 +35,7 @@ func HandleSearch(w http.ResponseWriter, r *http.Request) {
 
 	results, err := search.Search(query)
 	if err != nil {
-		log.Error("search failed", "query", query, "err", err)
+		slog.Error("search failed", "query", query, "err", err)
 		writeError(w, "search failed", http.StatusInternalServerError)
 		return
 	}
@@ -57,7 +57,7 @@ func HandleSearch(w http.ResponseWriter, r *http.Request) {
 				if !filesystem.ExistPath(v.CoverPath) {
 					err := request.DownloadFile(nil, v.Cover, v.CoverPath)
 					if err != nil {
-						log.Error("failed to cache image", "url", v.Cover, "path", v.CoverPath, "err", err)
+						slog.Error("failed to cache image", "url", v.Cover, "path", v.CoverPath, "err", err)
 					}
 				}
 			}

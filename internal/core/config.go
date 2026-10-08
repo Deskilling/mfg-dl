@@ -2,12 +2,11 @@ package core
 
 import (
 	"fmt"
+	"log/slog"
 
 	"github.com/Deskilling/gopkg/pkg/config"
 
 	"github.com/Deskilling/gopkg/pkg/filesystem"
-
-	"charm.land/log/v2"
 )
 
 const configLocation string = "./config.toml"
@@ -108,7 +107,7 @@ func InitConfig() error {
 	if err != nil {
 		cfg = defaultConfig
 
-		log.Info("Creating new config", "path", configLocation)
+		slog.Info("Creating new config", "path", configLocation)
 		err = config.Save(configLocation, cfg)
 		if err != nil {
 			return fmt.Errorf("Failed to save config: %w", err)
@@ -131,7 +130,7 @@ func InitConfig() error {
 			return err
 		}
 
-		log.Warnf("Renamed old config: %s -> %s", configLocation, configLocation+".old")
+		slog.Warn("Renamed old config: %s -> %s", configLocation, configLocation+".old")
 		return InitConfig()
 	}
 

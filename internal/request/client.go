@@ -3,6 +3,7 @@ package request
 import (
 	"fmt"
 	"io"
+	"log/slog"
 	"net/http"
 	"os"
 	"time"
@@ -11,8 +12,6 @@ import (
 	"mfg-dl/internal/util"
 
 	"github.com/Deskilling/gopkg/pkg/filesystem"
-
-	"charm.land/log/v2"
 )
 
 var userAgent string = "deskilling/mfg-dl"
@@ -42,7 +41,7 @@ func cachePath(endpoint string) string {
 
 func Get(client *http.Client, endpoint string, headers ...map[string]string) (body []byte, err error) {
 	if endpoint == "" {
-		log.Error("invalid url to request", "url", endpoint)
+		slog.Error("invalid url to request", "url", endpoint)
 		return []byte{}, fmt.Errorf("invalid url")
 	}
 
@@ -50,7 +49,7 @@ func Get(client *http.Client, endpoint string, headers ...map[string]string) (bo
 		client = Client
 	}
 
-	log.Debug("Sending Request", "url", endpoint)
+	slog.Debug("Sending Request", "url", endpoint)
 
 	if core.GetConfig().Cache.EnableCache {
 		path := cachePath(endpoint)
@@ -59,7 +58,7 @@ func Get(client *http.Client, endpoint string, headers ...map[string]string) (bo
 			stat, err := os.Stat(path)
 			if err == nil {
 				if time.Since(stat.ModTime()) < time.Minute*time.Duration(core.GetConfig().Cache.Minutes) {
-					log.Debug("Using cached request", "file", path)
+					slog.Debug("Using cached request", "file", path)
 					data, err := filesystem.ReadFile(path)
 					if err == nil {
 						return []byte(data), nil
@@ -98,11 +97,11 @@ func Get(client *http.Client, endpoint string, headers ...map[string]string) (bo
 
 	if core.GetConfig().Cache.EnableCache {
 		path := cachePath(endpoint)
-		log.Debug("Writing to cache", "path", path)
+		slog.Debug("Writing to cache", "path", path)
 
 		err = filesystem.WriteFile(path, body)
 		if err != nil {
-			log.Error("failed creating cache file", "path", path, "err", err)
+			slog.Error("failed creating cache file", "path", path, "err", err)
 		}
 	}
 

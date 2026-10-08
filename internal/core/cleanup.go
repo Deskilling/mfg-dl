@@ -1,12 +1,11 @@
 package core
 
 import (
+	"log/slog"
 	"os"
 	"time"
 
 	"github.com/Deskilling/gopkg/pkg/filesystem"
-
-	"charm.land/log/v2"
 )
 
 func CleanUp() {
@@ -30,7 +29,7 @@ func CleanUp() {
 }
 
 func CreateCleanupTask() {
-	log.Info("Starting Cleanup Task")
+	slog.Info("Starting Cleanup Task")
 	go func() {
 		CleanUp()
 		ticker := time.NewTicker(time.Minute * time.Duration(GetConfig().Cache.CleanMinutes))

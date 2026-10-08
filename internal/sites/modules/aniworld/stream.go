@@ -1,7 +1,7 @@
 package aniworld
 
 import (
-	"fmt"
+	"log/slog"
 	"strings"
 
 	"mfg-dl/internal/sites/model"
@@ -42,9 +42,10 @@ func (service *Aniworld) Streams(episode model.Episode) (streams []model.Stream,
 		})
 	})
 
-	err = c.Visit(BaseURL + episode.Href)
+	url := BaseURL + episode.Href
+	err = c.Visit(url)
 	if err != nil {
-		fmt.Printf("Failed to visit initial URL: %v\n", err)
+		slog.Error("failed visiting site", "url", url, "err", err)
 	}
 	c.Wait()
 

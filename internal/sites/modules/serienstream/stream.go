@@ -1,11 +1,11 @@
 package serienstream
 
 import (
+	"log/slog"
 	"strings"
 
 	"mfg-dl/internal/sites/model"
 
-	"charm.land/log/v2"
 	"github.com/gocolly/colly/v2"
 )
 
@@ -46,7 +46,7 @@ func (service *Serienstream) Streams(episode model.Episode) (streams []model.Str
 
 	err = c.Visit(BaseURL + episode.Href)
 	if err != nil {
-		log.Error(err)
+		slog.Error("failed visiting url", "err", err)
 	}
 	c.Wait()
 

@@ -5,8 +5,6 @@ import (
 	"fmt"
 	"os/exec"
 	"runtime"
-
-	"mfg-dl/internal/tui/components"
 )
 
 func CheckInstalled() (err error) {
@@ -17,10 +15,16 @@ func CheckInstalled() (err error) {
 		switch runtime.GOOS {
 		case ("windows"):
 			fmt.Println("Do you want to install ffmpeg (Gyan.FFmpeg) using winget?")
+			// TODO
+
+			/*
 			input, err := components.ReadString("y/n: ")
 			if err != nil {
 				return fmt.Errorf("failed userinput: %w", err)
 			}
+			*/
+
+			input := "n"
 
 			if input == "y" {
 				cmd = exec.Command("winget", "install", "Gyan.FFmpeg")
@@ -35,10 +39,16 @@ func CheckInstalled() (err error) {
 
 		case ("darwin"):
 			fmt.Println("Do you want to install ffmpeg using homebrew?")
+			// TODO
+
+			/*
 			input, err := components.ReadString("y/n: ")
 			if err != nil {
 				return fmt.Errorf("failed userinput: %w", err)
 			}
+			*/
+
+			input := "n"
 
 			if input == "y" {
 				cmd = exec.Command("brew", "install", "ffmpeg")

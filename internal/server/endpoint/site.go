@@ -2,9 +2,8 @@ package endpoint
 
 import (
 	"encoding/json"
+	"log/slog"
 	"net/http"
-
-	"charm.land/log/v2"
 )
 
 /*
@@ -38,7 +37,7 @@ func HandleSearchSite(w http.ResponseWriter, r *http.Request) {
 
 	result, err := site.Search(query)
 	if err != nil {
-		log.Error("failed search", "err", err)
+		slog.Error("failed search", "err", err)
 		writeError(w, "search failed", http.StatusInternalServerError)
 		return
 	}

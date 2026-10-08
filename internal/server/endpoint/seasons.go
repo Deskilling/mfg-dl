@@ -2,11 +2,10 @@ package endpoint
 
 import (
 	"encoding/json"
+	"log/slog"
 	"net/http"
 
 	"mfg-dl/internal/sites/model"
-
-	"charm.land/log/v2"
 )
 
 /*
@@ -34,7 +33,7 @@ func HandleSeasons(w http.ResponseWriter, r *http.Request) {
 
 	seasons, err := site.Seasons(searchResult)
 	if err != nil {
-		log.Error("failed seasons", "err", err)
+		slog.Error("failed seasons", "err", err)
 		writeError(w, "seasons failed", http.StatusInternalServerError)
 		return
 	}
