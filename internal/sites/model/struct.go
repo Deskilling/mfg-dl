@@ -23,9 +23,10 @@ type Languages struct {
 }
 
 type Score struct {
-	Score float64 `json:"score"`
-	Query string  `json:"query"`
-	Href  string  `json:"href"`
+	Score   float64 `json:"score"`
+	Query   string  `json:"query"`
+	Href    string  `json:"href"`
+	Service string  `json:"service"`
 }
 
 type SearchResult struct {

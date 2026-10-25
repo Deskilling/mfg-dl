@@ -126,9 +126,10 @@ func Match(searchResult model.SearchResult) (model.SearchResult, error) {
 
 		for _, u := range siteResults {
 			score := model.Score{
-				Score: Calculate(searchResult.Name, u.Name),
-				Href:  u.Href,
-				Query: u.Name,
+				Score:   Calculate(searchResult.Name, u.Name),
+				Href:    u.Href,
+				Query:   u.Name,
+				Service: site.Name(),
 			}
 
 			searchResult.Score[site.Name()] = append(searchResult.Score[site.Name()], score)

@@ -4,6 +4,7 @@ import (
 	"errors"
 	"slices"
 
+	"atomicgo.dev/keyboard/keys"
 	"github.com/pterm/pterm"
 )
 
@@ -43,6 +44,8 @@ func MultiSelect[T any](options []T, enableFilter bool, label func(T) string) ([
 		WithOptions(labels).
 		WithFilter(enableFilter).
 		WithMaxHeight(15).
+		WithKeyConfirm(keys.Enter).
+		WithKeySelect(keys.Tab).
 		Show()
 	if err != nil {
 		return nil, err

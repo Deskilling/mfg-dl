@@ -33,7 +33,7 @@ func init() {
 		slog.Info("Loaded config")
 	}
 
-	 core.InitLogger(core.GetConfig().Debug.LogLevel)
+	core.InitLogger(core.GetConfig().Debug.LogLevel)
 
 	err = filesystem.RemoveDirectory(core.GetConfig().Location.Temp + "/segments")
 	if err != nil {
@@ -58,7 +58,7 @@ func main() {
 		util.ClearTerminal()
 	}
 
-	tui.Tui()
+	slog.Error("finished", "err", tui.Tui())
 	return
 
 	var err error = nil
@@ -75,7 +75,7 @@ func main() {
 	}
 
 	if err != nil {
-		slog.Error("TUI error","err",err)
+		slog.Error("TUI error", "err", err)
 	}
 
 	fmt.Scanln()

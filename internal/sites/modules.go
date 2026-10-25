@@ -10,6 +10,7 @@ import (
 )
 
 var Modules []model.Module
+var ModuleByName = map[string]model.Module{}
 var Languages model.Languages
 
 func Init() {
@@ -24,6 +25,8 @@ func Init() {
 	}
 
 	for _, m := range Modules {
+		ModuleByName[m.Name()] = m
+
 		l := m.Languages()
 		Languages.Subbed = slices.Concat(Languages.Subbed, l.Subbed)
 		Languages.Dubbed = slices.Concat(Languages.Dubbed, l.Dubbed)

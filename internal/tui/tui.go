@@ -1,6 +1,7 @@
 package tui
 
 import (
+	"errors"
 	"fmt"
 	"log/slog"
 
@@ -53,11 +54,73 @@ func Tui() error {
 		}
 	}
 
-	components.SingleSelect(scoreOptions, true, func(r string) string {
+	selectedSeries, err := components.SingleSelect(scoreOptions, true, func(r string) string {
 		return r
 	})
+	if err != nil {
+		return fmt.Errorf("failed selecting score: %w", err)
+	}
 
-	slog.Debug("got result", "resultScores", selectedResult.Score)
+	actualSelectedSeries, ok := scoreByLabel[selectedSeries]
+	if !ok {
+		return errors.New("selected result not found in options (???)")
+	}
+
+	module := sites.ModuleByName[actualSelectedSeries.Service]
+
+	seasons, err := module.Seasons(model.SearchResult{
+		Service: module.Name(),
+		Name:    selectedResult.Name,
+		Href:    actualSelectedSeries.Href,
+
+		// only the three above are essential
+		// these are just extra
+		Cover:          selectedResult.Cover,
+		CoverPath:      selectedResult.CoverPath,
+		ProductionYear: selectedResult.ProductionYear,
+	})
+	if err != nil {
+		return fmt.Errorf("failed getting seasons: %w", err)
+	}
+
+	selectedSeasons, err := components.MultiSelect(seasons, false, func(r model.Season) string {
+		return r.SeasonLabel
+	})
+	if err != nil {
+		return fmt.Errorf("failed selecting seasons: %w", err)
+	}
+	if len(selectedSeasons) == 0 {
+		return errors.New("invalid seasons selection (expected atleast one)")
+	}
+
+	var toDownloadEpisodes []model.Episode
+	if len(selectedSeasons) == 1 {
+		episodes, err := module.Episodes(selectedSeasons[0])
+		if err != nil {
+			return fmt.Errorf("failed getting episodes for %s: %w", module.Name(), err)
+		}
+
+		toDownloadEpisodes, err = components.MultiSelect(episodes, true, func(e model.Episode) string {
+			return fmt.Sprintf("%s %s", e.EpisodeNum, e.EpisodeTitle)
+		})
+		if err != nil {
+			return fmt.Errorf("failed selecting episodes: %w", err)
+		}
+		if len(toDownloadEpisodes) == 0 {
+			return errors.New("invalid episodes selection (expected atleast one)")
+		}
+	} else {
+		for _, season := range selectedSeasons {
+			episodes, err := module.Episodes(season)
+			if err != nil {
+				return fmt.Errorf("failed getting episodes for %s: %w", module.Name(), err)
+			}
+
+			toDownloadEpisodes = append(toDownloadEpisodes, episodes...)
+		}
+	}
+
+	slog.Debug("a", "a", toDownloadEpisodes)
 
 	return nil
 }
