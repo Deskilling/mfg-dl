@@ -2,10 +2,13 @@ package search
 
 import (
 	"bytes"
+	"log/slog"
 	"math"
+	"sort"
 	"strings"
 	"unicode/utf8"
 
+	"mfg-dl/internal/sites"
 	"mfg-dl/internal/sites/model"
 )
 
@@ -109,22 +112,33 @@ func Calculate(s1, s2 string) float64 {
 	return simj + float64(l)*p*(1-simj)
 }
 
-func Match(selected *model.SearchResult, services [][]model.SearchResult) {
-	if selected.Score == nil {
-		selected.Score = make(map[string]model.Score)
-	}
-	for _, service := range services {
-		for _, u := range service {
-			score := Calculate(selected.Name, u.Name)
-			s := selected.Score[u.Service]
-			if score > s.Score {
-				s.Query = u.Name
-				s.Score = score
-				s.Href = u.Href
-				selected.Score[u.Service] = s
-			} else {
-				// TODO - When new module do smth here
-			}
+func Match(searchResult model.SearchResult) (model.SearchResult, error) {
+	searchResult.Score = make(map[string][]model.Score, len(sites.Modules))
+
+	for _, site := range sites.Modules {
+		siteResults, err := site.Search(searchResult.Name)
+		if err != nil {
+			slog.Error("failed searching for matching", "err", err)
+			continue
 		}
+
+		// searchResult.Score.Canidates[site.Name()] = make([]model.Score, len(siteResults))
+
+		for _, u := range siteResults {
+			score := model.Score{
+				Score: Calculate(searchResult.Name, u.Name),
+				Href:  u.Href,
+				Query: u.Name,
+			}
+
+			searchResult.Score[site.Name()] = append(searchResult.Score[site.Name()], score)
+		}
+
+		// sites should already sort via most relevance but to be sure
+		sort.Slice(searchResult.Score[site.Name()], func(i, j int) bool {
+			return searchResult.Score[site.Name()][i].Score < searchResult.Score[site.Name()][j].Score
+		})
 	}
+
+	return searchResult, nil
 }

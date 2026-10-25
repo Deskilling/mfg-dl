@@ -7,7 +7,7 @@ import (
 	"github.com/pterm/pterm"
 )
 
-func SingleSelect[T any](options []T, label func(T) string) (T, error) {
+func SingleSelect[T any](options []T, enableFilter bool, label func(T) string) (T, error) {
 	var null T
 
 	labels := make([]string, len(options))
@@ -17,7 +17,7 @@ func SingleSelect[T any](options []T, label func(T) string) (T, error) {
 
 	selectInput := pterm.DefaultInteractiveSelect.
 		WithOptions(labels).
-		WithFilter(false).
+		WithFilter(enableFilter).
 		WithMaxHeight(15)
 
 	selected, err := selectInput.Show()
@@ -29,7 +29,7 @@ func SingleSelect[T any](options []T, label func(T) string) (T, error) {
 	return options[index], nil
 }
 
-func MultiSelect[T any](options []T, label func(T) string) ([]T, error) {
+func MultiSelect[T any](options []T, enableFilter bool, label func(T) string) ([]T, error) {
 	if len(options) == 0 {
 		return nil, errors.New("no options to select from")
 	}
@@ -41,7 +41,7 @@ func MultiSelect[T any](options []T, label func(T) string) ([]T, error) {
 
 	selectedLabels, err := pterm.DefaultInteractiveMultiselect.
 		WithOptions(labels).
-		WithFilter(false).
+		WithFilter(enableFilter).
 		WithMaxHeight(15).
 		Show()
 	if err != nil {

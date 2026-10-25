@@ -5,7 +5,6 @@ import (
 	"log/slog"
 	"net/http"
 
-	"mfg-dl/internal/search"
 	"mfg-dl/internal/sites"
 	"mfg-dl/internal/sites/model"
 	"mfg-dl/internal/util"
@@ -50,6 +49,6 @@ func HandleScore(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	search.Match(&selected, allServiceResults)
+	//search.Match(&selected, allServiceResults)
 	json.NewEncoder(w).Encode(selected)
 }

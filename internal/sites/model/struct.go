@@ -29,14 +29,14 @@ type Score struct {
 }
 
 type SearchResult struct {
-	Service        string           `json:"service"`
-	Name           string           `json:"name"`
-	Href           string           `json:"href"`
-	Description    string           `json:"description"`
-	Cover          string           `json:"cover"`
-	CoverPath      string           `json:"coverPath"`
-	ProductionYear string           `json:"productionYear"`
-	Score          map[string]Score `json:"scores"`
+	Service        string             `json:"service"`
+	Name           string             `json:"name"`
+	Href           string             `json:"href"`
+	Description    string             `json:"description"`
+	Cover          string             `json:"cover"`
+	CoverPath      string             `json:"coverPath"`
+	ProductionYear string             `json:"productionYear"`
+	Score          map[string][]Score `json:"scores"`
 }
 
 type Season struct {
