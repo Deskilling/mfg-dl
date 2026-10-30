@@ -24,12 +24,12 @@ func (service Voe) BaseDownload(voeUrl, output string) (err error) {
 
 	baseHtml, err := request.Get(service.client, voeUrl)
 	if err != nil {
-		return fmt.Errorf("Failed to get voe: %w", err)
+		return fmt.Errorf("failed to get voe: %w", err)
 	}
 
 	baseUrl, err := VoeRedirect(string(baseHtml))
 	if err != nil {
-		return fmt.Errorf("Failed to extract voe url: %w", err)
+		return fmt.Errorf("failed to extract voe url: %w", err)
 	}
 
 	err = service.PlayerDownload(baseUrl, output)

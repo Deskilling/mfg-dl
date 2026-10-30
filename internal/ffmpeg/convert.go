@@ -12,7 +12,10 @@ import (
 )
 
 func ConvertTSFilesToVideo(directory, output string, args []string) (err error) {
-	filesystem.CreatePath(output)
+	err = filesystem.CreatePath(output)
+	if err != nil {
+		return fmt.Errorf("failed creating video file: %w", err)
+	}
 
 	tsFiles, err := filesystem.ReadDirectory(directory, ".ts")
 	if err != nil {
@@ -44,7 +47,8 @@ func ConvertTSFilesToVideo(directory, output string, args []string) (err error) 
 	if err != nil {
 		return err
 	}
-	defer listFile.Close()
+
+	defer func() { _ = listFile.Close() }()
 
 	for _, file := range tsFiles {
 		_, err := fmt.Fprintf(listFile, "file '%s'\n", file.Name())

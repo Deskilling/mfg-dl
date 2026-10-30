@@ -7,11 +7,11 @@ import (
 	"mfg-dl/internal/sites/model"
 	"mfg-dl/internal/util"
 
-	"golang.org/x/exp/slices"
+	"slices"
 )
 
 func (service *Serienstream) Download(stream model.Stream) (err error) {
-	if !slices.Contains(Hoster, stream.Hoster) {
+	if slices.Index(Hoster, stream.Hoster) < 0 {
 		return nil
 	}
 

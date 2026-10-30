@@ -10,10 +10,7 @@ import (
 // dependent on pterm but it just looks better and is simpler to do
 
 func InitLogger(level int) {
-	isDebug := false
-	if level == -4 {
-		isDebug = true
-	}
+	isDebug := level == -4
 
 	pterm.DefaultLogger.ShowCaller = isDebug
 	pterm.DefaultLogger.Level = pterm.LogLevel(level)

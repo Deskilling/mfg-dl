@@ -31,7 +31,7 @@ func CheckInstalled() (err error) {
 				err = cmd.Run()
 
 				if err != nil {
-					return errors.New("Failed to install using Winget")
+					return errors.New("failed to install using Winget")
 				}
 
 				return nil
@@ -55,14 +55,14 @@ func CheckInstalled() (err error) {
 				err = cmd.Run()
 
 				if err != nil {
-					return errors.New("Failed to install using Winget")
+					return errors.New("failed to install using Winget")
 				}
 
 				return nil
 			}
 		}
 
-		return errors.New("FFmpeg is not installed")
+		return errors.New("ffmpeg is not installed")
 	}
 
 	return nil

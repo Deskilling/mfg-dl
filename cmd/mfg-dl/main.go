@@ -58,7 +58,6 @@ func main() {
 	}
 
 	slog.Error("finished", "err", tui.Tui())
-	return
 
 	/*
 		var err error = nil

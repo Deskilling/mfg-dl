@@ -38,5 +38,7 @@ func HandleEpisodes(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	json.NewEncoder(w).Encode(episodes)
+	err = json.NewEncoder(w).Encode(episodes)
+	slog.Error("failed encoding json", "err", err)
+
 }

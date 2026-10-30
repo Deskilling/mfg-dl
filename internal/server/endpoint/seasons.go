@@ -38,5 +38,7 @@ func HandleSeasons(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	json.NewEncoder(w).Encode(seasons)
+	err = json.NewEncoder(w).Encode(seasons)
+	slog.Error("failed encoding json", "err", err)
+
 }

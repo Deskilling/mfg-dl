@@ -2,6 +2,7 @@ package endpoint
 
 import (
 	"encoding/json"
+	"log/slog"
 	"net/http"
 )
 
@@ -15,5 +16,7 @@ func HandleHealth(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	json.NewEncoder(w).Encode(map[string]string{"status": "ok"})
+	err := json.NewEncoder(w).Encode(map[string]string{"status": "ok"})
+	slog.Error("failed encoding json", "err", err)
+
 }

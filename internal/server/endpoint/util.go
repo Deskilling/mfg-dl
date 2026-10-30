@@ -2,6 +2,7 @@ package endpoint
 
 import (
 	"encoding/json"
+	"log/slog"
 	"net/http"
 
 	"mfg-dl/internal/sites"
@@ -15,7 +16,9 @@ type apiError struct {
 
 func writeError(w http.ResponseWriter, message string, code int) {
 	w.WriteHeader(code)
-	json.NewEncoder(w).Encode(apiError{Code: code, Message: message})
+	err := json.NewEncoder(w).Encode(apiError{Code: code, Message: message})
+	slog.Error("failed encoding json", "err", err)
+
 }
 
 func getSite(name string) model.Module {

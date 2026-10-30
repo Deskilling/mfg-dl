@@ -38,7 +38,10 @@ func GetTotalMicro(url string) (totalMicro int, err error) {
 }
 
 func DownloadHLS(url, output string) (err error) {
-	filesystem.CreatePath(output)
+	err = filesystem.CreatePath(output)
+	if err != nil {
+		return fmt.Errorf("failed creating video file: %w", err)
+	}
 
 	// totalMicro, _ := GetTotalMicro(url)
 
@@ -73,8 +76,9 @@ func DownloadHLS(url, output string) (err error) {
 		for scanner.Scan() {
 			line := strings.TrimSpace(scanner.Text())
 
-			_, ok := strings.CutPrefix(line, "out_time_us=")
+			mfg, ok := strings.CutPrefix(line, "out_time_us=")
 			if ok {
+				slog.Debug("alta", "mfg", mfg)
 				// TODO
 			}
 		}

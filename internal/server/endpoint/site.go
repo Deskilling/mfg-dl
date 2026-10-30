@@ -42,5 +42,7 @@ func HandleSearchSite(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	json.NewEncoder(w).Encode(result)
+	err = json.NewEncoder(w).Encode(result)
+	slog.Error("failed encoding json", "err", err)
+
 }

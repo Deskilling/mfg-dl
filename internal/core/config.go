@@ -110,7 +110,7 @@ func InitConfig() error {
 		slog.Info("Creating new config", "path", configLocation)
 		err = config.Save(configLocation, cfg)
 		if err != nil {
-			return fmt.Errorf("Failed to save config: %w", err)
+			return fmt.Errorf("failed to save config: %w", err)
 		}
 	}
 

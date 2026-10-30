@@ -63,5 +63,8 @@ func HandleSearch(w http.ResponseWriter, r *http.Request) {
 			}
 		}(results)
 	}
-	json.NewEncoder(w).Encode(results)
+
+	err = json.NewEncoder(w).Encode(results)
+	slog.Error("failed encoding json", "err", err)
+
 }

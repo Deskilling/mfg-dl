@@ -33,8 +33,11 @@ func HandleCover(w http.ResponseWriter, r *http.Request) {
 
 	path := fmt.Sprintf("%s/cache/images/%s-%s.tmp", filepath.Join(*filesystem.GetExecPath(), core.GetConfig().Location.Temp), searchResult.Service, searchResult.Name)
 	if !filesystem.ExistPath(path) {
-		request.DownloadFile(nil, searchResult.Cover, path)
+		err = request.DownloadFile(nil, searchResult.Cover, path)
+		if err != nil {
+			_, _ = w.Write([]byte("failed to download cover"))
+		}
 	}
 
-	w.Write([]byte(path))
+	_, _ = w.Write([]byte(path))
 }

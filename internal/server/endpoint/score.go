@@ -49,6 +49,9 @@ func HandleScore(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// TODO
 	//search.Match(&selected, allServiceResults)
-	json.NewEncoder(w).Encode(selected)
+	err := json.NewEncoder(w).Encode(selected)
+	slog.Error("failed encoding json", "err", err)
+
 }

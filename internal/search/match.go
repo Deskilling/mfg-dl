@@ -50,7 +50,7 @@ func Calculate(s1, s2 string) float64 {
 
 	var m uint = 0
 	var matches []bool
-	for i := 0; i < len(runes1); i++ {
+	for i := range runes1 {
 		match := false
 		if runes1[i] == runes2[i] {
 			m++
@@ -65,7 +65,7 @@ func Calculate(s1, s2 string) float64 {
 
 	var t float64 = 0
 	slider := runes2[0:window]
-	for i := 0; i < len(runes1); i++ {
+	for i := range runes1 {
 
 		if matches[i] {
 			continue
@@ -97,12 +97,11 @@ func Calculate(s1, s2 string) float64 {
 	term2 = float64(m) / float64(len(runes2))
 	term3 = (float64(uint(float64(m) - t))) / float64(m)
 
-	var simj float64
-	simj = (term1 + term2 + term3) / 3
+	simj := (term1 + term2 + term3) / 3
 
-	var p float64 = 0.1
+	p := 0.1
 	var l uint = 0
-	var common_prefix uint = uint(math.Min(4.0, float64(len(s1))))
+	common_prefix := uint(math.Min(4.0, float64(len(s1))))
 	for i := 0; i < len(s1[0:common_prefix]); i++ {
 		if s1[0:common_prefix][i] == s2[0:common_prefix][i] {
 			l++

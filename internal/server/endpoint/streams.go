@@ -38,5 +38,7 @@ func HandleStreams(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	json.NewEncoder(w).Encode(streams)
+	err = json.NewEncoder(w).Encode(streams)
+	slog.Error("failed encoding json", "err", err)
+
 }

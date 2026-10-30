@@ -2,6 +2,7 @@ package endpoint
 
 import (
 	"encoding/json"
+	"log/slog"
 	"net/http"
 
 	"mfg-dl/internal/sites"
@@ -22,5 +23,7 @@ func HandleServices(w http.ResponseWriter, r *http.Request) {
 		names = append(names, site.Name())
 	}
 
-	json.NewEncoder(w).Encode(names)
+	err := json.NewEncoder(w).Encode(names)
+	slog.Error("failed encoding json", "err", err)
+
 }

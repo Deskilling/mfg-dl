@@ -25,8 +25,11 @@ func Tui() error {
 			return fmt.Sprintf("%s (%s)", r.Name, r.ProductionYear)
 		}
 
-		return fmt.Sprintf("%s", r.Name)
+		return r.Name
 	})
+	if err != nil {
+		return fmt.Errorf("failed selecting single search result: %w", err)
+	}
 
 	selectedResult, err = search.Match(selectedResult)
 	if err != nil {
