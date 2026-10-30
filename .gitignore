@@ -3,6 +3,7 @@
 
 # Binary
 bin/
+build/
 
 # Test files
 *.test

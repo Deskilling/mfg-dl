@@ -18,10 +18,10 @@ func CheckInstalled() (err error) {
 			// TODO
 
 			/*
-			input, err := components.ReadString("y/n: ")
-			if err != nil {
-				return fmt.Errorf("failed userinput: %w", err)
-			}
+				input, err := components.ReadString("y/n: ")
+				if err != nil {
+					return fmt.Errorf("failed userinput: %w", err)
+				}
 			*/
 
 			input := "n"
@@ -42,10 +42,10 @@ func CheckInstalled() (err error) {
 			// TODO
 
 			/*
-			input, err := components.ReadString("y/n: ")
-			if err != nil {
-				return fmt.Errorf("failed userinput: %w", err)
-			}
+				input, err := components.ReadString("y/n: ")
+				if err != nil {
+					return fmt.Errorf("failed userinput: %w", err)
+				}
 			*/
 
 			input := "n"

@@ -48,7 +48,7 @@ func (site *Serienstream) Name() (service string) {
 	return Name
 }
 
-func (site *Serienstream) Languages() model.Languages{
+func (site *Serienstream) Languages() model.Languages {
 	return model.Languages{
 		Subbed: []string{"german"},
 		Dubbed: []string{"english", "german"},

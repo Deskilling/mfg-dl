@@ -7,7 +7,6 @@ import (
 
 	"mfg-dl/internal/core"
 	"mfg-dl/internal/ffmpeg"
-	"mfg-dl/internal/server"
 	"mfg-dl/internal/sites"
 	"mfg-dl/internal/tui"
 	"mfg-dl/internal/util"
@@ -61,23 +60,25 @@ func main() {
 	slog.Error("finished", "err", tui.Tui())
 	return
 
-	var err error = nil
-	switch core.GetConfig().Tui.Mode {
-	case 0:
-		fmt.Println("gg")
-	case 1:
-		fmt.Println("gg")
-	case 2:
-		err = server.Start()
-	default:
-		slog.Error("Invaild TUI Mode")
-		os.Exit(1)
-	}
+	/*
+		var err error = nil
+		switch core.GetConfig().Tui.Mode {
+		case 0:
+			fmt.Println("gg")
+		case 1:
+			fmt.Println("gg")
+		case 2:
+			err = server.Start()
+		default:
+			slog.Error("Invaild TUI Mode")
+			os.Exit(1)
+		}
 
-	if err != nil {
-		slog.Error("TUI error", "err", err)
-	}
+		if err != nil {
+			slog.Error("TUI error", "err", err)
+		}
 
-	fmt.Scanln()
-	filesystem.RemoveDirectory(core.GetConfig().Location.Temp + "/segments")
+		fmt.Scanln()
+		filesystem.RemoveDirectory(core.GetConfig().Location.Temp + "/segments")
+	*/
 }
