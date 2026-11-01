@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"log/slog"
+	"slices"
 
 	"mfg-dl/internal/search"
 	"mfg-dl/internal/sites"
@@ -48,7 +49,7 @@ func Tui() error {
 	for _, module := range sites.Modules {
 		candidates := selectedResult.Score[module.Name()]
 		for i, candidate := range candidates {
-			label := fmt.Sprintf("%s [%.1f%%] (%s)", candidate.Query, candidate.Score*100, module.Name())
+			label := fmt.Sprintf("%s [%.1f%%] (%s [possible: Dubbled: %s Subbed %s])", candidate.Query, candidate.Score*100, module.Name(), module.Languages().Dubbed, module.Languages().Subbed)
 			if i == len(candidates)-1 {
 				label += "\n"
 			}
@@ -123,7 +124,108 @@ func Tui() error {
 		}
 	}
 
-	slog.Debug("a", "a", toDownloadEpisodes)
+	// idk how this could happen
+	if len(toDownloadEpisodes) < 1 {
+		return fmt.Errorf("yolo das war wohl richtig doof von dir :(")
+	}
+
+	var toDownloadStreams []model.Stream
+
+	var selectedLanguages []string
+	var preferredHosters []string
+
+	for _, episode := range toDownloadEpisodes {
+		stream, err := module.Streams(episode)
+		if err != nil {
+			slog.Error("failed getting streams for", "episode", episode.EpisodeNum, "err", err)
+			slog.Warn("skipping")
+			continue
+		}
+
+		seen := make(map[string]struct{})
+		var languages []string
+		for _, v := range stream {
+			if _, ok := seen[v.Language]; !ok {
+				seen[v.Language] = struct{}{}
+				languages = append(languages, v.Language)
+			}
+		}
+
+		if len(languages) == 0 {
+			return errors.New("gg")
+		}
+
+		if selectedLanguages == nil {
+			if len(languages) == 1 {
+				selectedLanguages = languages
+			} else {
+				selectedLanguages, err = components.MultiSelect(languages, false, func(l string) string {
+					return l
+				})
+				if err != nil {
+					return fmt.Errorf("failed language select: %w", err)
+				}
+				if len(selectedLanguages) == 0 {
+					return errors.New("no language selected")
+				}
+			}
+		}
+
+		if preferredHosters == nil {
+			seenHoster := make(map[string]struct{})
+			var hosters []string
+			for _, v := range stream {
+				if !slices.Contains(selectedLanguages, v.Language) {
+					continue
+				}
+				if _, ok := seenHoster[v.Hoster]; !ok {
+					seenHoster[v.Hoster] = struct{}{}
+					hosters = append(hosters, v.Hoster)
+				}
+			}
+
+			if len(hosters) == 1 {
+				preferredHosters = hosters
+			} else if len(hosters) > 1 {
+				preferredHosters, err = components.MultiSelect(hosters, false, func(h string) string {
+					return h
+				})
+				if err != nil {
+					return fmt.Errorf("failed hoster select: %w", err)
+				}
+			}
+		}
+
+		found := 0
+		for _, lang := range selectedLanguages {
+			var chosen *model.Stream
+			bestRank := 0
+			for i := range stream {
+				if stream[i].Language != lang {
+					continue
+				}
+				rank := slices.Index(preferredHosters, stream[i].Hoster)
+				if rank == -1 {
+					rank = len(preferredHosters)
+				}
+				if chosen == nil || rank < bestRank {
+					chosen = &stream[i]
+					bestRank = rank
+				}
+			}
+			if chosen == nil {
+				continue
+			}
+			found++
+			toDownloadStreams = append(toDownloadStreams, *chosen)
+		}
+
+		if found == 0 {
+			slog.Warn("skip ggs")
+		}
+	}
+
+	slog.Debug("", "", toDownloadStreams)
 
 	return nil
 }
