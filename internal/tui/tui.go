@@ -225,7 +225,9 @@ func Tui() error {
 		}
 	}
 
-	slog.Debug("", "", toDownloadStreams)
+	for _, stream := range toDownloadStreams {
+		module.Download(stream)
+	}
 
 	return nil
 }
