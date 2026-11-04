@@ -196,33 +196,29 @@ func Tui() error {
 			}
 		}
 
-		found := 0
-		for _, lang := range selectedLanguages {
-			var chosen *model.Stream
-			bestRank := 0
-			for i := range stream {
-				if stream[i].Language != lang {
-					continue
-				}
-				rank := slices.Index(preferredHosters, stream[i].Hoster)
-				if rank == -1 {
-					rank = len(preferredHosters)
-				}
-				if chosen == nil || rank < bestRank {
-					chosen = &stream[i]
-					bestRank = rank
-				}
-			}
-			if chosen == nil {
+		var chosen *model.Stream
+		bestLang, bestRank := 0, 0
+		for i := range stream {
+			langRank := slices.Index(selectedLanguages, stream[i].Language)
+			if langRank == -1 {
 				continue
 			}
-			found++
-			toDownloadStreams = append(toDownloadStreams, *chosen)
+			rank := slices.Index(preferredHosters, stream[i].Hoster)
+			if rank == -1 {
+				rank = len(preferredHosters)
+			}
+			if chosen == nil || langRank < bestLang || (langRank == bestLang && rank < bestRank) {
+				chosen = &stream[i]
+				bestLang = langRank
+				bestRank = rank
+			}
 		}
 
-		if found == 0 {
+		if chosen == nil {
 			slog.Warn("skip ggs")
+			continue
 		}
+		toDownloadStreams = append(toDownloadStreams, *chosen)
 	}
 
 	for _, stream := range toDownloadStreams {
