@@ -14,14 +14,22 @@ func BuildOutputPath(stream model.Stream) string {
 
 	replacer := strings.NewReplacer(
 		"{location}", cfg.Location.Download,
-		"{name}", stream.Name,
+		"{name}", clean(stream.Name),
 		"{season}", stream.SeasonNum,
-		"{title}", stream.EpisodeTitle,
-		"{title2}", stream.EpisodeAlternativeTitle,
+		"{title}", clean(stream.EpisodeTitle),
+		"{title2}", clean(stream.EpisodeAlternativeTitle),
 		"{episode}", stream.EpisodeNum,
 		"{language}", stream.Language,
-		"{hoster},", stream.Hoster,
+		"{hoster}", stream.Hoster,
 	)
 
 	return replacer.Replace(pattern)
+}
+
+func clean(s string) string {
+	// TODO check on windows what should also be replaced
+	return strings.ReplaceAll(s,
+		// spaces next to ∕ because it looks better
+		"/", " ∕ ",
+	)
 }
