@@ -10,6 +10,8 @@ import (
 	"mfg-dl/internal/sites"
 	"mfg-dl/internal/sites/model"
 	"mfg-dl/internal/tui/components"
+
+	"github.com/pterm/pterm"
 )
 
 func Tui() error {
@@ -222,7 +224,22 @@ func Tui() error {
 	}
 
 	for _, stream := range toDownloadStreams {
-		module.Download(stream)
+		err = module.Download(stream)
+		if err != nil {
+
+		}
+
+		pterm.Success.Println(
+			fmt.Sprintf("%s %s %s - %s [%s - %s]",
+				stream.Name,
+				stream.SeasonNum,
+				stream.EpisodeNum,
+				stream.EpisodeTitle,
+				stream.Language,
+				stream.Hoster,
+			),
+		)
+
 	}
 
 	return nil

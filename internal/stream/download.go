@@ -12,13 +12,15 @@ import (
 
 	"github.com/Deskilling/gopkg/pkg/m3u8"
 	"github.com/cavaliergopher/grab/v3"
+	"github.com/pterm/pterm"
 )
 
 var Client = grab.NewClient()
 
 func init() {
 	Client.HTTPClient = &http.Client{
-		Timeout:   60 * time.Second,
+		Timeout: 60 * time.Second,
+		// TODO Look into better transport settings
 		Transport: request.Client.Transport,
 	}
 }
@@ -27,6 +29,7 @@ func DownloadSegments(index m3u8.Index, baseURL, directory string) (err error) {
 	type job struct {
 		url  string
 		file string
+		err  error
 	}
 
 	cfg := core.GetConfig().Downloads
@@ -45,36 +48,60 @@ func DownloadSegments(index m3u8.Index, baseURL, directory string) (err error) {
 
 	respCh := Client.DoBatch(cfg.MaxSegmentConcurrency, reqs...)
 
+	p, _ := pterm.DefaultProgressbar.
+		WithTotal(len(reqs)).
+		WithTitle("Downloading Segments").
+		WithRemoveWhenDone(true).
+		Start()
+
 	var failed []job
 	for resp := range respCh {
-		if err := resp.Err(); err != nil {
+		err := resp.Err()
+		p.Increment()
+
+		if err != nil {
 			slog.Error("Failed to download", "url", resp.Request.URL(), "file", resp.Filename, "err", err)
-			failed = append(failed, job{url: resp.Request.URL().String(), file: resp.Filename})
+			failed = append(failed, job{
+				url:  resp.Request.URL().String(),
+				file: resp.Filename,
+				err:  err,
+			})
 		}
 	}
 
 	retryDelay := time.Duration(cfg.RetryDelay) * time.Second
 	var stillFailed []error
-	for _, j := range failed {
-		var lastErr error
-		for attempt := range cfg.MaxRetires {
+	for attempt := range cfg.MaxRetires {
+		retryReqs := make([]*grab.Request, 0, len(failed))
+		for _, j := range failed {
 			req, err := grab.NewRequest(j.file, j.url)
 			if err != nil {
-				lastErr = err
-				break
+				stillFailed = append(stillFailed, fmt.Errorf("%s: %w", j.file, err))
+				continue
 			}
-			resp := Client.Do(req)
-			if lastErr = resp.Err(); lastErr == nil {
-				break
-			}
-			if attempt < cfg.MaxRetires-1 {
-				time.Sleep(retryDelay)
+			retryReqs = append(retryReqs, req)
+		}
+
+		failed = nil
+		for resp := range Client.DoBatch(cfg.MaxSegmentConcurrency, retryReqs...) {
+			err := resp.Err()
+			if err != nil {
+				failed = append(failed, job{
+					url:  resp.Request.URL().String(),
+					file: resp.Filename,
+					err:  err,
+				})
 			}
 		}
-		if lastErr != nil {
-			slog.Error("GG on segment", "url", j.url, "path", j.file, "err", lastErr)
-			stillFailed = append(stillFailed, fmt.Errorf("%s: %w", j.file, lastErr))
+
+		if len(failed) > 0 && attempt < cfg.MaxRetires-1 {
+			time.Sleep(retryDelay)
 		}
+	}
+
+	for _, j := range failed {
+		slog.Error("GG on segment", "url", j.url, "path", j.file, "err", j.err)
+		stillFailed = append(stillFailed, fmt.Errorf("%s: %w", j.file, j.err))
 	}
 
 	if len(stillFailed) > 0 {

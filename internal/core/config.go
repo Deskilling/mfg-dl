@@ -5,12 +5,11 @@ import (
 	"log/slog"
 
 	"github.com/Deskilling/gopkg/pkg/config"
-
 	"github.com/Deskilling/gopkg/pkg/filesystem"
 )
 
 const configLocation string = "./config.toml"
-const configVersion string = "0.2"
+const configVersion string = "0.3"
 
 type Tui struct {
 	Mode int `toml:"tui" comment:"0 tmdb (recommendend)\n1 services directly\n2 for server mode"`
@@ -23,8 +22,8 @@ type Location struct {
 }
 
 type Downloads struct {
-	FfmpegDownload      bool `toml:"ffmpegdownload" comment:"use ffmpeg for HLS streams, usually slower but more stable, only enable if you run into issues"`
-	MaxVideoConcurrency int  `toml:"maxvideoconcurrency" comment:"maximum number of concurrent video downloads"`
+	FfmpegDownload bool     `toml:"ffmpegdownload" comment:"use ffmpeg for HLS streams, usually slower but more stable, only enable if you run into issues"`
+	FfmpegArgs     []string `toml:"ffmpegargs" comment:"these are the arguments used for combining the segments into a video\nNote: -i and the output are automatically appended"`
 
 	MaxSegmentConcurrency int `toml:"maxsegmentconcurrency" comment:"maximum number of concurrent segment downloads"`
 	MaxRetires            int `toml:"maxsegmentretires" comment:"max retries for each segment"`
@@ -76,7 +75,7 @@ var defaultConfig = Config{
 
 	Downloads: Downloads{
 		FfmpegDownload:        false,
-		MaxVideoConcurrency:   4,
+		FfmpegArgs:            []string{"-f", "concat", "-safe", "0", "-nostats", "-loglevel", "error", "-y", "input", "-c", "copy", "output"},
 		MaxSegmentConcurrency: 16,
 		MaxRetires:            3,
 		RetryDelay:            3,
