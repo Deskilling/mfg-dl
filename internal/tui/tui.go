@@ -226,7 +226,8 @@ func Tui() error {
 	for _, stream := range toDownloadStreams {
 		err = module.Download(stream)
 		if err != nil {
-
+			slog.Error("Downloading", "stream", stream)
+			continue
 		}
 
 		pterm.Success.Println(
@@ -239,7 +240,6 @@ func Tui() error {
 				stream.Hoster,
 			),
 		)
-
 	}
 
 	return nil
