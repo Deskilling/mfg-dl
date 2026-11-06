@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log/slog"
 	"slices"
+	"strings"
 
 	"mfg-dl/internal/search"
 	"mfg-dl/internal/sites"
@@ -14,62 +15,105 @@ import (
 	"github.com/pterm/pterm"
 )
 
+func breadcrumbs(parts ...string) {
+	fmt.Print("\033[H\033[2J")
+	pterm.FgGray.Println(strings.Join(parts, " › "))
+	fmt.Println()
+}
+
+func trail(name, service string, parts ...string) {
+	breadcrumbs(append([]string{"Search", name, service}, parts...)...)
+}
+
 func Tui() error {
 	fmt.Println()
 	slog.Debug("Starting Tui")
 
+	breadcrumbs("Search")
 	tmdbResults, err := components.Search("Search", search.Search)
 	if err != nil {
 		return err
 	}
 
-	selectedResult, err := components.SingleSelect(tmdbResults, true, func(r model.SearchResult) string {
-		if r.ProductionYear != "" {
-			return fmt.Sprintf("%s (%s)", r.Name, r.ProductionYear)
-		}
+	var selectedResult model.SearchResult
+	var actualSelectedSeries model.Score
 
-		return r.Name
-	})
-	if err != nil {
-		return fmt.Errorf("failed selecting single search result: %w", err)
-	}
-
-	selectedResult, err = search.Match(selectedResult)
-	if err != nil {
-		return fmt.Errorf("failed calculating scores: %w", err)
-	}
-
-	var scoreOptions []string
-	scoreByLabel := map[string]model.Score{}
-	// currently it just appends in order of the loading process
-	// i could maybe put the highest match on top but im not sure
-	// typign for search should be enough
-	// also generally i dont really know if the score system in that way
-	// is good but its good enough for now
-	// but no worries :)
-
-	for _, module := range sites.Modules {
-		candidates := selectedResult.Score[module.Name()]
-		for i, candidate := range candidates {
-			label := fmt.Sprintf("%s [%.1f%%] (%s [possible: Dubbled: %s Subbed %s])", candidate.Query, candidate.Score*100, module.Name(), module.Languages().Dubbed, module.Languages().Subbed)
-			if i == len(candidates)-1 {
-				label += "\n"
+search:
+	for {
+		breadcrumbs("Search", "Results")
+		selectedResult, err = components.SingleSelect(tmdbResults, true, func(r model.SearchResult) string {
+			if r.ProductionYear != "" {
+				return fmt.Sprintf("%s (%s)", r.Name, r.ProductionYear)
 			}
-			scoreOptions = append(scoreOptions, label)
-			scoreByLabel[label] = candidate
+
+			return r.Name
+		})
+		if err != nil {
+			return fmt.Errorf("failed selecting single search result: %w", err)
 		}
-	}
 
-	selectedSeries, err := components.SingleSelect(scoreOptions, true, func(r string) string {
-		return r
-	})
-	if err != nil {
-		return fmt.Errorf("failed selecting score: %w", err)
-	}
+		selectedResult, err = search.Match(selectedResult)
+		if err != nil {
+			return fmt.Errorf("failed calculating scores: %w", err)
+		}
 
-	actualSelectedSeries, ok := scoreByLabel[selectedSeries]
-	if !ok {
-		return errors.New("selected result not found in options (???)")
+		for {
+			var overview []model.Score
+			for _, m := range sites.Modules {
+				candidates := selectedResult.Score[m.Name()]
+				if len(candidates) > 0 {
+					overview = append(overview, candidates[0])
+				}
+			}
+			overview = append(overview, model.Score{Query: "← Back"})
+
+			breadcrumbs("Search", selectedResult.Name)
+			label := func(c model.Score) string {
+				if c.Service == "" {
+					return c.Query
+				}
+				m := sites.ModuleByName[c.Service]
+				more := ""
+				if n := len(selectedResult.Score[c.Service]); n > 1 {
+					more = fmt.Sprintf(" +%d more", n-1)
+				}
+				return fmt.Sprintf("%s %s [%.1f%%]%s (Dubbed: %s | Subbed: %s)", pterm.FgGreen.Sprintf("%-13s", c.Service), c.Query, c.Score*100, more, m.Languages().Dubbed, m.Languages().Subbed)
+			}
+
+			top, err := components.SingleSelect(overview, true, label)
+			if err != nil {
+				return fmt.Errorf("failed selecting service: %w", err)
+			}
+
+			if top.Service == "" {
+				continue search
+			}
+
+			candidates := selectedResult.Score[top.Service]
+			if len(candidates) == 1 {
+				actualSelectedSeries = candidates[0]
+				break search
+			}
+
+			breadcrumbs("Search", selectedResult.Name, top.Service)
+			options := append(slices.Clone(candidates), model.Score{Query: "← Back"})
+			picked, err := components.SingleSelect(options, true, func(c model.Score) string {
+				if c.Service == "" {
+					return c.Query
+				}
+				return fmt.Sprintf("%s [%.1f%%]", c.Query, c.Score*100)
+			})
+			if err != nil {
+				return fmt.Errorf("failed selecting score: %w", err)
+			}
+
+			if picked.Service == "" {
+				continue
+			}
+
+			actualSelectedSeries = picked
+			break search
+		}
 	}
 
 	module := sites.ModuleByName[actualSelectedSeries.Service]
@@ -89,6 +133,7 @@ func Tui() error {
 		return fmt.Errorf("failed getting seasons: %w", err)
 	}
 
+	trail(selectedResult.Name, module.Name(), "Seasons")
 	selectedSeasons, err := components.MultiSelect(seasons, false, func(r model.Season) string {
 		return r.SeasonLabel
 	})
@@ -106,6 +151,7 @@ func Tui() error {
 			return fmt.Errorf("failed getting episodes for %s: %w", module.Name(), err)
 		}
 
+		trail(selectedResult.Name, module.Name(), "Episodes")
 		toDownloadEpisodes, err = components.MultiSelect(episodes, true, func(e model.Episode) string {
 			return fmt.Sprintf("%s %s", e.EpisodeNum, e.EpisodeTitle)
 		})
@@ -161,6 +207,7 @@ func Tui() error {
 			if len(languages) == 1 {
 				selectedLanguages = languages
 			} else {
+				trail(selectedResult.Name, module.Name(), "Language")
 				selectedLanguages, err = components.MultiSelect(languages, false, func(l string) string {
 					return l
 				})
@@ -189,6 +236,7 @@ func Tui() error {
 			if len(hosters) == 1 {
 				preferredHosters = hosters
 			} else if len(hosters) > 1 {
+				trail(selectedResult.Name, module.Name(), "Hoster")
 				preferredHosters, err = components.MultiSelect(hosters, false, func(h string) string {
 					return h
 				})
@@ -226,7 +274,7 @@ func Tui() error {
 	for _, stream := range toDownloadStreams {
 		err = module.Download(stream)
 		if err != nil {
-			slog.Error("Downloading", "stream", stream)
+			slog.Error("Downloading", "stream", stream, "err", err)
 			continue
 		}
 

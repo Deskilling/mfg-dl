@@ -19,7 +19,7 @@ func SingleSelect[T any](options []T, enableFilter bool, label func(T) string) (
 	selectInput := pterm.DefaultInteractiveSelect.
 		WithOptions(labels).
 		WithFilter(enableFilter).
-		WithMaxHeight(15)
+		WithMaxHeight(35)
 
 	selected, err := selectInput.Show()
 	if err != nil {
@@ -43,7 +43,7 @@ func MultiSelect[T any](options []T, enableFilter bool, label func(T) string) ([
 	selectedLabels, err := pterm.DefaultInteractiveMultiselect.
 		WithOptions(labels).
 		WithFilter(enableFilter).
-		WithMaxHeight(15).
+		WithMaxHeight(35).
 		WithKeyConfirm(keys.Enter).
 		WithKeySelect(keys.Tab).
 		Show()
