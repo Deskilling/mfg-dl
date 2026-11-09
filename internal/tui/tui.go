@@ -40,16 +40,20 @@ func Tui() error {
 
 search:
 	for {
-		breadcrumbs("Search", "Results")
-		selectedResult, err = components.SingleSelect(tmdbResults, true, func(r model.SearchResult) string {
-			if r.ProductionYear != "" {
-				return fmt.Sprintf("%s (%s)", r.Name, r.ProductionYear)
-			}
+		if len(tmdbResults) == 1 {
+			selectedResult = tmdbResults[0]
+		} else {
+			breadcrumbs("Search", "Results")
+			selectedResult, err = components.SingleSelect(tmdbResults, true, func(r model.SearchResult) string {
+				if r.ProductionYear != "" {
+					return fmt.Sprintf("%s (%s)", r.Name, r.ProductionYear)
+				}
 
-			return r.Name
-		})
-		if err != nil {
-			return fmt.Errorf("failed selecting single search result: %w", err)
+				return r.Name
+			})
+			if err != nil {
+				return fmt.Errorf("failed selecting single search result: %w", err)
+			}
 		}
 
 		selectedResult, err = search.Match(selectedResult)
@@ -86,6 +90,9 @@ search:
 			}
 
 			if top.Service == "" {
+				if len(tmdbResults) == 1 {
+					return nil
+				}
 				continue search
 			}
 
@@ -133,12 +140,15 @@ search:
 		return fmt.Errorf("failed getting seasons: %w", err)
 	}
 
-	trail(selectedResult.Name, module.Name(), "Seasons")
-	selectedSeasons, err := components.MultiSelect(seasons, false, func(r model.Season) string {
-		return r.SeasonLabel
-	})
-	if err != nil {
-		return fmt.Errorf("failed selecting seasons: %w", err)
+	var selectedSeasons []model.Season
+	if len(seasons) > 1 {
+		trail(selectedResult.Name, module.Name(), "Seasons")
+		selectedSeasons, err = components.MultiSelect(seasons, false, func(r model.Season) string {
+			return r.SeasonLabel
+		})
+		if err != nil {
+			return fmt.Errorf("failed selecting seasons: %w", err)
+		}
 	}
 	if len(selectedSeasons) == 0 {
 		return errors.New("invalid seasons selection (expected atleast one)")
@@ -151,12 +161,15 @@ search:
 			return fmt.Errorf("failed getting episodes for %s: %w", module.Name(), err)
 		}
 
-		trail(selectedResult.Name, module.Name(), "Episodes")
-		toDownloadEpisodes, err = components.MultiSelect(episodes, true, func(e model.Episode) string {
-			return fmt.Sprintf("%s %s", e.EpisodeNum, e.EpisodeTitle)
-		})
-		if err != nil {
-			return fmt.Errorf("failed selecting episodes: %w", err)
+		var toDownloadEpisodes []model.Episode
+		if len(episodes) > 1 {
+			trail(selectedResult.Name, module.Name(), "Episodes")
+			toDownloadEpisodes, err = components.MultiSelect(episodes, true, func(e model.Episode) string {
+				return fmt.Sprintf("%s %s", e.EpisodeNum, e.EpisodeTitle)
+			})
+			if err != nil {
+				return fmt.Errorf("failed selecting episodes: %w", err)
+			}
 		}
 		if len(toDownloadEpisodes) == 0 {
 			return errors.New("invalid episodes selection (expected atleast one)")
