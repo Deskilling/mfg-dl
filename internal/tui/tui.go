@@ -149,6 +149,8 @@ search:
 		if err != nil {
 			return fmt.Errorf("failed selecting seasons: %w", err)
 		}
+	} else {
+		selectedSeasons = seasons
 	}
 	if len(selectedSeasons) == 0 {
 		return errors.New("invalid seasons selection (expected atleast one)")
@@ -161,7 +163,6 @@ search:
 			return fmt.Errorf("failed getting episodes for %s: %w", module.Name(), err)
 		}
 
-		var toDownloadEpisodes []model.Episode
 		if len(episodes) > 1 {
 			trail(selectedResult.Name, module.Name(), "Episodes")
 			toDownloadEpisodes, err = components.MultiSelect(episodes, true, func(e model.Episode) string {
@@ -170,6 +171,8 @@ search:
 			if err != nil {
 				return fmt.Errorf("failed selecting episodes: %w", err)
 			}
+		} else {
+			toDownloadEpisodes = episodes
 		}
 		if len(toDownloadEpisodes) == 0 {
 			return errors.New("invalid episodes selection (expected atleast one)")
