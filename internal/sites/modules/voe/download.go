@@ -10,7 +10,6 @@ import (
 	"mfg-dl/internal/ffmpeg"
 	"mfg-dl/internal/request"
 	"mfg-dl/internal/stream"
-	"mfg-dl/internal/util"
 
 	"github.com/Deskilling/gopkg/pkg/m3u8"
 
@@ -55,7 +54,7 @@ func (service Voe) PlayerDownload(voeUrl, output string) (err error) {
 		return fmt.Errorf("failed parsing voe streams: %w", err)
 	}
 
-	parsed.Directory = util.RemoveAfterSymbol(parsed.FileCode, "/")
+	parsed.Directory, _, _ = strings.Cut(parsed.FileCode, "/")
 
 	if core.GetConfig().Downloads.FfmpegDownload {
 		err = ffmpeg.DownloadHLS(parsed.Source, output)

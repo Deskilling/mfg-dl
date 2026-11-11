@@ -18,14 +18,6 @@ func ReverseString(s string) string {
 	return string(runes)
 }
 
-func RemoveAfterSymbol(input string, symbol string) string {
-	index := strings.Index(input, symbol)
-	if index != -1 {
-		return input[:index]
-	}
-	return input
-}
-
 func ShiftChars(str string, shift int) string {
 	var b strings.Builder
 	b.Grow(len(str))
