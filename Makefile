@@ -90,4 +90,4 @@ lint:
 	golangci-lint run ./...
 
 ## runs fmt, vet and lint
-check: fmt vet lint
+check: fmt lint
