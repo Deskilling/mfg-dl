@@ -71,11 +71,11 @@ update:
 
 ## runs all tests
 test:
-	$(GO) test ./...
+	$(GO) test ./... | sed -e "s/.*FAIL.*/$$(printf '\033[31m')&$$(printf '\033[0m')/"
 
 ## verbose test
 test-verbose:
-	$(GO) test -v ./...
+	$(GO) test -v ./... | sed -e "s/.*FAIL.*/$$(printf '\033[31m')&$$(printf '\033[0m')/"
 
 ## formats code
 fmt:
